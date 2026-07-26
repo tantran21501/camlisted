@@ -3,7 +3,7 @@
 // 다시 만들고 커밋한다. 검색 수요의 대부분이 "live cam 도시/나라" 형태라서,
 // 실제 콘텐츠가 HTML에 박힌 페이지가 있어야 구글이 색인/랭킹할 수 있다.
 import { createClient } from '@supabase/supabase-js';
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, rm, rmdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -286,6 +286,39 @@ function topCounts(list, keyFn, n) {
   return [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, n);
 }
 
+// 아래 사실 문단 헬퍼들은 카테고리/국가 페이지와 조합 페이지가 함께 쓴다.
+// 임계값을 인자로 받는 이유: 캠이 수백 개인 카테고리 페이지와 5개짜리 조합 페이지는
+// "문단을 쓸 만큼 데이터가 있다"의 기준이 달라야 한다.
+function resolutionParagraph(list, minMeasured) {
+  let measured = 0; const q = { hd2160: 0, hd1440: 0, hd1080: 0, hd720: 0 };
+  for (const s of list) if (s.max_quality) { measured++; if (q[s.max_quality] != null) q[s.max_quality]++; }
+  if (measured < minMeasured) return '';
+  const bits = [];
+  if (q.hd2160) bits.push(`${q.hd2160} in 4K`);
+  if (q.hd1440) bits.push(`${q.hd1440} in QHD`);
+  if (q.hd1080) bits.push(`${q.hd1080} in full HD`);
+  if (q.hd720) bits.push(`${q.hd720} in HD`);
+  if (!bits.length) return '';
+  return `Resolution figures here are measured, not scraped from titles: Camlisted records the real playback quality when a feed is opened. ${measured} of these feeds have been measured so far — ${humanList(bits)}.`;
+}
+
+function conditionParagraph(list, placeName, minKinds) {
+  const tagCount = new Map();
+  for (const s of list) for (const t of (s.tags || [])) tagCount.set(t, (tagCount.get(t) || 0) + 1);
+  const cond = ['night', 'rain', 'snow', 'fog', 'accident', 'fire'].map(t => [t, tagCount.get(t) || 0]).filter(([, n]) => n > 0);
+  if (cond.length < minKinds) return '';
+  return `Condition tags mark what a clip actually shows, so you can jump straight to a scenario: currently ${humanList(cond.map(([t, n]) => `${n} ${t} ${n === 1 ? 'scene' : 'scenes'}`))}${placeName ? ` tagged in ${escapeHtml(placeName)}` : ' tagged here'}.`;
+}
+
+function longestRunningParagraph(list, minYears) {
+  const oldest = list.filter(s => s.content_type === 'live' && s.started_at)
+    .sort((a, b) => String(a.started_at).localeCompare(String(b.started_at)))[0];
+  if (!oldest) return '';
+  const yr = new Date(oldest.started_at).getFullYear();
+  if (new Date().getFullYear() - yr < minYears) return '';
+  return `The longest-running live camera in this set has been broadcasting continuously since ${yr} — “${escapeHtml(truncTitle(oldest.title))}”.`;
+}
+
 // 실데이터에서 뽑는 사실 문단들 — 같은 문장 틀이라도 수치·채널·태그가 페이지마다 실제로 다르다.
 function factsParagraphs(list, placeName = '') {
   const out = [];
@@ -293,30 +326,78 @@ function factsParagraphs(list, placeName = '') {
   if (chans.length) {
     out.push(`Much of this collection comes from dedicated operators — ${humanList(chans.map(([name, n]) => `${escapeHtml(name)} (${n} feeds)`))} — channels that keep cameras running year-round rather than posting one-off clips.`);
   }
-  let measured = 0; const q = { hd2160: 0, hd1440: 0, hd1080: 0, hd720: 0 };
-  for (const s of list) if (s.max_quality) { measured++; if (q[s.max_quality] != null) q[s.max_quality]++; }
-  if (measured >= 5) {
-    const bits = [];
-    if (q.hd2160) bits.push(`${q.hd2160} in 4K`);
-    if (q.hd1440) bits.push(`${q.hd1440} in QHD`);
-    if (q.hd1080) bits.push(`${q.hd1080} in full HD`);
-    if (q.hd720) bits.push(`${q.hd720} in HD`);
-    if (bits.length) out.push(`Resolution figures here are measured, not scraped from titles: Camlisted records the real playback quality when a feed is opened. ${measured} of these feeds have been measured so far — ${humanList(bits)}.`);
+  for (const p of [
+    resolutionParagraph(list, 5),
+    conditionParagraph(list, placeName, 2),
+    longestRunningParagraph(list, 1),
+  ]) if (p) out.push(p);
+  return out;
+}
+
+// 현지 시간대 -> "밤 장면이 UTC 몇 시에 잡히나". 야간 영상을 찾는 사람에게 실제로 쓰이는 정보이고,
+// 국가마다 값이 달라 페이지마다 고유한 문장이 된다.
+function nightWindowUtc(code) {
+  const tz = COUNTRY_TZ[code];
+  if (!tz) return null;
+  let offsetMin;
+  try {
+    const label = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'longOffset' })
+      .formatToParts(new Date()).find(p => p.type === 'timeZoneName')?.value || '';
+    const m = label.match(/GMT([+-])(\d{2}):(\d{2})/);
+    if (!m) return null;
+    offsetMin = (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3]));
+  } catch { return null; }
+  const utcAt = (localHour) => {
+    const mins = ((localHour * 60 - offsetMin) % 1440 + 1440) % 1440;
+    return `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+  };
+  const abs = Math.abs(offsetMin);
+  const off = `UTC${offsetMin < 0 ? '−' : '+'}${String(Math.floor(abs / 60)).padStart(2, '0')}:${String(abs % 60).padStart(2, '0')}`;
+  return { off, from: utcAt(22), to: utcAt(5) };
+}
+
+// 조합(국가×카테고리) 페이지 본문.
+// 카테고리·국가 소개문(CATEGORY_NOTES/COUNTRY_NOTES)을 여기에 복제하면 수십 개 조합 페이지에
+// 똑같은 문단이 반복돼 오히려 중복 콘텐츠가 된다. 그래서 이 조합의 실제 데이터에서만 문장을 만든다.
+// 캠이 COMBO_MIN(5)개뿐인 조합에서도 최소 두 문단은 나오게 해서, 앞으로 자동 생성될 새 조합
+// 페이지가 알맹이 없는 껍데기로 남지 않게 한다 (애드센스의 '가치 없는 콘텐츠' 반려 사유).
+function comboFactsParagraphs(cb, countryTotal) {
+  const out = [];
+  const n = cb.list.length;
+  const lower = cb.label.toLowerCase();
+  const place = escapeHtml(cb.name);
+
+  // (1) 운영 주체 구성 — 목록이 비어있지 않은 한 항상 나온다
+  const distinct = new Set(cb.list.map(s => s.channel_title).filter(Boolean)).size;
+  const top = topCounts(cb.list, s => s.channel_title, 3);
+  if (distinct === 1 && top.length) {
+    out.push(`All ${n} feeds on this page are run by a single operator, ${escapeHtml(top[0][0])}, pointing several cameras at ${lower} scenes around ${place}. That usually means consistent framing and uptime across the whole set — and that one outage takes all of them down at once.`);
+  } else if (distinct >= n) {
+    out.push(`No single operator dominates here: all ${n} feeds come from ${distinct} different channels, so camera height, framing and image quality vary noticeably from one to the next.`);
+  } else if (top.length) {
+    const led = top.filter(([, k]) => k >= 2).map(([nm, k]) => `${escapeHtml(nm)} (${k})`);
+    out.push(`These ${n} feeds come from ${distinct} channels${led.length ? `, led by ${humanList(led)}` : ''} — a mix of operators running multiple cameras and one-off contributors, which is why framing varies across the page.`);
   }
-  const tagCount = new Map();
-  for (const s of list) for (const t of (s.tags || [])) tagCount.set(t, (tagCount.get(t) || 0) + 1);
-  const cond = ['night', 'rain', 'snow', 'fog', 'accident', 'fire'].map(t => [t, tagCount.get(t) || 0]).filter(([, n]) => n > 0);
-  if (cond.length >= 2) {
-    out.push(`Condition tags mark what a clip actually shows, so you can jump straight to a scenario: currently ${humanList(cond.map(([t, n]) => `${n} ${t} ${n === 1 ? 'scene' : 'scenes'}`))}${placeName ? ` tagged in ${escapeHtml(placeName)}` : ' tagged here'}.`);
+
+  // (2) 그 나라 카탈로그에서 이 카테고리가 차지하는 비중
+  if (countryTotal > 0) {
+    const pct = Math.round((n / countryTotal) * 100);
+    out.push(`${escapeHtml(cb.label)} makes up ${pct > 0 ? `${pct}%` : 'under 1%'} of the ${countryTotal} cameras Camlisted currently tracks in ${place}, so this page is a slice of that catalogue rather than the whole of it.`);
   }
-  const oldest = list.filter(s => s.content_type === 'live' && s.started_at)
-    .sort((a, b) => String(a.started_at).localeCompare(String(b.started_at)))[0];
-  if (oldest) {
-    const yr = new Date(oldest.started_at).getFullYear();
-    if (new Date().getFullYear() - yr >= 1) {
-      out.push(`The longest-running live camera in this set has been broadcasting continuously since ${yr} — “${escapeHtml(truncTitle(oldest.title))}”.`);
-    }
+
+  // (3) 야간 촬영 시간대 (UTC 환산)
+  const nw = nightWindowUtc(cb.code);
+  if (nw) {
+    out.push(`${place} runs on ${nw.off}, so the overnight stretch that yields low-light footage falls roughly between ${nw.from} and ${nw.to} UTC — worth knowing if you are after night scenes rather than daylight.`);
   }
+
+  // (4~6) 캠이 적어도 걸릴 수 있게 임계값을 낮춘 공통 사실 문단
+  for (const p of [
+    resolutionParagraph(cb.list, 3),
+    conditionParagraph(cb.list, cb.name, 1),
+    longestRunningParagraph(cb.list, 1),
+  ]) if (p) out.push(p);
+
   return out;
 }
 
@@ -1011,8 +1092,16 @@ async function main() {
     const intro = introSection([p1, p2], [linkRow('See also', backLinks)]);
     // 조합 페이지엔 데이터 사실만 넣는다 — 카테고리 소개문까지 복제하면 수십 페이지에 같은 문단이 반복돼
     // 오히려 중복 콘텐츠가 된다. 사실 문단은 조합마다 수치·채널이 달라 고유하다.
-    const comboFacts = factsParagraphs(cb.list, cb.name);
-    const outro = comboFacts.length ? outroSection(`About ${lower} cams in ${cb.name}`, comboFacts) : '';
+    const comboFacts = comboFactsParagraphs(cb, (byCountry.get(cb.code) || []).length);
+    const comboFaq = faqBlock([
+      [`How many ${lower} cams in ${cb.name} are live right now?`,
+       `${liveCount} of the ${cb.list.length} ${lower} feeds listed for ${escapeHtml(cb.name)} are broadcasting live at the moment${videoCount === 0 ? ', and none of them are recorded clips' : videoCount === 1 ? '; the remaining one is a recorded clip' : `; the remaining ${videoCount} are recorded clips`}. Camlisted re-checks every feed once a day and moves anything that has stopped to offline instead of deleting it.`],
+      [`Do I need an account to watch them?`,
+       `No. Every feed on this page is a public YouTube stream and plays for free without signing in. An account only adds voting, favourites and the ability to correct a camera's category or country.`],
+      [`Can I use this footage for computer vision work?`,
+       `The links are free to browse and each one carries its measured resolution, so you can tell at a glance whether a ${lower} camera in ${escapeHtml(cb.name)} is worth opening. The footage itself stays on YouTube under its own licence — Camlisted only points at it and never hosts or re-encodes video.`],
+    ]);
+    const outro = outroSection(`About ${lower} cams in ${cb.name}`, comboFacts, comboFaq.html);
     const html = appPage(indexTemplate, {
       title: `${cb.name} ${cb.label} Live Cams | Camlisted`,
       description: `${cb.list.length} ${lower} live cams and videos in ${cb.name}, ${liveCount} live now. Free to watch, verified daily on Camlisted.`,
@@ -1026,6 +1115,7 @@ async function main() {
       jsonLd: collectionJsonLd({
         name: `${cb.name} ${cb.label} Live Cams`, url: `/country/${cb.slug}/${cb.catkey}.html`, description: `${cb.list.length} ${lower} live cams in ${cb.name}.`,
         crumbs: [{ name: 'Home', path: '/' }, { name: cb.name, path: `/country/${cb.slug}.html` }, { name: cb.label, path: `/country/${cb.slug}/${cb.catkey}.html` }],
+        extra: [comboFaq.jsonLd],
       }),
     });
     await writeFile(path.join(ROOT, 'country', cb.slug, `${cb.catkey}.html`), html);
@@ -1672,6 +1762,37 @@ ${sitemapUrls.map(u => `  <url>
 `;
   await writeFile(path.join(ROOT, 'sitemap.xml'), sitemap);
   console.log(`sitemap.xml 갱신 (URL ${sitemapUrls.length}개)`);
+
+  // ===== 더 이상 생성되지 않는 옛 페이지 정리 =====
+  // 조합 페이지는 캠 수가 COMBO_MIN 밑으로 떨어지면 다음 실행부터 안 만들어지는데, 예전에 써둔
+  // 파일은 그대로 남아 계속 서빙된다. 사이트맵과 내부 링크에서는 빠졌는데 URL만 살아있는 이런
+  // 고아 페이지가 바로 애드센스가 '가치 없는 콘텐츠'로 집어내는 대상이다(내용도 갱신이 멈춘 채다).
+  const keepPaths = new Set(
+    sitemapUrls.map(u => u.loc.slice(SITE.length + 1)).filter(p => p.startsWith('c/') || p.startsWith('country/'))
+  );
+  const pruned = [];
+  const pruneDir = async (dir, isTop) => {
+    let items;
+    try { items = await readdir(dir, { withFileTypes: true }); } catch { return; }
+    for (const it of items) {
+      const full = path.join(dir, it.name);
+      if (it.isDirectory()) { await pruneDir(full, false); continue; }
+      if (!it.name.endsWith('.html')) continue;
+      const rel = path.relative(ROOT, full).split(path.sep).join('/');
+      if (keepPaths.has(rel)) continue;
+      await rm(full);
+      pruned.push(rel);
+    }
+    // 조합이 통째로 사라진 나라는 빈 폴더만 남으므로 같이 치운다 (c/·country/ 자신은 유지)
+    if (!isTop) { try { await rmdir(dir); } catch { /* 비어있지 않으면 그대로 둔다 */ } }
+  };
+  for (const top of ['c', 'country']) await pruneDir(path.join(ROOT, top), true);
+  if (pruned.length) {
+    console.log(`고아 페이지 ${pruned.length}개 삭제:`);
+    for (const p of pruned) console.log(`  - ${p}`);
+  } else {
+    console.log('고아 페이지 없음');
+  }
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });
