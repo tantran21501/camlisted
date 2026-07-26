@@ -352,16 +352,33 @@ async function loadRecentVisitors() {
     return;
   }
 
-  // 같은 방문자의 그날 체류시간 세그먼트를 합산해서 붙인다
+  // 같은 방문자의 그날 체류시간 세그먼트를 합산해서 붙인다.
+  // 이 조회가 실패하면 Stay 칸이 전부 '–'로 나오는데, 예전엔 에러를 통째로 버려서 "체류시간이
+  // 기록되지 않는 것"과 구분이 안 됐다. visit_durations는 INSERT만 anon에 열려 있고 SELECT는
+  // 관리자 정책(sql/031)에 달려 있어서, 그 마이그레이션을 안 돌리면 조용히 빈 결과가 온다.
   const keys = [...new Set(data.map(r => r.visitor_key))];
   const oldest = data[data.length - 1].created_at;
   const stayByKeyDate = new Map();
-  const { data: durs } = await sb
+  const { data: durs, error: durError } = await sb
     .from('visit_durations')
     .select('visitor_key, seconds, created_at')
     .in('visitor_key', keys)
     .gte('created_at', new Date(new Date(oldest).getTime() - 24 * 3600 * 1000).toISOString())
     .limit(10000);
+  const warnEl = document.getElementById('stayWarning');
+  if (warnEl) {
+    if (durError) {
+      warnEl.textContent = `Stay column unavailable — could not read visit_durations: ${durError.message}`;
+      warnEl.hidden = false;
+    } else if (!durs?.length) {
+      warnEl.textContent = 'Stay column is empty: visit_durations returned no rows for these visitors. '
+        + 'Durations are being recorded (see the daily table above), so this usually means the admin read policy '
+        + 'is missing — run sql/031_durations_admin_read.sql.';
+      warnEl.hidden = false;
+    } else {
+      warnEl.hidden = true;
+    }
+  }
   for (const d of durs || []) {
     const k = `${d.visitor_key}|${kstDateOf(d.created_at)}`;
     stayByKeyDate.set(k, (stayByKeyDate.get(k) || 0) + d.seconds);

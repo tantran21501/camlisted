@@ -2278,6 +2278,17 @@ body.video-panel-open { padding-right: min(var(--video-panel-w, 420px), 100vw); 
   font-size: 0.8rem;
 }
 
+/* 통계 표가 조용히 비어 보일 때 원인을 화면에 남긴다 (조회 실패와 데이터 없음을 구분) */
+.stats-warning {
+  color: var(--accent);
+  font-size: 0.82rem;
+  border-left: 3px solid var(--accent);
+  padding: 6px 10px;
+  margin: 8px 0;
+  background: var(--card-bg);
+  border-radius: 0 6px 6px 0;
+}
+
 .stats-subheading {
   margin: 28px 0 10px;
   font-size: 1.1rem;
