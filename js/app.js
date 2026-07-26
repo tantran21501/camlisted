@@ -73,6 +73,7 @@ const activeTags = new Set();       // 현재 켜져 있는 태그 필터 (일�
 const LIVE_TIME_BLOCKS = { dawn: [0, 6], morning: [6, 12], afternoon: [12, 18], night: [18, 24] };
 let activeLiveTime = null;          // 'dawn' | 'morning' | 'afternoon' | 'night' | null
 let pendingCountryFromUrl = '';     // 딥링크의 country 값 (옵션이 늦게 채워져서 보관 후 적용)
+let activeChannelId = '';           // 운영자 페이지(/ch/*)가 심어주는 채널 고정 필터
 
 function tagLabel(tag) {
   const key = `tag_${tag}`;
@@ -281,6 +282,9 @@ function currentFiltered() {
   const favoritesOnly = favoritesOnlyCheckbox.checked;
   const addedWithinDays = addedFilter.value ? Number(addedFilter.value) : null;
   const addedCutoff = addedWithinDays ? Date.now() - addedWithinDays * 24 * 3600 * 1000 : null;
+  // 운영자 페이지(/ch/*)에서만 걸리는 필터. 드롭다운이 아니라 페이지가 심어주는 값이라
+  // 다른 필터들과 달리 UI 요소가 없다.
+  const channelId = activeChannelId;
 
   const filtered = streams.filter(s => {
     if (showPendingOnly) {
@@ -296,6 +300,7 @@ function currentFiltered() {
         (Date.now() - new Date(s.addedAt).getTime() < 3 * 24 * 3600 * 1000);
     }
     if (s.approvalStatus === 'pending') return false;
+    if (channelId && s.channelId !== channelId) return false;
     if (q && !s.title.toLowerCase().includes(q) && !s.channelTitle.toLowerCase().includes(q)) return false;
     if (contentType && s.contentType !== contentType) return false;
     if (category && s.category !== category) return false;
@@ -1445,6 +1450,8 @@ function syncUrlFromFilters() {
   if (sortSelect.value !== 'newest') p.set('sort', sortSelect.value); // 기본(최신순)일 땐 URL에 안 남김
   if (searchInput.value.trim()) p.set('q', searchInput.value.trim());
   if (activeTags.size) p.set('tags', [...activeTags].join(','));
+  // 운영자 페이지에서는 경로(/ch/*)가 채널을 갖고 있으므로 쿼리에 중복해 남기지 않는다
+  if (activeChannelId && !window.__presetChannel) p.set('channel', activeChannelId);
   const qs = p.toString();
   history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
 }
@@ -1462,6 +1469,8 @@ function applyFiltersFromUrl() {
   setIfValid(qualityFilter, p.get('quality'));
   setIfValid(addedFilter, p.get('added'));
   setIfValid(sortSelect, p.get('sort'));
+  // window.__presetChannel: 운영자 페이지(/ch/*)가 심어주는 채널 고정 필터
+  activeChannelId = p.get('channel') || window.__presetChannel || '';
   if (p.get('q')) searchInput.value = p.get('q');
   for (const tg of (p.get('tags') || '').split(',')) {
     if (CONDITION_TAGS.includes(tg)) activeTags.add(tg);

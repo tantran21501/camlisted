@@ -401,6 +401,51 @@ function comboFactsParagraphs(cb, countryTotal) {
   return out;
 }
 
+// 운영자(채널) 페이지 본문. 한 채널이 카메라를 어디에 몇 대 두고 무엇을 찍는지는
+// 채널마다 완전히 다르므로, 여기서 나오는 문장은 자연히 페이지마다 고유하다.
+function channelFactsParagraphs(chn, countryNameOf, catLabelByKey, singleCountryPct) {
+  const out = [];
+  const list = chn.list;
+  const n = list.length;
+  const name = escapeHtml(chn.title);
+  const liveCount = list.filter(s => s.content_type === 'live').length;
+
+  // (1) 어느 나라에 몇 대를 두고 있나
+  // 여러 나라에 걸친 게 드물다는 비교는 하드코딩하지 않고 그때그때 실제 비율로 말한다
+  // (카탈로그가 커지면 이 비율도 같이 변해야 문장이 계속 사실이다)
+  const countries = topCounts(list, s => s.country, 4);
+  if (countries.length === 1) {
+    out.push(`${name} runs all ${n} of its cameras in ${escapeHtml(countryNameOf(countries[0][0]))}, so this page doubles as a local view of that one country rather than a world tour.`);
+  } else if (countries.length > 1) {
+    const spread = countries.map(([c, k]) => `${escapeHtml(countryNameOf(c))} (${k})`);
+    const total = new Set(list.map(s => s.country).filter(Boolean)).size;
+    out.push(`${name} spreads its cameras across ${total} countries — mostly ${humanList(spread)}. That puts it in the minority here: ${singleCountryPct}% of the operators Camlisted indexes keep every camera inside a single country.`);
+  }
+
+  // (2) 무엇을 찍나
+  const cats = topCounts(list, s => s.category, 3).filter(([k]) => k);
+  if (cats.length) {
+    const labels = cats.map(([k, c]) => `${escapeHtml(catLabelByKey.get(k) || k).toLowerCase()} (${c})`);
+    out.push(`By subject the set leans towards ${humanList(labels)}${cats.length === 1 ? ' — a single-theme operator' : ''}. Camlisted files each camera by what it actually shows, and signed-in visitors can correct that classification when it looks wrong.`);
+  }
+
+  // (3) 라이브 비중 — 이 사이트에서 운영자를 판단하는 실질 기준
+  if (liveCount === n) {
+    out.push(`Every one of these ${n} entries is a continuously running live stream rather than a recorded upload, which is the pattern of an operator maintaining fixed cameras rather than posting clips.`);
+  } else if (liveCount === 0) {
+    out.push(`All ${n} entries are recorded uploads rather than live streams, so this is an archive to scrub through rather than something to watch in real time.`);
+  } else {
+    out.push(`${liveCount} of the ${n} entries are live right now and ${n - liveCount} are recorded, so the channel mixes standing cameras with clips it has kept.`);
+  }
+
+  for (const p of [
+    resolutionParagraph(list, 3),
+    longestRunningParagraph(list, 1),
+  ]) if (p) out.push(p);
+
+  return out;
+}
+
 function faqBlock(qas) {
   const html = `<h2>Frequently asked questions</h2>` +
     qas.map(([q, a]) => `<h3>${escapeHtml(q)}</h3><p>${a}</p>`).join('');
@@ -470,7 +515,14 @@ function appPage(indexTemplate, { title, description, canonicalPath, h1, presetS
   // 에디토리얼 본문은 그리드 아래에 둔다 — 방문자에겐 목록이 먼저, 크롤러에겐 원본 산문이 같은 문서에
   if (outro) html = html.replace('</main>', `</main>\n${outro}`);
   html = html.replace(HOME_STATIC_RE, ''); // 홈 전용 정적 색인 블록 — 국가/카테고리 페이지엔 자체 staticGrid가 있으므로 제외
-  html = html.replace('<script src="js/app.js">', `<script>${presetScript}</script>\n<script src="js/app.js">`);
+  // app.js 앞에 프리셋 필터를 심는다. 캐시버스팅(?v=...)이 붙어도 매칭되도록 정규식을 쓴다 —
+  // 예전엔 문자열 그대로 찾다가 index.html에 ?v=가 붙은 뒤로 8일간 조용히 실패했고, 그동안
+  // 모든 카테고리·국가 페이지가 필터 없이 전체 목록을 그렸다. 못 찾으면 이제 즉시 실패시킨다.
+  const appScriptRe = /<script src="js\/app\.js[^"]*"><\/script>/;
+  if (!appScriptRe.test(html)) {
+    throw new Error('index.html에서 app.js 스크립트 태그를 찾지 못했습니다 — 프리셋 주입 위치가 바뀌었는지 확인하세요');
+  }
+  html = html.replace(appScriptRe, (tag) => `<script>${presetScript}</script>\n${tag}`);
   return html;
 }
 
@@ -1123,6 +1175,83 @@ async function main() {
   }
   console.log(`조합 페이지 ${combos.length}개 생성`);
 
+  // ===== 운영자(채널) 페이지 =====
+  // 카메라를 여러 대 굴리는 채널은 그 자체가 사람들이 찾는 대상이다("Virtual Railfan" 같은
+  // 브랜드 검색어). 그런데 지금까지는 한 운영자의 카메라를 모아보는 방법이 아예 없었다.
+  // 데이터는 이미 channel_id로 다 들어와 있어서 페이지만 뽑으면 된다.
+  const CHANNEL_MIN = 5;   // 이보다 적으면 페이지를 만들지 않는다 (얇은 페이지 방지)
+  const byChannel = new Map();
+  for (const s of visible) {
+    if (!s.channel_id || !s.channel_title) continue;
+    if (!byChannel.has(s.channel_id)) byChannel.set(s.channel_id, []);
+    byChannel.get(s.channel_id).push(s);
+  }
+  const channels = [];
+  const usedChannelSlugs = new Set();
+  for (const [cid, list] of [...byChannel.entries()].sort((a, b) => b[1].length - a[1].length)) {
+    if (list.length < CHANNEL_MIN) continue;
+    const title = list[0].channel_title;
+    // 채널명이 겹치거나(동명이인) 슬러그가 비는(전부 비ASCII) 경우가 있어 채널ID 꼬리를 붙여 유일하게 만든다
+    let slug = slugify(title).slice(0, 60);
+    if (!slug || usedChannelSlugs.has(slug)) slug = `${slug ? slug + '-' : 'channel-'}${cid.slice(-6).toLowerCase()}`;
+    if (usedChannelSlugs.has(slug)) continue; // 그래도 겹치면 건너뛴다 (사실상 발생하지 않음)
+    usedChannelSlugs.add(slug);
+    channels.push({ id: cid, title, slug, list });
+  }
+  // 페이지 문장에서 인용할 "운영자 중 단일 국가 비율" — 하드코딩하지 않고 매 실행 실제 값을 쓴다
+  const singleCountryPct = channels.length
+    ? Math.round(channels.filter(c => new Set(c.list.map(s => s.country).filter(Boolean)).size <= 1).length / channels.length * 100)
+    : 0;
+  await mkdir(path.join(ROOT, 'ch'), { recursive: true });
+  for (const chn of channels) {
+    const liveCount = chn.list.filter(s => s.content_type === 'live').length;
+    const videoCount = chn.list.length - liveCount;
+    const entries = sortForPage(chn.list).slice(0, MAX_ENTRIES_PER_PAGE);
+    const name = escapeHtml(chn.title);
+    const countryNames = topCounts(chn.list, s => s.country, 3).map(([c]) => escapeHtml(countryNameOf(c)));
+    const ex = exampleTitles(chn.list, 2);
+    const p1 = `All <strong>${chn.list.length}</strong> cameras and videos Camlisted tracks from <strong>${name}</strong> on YouTube — ${liveCount} live right now, ${videoCount} recorded${countryNames.length ? `, filmed in ${humanList(countryNames)}` : ''}.`;
+    const p2 = ex.length
+      ? `Examples include ${humanList(ex)}. Free to watch, no sign-up — every feed is re-checked once a day, so anything that has stopped shows as offline instead of quietly 404ing.`
+      : `Free to watch, no sign-up — every feed is re-checked once a day, so anything that has stopped shows as offline instead of quietly 404ing.`;
+    const catLinks = topCounts(chn.list, s => s.category, 4)
+      .filter(([k]) => k && categoryPages.some(c => c.key === k))
+      .map(([k]) => `<a href="/c/${k}.html">${escapeHtml(catLabelByKey.get(k) || k)}</a>`);
+    const intro = introSection([p1, p2], [
+      linkRow('Also in', catLinks),
+      `<nav class="seo-links"><a href="https://www.youtube.com/channel/${encodeURIComponent(chn.id)}" target="_blank" rel="noopener nofollow">Visit ${name} on YouTube &rarr;</a></nav>`,
+    ]);
+    const facts = channelFactsParagraphs(chn, countryNameOf, catLabelByKey, singleCountryPct);
+    const faq = faqBlock([
+      [`How many cameras does ${chn.title} have on Camlisted?`,
+       `${chn.list.length}${chn.list.length === MAX_ENTRIES_PER_PAGE ? ' or more' : ''} — ${videoCount === 0 ? `all of them live streams, ${liveCount} broadcasting right now` : liveCount === 0 ? `all of them recorded uploads rather than live streams` : `${liveCount} broadcasting live at the moment and ${videoCount} recorded`}. The list is rebuilt nightly from YouTube, so it follows the channel as cameras are added or retired.`],
+      [`Is this an official ${chn.title} page?`,
+       `No. Camlisted is an independent directory and has no affiliation with ${name}. It links to the channel's public YouTube streams and never hosts, mirrors or re-encodes the video.`],
+      [`How do I follow this operator?`,
+       `Open any camera here and use the subscribe button, or visit the channel on YouTube directly. Camlisted itself needs no account to browse.`],
+    ]);
+    const html = appPage(indexTemplate, {
+      title: `${chn.title} — All ${chn.list.length} Live Cams | Camlisted`,
+      description: `Every live cam and video from ${chn.title}: ${chn.list.length} feeds, ${liveCount} live now${countryNames.length ? `, filmed in ${countryNames.join(', ')}` : ''}. Free to watch, verified daily.`,
+      canonicalPath: `/ch/${chn.slug}.html`,
+      h1: `${chn.title} · Live Cams`,
+      presetScript: `window.__presetChannel=${JSON.stringify(chn.id)};`,
+      staticGrid: entries.map(entryCard).join(''),
+      intro,
+      outro: outroSection(`About ${chn.title}`, facts, faq.html),
+      ogImage: ogImageOf(entries),
+      jsonLd: collectionJsonLd({
+        name: `${chn.title} Live Cams`, url: `/ch/${chn.slug}.html`,
+        description: `${chn.list.length} live cams and videos from ${chn.title}.`,
+        crumbs: [{ name: 'Home', path: '/' }, { name: chn.title, path: `/ch/${chn.slug}.html` }],
+        extra: [faq.jsonLd],
+      }),
+    });
+    await writeFile(path.join(ROOT, 'ch', `${chn.slug}.html`), html);
+    sitemapUrls.push({ loc: `${SITE}/ch/${chn.slug}.html`, priority: '0.6', changefreq: 'weekly' });
+  }
+  console.log(`운영자 페이지 ${channels.length}개 생성 (카메라 ${channels.reduce((a, c) => a + c.list.length, 0)}대 커버)`);
+
   // ===== 세계지도 (choropleth) — 영상 수에 따라 색이 진해지고, 호버 툴팁 + 클릭 이동 =====
   // 지도 경로 데이터: jsvectormap(MIT, Natural Earth 기반)에서 추출한 config/world_map_paths.json
   const countByCode = new Map(); // code -> { live, video }
@@ -1180,7 +1309,12 @@ async function main() {
         ${[...countryPages].sort((a, b) => b.count - a.count).slice(0, 60)
           .map(c => `<li><a href="/country/${c.slug}.html">${escapeHtml(c.name)} live cams</a> <span>${c.count}</span></li>`).join('')}
       </ul>
-      <p><a href="/browse.html">Browse every country and category &rarr;</a></p>
+      <h3>Live cams by operator</h3>
+      <ul class="home-index-links">
+        ${channels.slice(0, 40)
+          .map(c => `<li><a href="/ch/${c.slug}.html">${escapeHtml(c.title)}</a> <span>${c.list.length}</span></li>`).join('')}
+      </ul>
+      <p><a href="/browse.html">Browse every country, category and operator &rarr;</a></p>
     </section>
   <!--HOME_STATIC_END-->`;
   let resolvedIndex = indexTemplate.replace(HOME_STATIC_RE, homeStatic);
@@ -1679,6 +1813,10 @@ async function main() {
       <ul class="browse-list">
         ${countryPages.map(c => `<li><a href="/country/${c.slug}.html" data-code="${c.code}">${escapeHtml(c.name)}</a> <span class="count">(${c.count})</span></li>`).join('')}
       </ul>
+      <h2 id="hOperator">By Operator</h2>
+      <ul class="browse-list">
+        ${channels.map(c => `<li><a href="/ch/${c.slug}.html">${escapeHtml(c.title)}</a> <span class="count">(${c.list.length})</span></li>`).join('')}
+      </ul>
       <script>
         // 본 사이트의 언어 설정(localStorage 'lang')을 그대로 따라 페이지 문구를 바꾼다
         (function () {
@@ -1768,7 +1906,8 @@ ${sitemapUrls.map(u => `  <url>
   // 파일은 그대로 남아 계속 서빙된다. 사이트맵과 내부 링크에서는 빠졌는데 URL만 살아있는 이런
   // 고아 페이지가 바로 애드센스가 '가치 없는 콘텐츠'로 집어내는 대상이다(내용도 갱신이 멈춘 채다).
   const keepPaths = new Set(
-    sitemapUrls.map(u => u.loc.slice(SITE.length + 1)).filter(p => p.startsWith('c/') || p.startsWith('country/'))
+    sitemapUrls.map(u => u.loc.slice(SITE.length + 1))
+      .filter(p => p.startsWith('c/') || p.startsWith('country/') || p.startsWith('ch/'))
   );
   const pruned = [];
   const pruneDir = async (dir, isTop) => {
@@ -1786,7 +1925,7 @@ ${sitemapUrls.map(u => `  <url>
     // 조합이 통째로 사라진 나라는 빈 폴더만 남으므로 같이 치운다 (c/·country/ 자신은 유지)
     if (!isTop) { try { await rmdir(dir); } catch { /* 비어있지 않으면 그대로 둔다 */ } }
   };
-  for (const top of ['c', 'country']) await pruneDir(path.join(ROOT, top), true);
+  for (const top of ['c', 'country', 'ch']) await pruneDir(path.join(ROOT, top), true);
   if (pruned.length) {
     console.log(`고아 페이지 ${pruned.length}개 삭제:`);
     for (const p of pruned) console.log(`  - ${p}`);
