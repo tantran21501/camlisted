@@ -1799,12 +1799,19 @@ function renderSidebar() {
       <button type="button" id="suggestTagBtn" class="sidebar-cat-btn suggest-category-btn">＋ ${escapeHtml(t('suggest_tag_button'))}</button>
     </div>
   ` : '';
+  // "오늘의 신규"는 매일 뭔가 새로 올라온다는 걸 보여주는 자리라 사이드바 맨 위(지도 위)에 둔다.
+  // 홈의 필터/정렬 조합으로 바로 이어지므로 별도 페이지가 필요 없다.
+  const todayNewHtml = `
+    <div class="sidebar-section">
+      <a href="./?added=1&sort=newest" class="sidebar-group-btn sidebar-map-link sidebar-today-link">${escapeHtml(t('today_new_button'))}</a>
+    </div>
+  `;
   const mapLinkHtml = `
     <div class="sidebar-section">
       <a href="browse.html" class="sidebar-group-btn sidebar-map-link">🗺 ${escapeHtml(t('world_map_link'))}</a>
     </div>
   `;
-  sidebar.innerHTML = toggleHtml + mapLinkHtml + pendingHtml + suggestHtml + SIDEBAR_GROUPS.map(g => {
+  sidebar.innerHTML = toggleHtml + todayNewHtml + mapLinkHtml + pendingHtml + suggestHtml + SIDEBAR_GROUPS.map(g => {
     const groupCollapsed = localStorage.getItem('sbGroupCollapsed_' + g.type) === '1';
     return `
     <div class="sidebar-section${groupCollapsed ? ' group-collapsed' : ''}">

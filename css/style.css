@@ -294,6 +294,26 @@ body {
   color: #ff5e5b;
 }
 
+/* 사이드바 맨 위 "오늘의 신규" — 매일 갱신된다는 신호라 유일하게 채운 배경으로 눈에 띄게 둔다 */
+.sidebar-today-link {
+  background: var(--accent);
+  color: #fff;
+  justify-content: center;
+  animation: todayNewGlow 2.4s ease-in-out infinite;
+}
+.sidebar-today-link:hover,
+.sidebar-today-link.active {
+  background: #ff5555;
+  color: #fff;
+}
+@keyframes todayNewGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(255, 59, 59, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-today-link { animation: none; }
+}
+
 .icon-btn {
   display: inline-flex;
   align-items: center;
