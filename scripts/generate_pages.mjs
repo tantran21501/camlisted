@@ -56,6 +56,18 @@ function slugify(name) {
 // 메인 페이지와 톤을 맞춘다. 아래는 지도/목록 전용 추가 스타일 (사이트 CSS 변수 사용).
 const PAGE_CSS = `
   .browse-intro { color: var(--muted); margin-bottom: 16px; }
+  /* 순위표 (최장수 라이브) — 넓은 표라 좁은 화면에서는 표 자체만 가로 스크롤시킨다 */
+  .rank-wrap { overflow-x: auto; margin: 18px 0 28px; }
+  .rank-table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 0.92rem; }
+  .rank-table th, .rank-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .rank-table th { color: var(--muted); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .rank-table td.rank { color: var(--muted); font-variant-numeric: tabular-nums; width: 3em; }
+  .rank-table td.age { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rank-table tr:hover td { background: var(--card-bg); }
+  .rank-table a { color: var(--text); text-decoration: none; }
+  .rank-table a:hover { color: var(--accent); text-decoration: underline; }
+  .rank-table .meta { color: var(--muted); font-size: 0.85rem; }
+  .rank-note { color: var(--muted); font-size: 0.88rem; }
   .browse-list { columns: 3; column-gap: 32px; padding: 0; }
   .browse-list li { list-style: none; margin-bottom: 6px; break-inside: avoid; }
   .browse-list a { color: var(--text); text-decoration: none; }
@@ -1252,6 +1264,138 @@ async function main() {
   }
   console.log(`운영자 페이지 ${channels.length}개 생성 (카메라 ${channels.reduce((a, c) => a + c.list.length, 0)}대 커버)`);
 
+  // ===== 최장수 라이브 랭킹 =====
+  // started_at은 "지금 돌고 있는 방송이 시작된 시각"(liveStreamingDetails.actualStartTime)이라,
+  // 여기 오르려면 한 번도 안 끊긴 단일 방송이어야 한다. 방송을 재시작하면 videoId가 바뀌며 0으로 리셋된다.
+  // 웹캠 목록의 최대 불만이 "링크가 죽어있다"인데 이 페이지는 정확히 그 반대를 보여준다.
+  const DAY_MS = 86400000;
+  const nowMs = Date.now();
+  const runners = visible
+    .filter(s => s.content_type === 'live' && s.status === 'live' && s.started_at)
+    .map(s => ({ ...s, days: Math.floor((nowMs - new Date(s.started_at).getTime()) / DAY_MS) }))
+    .filter(s => s.days >= 0)
+    .sort((a, b) => b.days - a.days);
+
+  if (runners.length >= 20) {
+    const RANK_SHOWN = 100;
+    const chSlugById = new Map(channels.map(c => [c.id, c.slug]));
+    const catKeysWithPage = new Set(categoryPages.map(c => c.key));
+    // 표 안에서는 좁게(8 yr 47 d), 문장 안에서는 읽히게(8 years and 47 days) 쓴다
+    const fmtAge = (d) => {
+      const y = Math.floor(d / 365), r = d % 365;
+      return y ? `${y} yr ${r} d` : `${d} d`;
+    };
+    const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+    const fmtAgeLong = (d) => {
+      const y = Math.floor(d / 365), r = d % 365;
+      if (!y) return plural(d, 'day');
+      if (!r) return plural(y, 'year');
+      return `${plural(y, 'year')} and ${plural(r, 'day')}`;
+    };
+    const nfmt = (n) => n.toLocaleString('en-US');
+    const median = (arr) => {
+      const a = [...arr].sort((x, y) => x - y);
+      return a.length % 2 ? a[(a.length - 1) / 2] : Math.round((a[a.length / 2 - 1] + a[a.length / 2]) / 2);
+    };
+    const atLeast = (y) => runners.filter(s => s.days >= 365 * y).length;
+    const medianDays = median(runners.map(s => s.days));
+    const top = runners[0];
+
+    // 카테고리별 수명 중앙값 — "어떤 종류의 카메라가 오래 사는가"는 여기서만 나오는 데이터다
+    const byCatDays = new Map();
+    for (const s of runners) {
+      if (!s.category) continue;
+      if (!byCatDays.has(s.category)) byCatDays.set(s.category, []);
+      byCatDays.get(s.category).push(s.days);
+    }
+    const catLongevity = [...byCatDays.entries()]
+      .filter(([, v]) => v.length >= 10)
+      .map(([k, v]) => ({ key: k, label: catLabelByKey.get(k) || k, med: median(v), n: v.length }))
+      .sort((a, b) => b.med - a.med);
+
+    const veterans = runners.filter(s => s.days >= 365 * 5);
+    const vetCountries = topCounts(veterans, s => s.country, 3);
+    const vetOperators = topCounts(veterans, s => s.channel_title, 3).filter(([, n]) => n >= 2);
+
+    const rankRows = runners.slice(0, RANK_SHOWN).map((s, i) => {
+      const opSlug = chSlugById.get(s.channel_id);
+      const cSlug = s.country ? countrySlugByCode.get(s.country) : null;
+      const startYear = new Date(s.started_at).getUTCFullYear();
+      return `<tr>
+        <td class="rank">${i + 1}</td>
+        <td><a href="https://www.youtube.com/watch?v=${encodeURIComponent(s.video_id)}" target="_blank" rel="noopener">${escapeHtml(truncTitle(s.title))}</a>
+          <div class="meta">${opSlug ? `<a href="/ch/${opSlug}.html">${escapeHtml(s.channel_title || '')}</a>` : escapeHtml(s.channel_title || '')}</div></td>
+        <td>${cSlug ? `<a href="/country/${cSlug}.html">${escapeHtml(countryNameOf(s.country))}</a>` : escapeHtml(s.country ? countryNameOf(s.country) : '—')}</td>
+        <td>${s.category && catKeysWithPage.has(s.category) ? `<a href="/c/${s.category}.html">${escapeHtml(catLabelByKey.get(s.category) || s.category)}</a>` : escapeHtml(s.category ? (catLabelByKey.get(s.category) || s.category) : '—')}</td>
+        <td class="age">${fmtAge(s.days)}<div class="meta">since ${startYear}</div></td>
+      </tr>`;
+    }).join('');
+
+    const catTable = catLongevity.length >= 4 ? `
+      <h2>Which kinds of camera last longest</h2>
+      <p>Grouping the same set by subject shows the gap plainly. This is median age, so it describes the typical camera in each group rather than its record holder — categories with fewer than ten live cameras are left out.</p>
+      <div class="rank-wrap"><table class="rank-table">
+        <thead><tr><th>Category</th><th>Median age</th><th>Live cams counted</th></tr></thead>
+        <tbody>${catLongevity.map(c => `<tr><td>${catKeysWithPage.has(c.key) ? `<a href="/c/${c.key}.html">${escapeHtml(c.label)}</a>` : escapeHtml(c.label)}</td><td class="age">${fmtAge(c.med)}</td><td class="meta">${c.n}</td></tr>`).join('')}</tbody>
+      </table></div>` : '';
+
+    const longestFaq = faqBlock([
+      ['What counts as "continuously running"?',
+       `The clock is YouTube's own start time for the broadcast that is playing right now. If an operator stops and restarts a stream, YouTube issues a new video and the count begins again at zero — so every camera on this list has held a single unbroken broadcast for the age shown. A camera that has filmed the same view for a decade across several restarts will not appear near the top.`],
+      ['How often is this list updated?',
+       `Nightly. Camlisted re-checks every stream once a day, and a camera drops off this page as soon as its broadcast ends. That is the point of the list: everything here was still running at the last check.`],
+      ['Why are there so few very old streams?',
+       `Because staying live is hard. Across ${nfmt(runners.length)} live cameras with a known start time the median age is ${fmtAgeLong(medianDays)} — power cuts, expired keys, storms and channel changes end most broadcasts long before their first birthday. The ${nfmt(atLeast(5))} cameras past five years are the exception, not the norm.`],
+    ]);
+
+    const longestBody = `
+      <div class="rank-wrap"><table class="rank-table">
+        <thead><tr><th>#</th><th>Camera</th><th>Country</th><th>Category</th><th>Running for</th></tr></thead>
+        <tbody>${rankRows}</tbody>
+      </table></div>
+      <p class="rank-note">Showing the top ${Math.min(RANK_SHOWN, runners.length)} of ${nfmt(runners.length)} live cameras with a known start time. Updated ${escapeHtml(today)}.</p>
+
+      <section class="seo-outro">
+        <h2>What the numbers say</h2>
+        <p>Most live cams do not last. Of the ${nfmt(runners.length)} broadcasting right now with a start time on record, the median has been up for just ${fmtAgeLong(medianDays)}. Past that the field thins fast: ${nfmt(atLeast(1))} have run over a year, ${nfmt(atLeast(3))} over three, and only ${nfmt(atLeast(5))} have held a single unbroken broadcast for five years or more.</p>
+        <p>The current record holder is “${escapeHtml(truncTitle(top.title))}”${top.channel_title ? ` from ${escapeHtml(top.channel_title)}` : ''}${top.country ? ` in ${escapeHtml(countryNameOf(top.country))}` : ''}, streaming without a break for ${fmtAgeLong(top.days)} — since ${new Date(top.started_at).getUTCFullYear()}. That is one continuous YouTube broadcast, not a channel that has been posting since then.</p>
+        ${vetCountries.length ? `<p>The five-year club skews geographically: ${humanList(vetCountries.map(([c, n]) => `${escapeHtml(countryNameOf(c))} (${n})`))} account for much of it${vetOperators.length ? `, and a handful of operators carry several each — ${humanList(vetOperators.map(([n, k]) => `${escapeHtml(n)} (${k})`))}` : ''}. Longevity tends to follow whoever treats the camera as infrastructure rather than a project.</p>` : ''}
+        ${catLongevity.length >= 4 ? `<p>Subject matter matters more than you might expect. ${escapeHtml(catLongevity[0].label)} cameras run a median ${fmtAgeLong(catLongevity[0].med)}, while ${escapeHtml(catLongevity[catLongevity.length - 1].label)} cameras manage ${fmtAgeLong(catLongevity[catLongevity.length - 1].med)}. Cameras bolted to a building someone maintains outlast cameras set up for a season or a view that shifts.</p>` : ''}
+        ${longestFaq.html}
+      </section>
+      ${catTable}
+      <p><a href="/browse.html">Browse every country, category and operator &rarr;</a></p>
+      <script type="application/ld+json">${JSON.stringify([
+        longestFaq.jsonLd,
+        {
+          '@context': 'https://schema.org', '@type': 'ItemList',
+          name: 'The Longest-Running Live Cams on YouTube',
+          description: `YouTube live cams ranked by unbroken broadcast length. Updated ${today}.`,
+          numberOfItems: Math.min(RANK_SHOWN, runners.length),
+          itemListOrder: 'https://schema.org/ItemListOrderDescending',
+          itemListElement: runners.slice(0, 20).map((s, i) => ({
+            '@type': 'ListItem', position: i + 1, name: truncTitle(s.title),
+            url: `https://www.youtube.com/watch?v=${encodeURIComponent(s.video_id)}`,
+          })),
+        },
+      ])}<\/script>
+    `;
+
+    const longestHtml = pageHtml({
+      title: 'The Longest-Running Live Cams on YouTube – Camlisted',
+      description: `The YouTube live cams that have streamed longest without stopping — ${atLeast(5)} have run over five years unbroken, led by ${truncTitle(top.title)} at ${fmtAge(top.days)}. Updated daily.`,
+      canonicalPath: '/longest-running-live-cams.html',
+      h1: 'The Longest-Running Live Cams on YouTube',
+      intro: `Ranked by how long each broadcast has run without ever stopping. ${atLeast(5)} of these cameras have been live for more than five years straight. Updated ${today}.`,
+      bodyHtml: longestBody,
+    });
+    await writeFile(path.join(ROOT, 'longest-running-live-cams.html'), longestHtml);
+    sitemapUrls.push({ loc: `${SITE}/longest-running-live-cams.html`, priority: '0.7', changefreq: 'daily' });
+    console.log(`최장수 라이브 랭킹 생성 (${runners.length}대 중 상위 ${Math.min(RANK_SHOWN, runners.length)} · 5년+ ${atLeast(5)}대 · 최고 ${fmtAge(top.days)})`);
+  } else {
+    console.log('최장수 라이브 랭킹 건너뜀 — started_at 있는 라이브가 너무 적음');
+  }
+
   // ===== 세계지도 (choropleth) — 영상 수에 따라 색이 진해지고, 호버 툴팁 + 클릭 이동 =====
   // 지도 경로 데이터: jsvectormap(MIT, Natural Earth 기반)에서 추출한 config/world_map_paths.json
   const countByCode = new Map(); // code -> { live, video }
@@ -1314,6 +1458,7 @@ async function main() {
         ${channels.slice(0, 40)
           .map(c => `<li><a href="/ch/${c.slug}.html">${escapeHtml(c.title)}</a> <span>${c.list.length}</span></li>`).join('')}
       </ul>
+      <p><a href="/longest-running-live-cams.html">The longest-running live cams on YouTube &rarr;</a></p>
       <p><a href="/browse.html">Browse every country, category and operator &rarr;</a></p>
     </section>
   <!--HOME_STATIC_END-->`;
@@ -1817,6 +1962,7 @@ async function main() {
       <ul class="browse-list">
         ${channels.map(c => `<li><a href="/ch/${c.slug}.html">${escapeHtml(c.title)}</a> <span class="count">(${c.list.length})</span></li>`).join('')}
       </ul>
+      <p style="margin-top:24px"><a href="/longest-running-live-cams.html">The longest-running live cams on YouTube &rarr;</a></p>
       <script>
         // 본 사이트의 언어 설정(localStorage 'lang')을 그대로 따라 페이지 문구를 바꾼다
         (function () {
