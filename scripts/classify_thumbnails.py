@@ -1,11 +1,20 @@
-"""CLIP 제로샷으로 썸네일을 보고 카테고리를 분류한다.
+"""CLIP 제로샷으로 썸네일을 보고 카테고리를 분류한다. **녹화 영상(content_type='video') 전용.**
 
 매일 GitHub Actions에서 update.mjs 다음에 실행된다.
-- 대상: 아직 AI 분류를 안 거쳤고(ai_checked_at is null), 유저가 직접 카테고리를
-  고치지 않은(category_source != 'user') 행
-- 라이브는 실시간 스냅샷(hqdefault_live.jpg), 일반 영상은 저장된 썸네일을 내려받아
-  분류에만 쓰고 즉시 폐기한다 (디스크/DB에 이미지 저장 안 함)
+- 대상: 녹화 영상 중 아직 AI 분류를 안 거쳤고(ai_checked_at is null), 유저가 직접
+  카테고리를 고치지 않은(category_source != 'user') 행
+- 저장된 썸네일을 내려받아 분류에만 쓰고 즉시 폐기한다 (디스크/DB에 이미지 저장 안 함)
 - 확신도가 낮으면 기존 카테고리를 유지하고 체크 기록만 남긴다
+
+라이브를 제외하는 이유(2026-07-26): 라이브는 썸네일이 "지금 이 순간"의 한 프레임이라
+스트림 전체를 대표하지 못한다. PTZ(회전) 카메라는 찍는 순간마다 다른 곳을 보고 있고,
+낮/밤/날씨도 계속 바뀐다. 실제로 다낭의 PTZ 도로 카메라가 한 프레임 때문에 'indoor'로
+분류됐는데, 같은 카메라를 나중에 다시 재보니 'traffic'을 0.96 확신도로 맞혔다.
+게다가 확신도 임계값은 이런 오판을 못 걸러낸다 — 수족관을 'wildlife' 0.68로,
+도심 스카이라인을 'aerial' 0.67로 "자신 있게" 틀린다.
+라이브 카테고리는 제목·채널명을 읽는 Gemini(ai_review.mjs)가 맡는다. 여기서 라이브를
+건드리지 않으면 ai_checked_at이 null로 남고, Gemini 재검수가 nullsFirst 정렬이라
+새 라이브가 대기열 맨 앞으로 올라가 바로 분류된다.
 
 환경변수: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, (선택) DRY_RUN=1, BATCH_LIMIT
 """
@@ -147,10 +156,12 @@ def fetch_category_keys():
 
 
 def fetch_targets():
-    # ai 분류 미체크 + 유저 수정분 제외
+    # 녹화 영상만 + ai 분류 미체크 + 유저 수정분 제외
+    # (라이브를 제외하는 이유는 모듈 docstring 참고 — 한 프레임이 스트림을 대표하지 못한다)
     url = (
         f"{SUPABASE_URL}/rest/v1/streams"
         f"?select=video_id,thumbnail,category,category_source,content_type,tags"
+        f"&content_type=eq.video"
         f"&ai_checked_at=is.null"
         f"&or=(category_source.is.null,category_source.neq.user)"
         f"&limit={BATCH_LIMIT}"
@@ -161,9 +172,7 @@ def fetch_targets():
 
 
 def thumbnail_url(row):
-    if (row.get("content_type") or "live") == "live":
-        # 라이브는 지금 이 순간의 화면 스냅샷이 분류에 가장 정확하다
-        return f"https://i.ytimg.com/vi/{row['video_id']}/hqdefault_live.jpg"
+    # fetch_targets가 content_type='video'만 가져오므로 항상 저장된 썸네일을 쓴다
     return row.get("thumbnail") or f"https://i.ytimg.com/vi/{row['video_id']}/hqdefault.jpg"
 
 
