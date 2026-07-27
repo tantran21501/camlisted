@@ -299,7 +299,16 @@ body {
   background: var(--accent);
   color: #fff;
   justify-content: center;
+  gap: 8px;
   animation: todayNewGlow 2.4s ease-in-out infinite;
+}
+/* 기본 .sidebar-count는 회색(--muted)이라 빨간 배경에서 거의 안 보인다 — 여기서만 흰색 알약으로 */
+.sidebar-today-link .sidebar-count {
+  color: #fff;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 999px;
+  padding: 1px 8px;
 }
 .sidebar-today-link:hover,
 .sidebar-today-link.active {

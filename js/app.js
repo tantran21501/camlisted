@@ -1781,6 +1781,19 @@ function pendingCount() {
   return streams.filter(s => s.approvalStatus === 'pending').length;
 }
 
+// 사이드바 "오늘의 신규" 배지. 그 링크(?added=1&sort=newest)를 눌렀을 때 실제로 세어지는 것과
+// 같은 조건이어야 숫자와 화면이 어긋나지 않는다 — addedFilter의 24시간 기준에, 링크가 향하는
+// 홈의 기본 필터(라이브 상태 + 정상 노출 + 승인 완료)를 그대로 맞춘다.
+function todayNewCount() {
+  const cutoff = Date.now() - 24 * 3600 * 1000;
+  return streams.filter(s =>
+    s.approvalStatus !== 'pending' &&
+    s.status === 'live' &&
+    s.visibility === 'listed' &&
+    s.addedAt && new Date(s.addedAt).getTime() >= cutoff
+  ).length;
+}
+
 function recentApprovedCount() {
   const cutoff = Date.now() - 3 * 24 * 3600 * 1000;
   return streams.filter(s => s.approvalStatus !== 'pending' && s.addedAt && new Date(s.addedAt).getTime() > cutoff).length;
@@ -1810,9 +1823,13 @@ function renderSidebar() {
   ` : '';
   // "오늘의 신규"는 매일 뭔가 새로 올라온다는 걸 보여주는 자리라 사이드바 맨 위(지도 위)에 둔다.
   // 홈의 필터/정렬 조합으로 바로 이어지므로 별도 페이지가 필요 없다.
+  // 0건일 때 배지를 감추는 이유: 이 버튼은 "매일 갱신된다"는 신호가 목적인데 0을 붙이면 정반대가 된다
+  const todayNew = todayNewCount();
   const todayNewHtml = `
     <div class="sidebar-section">
-      <a href="./?added=1&sort=newest" class="sidebar-group-btn sidebar-map-link sidebar-today-link">${escapeHtml(t('today_new_button'))}</a>
+      <a href="./?added=1&sort=newest" class="sidebar-group-btn sidebar-map-link sidebar-today-link">
+        <span class="sbg-label">${escapeHtml(t('today_new_button'))}</span>${todayNew ? `<span class="sidebar-count">${todayNew}</span>` : ''}
+      </a>
     </div>
   `;
   const mapLinkHtml = `
