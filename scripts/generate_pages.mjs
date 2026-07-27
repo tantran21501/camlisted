@@ -952,7 +952,13 @@ async function main() {
   const CAT_META_JSON = JSON.stringify(catMeta);
   if (categoriesRes.error) throw categoriesRes.error;
   const categories = categoriesRes.data || [];
-  const visible = streams.filter(s => s.approval_status !== 'pending' && s.title);
+  // visibility='hidden'은 여기서도 빼야 한다. 예전엔 승인 여부만 봤는데, 그러면 관리자가 내린
+  // 영상이 앱 화면에서만 사라지고 정적 그리드·streams.json에는 그대로 남았다. 크롤러와 애드센스가
+  // 읽는 건 그 정적 HTML이라, "숨김"이 정작 숨겨야 할 상대에게는 통하지 않았다.
+  const visible = streams.filter(s =>
+    s.approval_status !== 'pending' && s.title &&
+    (s.visibility == null || s.visibility === 'listed')
+  );
   // 인트로에 쓸 "메인 노출 수" = 메인 페이지 카운트와 같은 기준 (라이브 + 공개 + 승인). 오프라인은 뺀다.
   const mainVisibleCount = streams.filter(s =>
     s.approval_status !== 'pending' && s.title && s.status === 'live' &&
