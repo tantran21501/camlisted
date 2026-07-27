@@ -1,3 +1,9 @@
 .env
 node_modules/
 __pycache__/
+
+# DB 덤프에는 방문자 IP와 가입 이메일이 들어 있다 — 이 저장소는 공개이므로 절대 커밋되면 안 된다.
+# 워크플로는 백업을 비공개 저장소(camlisted-backups)로만 보낸다. 지금은 덤프가 커밋 단계
+# 뒤에 생성돼서 안전하지만, 단계 순서가 바뀌면 git add -A가 그대로 삼킬 수 있어 여기서 막는다.
+db-backup.sql
+backup-repo/

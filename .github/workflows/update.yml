@@ -77,7 +77,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add country c browse.html globe.html index.html sitemap.xml data/streams.json
+          # 생성물 경로를 하나씩 적으면 새 종류의 페이지가 늘 때마다 여기를 같이 고쳐야 하는데,
+          # 실제로 그걸 빠뜨려서 운영자 페이지(ch/)와 최장수 랭킹이 sitemap에는 올라갔는데
+          # 파일은 커밋되지 않아 전부 404가 났다. 생성물은 전부 추적 대상이므로 통째로 add한다.
+          git add -A
           # 작업 도중 main에 새 커밋이 올라왔을 수 있으므로 rebase 후 푸시 (경합으로 인한 push 실패 방지)
           git diff --cached --quiet || (git commit -m "Regenerate SEO pages" && git pull --rebase origin main && git push)
 
