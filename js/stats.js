@@ -353,37 +353,53 @@ async function loadRecentVisitors() {
   }
 
   // 같은 방문자의 그날 체류시간 세그먼트를 합산해서 붙인다.
-  // 이 조회가 실패하면 Stay 칸이 전부 '–'로 나오는데, 예전엔 에러를 통째로 버려서 "체류시간이
-  // 기록되지 않는 것"과 구분이 안 됐다. visit_durations는 INSERT만 anon에 열려 있고 SELECT는
-  // 관리자 정책(sql/031)에 달려 있어서, 그 마이그레이션을 안 돌리면 조용히 빈 결과가 온다.
+  //
+  // 여기서 .limit(10000)을 걸면 안 된다. Supabase(PostgREST)는 한 응답을 1000행에서 자르므로
+  // 그 숫자는 무시된다. 게다가 정렬이 없으면 어느 1000행이 올지 보장되지 않는데, 실제로는
+  // 범위에서 가장 오래된 쪽이 왔다. 표에 뜨는 건 가장 최근 방문자들이라 겹치는 행이 하나도
+  // 없었고, 조회는 성공하는데 Stay만 전부 '–'로 보였다. 하루 100건 넘게 쌓이는 테이블에서
+  // 2~4주치를 훑으므로 1000행은 금방 넘는다 — 최신순으로 정렬해 끝까지 페이지네이션한다.
   const keys = [...new Set(data.map(r => r.visitor_key))];
   const oldest = data[data.length - 1].created_at;
+  const since = new Date(new Date(oldest).getTime() - 24 * 3600 * 1000).toISOString();
   const stayByKeyDate = new Map();
-  const { data: durs, error: durError } = await sb
-    .from('visit_durations')
-    .select('visitor_key, seconds, created_at')
-    .in('visitor_key', keys)
-    .gte('created_at', new Date(new Date(oldest).getTime() - 24 * 3600 * 1000).toISOString())
-    .limit(10000);
+  const PAGE = 1000;
+  const durs = [];
+  let durError = null;
+  for (let from = 0; from < 50000; from += PAGE) {
+    const { data: page, error } = await sb
+      .from('visit_durations')
+      .select('visitor_key, seconds, created_at')
+      .in('visitor_key', keys)
+      .gte('created_at', since)
+      .order('created_at', { ascending: false })
+      .range(from, from + PAGE - 1);
+    if (error) { durError = error; break; }
+    durs.push(...(page || []));
+    if (!page || page.length < PAGE) break;
+  }
+  for (const d of durs) {
+    const k = `${d.visitor_key}|${kstDateOf(d.created_at)}`;
+    stayByKeyDate.set(k, (stayByKeyDate.get(k) || 0) + d.seconds);
+  }
   const warnEl = document.getElementById('stayWarning');
   if (warnEl) {
     if (durError) {
       warnEl.textContent = `Stay column unavailable — could not read visit_durations: ${durError.message}`;
       warnEl.hidden = false;
-    } else if (!durs?.length) {
+    } else if (!durs.length) {
       warnEl.textContent = 'Stay column is empty: visit_durations returned no rows for these visitors. '
         + 'Durations are being recorded (see the daily table above), so this usually means the admin read policy '
-        + 'is missing — run sql/031_durations_admin_read.sql.';
+        + 'is missing — run sql/062_fix_durations_admin_read.sql.';
+      warnEl.hidden = false;
+    } else if (!stayByKeyDate.size) {
+      warnEl.textContent = `Read ${durs.length} duration rows but none matched a visitor/day in this table — `
+        + 'the join key is off, not the data.';
       warnEl.hidden = false;
     } else {
       warnEl.hidden = true;
     }
   }
-  for (const d of durs || []) {
-    const k = `${d.visitor_key}|${kstDateOf(d.created_at)}`;
-    stayByKeyDate.set(k, (stayByKeyDate.get(k) || 0) + d.seconds);
-  }
-
   const fmtTime = (ts) => new Date(ts).toLocaleString('ko-KR', {
     timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit',
   });
