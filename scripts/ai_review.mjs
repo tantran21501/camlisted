@@ -47,7 +47,7 @@ async function fetchPending() {
     const to = Math.min(from + PAGE, MAX_PER_RUN) - 1;
     const { data, error } = await supabase
       .from('streams')
-      .select('video_id, title, channel_title, category, country, country_source, content_type')
+      .select('video_id, title, channel_title, category, category_source, country, country_source, content_type')
       .eq('approval_status', 'pending')
       .order('added_at', { ascending: true })
       .range(from, to);
@@ -140,7 +140,7 @@ async function callGemini(prompt) {
 async function fetchApprovedToAudit(limit) {
   const { data, error } = await supabase
     .from('streams')
-    .select('video_id, title, channel_title, category, country, country_source, content_type')
+    .select('video_id, title, channel_title, category, category_source, country, country_source, content_type')
     .eq('approval_status', 'approved')
     .neq('source', 'user')
     .order('ai_checked_at', { ascending: true, nullsFirst: true })
@@ -200,7 +200,10 @@ async function reviewPending(pending, categoryKeys, validCat) {
       // 승인 또는 보류: 카테고리·국가 교정을 함께 반영 (보류여도 큐에서 정확도 개선)
       const patch = {};
       if (verdict === 'approve') { patch.approval_status = 'approved'; patch.ai_checked_at = now; } // 방금 승인 → 재검수 대상에서 잠시 제외
-      if (v.category && validCat.has(v.category) && v.category !== s.category) {
+      // 사람이 직접 고친 분류(category_source='user')는 국가와 마찬가지로 건드리지 않는다 —
+      // 이 가드가 국가에만 있고 카테고리에 없어서, 관리자가 바로잡은 분류를 다음 재검수가
+      // 도로 뒤집는 사고가 실제로 났다 (Renesse aan Zee: avenue/user -> beach/ai)
+      if (v.category && validCat.has(v.category) && s.category_source !== 'user' && v.category !== s.category) {
         patch.category = v.category;
         patch.category_source = 'ai';
       }
@@ -268,8 +271,8 @@ async function auditApproved(categoryKeys, validCat) {
         });
       } else {
         kept += 1;
-        // 유지되는 건 카테고리·국가 교정만 겸함 (정확도 개선)
-        if (v?.category && validCat.has(v.category) && v.category !== s.category) { patch.category = v.category; patch.category_source = 'ai'; }
+        // 유지되는 건 카테고리·국가 교정만 겸함 (정확도 개선) — 단, 사람이 고친 건 둘 다 보호
+        if (v?.category && validCat.has(v.category) && s.category_source !== 'user' && v.category !== s.category) { patch.category = v.category; patch.category_source = 'ai'; }
         if (v?.country && /^[A-Z]{2}$/.test(v.country) && s.country_source !== 'user' && v.country !== s.country) { patch.country = v.country; patch.country_source = 'ai'; }
       }
       const { error } = await supabase.from('streams').update(patch).eq('video_id', s.video_id);
