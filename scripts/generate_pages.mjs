@@ -1450,6 +1450,10 @@ async function main() {
       <h3>Live cams by category</h3>
       <ul class="home-index-links">
         ${categories.map(c => {
+          // 페이지가 실제로 생성된 카테고리만 링크한다 — 'other'는 페이지를 안 만드는데
+          // 여기서 전체 카테고리를 돌면서 /c/other.html 링크를 만들어 404를 가리키고 있었다
+          // (GSC가 2026-07-25 크롤에서 잡아냄)
+          if (!categoryPages.some(p => p.key === c.key)) return '';
           const n = homeCatCount.get(c.key) || 0;
           return n ? `<li><a href="/c/${c.key}.html">${escapeHtml(c.label_en || c.key)} live cams</a> <span>${n}</span></li>` : '';
         }).join('')}
