@@ -1938,6 +1938,10 @@ sidebar.addEventListener('click', async (e) => {
   pendingAiFilter = '';
   contentTypeFilter.value = btn.dataset.contentType;
   categoryFilter.value = btn.dataset.category || '';
+  // 사이드바는 "탐색"이라 등록 기간 필터는 푼다 — 🆕 New(?added=1)로 들어온 사람이 카테고리를
+  // 누르면 그 카테고리 전체를 기대하는데, 24시간 필터가 남아 두어 개만 보이는 문제가 있었다.
+  // 필터바에서 직접 고른 경우도 같이 풀리지만, 탐색 클릭이 기간을 유지하는 것보다 예측 가능하다.
+  addedFilter.value = '';
   onContentTypeChanged(); // 사이드바 Live/Video 클릭 시 조건 필터도 해당 타입만 보이게
   syncUrlFromFilters();
   updateSidebarActiveState();
