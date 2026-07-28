@@ -1687,11 +1687,17 @@ function extractVideoId(rawUrl) {
   return null;
 }
 
+// oEmbed는 "영상이 존재하나" 확인과 제목/채널명 채우기를 겸한다. 주의: 운영자가 퍼가기(임베드)를
+// 꺼둔 영상은 404가 아니라 401을 준다 — 영상이 없는 게 아니다. 카탈로그는 그런 캠도 이미 지원하므로
+// (embeddable=false → 패널에서 썸네일+YouTube only) 제보를 막으면 안 된다. 실제로 Ocean City
+// 보드워크 캠(멀쩡한 라이브) 제보가 "영상을 찾을 수 없음"으로 거부되는 사고가 있었다.
+// 401/403이면 존재로 치고 제목은 비워 보낸다 — 야간 update.mjs가 Data API로 채운다.
 async function fetchOEmbed(videoId) {
   const url = `https://www.youtube.com/oembed?url=${encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`)}&format=json`;
   const res = await fetch(url);
-  if (!res.ok) return null;
-  return res.json();
+  if (res.ok) return { exists: true, embeddable: true, data: await res.json() };
+  if (res.status === 401 || res.status === 403) return { exists: true, embeddable: false, data: null };
+  return { exists: false, embeddable: false, data: null };
 }
 
 submitForm.addEventListener('submit', async (e) => {
@@ -1709,8 +1715,9 @@ submitForm.addEventListener('submit', async (e) => {
     return;
   }
   const contentType = submitContentType.value;
+  // 네트워크 오류(fetch 자체 실패)는 "영상 없음"과 다른 문제라 존재 확인 불가로만 처리
   const oembed = await fetchOEmbed(videoId).catch(() => null);
-  if (!oembed) {
+  if (!oembed || !oembed.exists) {
     submitStatus.textContent = t('submit_video_unavailable');
     return;
   }
@@ -1720,8 +1727,9 @@ submitForm.addEventListener('submit', async (e) => {
     added_by: currentUser.id,
     content_type: contentType,
     category: submitCategory.value || null,
-    title: oembed.title || null,
-    channel_title: oembed.author_name || null,
+    title: oembed.data?.title || null,
+    channel_title: oembed.data?.author_name || null,
+    embeddable: oembed.embeddable, // 임베드 금지(401)로 확인된 제보는 패널이 바로 YouTube only로 처리
     thumbnail: `https://i.ytimg.com/vi/${videoId}/${contentType === 'live' ? 'hqdefault_live' : 'hqdefault'}.jpg`,
     approval_status: 'pending',
   });
