@@ -112,8 +112,12 @@ async function callGemini(prompt) {
         const data = await res.json();
         return JSON.parse(data?.candidates?.[0]?.content?.parts?.[0]?.text || '[]');
       }
-      const body = (await res.text()).slice(0, 120);
-      console.log(`  모델 ${cand} 사용 불가 (${res.status}) ${res.status === 429 ? '· 할당량/무료티어 문제' : body}`);
+      // 429 본문에는 구글이 정확히 어떤 한도에 걸렸는지 적혀 있다 (quotaId에 -FreeTier가 보이면
+      // 이 키가 무료 티어 프로젝트 소속이라는 뜻 — 유료 결제를 켠 프로젝트의 키가 아닌 것).
+      // 예전엔 이걸 버리고 "할당량/무료티어 문제"라고만 찍어서, 유료 키라고 알고 있는데 왜
+      // 429가 나는지 로그만으로는 판별할 수 없었다.
+      const body = (await res.text()).replace(/\s+/g, ' ').slice(0, 400);
+      console.log(`  모델 ${cand} 사용 불가 (${res.status}) ${body}`);
       if (res.status === 429) quotaHit = true;
       if (res.status !== 404 && res.status !== 400) await sleep(2000); // 429 등은 잠깐 쉬고 다음 후보
     }
@@ -130,7 +134,7 @@ async function callGemini(prompt) {
     }
     if (res.status === 429 && attempt < 2) { await sleep(20000); continue; }
     if (res.status === 429) QUOTA_EXHAUSTED = true; // 재시도까지 했는데 429 → 일일 한도
-    throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 160)}`);
+    throw new Error(`Gemini ${res.status}: ${(await res.text()).replace(/\s+/g, ' ').slice(0, 400)}`);
   }
 }
 
