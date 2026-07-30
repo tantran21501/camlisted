@@ -1878,9 +1878,14 @@ function pendingCount() {
   return streams.filter(s => s.approvalStatus === 'pending').length;
 }
 
-// 사이드바 "오늘의 신규" 배지. 그 링크(?added=1&sort=newest)를 눌렀을 때 실제로 세어지는 것과
+// 사이드바 "New (24h)" 배지. 그 링크(?added=1&sort=newest)를 눌렀을 때 실제로 세어지는 것과
 // 같은 조건이어야 숫자와 화면이 어긋나지 않는다 — addedFilter의 24시간 기준에, 링크가 향하는
 // 홈의 기본 필터(라이브 상태 + 정상 노출 + 승인 완료)를 그대로 맞춘다.
+//
+// 주의: 카드에 붙는 초록 NEW 배지는 이것과 기준이 다르다(NEW_WINDOW_MS = 7일). 그 값은 열람권
+// 게이팅("등록 7일 이내 링크는 무료 열람 제한")에도 쓰이므로 화면 표시를 맞추려고 건드리면
+// 정책이 바뀐다. 그래서 둘을 통일하는 대신 이쪽 라벨에 (24h)를 박아 구분한다 —
+// 실제로 "카드엔 NEW가 수십 개인데 배지는 10"이라 헷갈린다는 지적이 있었다.
 function todayNewCount() {
   const cutoff = Date.now() - 24 * 3600 * 1000;
   return streams.filter(s =>
