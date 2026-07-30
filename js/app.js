@@ -26,6 +26,7 @@ const commentForm = document.getElementById('commentForm');
 const commentInput = document.getElementById('commentInput');
 const bulkActionBar = document.getElementById('bulkActionBar');
 const bulkActionCount = document.getElementById('bulkActionCount');
+const bulkApproveBtn = document.getElementById('bulkApproveBtn');
 const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
 const bulkClearBtn = document.getElementById('bulkClearBtn');
 const authArea = document.getElementById('authArea');
@@ -464,10 +465,14 @@ function render(list) {
       ? t('deselect_all_button', { n: list.length })
       : t('select_all_button', { n: list.length });
     selectAllBtn.addEventListener('click', () => {
-      if (list.every(s => selectedForDelete.has(s.videoId))) {
-        list.forEach(s => selectedForDelete.delete(s.videoId));
+      // 반드시 클릭 시점에 목록을 다시 계산한다. 렌더 때 캡쳐한 list를 쓰면, 그 사이 하나씩
+      // 승인한 항목이 (화면에서는 refreshCard로 사라졌는데도) 목록에 남아 삭제 대상에 섞인다.
+      // 2026-07-30에 이걸로 승인 완료된 카메라들이 "쓰레기 일괄 삭제"에 휩쓸려 지워졌다.
+      const current = currentFiltered();
+      if (current.every(s => selectedForDelete.has(s.videoId))) {
+        current.forEach(s => selectedForDelete.delete(s.videoId));
       } else {
-        list.forEach(s => selectedForDelete.add(s.videoId));
+        current.forEach(s => selectedForDelete.add(s.videoId));
       }
       updateBulkActionBar();
       render(currentFiltered());
@@ -859,6 +864,8 @@ grid.addEventListener('change', async (e) => {
 function updateBulkActionBar() {
   bulkActionBar.hidden = selectedForDelete.size === 0;
   bulkActionCount.textContent = t('bulk_selected_count', { n: selectedForDelete.size });
+  // "선택 승인"은 승인 대기 뷰에서만 의미가 있다 — 일반 뷰의 선택은 삭제용
+  bulkApproveBtn.hidden = !showPendingOnly;
 }
 
 bulkClearBtn.addEventListener('click', () => {
@@ -868,8 +875,50 @@ bulkClearBtn.addEventListener('click', () => {
   render(currentFiltered());
 });
 
+// 체크한 것만 승인 — Gemini 크레딧을 끊은 뒤(무료/수동 운영) 대기 큐를 사람이 훑는 게
+// 일상 작업이 되어서, "쓰레기만 체크→일괄 삭제" 다음에 "나머지 전체 승인" 말고
+// "좋은 것만 체크→일괄 승인"으로도 갈 수 있게 한다. 승인 로직은 handleApproveAll과 동일.
+bulkApproveBtn.addEventListener('click', async () => {
+  if (!isAdmin || selectedForDelete.size === 0) return;
+  const ids = [...selectedForDelete].filter(id => {
+    const s = streams.find(x => x.videoId === id);
+    return s && s.approvalStatus === 'pending';
+  });
+  if (!ids.length) return;
+  if (!confirm(t('bulk_approve_confirm', { n: ids.length }))) return;
+  bulkApproveBtn.disabled = true;
+  // URL 길이 제한을 피하려고 200개씩 나눠서 업데이트 (handleApproveAll과 같은 이유)
+  for (let i = 0; i < ids.length; i += 200) {
+    const chunk = ids.slice(i, i + 200);
+    const { error } = await sb.from('streams').update({ approval_status: 'approved' }).in('video_id', chunk);
+    if (error) {
+      alert(t('approve_failed', { message: error.message }));
+      bulkApproveBtn.disabled = false;
+      return;
+    }
+    for (const s of streams) {
+      if (chunk.includes(s.videoId)) s.approvalStatus = 'approved';
+    }
+  }
+  bulkApproveBtn.disabled = false;
+  selectedForDelete.clear();
+  channelGroupsFullySelected.clear();
+  updateBulkActionBar();
+  renderSidebar();
+  updateSidebarActiveState();
+  render(currentFiltered());
+});
+
 bulkDeleteBtn.addEventListener('click', async () => {
   if (!isAdmin || selectedForDelete.size === 0) return;
+  // 마지막 안전망: 승인 대기 뷰에서 지우려는데 선택에 이미 승인된 항목이 섞여 있으면 먼저 알린다.
+  // 위 두 수정으로 안 섞이게 했지만, 이 조합(승인 작업 + 일괄 삭제)은 한 번 틀리면
+  // 되돌리기 어려운 쪽이라 확인을 한 겹 더 둔다.
+  if (showPendingOnly) {
+    const approvedIds = [...selectedForDelete]
+      .filter(id => streams.find(s => s.videoId === id)?.approvalStatus !== 'pending');
+    if (approvedIds.length && !confirm(t('bulk_delete_approved_warn', { n: approvedIds.length }))) return;
+  }
   if (!confirm(t('bulk_delete_confirm', { n: selectedForDelete.size }))) return;
   const ids = [...selectedForDelete];
   const { error } = await sb.from('streams').delete().in('video_id', ids);
@@ -938,7 +987,11 @@ async function handleAdminApprove(btn) {
   }
   const s = streams.find(x => x.videoId === videoId);
   if (s) s.approvalStatus = 'approved';
+  // 승인한 건 삭제 선택에서 빼둔다 — 미리 체크해둔 상태로 승인했을 수도 있고,
+  // 그대로 두면 이어지는 일괄 삭제가 방금 승인한 카메라를 지운다
+  selectedForDelete.delete(videoId);
   refreshCard(videoId);
+  updateBulkActionBar();
   renderSidebar();
   updateSidebarActiveState();
 }

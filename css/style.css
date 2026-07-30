@@ -1091,6 +1091,17 @@ body {
   cursor: pointer;
 }
 
+/* 선택 승인 — 삭제(빨강)와 색으로 확실히 구분되는 초록 (카드의 Approve 버튼 계열) */
+.bulk-approve-btn {
+  background: #15803d;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
 .bulk-clear-btn {
   background: var(--card-bg);
   border: 1px solid var(--border);
