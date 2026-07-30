@@ -887,20 +887,30 @@ bulkApproveBtn.addEventListener('click', async () => {
   if (!ids.length) return;
   if (!confirm(t('bulk_approve_confirm', { n: ids.length }))) return;
   bulkApproveBtn.disabled = true;
+  let goneCount = 0;
   // URL 길이 제한을 피하려고 200개씩 나눠서 업데이트 (handleApproveAll과 같은 이유)
   for (let i = 0; i < ids.length; i += 200) {
     const chunk = ids.slice(i, i + 200);
-    const { error } = await sb.from('streams').update({ approval_status: 'approved' }).in('video_id', chunk);
+    const { data: updated, error } = await sb.from('streams')
+      .update({ approval_status: 'approved' }).in('video_id', chunk).select('video_id');
     if (error) {
       alert(t('approve_failed', { message: error.message }));
       bulkApproveBtn.disabled = false;
       return;
     }
+    // 돌아온 것만 승인으로 반영하고, 사라진 행은 목록에서 뺀다 (0건 수정은 에러가 아니다)
+    const okIds = new Set((updated || []).map(r => r.video_id));
+    const goneIds = chunk.filter(id => !okIds.has(id));
     for (const s of streams) {
-      if (chunk.includes(s.videoId)) s.approvalStatus = 'approved';
+      if (okIds.has(s.videoId)) s.approvalStatus = 'approved';
+    }
+    if (goneIds.length) {
+      streams = streams.filter(s => !goneIds.includes(s.videoId));
+      goneCount += goneIds.length;
     }
   }
   bulkApproveBtn.disabled = false;
+  if (goneCount) alert(t('approve_some_gone', { n: goneCount }));
   selectedForDelete.clear();
   channelGroupsFullySelected.clear();
   updateBulkActionBar();
@@ -911,16 +921,19 @@ bulkApproveBtn.addEventListener('click', async () => {
 
 bulkDeleteBtn.addEventListener('click', async () => {
   if (!isAdmin || selectedForDelete.size === 0) return;
-  // 마지막 안전망: 승인 대기 뷰에서 지우려는데 선택에 이미 승인된 항목이 섞여 있으면 먼저 알린다.
-  // 위 두 수정으로 안 섞이게 했지만, 이 조합(승인 작업 + 일괄 삭제)은 한 번 틀리면
-  // 되돌리기 어려운 쪽이라 확인을 한 겹 더 둔다.
+  // 승인 대기 뷰의 일괄 삭제는 "아직 대기 중인 쓰레기를 치우는" 작업이다. 이미 승인한 항목이
+  // 거기 섞이는 건 어떤 경우에도 의도가 아니므로, 경고로 물어보는 대신 아예 대상에서 뺀다.
+  // 2026-07-30에 이 조합으로 승인·분류까지 마친 카메라들이 두 번 삭제됐다 — 확인 대화상자는
+  // 무심코 넘길 수 있어서, 여기서는 "물어보지 않고 지키는" 쪽을 택했다.
+  let ids = [...selectedForDelete];
   if (showPendingOnly) {
-    const approvedIds = [...selectedForDelete]
-      .filter(id => streams.find(s => s.videoId === id)?.approvalStatus !== 'pending');
-    if (approvedIds.length && !confirm(t('bulk_delete_approved_warn', { n: approvedIds.length }))) return;
+    const before = ids.length;
+    ids = ids.filter(id => streams.find(s => s.videoId === id)?.approvalStatus === 'pending');
+    const skipped = before - ids.length;
+    if (skipped) alert(t('bulk_delete_skipped_approved', { n: skipped }));
+    if (!ids.length) return;
   }
-  if (!confirm(t('bulk_delete_confirm', { n: selectedForDelete.size }))) return;
-  const ids = [...selectedForDelete];
+  if (!confirm(t('bulk_delete_confirm', { n: ids.length }))) return;
   const { error } = await sb.from('streams').delete().in('video_id', ids);
   if (error) {
     alert(t('admin_delete_failed', { message: error.message }));
@@ -979,10 +992,24 @@ async function handleAdminApprove(btn) {
   if (!isAdmin) return;
   const videoId = btn.dataset.videoId;
   btn.disabled = true;
-  const { error } = await sb.from('streams').update({ approval_status: 'approved' }).eq('video_id', videoId);
+  // .select()로 실제 수정된 행을 돌려받아야 한다. 대상 행이 없으면 Supabase는 에러가 아니라
+  // 빈 결과를 주는데, 예전엔 error만 보고 성공으로 처리했다. 그래서 다른 창에서 이미 삭제된
+  // 카드(이 탭 목록에만 남은 유령)를 승인하면 화면·배지만 올라가고 DB엔 아무 일도 없었다.
+  const { data: updated, error } = await sb.from('streams')
+    .update({ approval_status: 'approved' }).eq('video_id', videoId).select('video_id');
   if (error) {
     alert(t('approve_failed', { message: error.message }));
     btn.disabled = false;
+    return;
+  }
+  if (!updated?.length) {
+    alert(t('approve_row_gone'));
+    streams = streams.filter(s => s.videoId !== videoId);
+    selectedForDelete.delete(videoId);
+    updateBulkActionBar();
+    renderSidebar();
+    updateSidebarActiveState();
+    render(currentFiltered());
     return;
   }
   const s = streams.find(x => x.videoId === videoId);
@@ -1003,19 +1030,28 @@ async function handleApproveAll() {
   if (!confirm(t('approve_all_confirm', { n: pendingIds.length }))) return;
   const btn = document.getElementById('approveAllBtn');
   if (btn) btn.disabled = true;
+  let allGoneCount = 0;
   // URL 길이 제한을 피하려고 200개씩 나눠서 업데이트
   for (let i = 0; i < pendingIds.length; i += 200) {
     const chunk = pendingIds.slice(i, i + 200);
-    const { error } = await sb.from('streams').update({ approval_status: 'approved' }).in('video_id', chunk);
+    const { data: updated, error } = await sb.from('streams')
+      .update({ approval_status: 'approved' }).in('video_id', chunk).select('video_id');
     if (error) {
       alert(t('approve_failed', { message: error.message }));
       if (btn) btn.disabled = false;
       return;
     }
+    const okIds = new Set((updated || []).map(r => r.video_id));
+    const goneIds = chunk.filter(id => !okIds.has(id));
     for (const s of streams) {
-      if (chunk.includes(s.videoId)) s.approvalStatus = 'approved';
+      if (okIds.has(s.videoId)) s.approvalStatus = 'approved';
+    }
+    if (goneIds.length) {
+      streams = streams.filter(s => !goneIds.includes(s.videoId));
+      allGoneCount += goneIds.length;
     }
   }
+  if (allGoneCount) alert(t('approve_some_gone', { n: allGoneCount }));
   renderSidebar();
   updateSidebarActiveState();
   render(currentFiltered());

@@ -298,7 +298,9 @@ const translations = {
     bulk_selected_count: '{n} selected',
     bulk_delete_confirm: 'Permanently delete {n} selected links? This cannot be undone.',
     bulk_approve_confirm: 'Approve {n} selected pending links and publish them?',
-    bulk_delete_approved_warn: 'Careful: {n} of the selected links have already been approved. Deleting removes them from the site. Continue?',
+    bulk_delete_skipped_approved: 'Skipped {n} already-approved link(s) — bulk delete here only removes items still pending.',
+    approve_row_gone: 'That link no longer exists in the database (deleted elsewhere, or this list is stale). Removed it from the list — reload to be sure.',
+    approve_some_gone: '{n} of them no longer exist in the database and were skipped. Reload to refresh the list.',
   },
   ko: {
     site_title: '유튜브 라이브캠 & 영상 모음',
@@ -595,7 +597,9 @@ const translations = {
     bulk_selected_count: '{n}개 선택됨',
     bulk_delete_confirm: '선택한 {n}개 링크를 영구 삭제하시겠습니까? 되돌릴 수 없습니다.',
     bulk_approve_confirm: '선택한 대기 링크 {n}개를 승인하고 공개할까요?',
-    bulk_delete_approved_warn: '주의: 선택한 것 중 {n}개는 이미 승인된 링크입니다. 삭제하면 사이트에서 사라집니다. 계속할까요?',
+    bulk_delete_skipped_approved: '이미 승인된 {n}개는 제외했습니다 — 여기서의 일괄 삭제는 대기 중인 것만 지웁니다.',
+    approve_row_gone: '이 링크는 DB에 더 이상 없습니다(다른 창에서 삭제됐거나 이 탭 목록이 낡음). 목록에서 제거했습니다 — 새로고침을 권합니다.',
+    approve_some_gone: '그중 {n}개는 DB에 없어서 건너뛰었습니다. 새로고침해서 목록을 갱신하세요.',
   },
   ja: {
     site_title: 'YouTubeライブカメラ＆映像コレクション',
@@ -849,7 +853,9 @@ const translations = {
     bulk_selected_count: '{n}件選択中',
     bulk_delete_confirm: '選択した{n}件のリンクを完全に削除しますか？元に戻せません。',
     bulk_approve_confirm: '選択した保留中のリンク{n}件を承認して公開しますか？',
-    bulk_delete_approved_warn: '注意: 選択のうち{n}件はすでに承認済みです。削除するとサイトから消えます。続けますか？',
+    bulk_delete_skipped_approved: 'すでに承認済みの{n}件は除外しました — ここでの一括削除は保留中のものだけを消します。',
+    approve_row_gone: 'このリンクはデータベースに存在しません（他のウィンドウで削除済み、またはこのタブの一覧が古い）。一覧から削除しました。再読み込みを推奨します。',
+    approve_some_gone: 'うち{n}件はデータベースに存在せずスキップしました。再読み込みして一覧を更新してください。',
   },
   zh: {
     site_title: 'YouTube直播摄像头与实拍视频合集',
@@ -1103,7 +1109,9 @@ const translations = {
     bulk_selected_count: '已选择{n}个',
     bulk_delete_confirm: '确定要永久删除所选的{n}个链接吗？此操作无法撤销。',
     bulk_approve_confirm: '批准所选的{n}个待审核链接并公开吗？',
-    bulk_delete_approved_warn: '注意：所选中有{n}个已通过审核。删除会将其从网站移除。要继续吗？',
+    bulk_delete_skipped_approved: '已跳过{n}个已审核的链接 — 此处的批量删除只移除仍待审核的项目。',
+    approve_row_gone: '该链接已不在数据库中（可能在其他窗口被删除，或此标签页的列表已过期）。已从列表移除，建议刷新。',
+    approve_some_gone: '其中{n}个已不在数据库中，已跳过。请刷新以更新列表。',
   },
   es: {
     site_title: 'Cámaras en Vivo y Videos de YouTube',
@@ -1357,7 +1365,9 @@ const translations = {
     bulk_selected_count: '{n} seleccionados',
     bulk_delete_confirm: '¿Eliminar permanentemente los {n} enlaces seleccionados? No se puede deshacer.',
     bulk_approve_confirm: '¿Aprobar los {n} enlaces pendientes seleccionados y publicarlos?',
-    bulk_delete_approved_warn: 'Atención: {n} de los enlaces seleccionados ya están aprobados. Eliminarlos los quita del sitio. ¿Continuar?',
+    bulk_delete_skipped_approved: 'Se omitieron {n} enlace(s) ya aprobados: aquí el borrado masivo solo quita lo que sigue pendiente.',
+    approve_row_gone: 'Ese enlace ya no existe en la base de datos (borrado en otra ventana, o la lista de esta pestaña está desactualizada). Se quitó de la lista; recarga para confirmar.',
+    approve_some_gone: '{n} de ellos ya no existen en la base de datos y se omitieron. Recarga para actualizar la lista.',
   },
 };
 
