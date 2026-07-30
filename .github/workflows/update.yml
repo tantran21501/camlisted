@@ -64,11 +64,10 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # 비용 절감: 후보 목록 맨 앞에 최저가 flash-lite를 고정한다 (안 되면 스크립트가
-          # 기존 후보들로 폴백). 'gemini-flash-latest' 별칭은 그때그때 최신 flash를 가리켜서
-          # 단가가 더 높을 수 있다 — 제목 기반 승인/거절 판정에는 lite면 충분하다.
-          # 판정 품질이 떨어져 보이면 이 줄만 지우면 원래 동작으로 돌아간다.
-          GEMINI_MODEL: gemini-2.0-flash-lite
+          # GEMINI_MODEL 고정은 뺐다. 비용을 아끼려고 gemini-2.0-flash-lite를 앞세워 봤지만
+          # 무료 티어에서 이 구형 모델은 할당량이 아예 0이라(429 "free_tier_input_token_count,
+          # limit: 0") 매 실행마다 실패 요청 하나만 낭비했다. 스크립트가 후보를 순서대로
+          # 시도하므로, 고정 없이 두면 그때 쓸 수 있는 모델(현재 gemini-flash-latest)이 선택된다.
         run: node scripts/ai_review.mjs
 
       # ---- 국가/카테고리별 정적 SEO 페이지 재생성 후 변경분만 커밋 ----
