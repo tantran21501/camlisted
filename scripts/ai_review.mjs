@@ -21,7 +21,11 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 키가 무료로 접근 가능한 모델이 계정/지역마다 달라, 후보를 순서대로 시도해 먼저 되는 걸 쓴다.
-// (gemini-flash-latest가 이 키에서 유일하게 되는 걸로 확인돼 맨 앞에 둠 — 나머지는 폴백)
+// 2026-08-01 로그 기준 이 무료 키에서 실제로 되는 건 gemini-flash-latest 하나뿐이다:
+// 2.0-flash / 2.0-flash-lite는 무료 할당량이 0(429 "free_tier_input_token_count, limit: 0"),
+// 1.5-flash는 은퇴(404). 그래도 목록에 남겨두는 이유는 구글이 무료 정책을 바꿀 때 자동으로
+// 주워 쓰기 위해서다 — 대신 폴백이 실질적으로 없으므로, 유일한 모델이 일시 오류(503)를 내면
+// callGemini가 목록 전체를 다시 훑는다(그게 없어서 하루치 155건이 통째로 밀린 적이 있다).
 const MODEL_CANDIDATES = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : [])
   .concat(['gemini-flash-latest', 'gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash']);
 let MODEL = null; // 첫 성공한 모델로 고정
@@ -105,39 +109,57 @@ async function requestModel(model, prompt) {
   return res;
 }
 
+// 503(UNAVAILABLE)은 "지금 붐비니 잠시 후 다시"라는 뜻이라, 할당량 소진과 달리 기다리면 풀린다.
+// 2026-08-01 새벽에 gemini-flash-latest가 딱 한 번 503을 뱉었는데, 후보 목록을 한 번씩만 훑고
+// 포기하는 구조라 그날 신규 155건이 통째로 검수 없이 pending에 남았다. 나머지 후보는 이 키로는
+// 애초에 못 쓰는 모델(무료 한도 0 또는 은퇴)이라 폴백이 의미가 없어, 후보 훑기 자체를 재시도한다.
+const TRANSIENT_STATUS = new Set([500, 502, 503, 504]);
+
 async function callGemini(prompt) {
   // 아직 모델을 못 정했으면 후보를 순서대로 시도해 200 나오는 걸 채택
   if (!MODEL) {
-    let quotaHit = false;
-    for (const cand of MODEL_CANDIDATES) {
-      const res = await requestModel(cand, prompt);
-      if (res.ok) {
-        MODEL = cand;
-        console.log(`AI 검수 모델 선택: ${cand}`);
-        const data = await res.json();
-        return JSON.parse(data?.candidates?.[0]?.content?.parts?.[0]?.text || '[]');
+    for (let round = 0; round < 3; round++) {
+      if (round) {
+        console.log(`  일시적 오류로 모델 선택 실패 — ${round * 30}초 후 재시도 (${round}/2)`);
+        await sleep(round * 30000);
       }
-      // 429 본문에는 구글이 정확히 어떤 한도에 걸렸는지 적혀 있다 (quotaId에 -FreeTier가 보이면
-      // 이 키가 무료 티어 프로젝트 소속이라는 뜻 — 유료 결제를 켠 프로젝트의 키가 아닌 것).
-      // 예전엔 이걸 버리고 "할당량/무료티어 문제"라고만 찍어서, 유료 키라고 알고 있는데 왜
-      // 429가 나는지 로그만으로는 판별할 수 없었다.
-      const body = (await res.text()).replace(/\s+/g, ' ').slice(0, 400);
-      console.log(`  모델 ${cand} 사용 불가 (${res.status}) ${body}`);
-      if (res.status === 429) quotaHit = true;
-      if (res.status !== 404 && res.status !== 400) await sleep(2000); // 429 등은 잠깐 쉬고 다음 후보
+      let quotaHit = false;
+      let transient = false;
+      for (const cand of MODEL_CANDIDATES) {
+        const res = await requestModel(cand, prompt);
+        if (res.ok) {
+          MODEL = cand;
+          console.log(`AI 검수 모델 선택: ${cand}`);
+          const data = await res.json();
+          return JSON.parse(data?.candidates?.[0]?.content?.parts?.[0]?.text || '[]');
+        }
+        // 429 본문에는 구글이 정확히 어떤 한도에 걸렸는지 적혀 있다 (quotaId에 -FreeTier가 보이면
+        // 이 키가 무료 티어 프로젝트 소속이라는 뜻 — 유료 결제를 켠 프로젝트의 키가 아닌 것).
+        // 예전엔 이걸 버리고 "할당량/무료티어 문제"라고만 찍어서, 유료 키라고 알고 있는데 왜
+        // 429가 나는지 로그만으로는 판별할 수 없었다.
+        const body = (await res.text()).replace(/\s+/g, ' ').slice(0, 400);
+        console.log(`  모델 ${cand} 사용 불가 (${res.status}) ${body}`);
+        if (res.status === 429) quotaHit = true;
+        if (TRANSIENT_STATUS.has(res.status)) transient = true;
+        if (res.status !== 404 && res.status !== 400) await sleep(2000); // 429 등은 잠깐 쉬고 다음 후보
+      }
+      // 일시적 오류가 하나라도 섞였으면 기다렸다 다시 훑는다 (할당량 소진과 구분)
+      if (transient) continue;
+      // 후보 전부 429였다면 모델이 없는 게 아니라 그날 할당량이 끝난 것
+      if (quotaHit) QUOTA_EXHAUSTED = true;
+      throw new Error('사용 가능한 무료 모델 없음 (키/할당량 확인 필요)');
     }
-    // 후보 전부 429였다면 모델이 없는 게 아니라 그날 할당량이 끝난 것
-    if (quotaHit) QUOTA_EXHAUSTED = true;
-    throw new Error('사용 가능한 무료 모델 없음 (키/할당량 확인 필요)');
+    throw new Error('Gemini가 계속 일시적 오류(503 등)를 반환 — 다음 실행에서 재시도');
   }
-  // 모델 고정 후: 429면 백오프 후 최대 2회 재시도 (무료 분당 한도 회복 대기)
+  // 모델 고정 후: 429(분당 한도)나 503(일시 혼잡)이면 백오프 후 최대 2회 재시도
   for (let attempt = 0; attempt < 3; attempt++) {
     const res = await requestModel(MODEL, prompt);
     if (res.ok) {
       const data = await res.json();
       return JSON.parse(data?.candidates?.[0]?.content?.parts?.[0]?.text || '[]');
     }
-    if (res.status === 429 && attempt < 2) { await sleep(20000); continue; }
+    const retryable = res.status === 429 || TRANSIENT_STATUS.has(res.status);
+    if (retryable && attempt < 2) { await sleep(20000); continue; }
     if (res.status === 429) QUOTA_EXHAUSTED = true; // 재시도까지 했는데 429 → 일일 한도
     throw new Error(`Gemini ${res.status}: ${(await res.text()).replace(/\s+/g, ' ').slice(0, 400)}`);
   }
