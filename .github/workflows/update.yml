@@ -88,6 +88,13 @@ jobs:
           # 작업 도중 main에 새 커밋이 올라왔을 수 있으므로 rebase 후 푸시 (경합으로 인한 push 실패 방지)
           git diff --cached --quiet || (git commit -m "Regenerate SEO pages" && git pull --rebase origin main && git push)
 
+      # 방금 커밋으로 바뀐 페이지만 Bing·Yandex 등에 직접 알린다(IndexNow). 구글에는 사이트맵을
+      # 내고 있지만 Bing 색인은 사실상 비어 있었고, ChatGPT 웹검색이 그 인덱스에 기대므로
+      # LLM이 우리를 인용할 창구가 좁았다. 계정·비용 없이 붙일 수 있어 부가 단계로 둔다.
+      # 실패해도 스크립트가 조용히 넘어가므로 자동화 전체가 깨지지 않는다.
+      - name: Ping IndexNow with changed pages
+        run: node scripts/indexnow.mjs
+
       # ---- 매일 밤 DB 전체 백업 (텍스트 전용이라 용량이 작음) — 비공개 저장소(camlisted-backups)에 보관.
       # 무료 Supabase 티어엔 자동 백업이 없어서 직접 구현. 같은 파일(backup/latest.sql)을 매일 덮어써서
       # 커밋하므로, 그 비공개 저장소의 git 히스토리 자체가 "특정 날짜로 롤백" 역할을 한다 —
