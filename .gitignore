@@ -7,3 +7,7 @@ __pycache__/
 # 뒤에 생성돼서 안전하지만, 단계 순서가 바뀌면 git add -A가 그대로 삼킬 수 있어 여기서 막는다.
 db-backup.sql
 backup-repo/
+
+# ultralytics가 YOLO 가중치를 작업 디렉터리에 받아둔다. 워크플로 커밋 단계가 git add -A라
+# 막아두지 않으면 5.4MB 바이너리가 매번 저장소에 들어간다.
+yolo*.pt

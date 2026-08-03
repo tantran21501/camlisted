@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-clip-${{ runner.os }}-v1
+          key: pip-clip-${{ runner.os }}-v2-ultralytics
 
       - name: Cache CLIP model
         uses: actions/cache@v4
@@ -50,13 +50,22 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install transformers pillow requests
+          pip install transformers pillow requests ultralytics
 
       - name: Classify thumbnails with CLIP
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python scripts/classify_thumbnails.py
+
+      # 트래픽 계열 카메라의 차량을 세어 쌓는다. 지금은 수집만 — 프레임 한 장은 표본이 아니라
+      # 몇 주 누적한 뒤에 집계 페이지를 낸다. 실패해도 자동화 전체를 세우지 않는다.
+      - name: Count vehicles in traffic cams
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python scripts/detect_vehicles.py
 
       # ---- AI 검수: 승인 대기 큐를 Gemini로 자동 판정 (GEMINI_API_KEY 없으면 스킵) ----
       - name: AI review pending queue
