@@ -49,7 +49,10 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          # torchvision을 반드시 torch와 같은 CPU 인덱스에서 같이 깐다. 따로 두면 ultralytics가
+          # 의존성으로 기본 PyPI의 CUDA 빌드 torchvision을 끌어오는데, +cpu torch와 ABI가 안 맞아
+          # "RuntimeError: operator torchvision::nms does not exist"로 CLIP 단계가 죽는다(실제로 겪음).
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
           pip install transformers pillow requests ultralytics
 
       - name: Classify thumbnails with CLIP
