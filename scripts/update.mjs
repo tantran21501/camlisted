@@ -353,7 +353,12 @@ async function searchVideoByKeyword(keyword, maxResults = 25) {
 // search.list는 유튜브 프로젝트 기본 할당량이 하루 100회로 고정이라(단가가 아니라 "횟수" 자체가 한도),
 // 이 예산을 넘지 않게 안전 여유를 두고 최대한 활용한다. 실제 남는 만큼을 전부 채널 스캔에 몰아준다
 // (채널 스캔이 키워드 검색보다 신규 발견 효율이 훨씬 좋음 — 채널당 카메라가 여러 개인 경우가 많아서).
-const SEARCH_BUDGET_PER_RUN = 95;
+// 하루 두 번 도는 것을 전제로 한 실행당 검색 예산. 예전엔 95였는데, 검색 1회가 100유닛이고
+// 하루 한도가 10,000이라 95회면 사실상 하루치를 한 번에 다 쓴다. 두 번 돌리려면 반으로 갈라야 한다.
+// 두 번으로 나눈 이유는 수집량을 늘리려는 게 아니라, GitHub이 예약 실행을 몇 시간씩 미루거나
+// 통째로 건너뛰는 일이 실제로 있어서다(2026-08-06에 한 번 통으로 빠졌다). 한쪽이 빠져도
+// 다른 쪽이 그날 수집을 맡는다.
+const SEARCH_BUDGET_PER_RUN = 47;
 const MAX_LIVE_KEYWORDS_PER_RUN = 20;
 const MAX_VIDEO_KEYWORDS_PER_RUN = 20;
 
@@ -1001,13 +1006,18 @@ async function main() {
   // 오늘 실행 결과를 일일 집계 테이블에 기록 (관리자 대시보드용, 같은 날 재실행 시 덮어씀)
   const deletedTotal = toDelete.length + (expiredRows?.length || 0) + (staleOfflineRows?.length || 0) + verticalIds.length;
   // 21:00 UTC(= KST 06:00)에 돌기 때문에 UTC 날짜를 쓰면 한국 기준으로 하루 밀린다 -> KST 날짜 사용
+  // 하루 두 번 돌기 때문에 신규/삭제는 그날 것에 더한다. 스냅샷 성격인 existing/valid/offline은
+  // 최신 값으로 덮어쓰는 게 맞지만, 신규·삭제는 실행마다 발생한 '증가분'이라 덮어쓰면 오전치가 사라진다.
+  const statDate = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  const { data: prevStat } = await supabase
+    .from('daily_stats').select('new_count, deleted_count').eq('stat_date', statDate).maybeSingle();
   const { error: statsErr } = await supabase.from('daily_stats').upsert({
-    stat_date: new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10),
+    stat_date: statDate,
     existing_count: existingRows.length,
     valid_count: validCount,
     offline_count: offlineCount,
-    new_count: insertRows.length,
-    deleted_count: deletedTotal,
+    new_count: (prevStat?.new_count || 0) + insertRows.length,
+    deleted_count: (prevStat?.deleted_count || 0) + deletedTotal,
   }, { onConflict: 'stat_date' });
   if (statsErr) console.error('일일 집계 기록 실패:', statsErr.message);
 
