@@ -76,6 +76,12 @@ REJECT if it is: news broadcast or anchor desk, talk show, music video, a 24/7 m
 
 IMPORTANT — background music does NOT make it a music stream. Many genuine live cams play music or ambience over the camera feed (e.g. an airport cam, a city skyline cam, or a tram cam with a relaxing soundtrack). APPROVE those: the camera view is the point. Only reject as a music stream when the picture itself is not a real-world camera view — a static image, album art, or looping animation with the music as the actual content. Likewise, commentary or narration over a genuine live camera feed is fine; reject only when a host on screen is the subject.
 
+STRICTER RULE FOR NON-LIVE ITEMS (type "video"). A recorded upload has to earn its place; when in doubt, REJECT rather than "unsure". On top of everything above, reject a "video" item if it is:
+- a compilation or clip aggregation — titles like "BEST OF ...", "... COMPILATION", "Top 10 ...", "Funniest / Craziest / Scariest ... Caught on Camera", "Fails", "Road Rage", "Caught in 4K". These are edited entertainment assembled from many sources, even though every clip in them is camera footage.
+- a camera vendor or installer demo / sample / test clip — titles naming a product or model ("8MP Dahua sample video", "Hikvision 4K night vision test", "2MP vs 5MP"), or short clips whose point is to show what the hardware can do rather than to show a place.
+- a fragment cut out of a news package, even when the footage itself is CCTV.
+The directory wants long, continuous, unedited observation of a real place — a walking tour, a drive, an archived live-cam session, hours of one camera. A single incident clip is only acceptable when it is the raw unedited camera recording of a genuine event, not a repackaged montage.
+
 If you cannot tell from the title and channel, use "unsure".
 
 Also pick the best category key from this list (or "other"): ${categoryKeys.join(', ')}.
