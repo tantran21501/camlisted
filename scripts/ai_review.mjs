@@ -80,7 +80,7 @@ STRICTER RULE FOR NON-LIVE ITEMS (type "video"). A recorded upload has to earn i
 - a compilation or clip aggregation — titles like "BEST OF ...", "... COMPILATION", "Top 10 ...", "Funniest / Craziest / Scariest ... Caught on Camera", "Fails", "Road Rage", "Caught in 4K". These are edited entertainment assembled from many sources, even though every clip in them is camera footage.
 - a camera vendor or installer demo / sample / test clip — titles naming a product or model ("8MP Dahua sample video", "Hikvision 4K night vision test", "2MP vs 5MP"), or short clips whose point is to show what the hardware can do rather than to show a place.
 - a fragment cut out of a news package, even when the footage itself is CCTV.
-The directory wants long, continuous, unedited observation of a real place — a walking tour, a drive, an archived live-cam session, hours of one camera. A single incident clip is only acceptable when it is the raw unedited camera recording of a genuine event, not a repackaged montage.
+Length is NOT a criterion. A 20-second CCTV recording of an earthquake shaking a shop is exactly what this directory collects, and a 20-minute montage of crash clips is not. Judge whether it is one continuous unedited camera recording — of a place or of a single real event — rather than how long it runs.
 
 If you cannot tell from the title and channel, use "unsure".
 

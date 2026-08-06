@@ -353,8 +353,6 @@ async function searchVideoByKeyword(keyword, maxResults = 25) {
 // search.list는 유튜브 프로젝트 기본 할당량이 하루 100회로 고정이라(단가가 아니라 "횟수" 자체가 한도),
 // 이 예산을 넘지 않게 안전 여유를 두고 최대한 활용한다. 실제 남는 만큼을 전부 채널 스캔에 몰아준다
 // (채널 스캔이 키워드 검색보다 신규 발견 효율이 훨씬 좋음 — 채널당 카메라가 여러 개인 경우가 많아서).
-// 일반 영상(비라이브)의 최소 길이. 하루에 새로 들어오는 수가 줄더라도 품질을 올리는 쪽을 택했다.
-const MIN_VIDEO_SECONDS = 600;
 const SEARCH_BUDGET_PER_RUN = 95;
 const MAX_LIVE_KEYWORDS_PER_RUN = 20;
 const MAX_VIDEO_KEYWORDS_PER_RUN = 20;
@@ -385,13 +383,15 @@ async function main() {
   const keywords = JSON.parse(keywordsRaw).keywords || [];
   const keywordsVideo = JSON.parse(keywordsVideoRaw).keywords || [];
   const excludeKeywords = (JSON.parse(excludeRaw).keywords || []).map(k => k.toLowerCase());
-  // 일반 영상 전용 제외 패턴. keywords는 부분문자열 매칭이라 짧은 낱말을 못 넣고("test"가
-  // "contest"에 걸린다) 라이브·영상을 구분하지도 못한다. 이쪽은 정규식이고 비라이브에만 건다.
-  // 잘못 쓴 패턴 하나가 수집 전체를 멈추지 않도록 컴파일 실패는 건너뛴다.
-  const videoJunkPatterns = (JSON.parse(excludeRaw).patterns_video || []).flatMap(p => {
+  // 정규식 제외 패턴. keywords는 부분문자열 매칭이라 한계가 뚜렷하다 — 짧은 낱말을 못 넣고
+  // ("test"가 "contest"에 걸린다), 실제로 "News Live"가 등록돼 있는데도 "NewsX World LIVE"가
+  // 그대로 통과해 왔다. 잘못 쓴 패턴 하나가 수집 전체를 멈추지 않도록 컴파일 실패는 건너뛴다.
+  const compilePatterns = (key) => (JSON.parse(excludeRaw)[key] || []).flatMap(p => {
     try { return [new RegExp(p, 'i')]; }
-    catch { console.warn(`  제외 패턴 컴파일 실패(무시): ${p}`); return []; }
+    catch { console.warn(`  제외 패턴 컴파일 실패(무시): ${key} / ${p}`); return []; }
   });
+  const junkPatterns = compilePatterns('patterns_all');       // 라이브·영상 공통
+  const videoJunkPatterns = compilePatterns('patterns_video'); // 비라이브 전용
   const noEmbedKeywords = (JSON.parse(noEmbedRaw).keywords || []).map(k => k.toLowerCase());
   if (categoriesResult.error) throw categoriesResult.error;
   const categoryRows = (categoriesResult.data || []).filter(c => c.key !== 'other');
@@ -414,9 +414,14 @@ async function main() {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
     return excludeKeywords.some(k => haystack.includes(k));
   };
-  // 편집 모음집("BEST OF FAILS")·카메라 판매 데모("8MP Hikvision 샘플")·뉴스 리포트를 거른다.
-  // 라이브에는 절대 걸지 않는다: 방송사가 운영하는 24시간 고정 캠은 채널명에 news가 들어가도
-  // 좋은 캠이고, 제목에 카메라 모델명(Axis P5655-E)을 쓴 정상 캠도 많다.
+  // 라이브·영상 공통. 관리자가 매일 손으로 지우던 것들 — 뉴스 생중계, 수면·앰비언스 음향,
+  // 24/7 옛날 라디오, CCTV 제품/설치 강좌, 공포 클립 모음, 경찰 바디캠, 스포츠·게임 중계.
+  const isJunkTitle = (title, channelTitle) => {
+    const haystack = `${title} ${channelTitle}`.toLowerCase();
+    return junkPatterns.some(re => re.test(haystack));
+  };
+  // 비라이브 전용 추가분: 편집 모음집("BEST OF FAILS")·카메라 판매 데모("8MP Hikvision 샘플").
+  // 이쪽을 라이브에 걸면 안 된다 — 제목에 카메라 모델명(Axis P5655-E)을 쓴 정상 캠이 많다.
   const isJunkVideo = (title, channelTitle) => {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
     return videoJunkPatterns.some(re => re.test(haystack));
@@ -814,24 +819,22 @@ async function main() {
 
   // 임베드 차단 영상: embeddable 컬럼 도입 후에는 수집하되 표시만 다르게(썸네일+유튜브 링크),
   // 컬럼 도입 전에는 insert 에러가 나므로 기존처럼 제외
-  let tooShort = 0, junkVideo = 0;
+  let junkVideo = 0, junkTitle = 0;
   const newCandidates = [...candidateMap.values()].filter(c => {
     const info = candidateInfoMap.get(c.videoId);
     if (!isValidFor(c.contentType, info)) return false;
-    // 짧은 일반 영상은 거의 전부 카메라 판매 데모("8MP Hikvision 샘플 영상")나 뉴스에서 잘라낸
-    // 조각이다. 실제로 승인돼 있던 821건을 길이별로 훑어보니 10분 미만 구간은 쓸 만한 게 거의
-    // 없었고, 반대로 그 위는 워킹투어·플레인스포팅·다시보기 라이브처럼 이 사이트가 원하는
-    // 장시간 관찰 영상이었다. 신규 수집분에만 적용한다 — 기존 행의 생존 판정(isValidFor)에
-    // 넣으면 이미 올라가 있는 영상들이 무더기로 오프라인 처리돼 7일 뒤 삭제되기 때문이다.
-    if (c.contentType === 'video') {
-      const secs = parseDurationSeconds(info?.contentDetails?.duration) ?? 0;
-      if (secs < MIN_VIDEO_SECONDS) { tooShort += 1; return false; }
-      if (isJunkVideo(c.title, c.channelTitle)) { junkVideo += 1; return false; }
-    }
+    // 신규 후보에만 건다. 기존 행 생존 판정(위쪽 루프)에는 넣지 않는다 — 이미 올라가 있는
+    // 것들은 관리자가 직접 검수해서 남겨둔 것이라 정규식이 뒤집을 자격이 없다.
+    if (isJunkTitle(c.title, c.channelTitle)) { junkTitle += 1; return false; }
+    // 길이로는 거르지 않는다. 한때 10분 미만을 통째로 막아봤는데, 2분 미만 구간을 실제로
+    // 열어보니 카라카스 M7.5 지진을 찍은 상점·아파트 CCTV, 토네이도, 건널목 충돌 블랙박스가
+    // 몰려 있었다. 짧다는 건 이 사이트에서 결격 사유가 아니라 오히려 원본 사건 영상의 특징이다.
+    // 같은 구간에 섞여 있던 카메라 판매 데모는 제품명(HD-SDI, ColorVu, HikView)으로 잡는다.
+    if (c.contentType === 'video' && isJunkVideo(c.title, c.channelTitle)) { junkVideo += 1; return false; }
     return HAS_EMBEDDABLE || info?.status?.embeddable !== false;
   });
-  if (tooShort) console.log(`  -> 너무 짧은 일반 영상 제외: ${tooShort}건 (${MIN_VIDEO_SECONDS}초 미만)`);
-  if (junkVideo) console.log(`  -> 모음집·제품데모·뉴스 패턴 제외: ${junkVideo}건`);
+  if (junkTitle) console.log(`  -> 뉴스·음향·강좌·게임 패턴 제외: ${junkTitle}건`);
+  if (junkVideo) console.log(`  -> 모음집·제품데모 패턴 제외(일반영상): ${junkVideo}건`);
   const newCountryMap = await getChannelCountries(newCandidates.map(c => c.channelId));
 
   const newRows = newCandidates.map(c => {
