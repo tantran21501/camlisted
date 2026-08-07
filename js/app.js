@@ -1254,12 +1254,13 @@ const qualityProbeAttempted = new Set();
 function probeQuality(iframe, videoId) {
   withYtApi(() => {
     try {
-      new YT.Player(iframe, {
+      const player = new YT.Player(iframe, {
         events: {
           onStateChange: (e) => {
             if (e.data !== YT.PlayerState.PLAYING) return;
             // 재생 직후엔 화질 목록이 비어있을 수 있어 잠시 간격을 두고 몇 번 재시도
             const read = (tries) => {
+              if (!iframe.isConnected) return; // 이미 화면 밖으로 나가 정리된 iframe
               let levels = [];
               try { levels = e.target.getAvailableQualityLevels ? e.target.getAvailableQualityLevels() : []; } catch { return; }
               const best = levels && levels[0];
@@ -1268,15 +1269,29 @@ function probeQuality(iframe, videoId) {
                 const sv = streams.find(x => x.videoId === videoId);
                 if (sv) sv.maxQuality = best; // 다음 렌더부터 카드 뱃지·화질 필터에 반영
               } else if (tries > 0) {
-                setTimeout(() => read(tries - 1), 1500);
+                iframe._probeTimer = setTimeout(() => read(tries - 1), 1500);
               }
             };
             read(3);
           },
         },
       });
+      // 정리할 때 destroy() 해야 한다. iframe만 remove()하면 플레이어 객체와 그것이
+      // window에 건 message 리스너가 남아, 스크롤할수록 계속 쌓인다.
+      iframe._ytPlayer = player;
     } catch (err) { console.error(err); }
   });
+}
+
+// 미리보기 iframe 하나를 완전히 정리한다. 반드시 이 함수로만 없앨 것.
+function destroyPreviewIframe(iframe) {
+  clearTimeout(iframe._probeTimer);
+  const player = iframe._ytPlayer;
+  if (player) {
+    iframe._ytPlayer = null;
+    try { player.destroy(); return; } catch { /* 아래에서 직접 제거 */ }
+  }
+  iframe.remove();
 }
 
 function startViewportPreview(thumbWrap, videoId) {
@@ -1301,7 +1316,7 @@ function startViewportPreview(thumbWrap, videoId) {
 function stopViewportPreview(thumbWrap) {
   const iframe = thumbWrap.querySelector('.hover-preview-iframe');
   if (iframe) {
-    iframe.remove();
+    destroyPreviewIframe(iframe);
     fillPreviewSlots(); // 빈 슬롯을, 상한 때문에 대기 중이던 카드로 채운다
   }
 }
@@ -1324,8 +1339,31 @@ function clearHoverPreview() {
   viewportPreviewTimers.forEach(timer => clearTimeout(timer));
   viewportPreviewTimers.clear();
   visiblePreviewThumbs.clear();
-  grid.querySelectorAll('.hover-preview-iframe').forEach(el => el.remove());
+  grid.querySelectorAll('.hover-preview-iframe').forEach(destroyPreviewIframe);
 }
+
+// 탭이 가려지면 미리보기를 내린다.
+//
+// IntersectionObserver는 탭이 숨겨져 있는 동안 콜백을 주지 않는다. 그래서 재생 중이던
+// 라이브 임베드 8개가 사용자가 다른 탭으로 넘어간 뒤에도 계속 스트림을 받고 디코딩한다.
+// 몇 시간 열어두면 그대로 수 GB가 된다 — 화면에 아무것도 안 보이는 채로.
+// 숨겨질 때 iframe을 내리고, 돌아오면 보이던 카드들로 다시 채운다.
+// visiblePreviewThumbs는 그대로 두기 때문에 복귀 시 같은 카드들이 되살아난다.
+function suspendPreviews() {
+  viewportPreviewTimers.forEach(timer => clearTimeout(timer));
+  viewportPreviewTimers.clear();
+  grid.querySelectorAll('.hover-preview-iframe').forEach(destroyPreviewIframe);
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    suspendPreviews();
+    if (tvTimer) { clearInterval(tvTimer); tvTimer = null; } // TV 모드도 멈춘다
+  } else {
+    fillPreviewSlots();
+    if (tvOverlay && !tvOverlay.hidden) tvResetTimer();
+  }
+});
 
 function setupViewportAutoplay() {
   // 카드가 '온전히' 화면에 들어왔을 때만 자동재생한다. 화면 위/아래 끝에 반쯤 걸친
@@ -2425,7 +2463,7 @@ function tvOpen() {
   document.getElementById('tvPauseBtn').textContent = '⏸';
   document.getElementById('tvMultiBtn').classList.remove('active');
   // 뒤에서 돌던 미리보기 iframe들은 리소스만 먹으니 내려둔다 (닫을 때 재렌더로 복구)
-  document.querySelectorAll('#grid iframe').forEach(f => f.remove());
+  suspendPreviews();
   tvOverlay.hidden = false;
   document.body.style.overflow = 'hidden';
   tvRender();
