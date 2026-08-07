@@ -63,22 +63,38 @@ async function fetchJson(url) {
 // 조건 태그(일반 영상 전용): 제목에서 날씨/시간/사건 태그를 뽑는다.
 // 밤/낮/눈은 CLIP 썸네일 분석(classify_thumbnails.py)이 보완하고, 유저가 카드에서 교정 가능.
 const TAG_KEYWORDS = {
-  night: ['night', '밤 ', '야간', '심야', '夜', 'noche', 'nuit'],
-  rain: ['rain', '빗길', '우천', '비오는', '雨', 'lluvia'],
+  night: ['night', 'nightlife', 'nighttime', 'nightvision', '밤 ', '야간', '심야', '夜', 'noche', 'nuit'],
+  rain: ['rain', 'rainy', '빗길', '우천', '비오는', '雨', 'lluvia'],
   heavy_rain: ['heavy rain', 'torrential', '폭우', '호우', '豪雨', '暴雨'],
-  snow: ['snow', '눈길', '눈오는', '雪', 'nieve'],
+  snow: ['snow', 'snowstorm', 'snowfall', '눈길', '눈오는', '雪', 'nieve'],
   heavy_snow: ['heavy snow', 'blizzard', '폭설', '大雪', '暴雪'],
   accident: ['accident', 'crash', '사고', '추돌', '충돌', '事故', 'accidente'],
-  fire: ['fire', '화재', '火災', '火灾', 'incendio'],
+  fire: ['fire', 'wildfire', 'bushfire', '화재', '火災', '火灾', 'incendio'],
   violence: ['fight', 'assault', 'brawl', '싸움', '폭행', '몸싸움', '난투'],
 };
+
+// 라틴 문자 키워드는 단어 경계를 요구한다. 부분문자열로 보면 'train'·'Ukraine'·'terrain'이
+// 전부 rain(비)이 되고 'firefighter'가 fire와 violence(fight)를 동시에 달았다.
+// 한글·일본어·중국어는 단어 경계라는 게 없으므로 기존대로 포함 검사한다
+// ('밤 '처럼 뒤 공백까지 포함해 오탐을 줄인 항목이 있어 원문 그대로 써야 한다).
+const TAG_MATCHERS = Object.fromEntries(
+  Object.entries(TAG_KEYWORDS).map(([tag, kws]) => [tag, kws.map(k => {
+    if (!/^[\x20-\x7e]+$/.test(k)) return { test: (h) => h.includes(k) };
+    const esc = k.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // 복수형은 허용해야 한다. 카탈로그 제목을 세어보니 'crash'는 23건인데 'crashes'가 29건으로
+    // 더 많았다. 단어 경계만 걸면 그 29건이 통째로 사고 태그를 놓친다.
+    return new RegExp(`\\b${esc}(?:e?s)?\\b`, 'i');
+  })])
+);
 
 function tagsFromTitle(title) {
   const haystack = (title || '').toLowerCase();
   const tags = [];
-  for (const [tag, kws] of Object.entries(TAG_KEYWORDS)) {
+  for (const [tag, matchers] of Object.entries(TAG_MATCHERS)) {
+    // 단어 경계를 쓰면서 'fireworks'는 이미 \bfire\b에 안 걸리지만, 경계 조건을 나중에
+    // 누가 풀었을 때를 대비해 남겨둔다 (불꽃놀이를 화재로 태그하면 조건 필터가 망가진다).
     if (tag === 'fire' && haystack.includes('firework')) continue;
-    if (kws.some(k => haystack.includes(k))) tags.push(tag);
+    if (matchers.some(m => m.test(haystack))) tags.push(tag);
   }
   // 폭우/폭설이면 비/눈도 함께 (넓은 필터에 걸리게)
   if (tags.includes('heavy_rain') && !tags.includes('rain')) tags.push('rain');
