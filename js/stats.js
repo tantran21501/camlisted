@@ -196,12 +196,29 @@ async function loadStats() {
 function kstDateStr(offsetDays = 0) {
   return new Date(Date.now() + 9 * 3600 * 1000 - offsetDays * 86400 * 1000).toISOString().slice(0, 10);
 }
+// PostgREST는 한 응답을 1000행에서 자른다. .limit(50000) 같은 숫자는 그냥 무시된다.
+// 게다가 정렬이 없으면 어느 1000행이 올지 보장이 없는데, 실제로는 가장 오래된 쪽이 온다.
+// 그래서 "많이 달라고 했으니 다 왔겠지" 하고 집계하면, 조회는 성공하는데 숫자만 조용히 틀린다.
+// Traffic Sources의 Today가 20이어야 할 자리에 1을 띄우고 있었던 게 이것이다.
+// 항상 정렬을 걸고 range()로 끝까지 넘긴다.
+async function fetchAllPages(build) {
+  const PAGE = 1000;
+  const rows = [];
+  for (let from = 0; from < 200000; from += PAGE) {
+    const { data, error } = await build().range(from, from + PAGE - 1);
+    if (error) return { rows, error };
+    rows.push(...(data || []));
+    if (!data || data.length < PAGE) break;
+  }
+  return { rows, error: null };
+}
+
 async function loadSourceStats() {
   const body = document.getElementById('sourceTableBody');
-  const { data, error } = await sb
+  const { rows: data, error } = await fetchAllPages(() => sb
     .from('visit_log')
     .select('source, visit_date')
-    .limit(50000);
+    .order('created_at', { ascending: false }));
   if (error) {
     body.innerHTML = `<tr><td colspan="4">${escapeHtml(error.message)}</td></tr>`;
     return;
@@ -224,7 +241,10 @@ async function loadSourceStats() {
   }
   const rows = [...stat.entries()].sort((a, b) => b[1].week - a[1].week); // 최근 흐름 기준 정렬
   body.innerHTML = rows.map(([source, e]) => {
-    const pct = tWeek ? Math.round((e.week / tWeek) * 1000) / 10 : 0;
+    // 열 제목이 "All (90d) · share"이므로 비율도 전체 기준이어야 한다.
+    // 예전엔 e.week/tWeek을 계산해놓고 e.all 옆에 붙여서, direct가 "282 · 91.7%"처럼
+    // 서로 다른 기간의 숫자 두 개를 한 칸에 나란히 보여주고 있었다.
+    const pct = tAll ? Math.round((e.all / tAll) * 1000) / 10 : 0;
     return `
       <tr>
         <td>${escapeHtml(source)}</td>
@@ -247,10 +267,10 @@ async function loadSourceStats() {
 
 async function loadCountryStats() {
   const body = document.getElementById('countryTableBody');
-  const { data, error } = await sb
+  const { rows: data, error } = await fetchAllPages(() => sb
     .from('visit_log')
     .select('country')
-    .limit(50000);
+    .order('created_at', { ascending: false }));
   if (error) {
     body.innerHTML = `<tr><td colspan="3">${escapeHtml(error.message)}</td></tr>`;
     return;
@@ -293,25 +313,49 @@ async function loadTodayTopIps() {
   const body = document.getElementById('todayIpTableBody');
   if (!body) return;
   const today = kstDateStr(0);
-  const { data, error } = await sb
+  const { rows: data, error } = await fetchAllPages(() => sb
     .from('visit_log')
-    .select('ip, country, source, created_at')
+    .select('ip, country, source, created_at, visitor_key')
     .eq('visit_date', today)
-    .limit(5000);
-  if (error) { body.innerHTML = `<tr><td colspan="6">${escapeHtml(error.message)}</td></tr>`; return; }
-  if (!data?.length) { body.innerHTML = '<tr><td colspan="6">No visits recorded today yet.</td></tr>'; return; }
+    .order('created_at', { ascending: false }));
+  if (error) { body.innerHTML = `<tr><td colspan="7">${escapeHtml(error.message)}</td></tr>`; return; }
+  if (!data?.length) { body.innerHTML = '<tr><td colspan="7">No visits recorded today yet.</td></tr>'; return; }
   const byIp = new Map();
   for (const r of data) {
     const ip = r.ip || '(no ip)';
-    const e = byIp.get(ip) || { hits: 0, country: r.country || '–', sources: new Set(), first: r.created_at, last: r.created_at };
+    const e = byIp.get(ip) || { hits: 0, country: r.country || '–', sources: new Set(), keys: new Set(), first: r.created_at, last: r.created_at };
     e.hits += 1;
     if (r.country) e.country = r.country;
     if (r.source) e.sources.add(r.source);
+    if (r.visitor_key) e.keys.add(r.visitor_key);
     if (r.created_at < e.first) e.first = r.created_at;
     if (r.created_at > e.last) e.last = r.created_at;
     byIp.set(ip, e);
   }
+
+  // 체류시간은 IP가 아니라 visitor_key로 쌓이므로(visit_durations엔 ip 컬럼이 없다)
+  // 오늘 그 IP로 찍힌 visitor_key들의 오늘치 세그먼트를 모아 합산한다.
+  // 한 IP 뒤에 여러 기기가 있으면(공유망) 그 합이 실제 사람 한 명의 체류시간보다 길 수 있다.
+  const keys = [...new Set(data.map(r => r.visitor_key).filter(Boolean))];
+  const stayByKey = new Map();
+  let durError = null;
+  if (keys.length) {
+    const res = await fetchAllPages(() => sb
+      .from('visit_durations')
+      .select('visitor_key, seconds, created_at')
+      .in('visitor_key', keys)
+      .gte('created_at', new Date(Date.now() - 36 * 3600 * 1000).toISOString())
+      .order('created_at', { ascending: false }));
+    durError = res.error;
+    for (const d of res.rows) {
+      if (kstDateOf(d.created_at) !== today) continue; // KST 기준 '오늘'만
+      stayByKey.set(d.visitor_key, (stayByKey.get(d.visitor_key) || 0) + d.seconds);
+    }
+  }
+  const stayOf = (e) => [...e.keys].reduce((sum, k) => sum + (stayByKey.get(k) || 0), 0);
+  let tStay = 0;
   const fmtTime = (ts) => new Date(ts).toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul', hour: '2-digit', minute: '2-digit' });
+  byIp.forEach(e => { tStay += stayOf(e); });
   const rows = [...byIp.entries()].sort((a, b) => b[1].hits - a[1].hits).slice(0, 20);
   body.innerHTML = rows.map(([ip, e], i) => `
     <tr>
@@ -320,11 +364,18 @@ async function loadTodayTopIps() {
       <td>${escapeHtml(e.country)}</td>
       <td>${escapeHtml([...e.sources].join(', ') || '–')}</td>
       <td><strong${e.hits >= 5 ? ' style="color:#ff7b72"' : ''}>${e.hits}</strong></td>
+      <td>${fmtStay(stayOf(e))}</td>
       <td>${fmtTime(e.first)} → ${fmtTime(e.last)}</td>
     </tr>`).join('') + `
     <tr style="border-top:2px solid var(--border);font-weight:600">
-      <td>Total</td><td colspan="3">${byIp.size} unique IPs</td><td>${data.length}</td><td></td>
+      <td>Total</td><td colspan="3">${byIp.size} unique IPs</td><td>${data.length}</td>
+      <td>${fmtStay(tStay)}</td><td></td>
     </tr>`;
+  const warn = document.getElementById('todayStayWarning');
+  if (warn) {
+    warn.hidden = !durError;
+    if (durError) warn.textContent = `Stay column unavailable — could not read visit_durations: ${durError.message}`;
+  }
 }
 
 function fmtStay(secs) {
@@ -420,10 +471,10 @@ const returningPager = makePager('returningTableBody');
 // IP 기준 재방문자: 같은 IP가 서로 다른 날짜에 2번 이상 방문한 목록 (방문 일수 많은 순)
 async function loadReturningVisitors() {
   const body = document.getElementById('returningTableBody');
-  const { data, error } = await sb
+  const { rows: data, error } = await fetchAllPages(() => sb
     .from('visit_log')
     .select('ip, visit_date, created_at, country')
-    .limit(50000);
+    .order('created_at', { ascending: false }));
   if (error) { body.innerHTML = `<tr><td colspan="5">${escapeHtml(error.message)}</td></tr>`; return; }
   if (!data?.length) { body.innerHTML = '<tr><td colspan="5">No visitor records yet.</td></tr>'; return; }
   const byIp = new Map();

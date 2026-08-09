@@ -44,7 +44,8 @@
     <p class="stats-note">"Existing/Valid/Offline/New/Deleted" are recorded by the daily midnight-KST update job (from the day it first runs after this feature was added). Signups and Visitors are counted live from the database. Click a marked day on the calendar to jump to it.</p>
 
     <h2 class="stats-subheading">Today's Top IPs</h2>
-    <p class="stats-note">Most active IPs today. A single IP with many hits usually means a crawler or repeated visits from one device (e.g. private-window testing) rather than real traffic — that is what inflates the daily count.</p>
+    <p class="stats-note">Most active IPs today. A single IP with many hits usually means a crawler or repeated visits from one device (e.g. private-window testing) rather than real traffic — that is what inflates the daily count. "Stay today" sums every visit segment recorded for that IP today; a crawler shows many hits with almost no stay, a real reader shows the opposite.</p>
+    <p class="stats-note" id="todayStayWarning" hidden style="color:#ff7b72"></p>
     <div class="stats-table-wrap">
       <table class="stats-table">
         <thead>
@@ -54,6 +55,7 @@
             <th>Country</th>
             <th>Source</th>
             <th>Hits today</th>
+            <th>Stay today</th>
             <th>First → last (KST)</th>
           </tr>
         </thead>
@@ -132,6 +134,6 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="js/stats.js?v=20260727b"></script>
+<script src="js/stats.js?v=20260807a"></script>
 </body>
 </html>
