@@ -2392,11 +2392,17 @@ async function trackVisit() {
   // 크롤러 대역은 excludeVisits 표시를 남기지 않는다 (localStorage를 유지하지 않아 무의미하고,
   // 혹시 그 IP를 실제 사람이 쓰게 되더라도 기기에 영구 제외 표시가 남지 않도록)
   if (isBotIp(geo.ip)) return;
-  const row = { visit_date: todayKst, visitor_key: visitorKey, ip: geo.ip, country: geo.country, source: visitSource() };
+  // path = 그날 처음 연 페이지(랜딩). 쿼리스트링은 빼고 경로만 남긴다.
+  const row = {
+    visit_date: todayKst, visitor_key: visitorKey, ip: geo.ip, country: geo.country,
+    source: visitSource(), path: location.pathname,
+  };
   const { error } = await sb.from('visit_log').insert(row);
-  // 043 마이그레이션(source 컬럼) 실행 전이면 컬럼 없음 에러가 나므로 source 빼고 재시도해 방문 집계는 유지
-  if (error && /source/i.test(error.message || '')) {
-    delete row.source;
+  // 마이그레이션 전이면 "컬럼 없음" 에러가 난다 (043=source, 068=path). 해당 컬럼만 빼고
+  // 다시 넣어 방문 집계 자체는 끊기지 않게 한다.
+  const missing = ['source', 'path'].filter(c => error && new RegExp(`\\b${c}\\b`, 'i').test(error.message || ''));
+  if (missing.length) {
+    missing.forEach(c => delete row[c]);
     await sb.from('visit_log').insert(row);
   }
   // 같은 날 중복 방문 시 유니크 제약 위반 에러가 나는데, 의도된 동작이라 무시한다.

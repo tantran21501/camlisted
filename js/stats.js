@@ -265,6 +265,61 @@ async function loadSourceStats() {
       </tr>`;
 }
 
+// 어느 페이지로 들어오는지 (068의 path 컬럼). 검색 유입이 정체일 때 어느 페이지를
+// 손볼지 정하려면 이 표가 필요하다 — 유입 경로만으로는 "어디가 먹히는지"를 알 수 없다.
+function sourceBucket(s) {
+  if (!s) return 'other';
+  if (s === 'google' || s === 'bing' || s.includes('brave') || s.includes('yandex') || s.includes('duckduckgo')) return 'search';
+  if (s.includes('chatgpt') || s.includes('claude') || s.includes('perplexity') || s.includes('copilot')) return 'ai';
+  if (s.includes('reddit')) return 'reddit';
+  if (s === 'direct') return 'direct';
+  return 'other';
+}
+
+async function loadLandingPages() {
+  const body = document.getElementById('landingTableBody');
+  if (!body) return;
+  const since = kstDateStr(29);
+  const { rows: data, error } = await fetchAllPages(() => sb
+    .from('visit_log')
+    .select('path, source, visit_date')
+    .gte('visit_date', since)
+    .order('created_at', { ascending: false }));
+  if (error) { body.innerHTML = `<tr><td colspan="6">${escapeHtml(error.message)}</td></tr>`; return; }
+  if (!data.length) { body.innerHTML = '<tr><td colspan="6">No visits in the last 30 days.</td></tr>'; return; }
+
+  const byPath = new Map();
+  for (const r of data) {
+    // 068 이전 기록은 path가 null이다. '/'로 뭉뚱그리면 루트 방문이 부풀려지므로 따로 둔다.
+    const key = r.path || '(before tracking)';
+    const e = byPath.get(key) || { total: 0, search: 0, ai: 0, reddit: 0, direct: 0, other: 0 };
+    e.total += 1;
+    e[sourceBucket(r.source)] += 1;
+    byPath.set(key, e);
+  }
+  const rows = [...byPath.entries()].sort((a, b) => b[1].total - a[1].total).slice(0, 30);
+  const cell = (n) => n ? `<strong>${n}</strong>` : '<span style="opacity:.4">0</span>';
+  body.innerHTML = rows.map(([path, e]) => `
+    <tr>
+      <td class="ip-cell">${escapeHtml(path)}</td>
+      <td><strong>${e.total}</strong></td>
+      <td>${cell(e.search)}</td>
+      <td>${cell(e.ai)}</td>
+      <td>${cell(e.reddit)}</td>
+      <td>${cell(e.direct)}</td>
+    </tr>`).join('') + (() => {
+    const t = [...byPath.values()].reduce((a, e) => ({
+      total: a.total + e.total, search: a.search + e.search, ai: a.ai + e.ai,
+      reddit: a.reddit + e.reddit, direct: a.direct + e.direct,
+    }), { total: 0, search: 0, ai: 0, reddit: 0, direct: 0 });
+    return `
+    <tr style="border-top:2px solid var(--border);font-weight:600">
+      <td>Total · ${byPath.size} pages</td><td>${t.total}</td><td>${t.search}</td>
+      <td>${t.ai}</td><td>${t.reddit}</td><td>${t.direct}</td>
+    </tr>`;
+  })();
+}
+
 async function loadCountryStats() {
   const body = document.getElementById('countryTableBody');
   const { rows: data, error } = await fetchAllPages(() => sb
@@ -513,8 +568,10 @@ async function init() {
   }
   statsGate.hidden = true;
   statsContent.hidden = false;
-  // 실제 화면 순서(달력+일일집계 → Today's Top IPs → Traffic Sources → 국가별(접힘) → 재방문자 → 최근 방문자)와 맞춰 나열
-  await Promise.all([loadStats(), loadTodayTopIps(), loadSourceStats(), loadCountryStats(), loadReturningVisitors(), loadRecentVisitors()]);
+  // 실제 화면 순서(달력+일일집계 → Today's Top IPs → 재방문자 → Traffic Sources → 랜딩 페이지
+  // → 국가별(접힘) → 최근 방문자)와 맞춰 나열
+  await Promise.all([loadStats(), loadTodayTopIps(), loadReturningVisitors(), loadSourceStats(),
+    loadLandingPages(), loadCountryStats(), loadRecentVisitors()]);
 }
 
 init();
