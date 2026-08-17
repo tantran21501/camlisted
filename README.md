@@ -1,24 +1,18 @@
-# 📹 Camlisted — YouTube Live Cams & Footage
+# 📹 Camlisted — YouTube Live Cams & Footage data pipeline
 
-**Live site: [camlisted.com](https://camlisted.com)**
+A daily-updated, categorized catalog of publicly available YouTube live cams and real-world footage — traffic cams, beaches, wildlife feeds, dashcams, city streets, and more. The output of this repository is **data**, not a website: every run produces `data/streams.json` (a JSON snapshot of the catalog) plus supporting JSON files, committed back to the repo.
 
-A daily-updated, categorized directory of publicly available YouTube live cams and real-world footage — traffic cams, beaches, wildlife feeds, dashcams, city streets, and more. No video is ever hosted, downloaded, or re-encoded: every entry links to (or embeds, via the official player) the original stream on YouTube.
+> The public-facing static site (HTML/CSS/JS) was removed. This repo now only builds and maintains the data catalog. To build your own frontend, consume `data/streams.json`.
 
-![Camlisted screenshot](docs/screenshot.png)
+## What the pipeline does
 
-## Why
+Runs twice daily on GitHub Actions ([`.github/workflows/update.yml`](.github/workflows/update.yml)):
 
-Finding good live cams on YouTube is painful: search results are cluttered, streams constantly go offline, and there's no way to browse by category. Camlisted automates the whole loop — it discovers streams daily, verifies they're still alive, classifies them, and prunes dead links, so the directory stays fresh without manual curation.
-
-## Features
-
-- **Daily auto-discovery** — searches YouTube in ~15 languages for live cams, dashcam and street footage, within the free API quota
-- **Liveness tracking** — offline streams get a 7-day countdown overlay, then are removed (and can return if they come back online)
-- **12 categories** with per-category counts, auto-classified by multilingual keywords and correctable by the community
-- **Viewport autoplay** — cards play a muted preview while scrolled into view
-- **Community layer** — Google sign-in, link submissions with a review flow, up/downvotes, favorites with notes, comments, feedback board, leaderboard with membership tiers
-- **Moderation** — pending-approval queue with bulk approve, video/channel blocklists so removed content never resurfaces
-- **5 languages** (EN/KO/JA/ZH/ES), infinite scroll, quality & date filters, XLSX/TXT export of favorites
+1. **Discovery** — searches YouTube in ~15 languages for live cams, dashcam and street footage, within the free API quota
+2. **Liveness tracking** — offline streams get a `status='offline'` mark (with a 7-day removal countdown), and can return to `live` if they come back online
+3. **Classification** — CLIP zero-shot thumbnail classification (`classify_thumbnails.py`) assigns categories from `config/categories.json`; false positives are removed; an optional Gemini pass (`ai_review.mjs`) reviews the pending-approval queue when `GEMINI_API_KEY` is set
+4. **Vehicle counts** — `detect_vehicles.py` counts vehicles in traffic-cam frames (data collection only)
+5. **Commit** — all changed JSON under `data/` and `config/` is committed
 
 ## Architecture
 
@@ -27,23 +21,37 @@ Finding good live cams on YouTube is painful: search results are cluttered, stre
 │ GitHub Actions   │ ──────────────▶│ YouTube Data API │
 │ scripts/update.mjs│               └──────────────────┘
 └────────┬────────┘
-         │ service role
+         │ saves / commits
          ▼
-┌─────────────────┐    anon key +   ┌──────────────────┐
-│ Supabase        │ ◀──────────────│ Static frontend   │
-│ Postgres + Auth │      RLS       │ (GitHub Pages)    │
-│ + RPC/triggers  │                │ vanilla HTML/JS   │
-└─────────────────┘                └──────────────────┘
+┌─────────────────┐
+│ data/streams.json│  ← single source of truth (JSON)
+│ + config/*.json  │
+└─────────────────┘
 ```
 
-- **Frontend**: dependency-free vanilla HTML/CSS/JS, hosted free on GitHub Pages
-- **Backend**: Supabase free tier — Postgres with Row Level Security, Google OAuth, and `security definer` functions for privileged operations
-- **Automation**: a single Node script run by GitHub Actions handles discovery, liveness checks, classification, credit grants, and cleanup
-- **Quota budgeting**: YouTube's `search.list` allows ~100 calls/day; the script budgets these across keyword rotations and uses cheap `videos.list`/`channels.list` calls for everything else
+- **Backend**: none. A single Node script handles discovery, liveness checks, classification, and cleanup, writing results to JSON files that are committed.
+- **Quota budgeting**: YouTube's `search.list` allows ~100 calls/day; the script budgets these across keyword rotations and uses cheap `videos.list`/`channels.list` calls for everything else.
 
-## Running your own instance
+## Repo layout
 
-See [docs/SETUP.ko.md](docs/SETUP.ko.md) (Korean) for the full setup guide: YouTube API key, Supabase project + SQL schema, Google OAuth, and GitHub Actions secrets. The SQL migrations in [`sql/`](sql/) are numbered in the order they were applied.
+- `scripts/update.mjs` — main pipeline (YouTube API → catalog)
+- `scripts/state.mjs` — JSON read/write helpers for the catalog and blocklists
+- `scripts/classify_thumbnails.py`, `scripts/detect_vehicles.py` — Python steps (CLIP / YOLO)
+- `scripts/ai_review.mjs` — optional Gemini review of the pending queue
+- `data/streams.json` — the catalog snapshot (schema: `streams-v2`)
+- `config/` — keywords, category/tag definitions, blocklists
+- `.github/workflows/update.yml` — the daily automation
+
+## Running locally
+
+```sh
+export YOUTUBE_API_KEY=your_key
+node scripts/update.mjs
+python scripts/classify_thumbnails.py
+node scripts/ai_review.mjs   # optional; needs GEMINI_API_KEY
+```
+
+No database, no accounts, no build step.
 
 ## License
 

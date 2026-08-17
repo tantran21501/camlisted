@@ -1,10 +1,13 @@
 # Camlisted 셋업 가이드 (직접 운영하는 방법)
 
+> **⚠️ 2026-08-17: Supabase 전면 제거됨.** 이 문서는 옛 DB 기반 아키텍처(로그인/제보/커뮤니티 기능)의 셋업 절차다.
+> 현재는 **YouTube API 키 하나만** 있으면 된다: GitHub Actions `update.yml`에 `YOUTUBE_API_KEY` 시크릿만 넣으면
+> `scripts/update.mjs` → `data/streams.json` → 정적 페이지 생성이 돌아간다. 아래 내용은 히스토리 참고용.
+
 > 라이브 사이트: https://camlisted.com · 프로젝트 소개는 루트의 [README.md](../README.md) 참고
 
-유튜브 라이브 중인 CCTV 영상을 키워드 검색으로 자동 수집해 보여주는 커뮤니티 사이트입니다.
+유튜브 라이브 중인 CCTV 영상을 키워드 검색으로 자동 수집해 보여주는 디렉터리 사이트입니다.
 매일 `scripts/update.mjs`가 실행되어 중지된 스트림/오탐을 제거하고 신규 스트림을 추가합니다.
-Google 계정으로 로그인하면 새 주소를 직접 제보하거나 추천/비추천·즐겨찾기·댓글 등 커뮤니티 기능을 쓸 수 있습니다.
 
 ## 구조
 - `index.html`, `css/`, `js/app.js` — 정적 프론트엔드 (Supabase에서 목록/로그인/제보/신고 처리)

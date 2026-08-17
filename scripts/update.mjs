@@ -1,12 +1,19 @@
-// 매일 실행: Supabase streams 테이블을 갱신한다.
+// 매일 실행: data/streams.json(카탈로그)을 갱신한다. DB 없이 JSON 파일만 사용한다.
 // 1) 기존 행 생존 확인 — 중지되면 삭제하지 않고 status='offline'으로 기록 보존, 다시 라이브면 'live'로 복귀
 // 2) 오탐(제외 키워드)은 확정 삭제
 // 3) 키워드 검색으로 신규 라이브 CCTV 후보 탐색 및 검증 후 추가
 // 4) 카테고리 자동분류, 채널 국가, 라이브 시작 시각을 함께 채워넣음
 import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { createClient } from '@supabase/supabase-js';
+import { fileURLToPath } from 'node:url';
+import {
+  loadStreams, saveStreams,
+  loadBlocklist, saveBlocklist,
+  loadBlockedChannels,
+  loadScannedChannels, saveScannedChannels,
+  loadChannelSeeds, saveChannelSeeds,
+  loadCategories,
+} from './state.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -16,38 +23,16 @@ const EXCLUDE_KEYWORDS_PATH = path.join(ROOT, 'config', 'exclude-keywords.json')
 const NO_EMBED_KEYWORDS_PATH = path.join(ROOT, 'config', 'no-embed-keywords.json');
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const BASE = 'https://www.googleapis.com/youtube/v3';
 
 if (!API_KEY) {
   console.error('환경변수 YOUTUBE_API_KEY 가 설정되어 있지 않습니다.');
   process.exit(1);
 }
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  console.error('환경변수 SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY 가 설정되어 있지 않습니다.');
-  process.exit(1);
-}
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 function chunk(arr, size) {
   const out = [];
   for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-}
-
-// Supabase는 조회당 최대 1000행만 반환하므로, 큰 테이블은 반드시 페이지를 돌며 전부 가져온다.
-// (1000행을 넘긴 뒤 기존 행을 "신규"로 착각해 중복 삽입이 터지는 사고 방지)
-async function fetchAllRows(table, columns = '*') {
-  const out = [];
-  const PAGE = 1000;
-  for (let from = 0; ; from += PAGE) {
-    const { data, error } = await supabase.from(table).select(columns).range(from, from + PAGE - 1);
-    if (error) throw error;
-    out.push(...(data || []));
-    if (!data || data.length < PAGE) break;
-  }
   return out;
 }
 
@@ -61,7 +46,7 @@ async function fetchJson(url) {
 }
 
 // 조건 태그(일반 영상 전용): 제목에서 날씨/시간/사건 태그를 뽑는다.
-// 밤/낮/눈은 CLIP 썸네일 분석(classify_thumbnails.py)이 보완하고, 유저가 카드에서 교정 가능.
+// 밤/낮/눈은 CLIP 썸네일 분석(classify_thumbnails.py)이 보완한다.
 const TAG_KEYWORDS = {
   night: ['night', 'nightlife', 'nighttime', 'nightvision', '밤 ', '야간', '심야', '夜', 'noche', 'nuit'],
   rain: ['rain', 'rainy', '빗길', '우천', '비오는', '雨', 'lluvia'],
@@ -75,14 +60,11 @@ const TAG_KEYWORDS = {
 
 // 라틴 문자 키워드는 단어 경계를 요구한다. 부분문자열로 보면 'train'·'Ukraine'·'terrain'이
 // 전부 rain(비)이 되고 'firefighter'가 fire와 violence(fight)를 동시에 달았다.
-// 한글·일본어·중국어는 단어 경계라는 게 없으므로 기존대로 포함 검사한다
-// ('밤 '처럼 뒤 공백까지 포함해 오탐을 줄인 항목이 있어 원문 그대로 써야 한다).
+// 한글·일본어·중국어는 단어 경계라는 게 없으므로 기존대로 포함 검사한다.
 const TAG_MATCHERS = Object.fromEntries(
   Object.entries(TAG_KEYWORDS).map(([tag, kws]) => [tag, kws.map(k => {
     if (!/^[\x20-\x7e]+$/.test(k)) return { test: (h) => h.includes(k) };
     const esc = k.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    // 복수형은 허용해야 한다. 카탈로그 제목을 세어보니 'crash'는 23건인데 'crashes'가 29건으로
-    // 더 많았다. 단어 경계만 걸면 그 29건이 통째로 사고 태그를 놓친다.
     return new RegExp(`\\b${esc}(?:e?s)?\\b`, 'i');
   })])
 );
@@ -91,12 +73,9 @@ function tagsFromTitle(title) {
   const haystack = (title || '').toLowerCase();
   const tags = [];
   for (const [tag, matchers] of Object.entries(TAG_MATCHERS)) {
-    // 단어 경계를 쓰면서 'fireworks'는 이미 \bfire\b에 안 걸리지만, 경계 조건을 나중에
-    // 누가 풀었을 때를 대비해 남겨둔다 (불꽃놀이를 화재로 태그하면 조건 필터가 망가진다).
     if (tag === 'fire' && haystack.includes('firework')) continue;
     if (matchers.some(m => m.test(haystack))) tags.push(tag);
   }
-  // 폭우/폭설이면 비/눈도 함께 (넓은 필터에 걸리게)
   if (tags.includes('heavy_rain') && !tags.includes('rain')) tags.push('rain');
   if (tags.includes('heavy_snow') && !tags.includes('snow')) tags.push('snow');
   return tags;
@@ -145,7 +124,7 @@ const TITLE_COUNTRY_RULES = [
   ['RU', ['russia', 'moscow', 'петербург', 'москва', '러시아', '모스크바']],
   ['UA', ['ukraine', 'kyiv', 'kiev', 'odessa', '우크라이나']],
   ['RO', ['romania', 'bucharest', '루마니아']],
-  ['HR', ['croatia', 'zagreb', 'dubrovnik', '크로아티아']],
+  ['HR', ['croatia', 'zagreb', '크로아티아']],
   ['RS', ['serbia', 'belgrade']],
   ['NO', ['norway', 'oslo', '노르웨이']],
   ['SE', ['sweden', 'stockholm', '스웨덴']],
@@ -175,8 +154,6 @@ const TITLE_COUNTRY_RULES = [
 ];
 
 // 제목에 쓰인 문자(스크립트)로 나라를 추정 — 지명 사전으로 못 잡을 때의 보조 신호.
-// 한 나라에서만 쓰는 문자만 사용한다: 히라가나/가타카나=일본, 한글=한국, 태국문자=태국 등.
-// (한자는 중/일/한이 공유하므로 제외, 키릴/아랍은 여러 나라라 제외)
 function inferCountryFromScript(title) {
   const s = String(title || '');
   if (/[぀-ヿ]/.test(s)) return 'JP'; // 히라가나·가타카나
@@ -196,7 +173,6 @@ function inferCountryFromTitle(title) {
   for (const [code, patterns] of TITLE_COUNTRY_RULES) {
     for (const p of patterns) {
       if (/^[a-z0-9 .'-]+$/.test(p)) {
-        // 라틴 문자 지명은 단어 경계로 검사 ('nice'류 오탐 방지를 위해 애초에 모호한 지명은 목록에서 제외)
         const esc = p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         if (new RegExp(`(^|[^a-z])${esc}([^a-z]|$)`).test(lower)) return code;
       } else if (lower.includes(p.toLowerCase())) {
@@ -208,7 +184,7 @@ function inferCountryFromTitle(title) {
 }
 
 // 세로 영상(쇼츠 등) 판별 — videos.list의 player 파트에 maxHeight를 지정하면
-// 실제 영상 비율대로 embedWidth/embedHeight가 내려온다 (oEmbed는 쇼츠에도 16:9를 돌려줘서 못 씀)
+// 실제 영상 비율대로 embedWidth/embedHeight가 내려온다.
 function isVerticalInfo(info) {
   const w = Number(info?.player?.embedWidth);
   const h = Number(info?.player?.embedHeight);
@@ -222,7 +198,7 @@ function parseDurationSeconds(iso) {
   return (Number(m[1]) || 0) * 3600 + (Number(m[2]) || 0) * 60 + (Number(m[3]) || 0);
 }
 
-// videoId -> {snippet, liveStreamingDetails, status, player, contentDetails} 맵으로 반환 (라이브/일반 영상 공통 조회)
+// videoId -> {snippet, liveStreamingDetails, status, player, contentDetails} 맵으로 반환
 async function getVideoInfo(videoIds) {
   const map = new Map();
   for (const batch of chunk(videoIds, 50)) {
@@ -242,15 +218,12 @@ async function getVideoInfo(videoIds) {
   return map;
 }
 
-// 라이브가 다시보기(VOD) 저장 없이 끝나면 privacyStatus는 public으로 남지만 재생 가능한 콘텐츠가
-// 없다 — 이때 contentDetails.duration이 0(P0D 등, parseDurationSeconds가 null 반환) 또는 누락으로
-// 온다. "공개 상태"만으로는 이 반쪽짜리 영상을 걸러낼 수 없어 재생시간까지 확인한다.
+// 라이브가 다시보기(VOD) 저장 없이 끝나면 재생 가능한 콘텐츠가 없다 — duration으로 걸러낸다.
 function hasPlayableDuration(info) {
   const secs = parseDurationSeconds(info?.contentDetails?.duration);
   return secs != null && secs > 0;
 }
 
-// content_type에 따라 "지금도 유효한지" 판단 기준이 다름: live는 방송 중인지, video는 공개 + 재생 가능인지
 function isValidFor(contentType, info) {
   if (!info) return false;
   if (contentType === 'video') {
@@ -259,9 +232,7 @@ function isValidFor(contentType, info) {
   return info.snippet?.liveBroadcastContent === 'live';
 }
 
-// API 응답으로 실제 content_type을 판별한다. (등록 시 유저가 라이브/영상을 잘못 골랐어도 여기서 교정)
-// 지금 방송 중이면 'live', 아니면서 공개/미등록 + 재생 가능한 영상이면 'video',
-// 그 외(비공개·삭제·종료했지만 다시보기 없음)는 null.
+// API 응답으로 실제 content_type을 판별한다. (등록 시 잘못 골랐어도 여기서 교정)
 function trueContentType(info) {
   if (!info) return null;
   if (info.snippet?.liveBroadcastContent === 'live') return 'live';
@@ -283,7 +254,6 @@ async function getChannelCountries(channelIds) {
   return map;
 }
 
-// search.list는 title/channelTitle을 HTML 엔티티로 이스케이프해서 반환하므로 디코딩 필요
 const HTML_ENTITIES = {
   '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&apos;': "'",
 };
@@ -315,7 +285,6 @@ async function searchLiveByKeyword(keyword, maxResults = 25) {
     }));
 }
 
-// 이 채널이 지금 라이브 중인 다른 영상들도 찾는다 (다중 카메라 채널 대응)
 async function searchChannelLive(channelId, maxResults = 25) {
   const url = `${BASE}/search?part=snippet&type=video&eventType=live&channelId=${channelId}&maxResults=${maxResults}&key=${API_KEY}`;
   const data = await fetchJson(url);
@@ -332,7 +301,6 @@ async function searchChannelLive(channelId, maxResults = 25) {
     }));
 }
 
-// 시드 채널의 최근 일반 업로드 영상 수집 (구독 채널의 CCTV뷰 아카이브 영상 등)
 async function searchChannelVideos(channelId, maxResults = 25) {
   const url = `${BASE}/search?part=snippet&type=video&order=date&channelId=${channelId}&maxResults=${maxResults}&key=${API_KEY}`;
   const data = await fetchJson(url);
@@ -349,7 +317,6 @@ async function searchChannelVideos(channelId, maxResults = 25) {
     }));
 }
 
-// 라이브가 아닌 일반 업로드 영상(블랙박스/야생동물/군중 등) 탐색 — eventType 지정 안 함
 async function searchVideoByKeyword(keyword, maxResults = 25) {
   const url = `${BASE}/search?part=snippet&type=video&maxResults=${maxResults}&q=${encodeURIComponent(keyword)}&key=${API_KEY}`;
   const data = await fetchJson(url);
@@ -366,20 +333,11 @@ async function searchVideoByKeyword(keyword, maxResults = 25) {
     }));
 }
 
-// search.list는 유튜브 프로젝트 기본 할당량이 하루 100회로 고정이라(단가가 아니라 "횟수" 자체가 한도),
-// 이 예산을 넘지 않게 안전 여유를 두고 최대한 활용한다. 실제 남는 만큼을 전부 채널 스캔에 몰아준다
-// (채널 스캔이 키워드 검색보다 신규 발견 효율이 훨씬 좋음 — 채널당 카메라가 여러 개인 경우가 많아서).
-// 하루 두 번 도는 것을 전제로 한 실행당 검색 예산. 예전엔 95였는데, 검색 1회가 100유닛이고
-// 하루 한도가 10,000이라 95회면 사실상 하루치를 한 번에 다 쓴다. 두 번 돌리려면 반으로 갈라야 한다.
-// 두 번으로 나눈 이유는 수집량을 늘리려는 게 아니라, GitHub이 예약 실행을 몇 시간씩 미루거나
-// 통째로 건너뛰는 일이 실제로 있어서다(2026-08-06에 한 번 통으로 빠졌다). 한쪽이 빠져도
-// 다른 쪽이 그날 수집을 맡는다.
+// search.list는 하루 100회로 고정. 실행당 검색 예산 (하루 두 번 돌리므로 반으로 나눔).
 const SEARCH_BUDGET_PER_RUN = 47;
 const MAX_LIVE_KEYWORDS_PER_RUN = 20;
 const MAX_VIDEO_KEYWORDS_PER_RUN = 20;
 
-// 키워드 목록이 위 한도보다 길어지면, 매일 같은 키워드만 반복하지 않도록 날짜 기준으로 창을 옮겨가며 선택한다.
-// (키워드가 한도 이하면 매일 전부 사용 — 지금은 두 목록 다 한도 이내라 항상 전체 사용됨)
 function selectRotatingSubset(list, maxPerRun) {
   if (list.length <= maxPerRun) return list;
   const dayIndex = Math.floor(Date.now() / 86400000);
@@ -392,37 +350,35 @@ function selectRotatingSubset(list, maxPerRun) {
 }
 
 async function main() {
-  const [keywordsRaw, keywordsVideoRaw, excludeRaw, noEmbedRaw, categoriesResult, blocklistRows, blockedChannelRows] = await Promise.all([
+  const [keywordsRaw, keywordsVideoRaw, excludeRaw, noEmbedRaw] = await Promise.all([
     readFile(KEYWORDS_PATH, 'utf-8'),
     readFile(KEYWORDS_VIDEO_PATH, 'utf-8').catch(() => '{"keywords":[]}'),
     readFile(EXCLUDE_KEYWORDS_PATH, 'utf-8').catch(() => '{"keywords":[]}'),
     readFile(NO_EMBED_KEYWORDS_PATH, 'utf-8').catch(() => '{"keywords":[]}'),
-    supabase.from('categories').select('key, keywords'),
-    fetchAllRows('blocklist', 'video_id,channel_id,title').catch(() => fetchAllRows('blocklist', 'video_id')),
-    fetchAllRows('blocked_channels', 'channel_id'),
   ]);
   const keywords = JSON.parse(keywordsRaw).keywords || [];
   const keywordsVideo = JSON.parse(keywordsVideoRaw).keywords || [];
   const excludeKeywords = (JSON.parse(excludeRaw).keywords || []).map(k => k.toLowerCase());
-  // 정규식 제외 패턴. keywords는 부분문자열 매칭이라 한계가 뚜렷하다 — 짧은 낱말을 못 넣고
-  // ("test"가 "contest"에 걸린다), 실제로 "News Live"가 등록돼 있는데도 "NewsX World LIVE"가
-  // 그대로 통과해 왔다. 잘못 쓴 패턴 하나가 수집 전체를 멈추지 않도록 컴파일 실패는 건너뛴다.
   const compilePatterns = (key) => (JSON.parse(excludeRaw)[key] || []).flatMap(p => {
     try { return [new RegExp(p, 'i')]; }
     catch { console.warn(`  제외 패턴 컴파일 실패(무시): ${key} / ${p}`); return []; }
   });
-  const junkPatterns = compilePatterns('patterns_all');       // 라이브·영상 공통
-  const videoJunkPatterns = compilePatterns('patterns_video'); // 비라이브 전용
+  const junkPatterns = compilePatterns('patterns_all');
+  const videoJunkPatterns = compilePatterns('patterns_video');
   const noEmbedKeywords = (JSON.parse(noEmbedRaw).keywords || []).map(k => k.toLowerCase());
-  if (categoriesResult.error) throw categoriesResult.error;
-  const categoryRows = (categoriesResult.data || []).filter(c => c.key !== 'other');
+
+  const [categoryRows, blocklistRows, blockedChannelRows, channelSeeds] = await Promise.all([
+    loadCategories(),
+    loadBlocklist(),
+    loadBlockedChannels(),
+    loadChannelSeeds(),
+  ]);
+  const categories = categoryRows.filter(c => c.key !== 'other');
   const blockedIds = new Set(blocklistRows.map(r => r.video_id));
   const blockedChannelIds = new Set(blockedChannelRows.map(r => r.channel_id));
 
   // 재시작 루프 차단: 관리자가 지운 라이브는 채널이 방송을 껐다 켜면 새 videoId로 돌아오므로
-  // videoId 차단만으로는 부족하다. 차단 시점에 기록된 (채널ID, 제목) 쌍과 일치하는 후보를
-  // 검색 단계에서 함께 걸러낸다 (sql/058). 채널 전체 차단이 아닌 이유: 카메라 여러 대를
-  // 운영하는 채널에서 한 대만 지운 경우 나머지는 살아야 하기 때문.
+  // (채널ID, 제목) 쌍과 일치하는 후보를 검색 단계에서 함께 걸러낸다.
   const normTitle = (t) => (t || '').toLowerCase().replace(/\s+/g, ' ').trim();
   const blockedPairs = new Set(
     blocklistRows.filter(r => r.channel_id && r.title).map(r => `${r.channel_id}::${normTitle(r.title)}`)
@@ -435,19 +391,14 @@ async function main() {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
     return excludeKeywords.some(k => haystack.includes(k));
   };
-  // 라이브·영상 공통. 관리자가 매일 손으로 지우던 것들 — 뉴스 생중계, 수면·앰비언스 음향,
-  // 24/7 옛날 라디오, CCTV 제품/설치 강좌, 공포 클립 모음, 경찰 바디캠, 스포츠·게임 중계.
   const isJunkTitle = (title, channelTitle) => {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
     return junkPatterns.some(re => re.test(haystack));
   };
-  // 비라이브 전용 추가분: 편집 모음집("BEST OF FAILS")·카메라 판매 데모("8MP Hikvision 샘플").
-  // 이쪽을 라이브에 걸면 안 된다 — 제목에 카메라 모델명(Axis P5655-E)을 쓴 정상 캠이 많다.
   const isJunkVideo = (title, channelTitle) => {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
     return videoJunkPatterns.some(re => re.test(haystack));
   };
-  // 저작권 관리로 외부표시가 막힌(=API는 embeddable=true지만 실제 재생 불가) 채널: 삭제 대신 embeddable=false 강제
   const isNoEmbed = (title, channelTitle) => {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
     return noEmbedKeywords.some(k => haystack.includes(k));
@@ -455,35 +406,29 @@ async function main() {
 
   const classifyCategory = (title, channelTitle) => {
     const haystack = `${title} ${channelTitle}`.toLowerCase();
-    for (const row of categoryRows) {
+    for (const row of categories) {
       if ((row.keywords || []).some(k => haystack.includes(k.toLowerCase()))) return row.key;
     }
     return 'other';
   };
 
-  // ===== 일회성 초기화 (2026-07-15 아침 실행에서만 발동) =====
-  // 홍보 시작 전 테스트 투표 청소: 추천/비추천만 리셋 (방문 기록은 보존하기로 함).
-  // 날짜 가드라 그날 이후엔 절대 재실행되지 않음 — 나중에 이 블록은 지워도 무방.
-  const todayKstStr = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
-  if (todayKstStr === '2026-07-15') {
-    console.log('일회성 초기화 실행: 추천 / 비추천 리셋');
-    await supabase.from('upvotes').delete().gte('video_id', '');
-    await supabase.from('downvotes').delete().gte('video_id', '');
-    await supabase.from('streams').update({ upvote_count: 0, downvote_count: 0 }).gte('video_id', '');
-    console.log('일회성 초기화 완료');
-  }
-
-  const existingRows = await fetchAllRows('streams', '*');
-
+  // JSON 상태 로드. 배열의 객체 참조를 그대로 수정하면 저장은 마지막에 한 번만 하면 된다.
+  const snapshot = await loadStreams();
+  const streams = snapshot.streams;
+  const existingRows = streams;
   console.log(`기존 목록 ${existingRows.length}건 생존 확인 중...`);
-  const existingIds = existingRows.map(r => r.video_id);
-  const infoMap = await getVideoInfo(existingIds);
 
-  const toDelete = []; // 오탐(제외 키워드) 확정 삭제
-  const toUpdate = []; // 상태전환/정보보강 업데이트
-  const creditRecipients = []; // 이번에 처음 검증 통과한 유저 제보의 제보자(added_by)
-  const verticalIds = []; // 세로 영상(쇼츠 등) -> 삭제 + 차단목록
-  // sql/045(embeddable 컬럼) 적용 여부: 적용 전엔 임베드 차단 처리를 건너뛴다 (insert 에러 방지)
+  const infoMap = await getVideoInfo(existingRows.map(r => r.video_id));
+  const blocklistAdds = []; // {video_id, channel_id?, title?, created_at}
+  const addToBlocklist = (video_id, channel_id, title) => {
+    const rec = { video_id, created_at: new Date().toISOString() };
+    if (channel_id) rec.channel_id = channel_id;
+    if (title) rec.title = title;
+    blocklistAdds.push(rec);
+  };
+
+  const toDelete = [];
+  const verticalIds = [];
   const HAS_EMBEDDABLE = existingRows.length > 0 && 'embeddable' in existingRows[0];
   let validCount = 0;
   let offlineCount = 0;
@@ -501,24 +446,21 @@ async function main() {
     // 임베드 차단 영상: 삭제하지 않고 embeddable=false로 표시 → 썸네일 + 유튜브 링크로 노출
     const embOk = !info || info.status?.embeddable !== false;
 
-    // content_type 자동 교정: 등록 시 라이브/영상을 잘못 골랐어도 실제 상태로 바로잡는다.
-    // (라이브로 넣었는데 실제론 일반 공개영상 -> video로 전환해 offline 처리 대신 살려둠, 반대도 동일)
+    // content_type 자동 교정
     const correctType = trueContentType(info);
     const contentTypeFixed = correctType && correctType !== contentType ? correctType : null;
-    if (contentTypeFixed) contentType = contentTypeFixed; // 이후 유효성 판정·정보 갱신은 교정된 타입 기준
+    if (contentTypeFixed) contentType = contentTypeFixed;
 
     if (!isValidFor(contentType, info)) {
       // 아직 승인 안 된 대기 영상이 라이브 종료/비공개가 됐으면 오프라인 유예(7일) 없이 바로 삭제한다.
-      // (유예는 방문자가 다시 찾을 수 있는 "승인된" 영상용. 검색으로 재유입 가능하니 차단목록엔 안 올림)
       if (row.approval_status === 'pending') {
         toDelete.push(row.video_id);
         continue;
       }
       offlineCount += 1;
       if (row.status !== 'offline' || !row.offline_since) {
-        // 방금 오프라인으로 전환된 시점만 기록 (계속 오프라인이어도 최초 시점 유지 -> 7일 카운트 기준)
-        // offline인데 offline_since가 비어있는 행(컬럼 도입 전 데이터)도 여기서 채워 7일 카운트가 시작되게 한다
-        toUpdate.push({ video_id: row.video_id, status: 'offline', offline_since: row.offline_since || new Date().toISOString() });
+        row.status = 'offline';
+        row.offline_since = row.offline_since || new Date().toISOString();
       }
       continue;
     }
@@ -532,133 +474,83 @@ async function main() {
     }
 
     validCount += 1;
-    const patch = { video_id: row.video_id };
-    let needsUpdate = false;
-    const embFinal = isNoEmbed(title, channelTitle) ? false : embOk; // 저작권 차단 채널은 강제 false
+    const embFinal = isNoEmbed(title, channelTitle) ? false : embOk;
     if (HAS_EMBEDDABLE && row.embeddable !== embFinal) {
-      patch.embeddable = embFinal; // 임베드 차단/해제 상태를 매일 최신으로 반영
-      needsUpdate = true;
+      row.embeddable = embFinal;
     }
     if (contentTypeFixed) {
-      patch.content_type = contentTypeFixed;
-      needsUpdate = true;
-      // 라이브->영상으로 교정되면 라이브 전용 썸네일(hqdefault_live)이 깨지므로 일반 썸네일로 교체
+      row.content_type = contentTypeFixed;
       if (contentTypeFixed === 'video' && (row.thumbnail || '').includes('hqdefault_live')) {
-        patch.thumbnail = `https://i.ytimg.com/vi/${row.video_id}/hqdefault.jpg`;
+        row.thumbnail = `https://i.ytimg.com/vi/${row.video_id}/hqdefault.jpg`;
       }
     }
     if (row.status !== 'live') {
-      patch.status = 'live';
-      patch.offline_since = null; // 다시 살아났으니 오프라인 카운트 초기화
-      needsUpdate = true;
+      row.status = 'live';
+      row.offline_since = null;
     }
     if (!row.title || !row.channel_title) {
-      patch.title = title;
-      patch.channel_title = channelTitle;
-      patch.thumbnail = row.thumbnail || snippetThumbnail(snippet);
-      needsUpdate = true;
+      row.title = title;
+      row.channel_title = channelTitle;
+      row.thumbnail = row.thumbnail || snippetThumbnail(snippet);
     }
     if (!row.channel_id && snippet.channelId) {
-      patch.channel_id = snippet.channelId;
-      needsUpdate = true;
-      // 유저 제보는 제출 시점엔 channel_id를 알 수 없어(oEmbed는 채널ID를 안 줌), 여기서 처음 채워지는
-      // 순간이 곧 "실제 유효함이 검증된 최초 시점" -> 제보자에게 열람권 크레딧 적립 대상
-      if (row.source === 'user' && row.added_by) {
-        creditRecipients.push(row.added_by);
-      }
+      row.channel_id = snippet.channelId;
     }
     if (!row.category) {
-      patch.category = classifyCategory(title, channelTitle);
-      patch.category_source = 'keyword';
-      needsUpdate = true;
-      // 유저 제보인데 어떤 카테고리 키워드에도 안 걸리면(=관련성 불명) 바로 공개하지 않고
-      // 숨김 처리해 관리자 승인(admin.html)을 거치게 한다. 자동 검색/채널스캔으로 찾은 항목은 대상 아님.
-      if (row.source === 'user' && patch.category === 'other') {
-        patch.visibility = 'hidden';
-      }
+      row.category = classifyCategory(title, channelTitle);
+      row.category_source = 'keyword';
     }
     if (contentType === 'live' && !row.started_at && liveStreamingDetails?.actualStartTime) {
-      patch.started_at = liveStreamingDetails.actualStartTime;
-      needsUpdate = true;
+      row.started_at = liveStreamingDetails.actualStartTime;
     }
     if (contentType === 'video' && !row.published_at && snippet.publishedAt) {
-      patch.published_at = snippet.publishedAt;
-      needsUpdate = true;
+      row.published_at = snippet.publishedAt;
     }
     if (contentType === 'video' && row.duration_seconds == null) {
       const dur = parseDurationSeconds(info.contentDetails?.duration);
-      if (dur) {
-        patch.duration_seconds = dur;
-        needsUpdate = true;
-      }
+      if (dur) row.duration_seconds = dur;
     }
-    // 조건 태그가 아직 없는 일반 영상은 제목에서 1회 추출 (유저가 수정한 뒤엔 건드리지 않음)
+    // 조건 태그가 아직 없는 일반 영상은 제목에서 1회 추출
     if (contentType === 'video' && (!row.tags || row.tags.length === 0)) {
       const titleTags = tagsFromTitle(title);
-      if (titleTags.length) {
-        patch.tags = titleTags;
-        needsUpdate = true;
-      }
+      if (titleTags.length) row.tags = titleTags;
     }
-    if (needsUpdate) toUpdate.push(patch);
   }
 
-  console.log(`  -> 유효 ${validCount}건, 오프라인 전환 ${offlineCount}건, 오탐 삭제 ${toDelete.length}건, 정보 갱신 ${toUpdate.length}건`);
+  console.log(`  -> 유효 ${validCount}건, 오프라인 전환 ${offlineCount}건, 오탐 삭제 ${toDelete.length}건`);
 
-  if (toDelete.length) {
-    const { error } = await supabase.from('streams').delete().in('video_id', toDelete);
-    if (error) console.error('삭제 실패:', error.message);
-  }
-  for (const u of toUpdate) {
-    const { video_id, ...patch } = u;
-    const { error } = await supabase.from('streams').update(patch).eq('video_id', video_id);
-    if (error) console.error('업데이트 실패:', video_id, error.message);
+  // 오탐 확정 삭제
+  for (const id of toDelete) {
+    const idx = streams.findIndex(r => r.video_id === id);
+    if (idx >= 0) streams.splice(idx, 1);
   }
 
-  for (const userId of new Set(creditRecipients)) {
-    const { error } = await supabase.rpc('grant_bonus_credit', { p_user_id: userId, p_amount: 1 });
-    if (error) console.error('크레딧 적립 실패:', userId, error.message);
-  }
-  if (creditRecipients.length) {
-    console.log(`  -> 열람권 크레딧 적립: ${new Set(creditRecipients).size}명`);
-  }
-
-  // (1차) 제목(지명+언어)으로 나라를 (재)분류한다. 유저 수정('user')은 절대 건드리지 않고,
-  // 채널 국가로 잘못 분류됐던 기존 행도 제목이 명확하면 여기서 교정된다.
-  const titleInferredIds = new Set();
-  const byInferredCountry = new Map();
+  // (1차) 제목(지명+언어)으로 나라를 (재)분류한다. 유저 수정('user')은 절대 건드리지 않는다.
+  let titleInferred = 0;
   for (const row of existingRows) {
-    if (row.country_source === 'user') continue; // 유저가 지정한 값은 보존
+    if (row.country_source === 'user') continue;
     const inferred = inferCountryFromTitle(row.title);
-    if (!inferred || inferred === row.country) continue; // 이미 같으면 스킵
-    if (!byInferredCountry.has(inferred)) byInferredCountry.set(inferred, []);
-    byInferredCountry.get(inferred).push(row.video_id);
-    titleInferredIds.add(row.video_id);
+    if (!inferred || inferred === row.country) continue;
+    row.country = inferred;
+    row.country_source = 'title';
+    titleInferred += 1;
   }
-  for (const [code, ids] of byInferredCountry) {
-    // country_source=user 행은 배치에 안 담기지만, 경합 안전을 위해 쿼리에서도 한 번 더 배제
-    const { error } = await supabase.from('streams')
-      .update({ country: code, country_source: 'title' })
-      .in('video_id', ids)
-      .or('country_source.is.null,country_source.neq.user');
-    if (error) console.error('제목 기반 국가 추정 실패:', code, error.message);
-  }
-  if (titleInferredIds.size) console.log(`제목으로 국가 분류/교정: ${titleInferredIds.size}건`);
+  if (titleInferred) console.log(`제목으로 국가 분류/교정: ${titleInferred}건`);
 
   // (2차) 여전히 국가가 비어있는 유효한 행들은 channels.list의 채널 국가로 채움
-  const rowsNeedingCountry = existingRows.filter(r => !r.country && !titleInferredIds.has(r.video_id) && isValidFor(r.content_type || 'live', infoMap.get(r.video_id)));
-  const countryChannelIds = rowsNeedingCountry.map(r => infoMap.get(r.video_id).snippet.channelId);
-  const countryMap = await getChannelCountries(countryChannelIds);
+  const rowsNeedingCountry = existingRows.filter(r =>
+    !r.country && !['user', 'title'].includes(r.country_source) && isValidFor(r.content_type || 'live', infoMap.get(r.video_id)));
+  const countryMap = await getChannelCountries(rowsNeedingCountry.map(r => infoMap.get(r.video_id)?.snippet?.channelId));
   for (const row of rowsNeedingCountry) {
-    const channelId = infoMap.get(row.video_id).snippet.channelId;
+    const channelId = infoMap.get(row.video_id)?.snippet?.channelId;
     const country = countryMap.get(channelId);
     if (country) {
-      const { error } = await supabase.from('streams').update({ country, country_source: 'channel' }).eq('video_id', row.video_id);
-      if (error) console.error('국가 업데이트 실패:', row.video_id, error.message);
+      row.country = country;
+      row.country_source = 'channel';
     }
   }
 
-  // 신규 탐색: 이미 DB에 존재하는(라이브/오프라인 불문) videoId는 후보에서 제외
+  // 신규 탐색: 이미 카탈로그에 존재하는(라이브/오프라인 불문) videoId는 후보에서 제외
   const knownIds = new Set([
     ...existingRows.map(r => r.video_id).filter(id => !toDelete.includes(id)),
     ...blockedIds,
@@ -708,12 +600,9 @@ async function main() {
   }
 
   // ===== 부족 카테고리 부스트 검색 =====
-  // 카탈로그가 교통/도심 등 몇몇 카테고리로 쏠리는 것을 완화하기 위해,
-  // 현재 영상 수가 가장 적은 카테고리들의 키워드로 라이브 검색을 추가한다.
-  // (채널 스캔은 이미 있는 채널 위주라 쏠림을 강화하는 경향이 있어서, 그 전에 예산을 먼저 배정)
   const BOOST_SEARCHES_PER_RUN = 12;
   const BOOST_CATEGORY_COUNT = 6;
-  const categoryCounts = new Map(categoryRows.map(c => [c.key, 0]));
+  const categoryCounts = new Map(categories.map(c => [c.key, 0]));
   for (const row of existingRows) {
     if (categoryCounts.has(row.category)) categoryCounts.set(row.category, categoryCounts.get(row.category) + 1);
   }
@@ -722,11 +611,10 @@ async function main() {
   const boostDayIndex = Math.floor(Date.now() / 86400000);
   const perBoostCategory = Math.max(1, Math.floor(BOOST_SEARCHES_PER_RUN / BOOST_CATEGORY_COUNT));
   for (const [catKey] of underfilled) {
-    const catKeywords = categoryRows.find(c => c.key === catKey)?.keywords || [];
+    const catKeywords = categories.find(c => c.key === catKey)?.keywords || [];
     if (!catKeywords.length) continue;
     for (let i = 0; i < perBoostCategory; i++) {
       const kw = catKeywords[(boostDayIndex + i) % catKeywords.length];
-      // 영문 키워드는 'cam'을 붙여 정확도를 높이고, 한/일/중 키워드는 그대로 검색 (eventType=live가 이미 라이브로 제한)
       const query = /^[\x20-\x7e]+$/.test(kw) && !/cam|webcam/i.test(kw) ? `${kw} cam` : kw;
       try {
         const results = await searchLiveByKeyword(query);
@@ -747,15 +635,8 @@ async function main() {
   }
 
   // 시드 채널(구독 목록 등)의 일반 업로드 영상 수집: 채널당 1회, 최근 영상 25개.
-  // 라이브만 찾는 일반 채널 스캔과 달리, 신뢰할 수 있는 시드 채널은 아카이브 영상도 가치가 있음.
-  // 결과는 승인 대기로 들어가고 CLIP이 썸네일 기반으로 카테고리를 분류한다.
-  const { data: seedVideoRows, error: seedVideoErr } = await supabase
-    .from('channel_seeds')
-    .select('channel_id')
-    .is('video_scanned_at', null);
-  if (seedVideoErr) {
-    if (!/does not exist/.test(seedVideoErr.message)) console.error('시드 영상스캔 대상 조회 실패:', seedVideoErr.message);
-  } else if (seedVideoRows?.length) {
+  const seedVideoRows = channelSeeds.filter(c => !c.video_scanned_at);
+  if (seedVideoRows.length) {
     const seedVideoBudget = Math.max(0, SEARCH_BUDGET_PER_RUN - searchCallsUsed);
     const seedsToVideoScan = seedVideoRows
       .map(r => r.channel_id)
@@ -778,29 +659,17 @@ async function main() {
       }
     }
     if (seedsToVideoScan.length) {
-      const { error: markErr } = await supabase
-        .from('channel_seeds')
-        .update({ video_scanned_at: new Date().toISOString() })
-        .in('channel_id', seedsToVideoScan);
-      if (markErr) console.error('시드 영상스캔 기록 실패:', markErr.message);
+      const scannedAt = new Date().toISOString();
+      for (const seed of channelSeeds) {
+        if (seedsToVideoScan.includes(seed.channel_id)) seed.video_scanned_at = scannedAt;
+      }
     }
   }
 
   // 채널 단위 전체 스캔: 이미 아는 채널(생존 행 + 이번에 새로 찾은 후보)의 다른 라이브도 함께 수집.
-  // 채널당 1회만 수행하도록 scanned_channels에 기록해 매일 반복 조회하지 않음(쿼터 절약).
-  // 키워드 검색에 쓰고 남은 예산을 전부 여기에 투입 (채널 스캔이 신규 발견 효율이 가장 좋음).
-  const scannedRows = await fetchAllRows('scanned_channels', 'channel_id');
-  const scannedSet = new Set(scannedRows.map(r => r.channel_id));
-
+  const scannedSet = await loadScannedChannels();
   const observedChannelIds = new Set();
-
-  // 수동 등록된 시드 채널(관리자의 유튜브 구독 목록 등)도 스캔 대상에 합류
-  const { data: seedRows, error: seedErr } = await supabase.from('channel_seeds').select('channel_id');
-  if (seedErr) {
-    if (!/does not exist/.test(seedErr.message)) console.error('시드 채널 조회 실패:', seedErr.message);
-  } else {
-    for (const r of seedRows || []) observedChannelIds.add(r.channel_id);
-  }
+  for (const seed of channelSeeds) observedChannelIds.add(seed.channel_id);
   for (const row of existingRows) {
     if ((row.content_type || 'live') !== 'live') continue;
     const channelId = infoMap.get(row.video_id)?.snippet.channelId;
@@ -826,31 +695,21 @@ async function main() {
       console.error(`  채널 스캔 실패 ${channelId}:`, err.message);
     }
   }
-
   if (channelIdsToScan.length) {
-    const { error } = await supabase
-      .from('scanned_channels')
-      .upsert(channelIdsToScan.map(channel_id => ({ channel_id })), { onConflict: 'channel_id' });
-    if (error) console.error('scanned_channels 기록 실패:', error.message);
+    for (const id of channelIdsToScan) scannedSet.add(id);
   }
 
   console.log(`신규 후보 ${candidateMap.size}건 검증 중...`);
   const candidateIds = [...candidateMap.keys()];
   const candidateInfoMap = await getVideoInfo(candidateIds);
 
-  // 임베드 차단 영상: embeddable 컬럼 도입 후에는 수집하되 표시만 다르게(썸네일+유튜브 링크),
-  // 컬럼 도입 전에는 insert 에러가 나므로 기존처럼 제외
   let junkVideo = 0, junkTitle = 0;
   const newCandidates = [...candidateMap.values()].filter(c => {
     const info = candidateInfoMap.get(c.videoId);
     if (!isValidFor(c.contentType, info)) return false;
-    // 신규 후보에만 건다. 기존 행 생존 판정(위쪽 루프)에는 넣지 않는다 — 이미 올라가 있는
-    // 것들은 관리자가 직접 검수해서 남겨둔 것이라 정규식이 뒤집을 자격이 없다.
+    // 신규 후보에만 건다. 기존 행은 관리자가 직접 검수해서 남겨둔 것이라 정규식이 뒤집을 자격이 없다.
     if (isJunkTitle(c.title, c.channelTitle)) { junkTitle += 1; return false; }
-    // 길이로는 거르지 않는다. 한때 10분 미만을 통째로 막아봤는데, 2분 미만 구간을 실제로
-    // 열어보니 카라카스 M7.5 지진을 찍은 상점·아파트 CCTV, 토네이도, 건널목 충돌 블랙박스가
-    // 몰려 있었다. 짧다는 건 이 사이트에서 결격 사유가 아니라 오히려 원본 사건 영상의 특징이다.
-    // 같은 구간에 섞여 있던 카메라 판매 데모는 제품명(HD-SDI, ColorVu, HikView)으로 잡는다.
+    // 길이로는 거르지 않는다 (짧다는 건 사이트에서 결격 사유가 아니라 원본 사건 영상의 특징).
     if (c.contentType === 'video' && isJunkVideo(c.title, c.channelTitle)) { junkVideo += 1; return false; }
     return HAS_EMBEDDABLE || info?.status?.embeddable !== false;
   });
@@ -870,11 +729,11 @@ async function main() {
       source: 'keyword',
       content_type: c.contentType,
       status: 'live',
-      // 자동 수집분도 관리자 검수를 거치도록 승인 대기로 넣는다 (7일 내 미승인 시 기존 만료 로직으로 삭제됨)
+      // 자동 수집분도 AI 검수를 거치도록 승인 대기로 넣는다
       approval_status: 'pending',
       category: classifyCategory(c.title, c.channelTitle),
       category_source: 'keyword',
-      // 제목의 지명이 채널 국가보다 촬영지에 가까우므로 우선한다 (여행 채널/모음집 채널 대응)
+      // 제목의 지명이 채널 국가보다 촬영지에 가까우므로 우선한다
       country: inferCountryFromTitle(c.title) || newCountryMap.get(c.channelId) || null,
       country_source: inferCountryFromTitle(c.title) ? 'title' : (newCountryMap.get(c.channelId) ? 'channel' : null),
       started_at: c.contentType === 'live' ? (info.liveStreamingDetails?.actualStartTime || null) : null,
@@ -891,153 +750,100 @@ async function main() {
     .map(c => c.videoId);
   const insertRows = newRows.filter(r => !newVerticalIds.includes(r.video_id));
   if (newVerticalIds.length) {
-    await supabase.from('blocklist').upsert(
-      newVerticalIds.map(video_id => ({ video_id })),
-      { onConflict: 'video_id', ignoreDuplicates: true }
-    );
+    for (const id of newVerticalIds) addToBlocklist(id, null, null);
     console.log(`  -> 세로 영상 제외: ${newVerticalIds.length}건 (차단목록 등록)`);
   }
 
   console.log(`  -> 검증 통과 신규 ${insertRows.length}건`);
-
   if (insertRows.length) {
-    // upsert(ignoreDuplicates): 만에 하나 기존 행과 겹쳐도 그 행만 무시되고 나머지는 들어가게
-    // (plain insert는 중복 1건 때문에 배치 전체가 실패함)
-    const { error } = await supabase.from('streams').upsert(insertRows, {
-      onConflict: 'video_id',
-      ignoreDuplicates: true,
-    });
-    if (error) console.error('삽입 실패:', error.message);
+    // 카탈로그에 이미 있으면 중복 삽입하지 않는다
+    const existingIds = new Set(streams.map(r => r.video_id));
+    streams.push(...insertRows.filter(r => !existingIds.has(r.video_id)));
   }
 
-  // 7일 임시등록 만료 처리: 승인(3추천 또는 관리자 승인)도 못 받고 7일이 지난 유저 제보는 삭제한다.
-  // (차단목록에는 올리지 않음 — 나중에 다시 제보하면 새로 기회를 준다)
+  // 7일 임시등록 만료 처리: 7일이 지난 pending user 제보는 삭제한다.
   // 자동 수집(keyword) 대기분은 만료 대상에서 제외 — 삭제하면 다음날 검색에서 또 발견돼
-  // 대기→삭제→재발견을 반복하며 쿼터만 낭비하므로, 관리자가 승인/삭제할 때까지 대기 상태로 둔다.
+  // 대기→삭제→재발견을 반복하며 쿼터만 낭비하므로, AI가 승인/삭제할 때까지 대기 상태로 둔다.
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString();
-  const { data: expiredRows, error: expiredFetchErr } = await supabase
-    .from('streams')
-    .select('video_id')
-    .eq('approval_status', 'pending')
-    .eq('source', 'user')
-    .lt('added_at', sevenDaysAgo);
-  if (expiredFetchErr) {
-    console.error('임시등록 만료 대상 조회 실패:', expiredFetchErr.message);
-  } else if (expiredRows.length) {
-    const { error: expireErr } = await supabase
-      .from('streams')
-      .delete()
-      .in('video_id', expiredRows.map(r => r.video_id));
-    if (expireErr) console.error('임시등록 만료 삭제 실패:', expireErr.message);
-    else console.log(`임시등록 만료로 삭제: ${expiredRows.length}건`);
-  }
-
-  // 7일 연속 오프라인(방송 중지/영상 삭제) 상태인 항목 정리. 나중에 다시 살아날 수도 있으니
-  // 차단목록에는 절대 올리지 않는다 — 그냥 삭제만 해서 재검색/재제보로 다시 들어올 수 있게 둔다.
-  const { data: staleOfflineRows, error: staleOfflineFetchErr } = await supabase
-    .from('streams')
-    .select('video_id')
-    .eq('status', 'offline')
-    .lt('offline_since', sevenDaysAgo);
-  if (staleOfflineFetchErr) {
-    console.error('오프라인 만료 대상 조회 실패:', staleOfflineFetchErr.message);
-  } else if (staleOfflineRows.length) {
-    const { error: staleOfflineErr } = await supabase
-      .from('streams')
-      .delete()
-      .in('video_id', staleOfflineRows.map(r => r.video_id));
-    if (staleOfflineErr) console.error('오프라인 만료 삭제 실패:', staleOfflineErr.message);
-    else console.log(`7일 연속 오프라인으로 삭제: ${staleOfflineRows.length}건 (차단목록에는 미등록)`);
-  }
-
-  // 로그성 테이블 90일 보관 통일: 오래된 기록은 매일 정리
-  // (주의: visit_log를 지우면 방문자 'Total'이 최근 90일 순방문 기준이 된다)
-  const cutoff90 = new Date(Date.now() - 90 * 86400 * 1000).toISOString();
-  for (const [logTable, tsCol] of [
-    ['category_changes', 'changed_at'],
-    ['tag_changes', 'changed_at'],
-    ['ai_review_log', 'reviewed_at'],
-    ['visit_durations', 'created_at'],
-  ]) {
-    const { error: logCleanErr } = await supabase.from(logTable).delete().lt(tsCol, cutoff90);
-    if (logCleanErr) console.error(`${logTable} 정리 실패:`, logCleanErr.message);
-  }
-
-  // 방문 기록(visit_log)은 삭제하지 않고 IP만 90일 뒤 비운다.
-  // - 행을 남겨야 visit_stats의 total_count(= count(distinct visitor_key))가 "전체 기간" 순 방문자가 된다.
-  //   (지우면 Total이 최근 90일치로 쪼그라들고 시간이 지나면 줄어들기까지 한다)
-  // - 개인정보인 IP만 90일 보관 후 익명화 → 통계는 영구, 개인정보는 최소 기간
-  const { error: anonErr, count: anonCount } = await supabase
-    .from('visit_log')
-    .update({ ip: null }, { count: 'exact' })
-    .lt('created_at', cutoff90)
-    .not('ip', 'is', null);
-  if (anonErr) console.error('방문 기록 IP 익명화 실패:', anonErr.message);
-  else if (anonCount) console.log(`방문 기록 IP 익명화(90일 경과): ${anonCount}건`);
-
-  // 같은 채널 + 완전 동일 제목의 "라이브" 중복 정리: 같은 실시간 피드가 여러 스트림으로
-  // 잡힌 경우만 대표 1개(최신)를 남긴다. 일반 영상(video)은 제목이 같아도 다른 날짜의
-  // 녹화본일 수 있으므로(예: 리조트 캠 일별 아카이브) 절대 건드리지 않는다.
-  try {
-    const dupRows = await fetchAllRows('streams', 'video_id, title, channel_title, content_type, added_at');
-    const dupGroups = new Map();
-    for (const r of dupRows || []) {
-      if (r.content_type !== 'live') continue; // 라이브만 대상
-      if (!r.title || !r.channel_title) continue;
-      const k = `${r.channel_title}||${r.title}`;
-      if (!dupGroups.has(k)) dupGroups.set(k, []);
-      dupGroups.get(k).push(r);
+  const expiredRows = streams.filter(r =>
+    r.approval_status === 'pending' && r.source === 'user' && r.added_at && r.added_at < sevenDaysAgo);
+  if (expiredRows.length) {
+    const expiredIds = new Set(expiredRows.map(r => r.video_id));
+    for (let i = streams.length - 1; i >= 0; i--) {
+      if (expiredIds.has(streams[i].video_id)) streams.splice(i, 1);
     }
-    const dupIds = [];
-    for (const rows of dupGroups.values()) {
-      if (rows.length < 2) continue;
-      rows.sort((a, b) => String(b.added_at || '').localeCompare(String(a.added_at || '')));
-      dupIds.push(...rows.slice(1).map(r => r.video_id));
+    console.log(`임시등록 만료로 삭제: ${expiredRows.length}건`);
+  }
+
+  // 7일 연속 오프라인(방송 중지/영상 삭제) 상태인 항목 정리.
+  // 차단목록에는 절대 올리지 않는다 — 재검색/재제보로 다시 들어올 수 있게 둔다.
+  const staleOfflineRows = streams.filter(r =>
+    r.status === 'offline' && r.offline_since && r.offline_since < sevenDaysAgo);
+  if (staleOfflineRows.length) {
+    const staleIds = new Set(staleOfflineRows.map(r => r.video_id));
+    for (let i = streams.length - 1; i >= 0; i--) {
+      if (staleIds.has(streams[i].video_id)) streams.splice(i, 1);
     }
-    if (dupIds.length) {
-      const { error: dupDelErr } = await supabase.from('streams').delete().in('video_id', dupIds);
-      if (dupDelErr) console.error('중복 삭제 실패:', dupDelErr.message);
-      else {
-        await supabase.from('blocklist').upsert(dupIds.map(id => ({ video_id: id })), { onConflict: 'video_id' });
-        console.log(`동일 제목+채널 중복 삭제: ${dupIds.length}건 (차단목록 등록으로 재수집 방지)`);
+    console.log(`7일 연속 오프라인으로 삭제: ${staleOfflineRows.length}건 (차단목록에는 미등록)`);
+  }
+
+  // 같은 채널 + 완전 동일 제목의 "라이브" 중복 정리: 대표 1개(최신)를 남긴다.
+  // 일반 영상(video)은 제목이 같아도 다른 날짜의 녹화본일 수 있으므로 절대 건드리지 않는다.
+  const dupGroups = new Map();
+  for (const r of streams) {
+    if (r.content_type !== 'live') continue;
+    if (!r.title || !r.channel_title) continue;
+    const k = `${r.channel_title}||${r.title}`;
+    if (!dupGroups.has(k)) dupGroups.set(k, []);
+    dupGroups.get(k).push(r);
+  }
+  const dupIds = [];
+  for (const rows of dupGroups.values()) {
+    if (rows.length < 2) continue;
+    rows.sort((a, b) => String(b.added_at || '').localeCompare(String(a.added_at || '')));
+    dupIds.push(...rows.slice(1).map(r => r.video_id));
+  }
+  if (dupIds.length) {
+    const dupSet = new Set(dupIds);
+    for (let i = streams.length - 1; i >= 0; i--) {
+      if (dupSet.has(streams[i].video_id)) {
+        const row = streams[i];
+        streams.splice(i, 1);
+        addToBlocklist(row.video_id, row.channel_id, row.title);
       }
     }
-  } catch (err) {
-    console.error('중복 검사 실패:', err.message);
+    console.log(`동일 제목+채널 중복 삭제: ${dupIds.length}건 (차단목록 등록으로 재수집 방지)`);
   }
 
   // 생존확인 루프에서 발견한 기존 세로 영상 삭제 + 차단목록 등록
   if (verticalIds.length) {
-    const { error: verticalErr } = await supabase.from('streams').delete().in('video_id', verticalIds);
-    if (verticalErr) console.error('세로 영상 삭제 실패:', verticalErr.message);
-    else {
-      await supabase.from('blocklist').upsert(
-        verticalIds.map(video_id => ({ video_id })),
-        { onConflict: 'video_id', ignoreDuplicates: true }
-      );
-      console.log(`세로 영상 삭제: ${verticalIds.length}건 (차단목록 등록)`);
+    const vSet = new Set(verticalIds);
+    for (let i = streams.length - 1; i >= 0; i--) {
+      if (vSet.has(streams[i].video_id)) {
+        const row = streams[i];
+        streams.splice(i, 1);
+        addToBlocklist(row.video_id, row.channel_id, row.title);
+      }
     }
+    console.log(`세로 영상 삭제: ${verticalIds.length}건 (차단목록 등록)`);
   }
 
-  // 오늘 실행 결과를 일일 집계 테이블에 기록 (관리자 대시보드용, 같은 날 재실행 시 덮어씀)
-  const deletedTotal = toDelete.length + (expiredRows?.length || 0) + (staleOfflineRows?.length || 0) + verticalIds.length;
-  // 21:00 UTC(= KST 06:00)에 돌기 때문에 UTC 날짜를 쓰면 한국 기준으로 하루 밀린다 -> KST 날짜 사용
-  // 하루 두 번 돌기 때문에 신규/삭제는 그날 것에 더한다. 스냅샷 성격인 existing/valid/offline은
-  // 최신 값으로 덮어쓰는 게 맞지만, 신규·삭제는 실행마다 발생한 '증가분'이라 덮어쓰면 오전치가 사라진다.
-  const statDate = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
-  const { data: prevStat } = await supabase
-    .from('daily_stats').select('new_count, deleted_count').eq('stat_date', statDate).maybeSingle();
-  const { error: statsErr } = await supabase.from('daily_stats').upsert({
-    stat_date: statDate,
-    existing_count: existingRows.length,
-    valid_count: validCount,
-    offline_count: offlineCount,
-    new_count: (prevStat?.new_count || 0) + insertRows.length,
-    deleted_count: (prevStat?.deleted_count || 0) + deletedTotal,
-  }, { onConflict: 'stat_date' });
-  if (statsErr) console.error('일일 집계 기록 실패:', statsErr.message);
+  // 차단목록 병합 (video_id 중복 제거, 최신 유지)
+  if (blocklistAdds.length) {
+    const byId = new Map(blocklistRows.map(r => [r.video_id, r]));
+    for (const rec of blocklistAdds) {
+      const prev = byId.get(rec.video_id);
+      if (!prev) byId.set(rec.video_id, rec);
+    }
+    await saveBlocklist([...byId.values()]);
+    console.log(`차단목록 갱신: +${blocklistAdds.length}건 (총 ${byId.size}건)`);
+  }
 
-  console.log(`완료: 유효 ${validCount}, 오프라인 ${offlineCount}, 오탐삭제 ${toDelete.length}, 신규 ${insertRows.length}`);
+  await saveStreams(snapshot);
+  await saveScannedChannels(scannedSet);
+  await saveChannelSeeds(channelSeeds);
+
+  console.log(`완료: 카탈로그 ${streams.length}건 (유효 ${validCount}, 오프라인 ${offlineCount}, 오탐삭제 ${toDelete.length}, 신규 ${insertRows.length})`);
 }
 
 main().catch(err => {

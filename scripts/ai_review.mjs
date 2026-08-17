@@ -1,24 +1,21 @@
-// AI 검수: 승인 대기 큐를 Gemini(무료 티어)로 자동 판정한다.
+// AI 검수: 승인 대기 큐를 Gemini(무료 티어)로 자동 판정한다. DB 없이 JSON 파일만 사용한다.
 // - approve: 진짜 고정 라이브캠 / 실환경 앰비언트·주행·워킹 영상 -> 바로 공개
 // - reject:  뉴스/음악/게임/토크/리액션 등 성격에 안 맞는 것 -> 삭제(차단 안 함, 재검색으로 재유입 가능)
 // - unsure:  애매하면 대기 큐에 남겨 사람이 검수
+// 상태는 data/streams.json에, 판정 로그는 data/ai_review_log.json에 저장한다.
 // GEMINI_API_KEY 시크릿이 없으면 아무것도 안 하고 조용히 종료(워크플로 안 깨짐).
-import { createClient } from '@supabase/supabase-js';
+import {
+  loadStreams, saveStreams,
+  loadCategories,
+  loadAiReviewLog, saveAiReviewLog,
+} from './state.mjs';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!GEMINI_API_KEY) {
   console.log('GEMINI_API_KEY 없음 — AI 검수 건너뜀');
   process.exit(0);
 }
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-  console.error('SUPABASE 환경변수 없음');
-  process.exit(1);
-}
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 키가 무료로 접근 가능한 모델이 계정/지역마다 달라, 후보를 순서대로 시도해 먼저 되는 걸 쓴다.
 // 2026-08-01 로그 기준 이 무료 키에서 실제로 되는 건 gemini-flash-latest 하나뿐이다:
@@ -31,14 +28,10 @@ const MODEL_CANDIDATES = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] 
 let MODEL = null; // 첫 성공한 모델로 고정
 const BATCH = 15;            // 한 요청에 15개 (요청 수 절약)
 // 대기 큐 검수. 하루 수집량이 80~130건이라 450이면 당일 전부 소화하고도 3배 여유가 있다.
-// (유료 시절 600으로 올려뒀지만, 무료 키로 되돌린 뒤엔 한도를 아끼는 쪽이 맞다.)
 const MAX_PER_RUN = 450;
-// 승인 카탈로그 재검수. 이 값이 Gemini 요청 수의 대부분을 만든다 — 유료 시절 지출
-// (월 ₩2.5만+ 페이스, 선불 크레딧 9일 소진)의 주범이었고, 그래서 400→250으로 내렸다.
-// 무료 키로 돌아온 지금은 무료 일일 한도를 대기 큐 검수와 나눠 써야 하므로, 무료 시절
-// 값인 60으로 되돌린다. 카탈로그(~3,300건) 한 바퀴가 2주에서 약 45일로 늘어나지만,
-// 사람이 고친 분류는 user 가드로 보호되고 방문자 20/일 규모에서 교정 지연은 실질 손해가 작다.
-// 대기 큐 검수(위 MAX_PER_RUN)가 먼저 돌고, 할당량이 남을 때만 여기까지 온다.
+// 승인 카탈로그 재검수. 무료 키로 돌아온 지금은 무료 일일 한도를 대기 큐 검수와 나눠 쓰므로
+// 60으로 유지한다. 카탈로그 한 바퀴가 2주에서 약 45일로 늘어나지만, 사람이 고친 분류는
+// user 가드로 보호되고 방문자 20/일 규모에서 교정 지연은 실질 손해가 작다.
 const AUDIT_PER_RUN = 60;
 
 // 무료 일일 할당량이 소진되면 이후 요청은 전부 429다. 한 번 확인되면 플래그를 세워
@@ -48,24 +41,6 @@ const isQuotaExhausted = () => QUOTA_EXHAUSTED;
 const DELAY_MS = 8000;       // 요청 간 간격 (무료 모델 분당 요청 한도 여유)
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-async function fetchPending() {
-  const out = [];
-  const PAGE = 1000;
-  for (let from = 0; from < MAX_PER_RUN; from += PAGE) {
-    const to = Math.min(from + PAGE, MAX_PER_RUN) - 1;
-    const { data, error } = await supabase
-      .from('streams')
-      .select('video_id, title, channel_title, category, category_source, country, country_source, content_type')
-      .eq('approval_status', 'pending')
-      .order('added_at', { ascending: true })
-      .range(from, to);
-    if (error) throw error;
-    out.push(...(data || []));
-    if (!data || data.length < PAGE) break;
-  }
-  return out;
-}
 
 function buildPrompt(items, categoryKeys) {
   return `You are a strict moderator for a directory of REAL-WORLD live cameras and ambient footage: fixed/mounted live cams (traffic, city streets, beaches, harbors, airports, train stations, nature/wildlife, skylines, plazas), dashcam driving footage, and first-person walking-tour videos.
@@ -116,9 +91,6 @@ async function requestModel(model, prompt) {
 }
 
 // 503(UNAVAILABLE)은 "지금 붐비니 잠시 후 다시"라는 뜻이라, 할당량 소진과 달리 기다리면 풀린다.
-// 2026-08-01 새벽에 gemini-flash-latest가 딱 한 번 503을 뱉었는데, 후보 목록을 한 번씩만 훑고
-// 포기하는 구조라 그날 신규 155건이 통째로 검수 없이 pending에 남았다. 나머지 후보는 이 키로는
-// 애초에 못 쓰는 모델(무료 한도 0 또는 은퇴)이라 폴백이 의미가 없어, 후보 훑기 자체를 재시도한다.
 const TRANSIENT_STATUS = new Set([500, 502, 503, 504]);
 
 async function callGemini(prompt) {
@@ -139,10 +111,6 @@ async function callGemini(prompt) {
           const data = await res.json();
           return JSON.parse(data?.candidates?.[0]?.content?.parts?.[0]?.text || '[]');
         }
-        // 429 본문에는 구글이 정확히 어떤 한도에 걸렸는지 적혀 있다 (quotaId에 -FreeTier가 보이면
-        // 이 키가 무료 티어 프로젝트 소속이라는 뜻 — 유료 결제를 켠 프로젝트의 키가 아닌 것).
-        // 예전엔 이걸 버리고 "할당량/무료티어 문제"라고만 찍어서, 유료 키라고 알고 있는데 왜
-        // 429가 나는지 로그만으로는 판별할 수 없었다.
         const body = (await res.text()).replace(/\s+/g, ' ').slice(0, 400);
         console.log(`  모델 ${cand} 사용 불가 (${res.status}) ${body}`);
         if (res.status === 429) quotaHit = true;
@@ -171,34 +139,14 @@ async function callGemini(prompt) {
   }
 }
 
-// 이미 승인(공개)된 카탈로그를 오래된 순으로 다시 판정하기 위한 조회.
-// ai_checked_at이 오래됐거나(없는) 것부터 순환 재검수 → 전체가 시간을 두고 한 바퀴 돈다.
-// 사람이 직접 제보/등록한 것(source='user')은 제외 — 사람이 검토해 넣은 걸 AI가 함부로 내리지 않는다.
-async function fetchApprovedToAudit(limit) {
-  const { data, error } = await supabase
-    .from('streams')
-    .select('video_id, title, channel_title, category, category_source, country, country_source, content_type')
-    .eq('approval_status', 'approved')
-    .neq('source', 'user')
-    .order('ai_checked_at', { ascending: true, nullsFirst: true })
-    .limit(limit);
-  if (error) throw error;
-  return data || [];
-}
-
 // 관리자가 한 번 "살리기(복구)"로 AI 판정을 뒤집은 영상 목록.
 // 재검수가 같은 영상을 2주마다 또 숨기는 루프를 막기 위해, 이 목록은 다시 숨기지 않는다.
-async function fetchAdminRestoredIds() {
-  const { data, error } = await supabase
-    .from('ai_review_log')
-    .select('video_id')
-    .eq('resolution', 'restored');
-  if (error) { console.error('복구 이력 조회 실패:', error.message); return new Set(); }
-  return new Set((data || []).map((r) => r.video_id));
+async function fetchAdminRestoredIds(logItems) {
+  return new Set(logItems.filter(r => r.resolution === 'restored').map(r => r.video_id));
 }
 
 // 대기 큐 검수: 승인/거절제안/보류. (기존 동작 유지)
-async function reviewPending(pending, categoryKeys, validCat) {
+async function reviewPending(pending, categoryKeys, validCat, streams, logItems) {
   if (!pending.length) { console.log('AI 검수: 대기 큐가 비어 있음'); return false; }
   console.log(`AI 검수 대상: ${pending.length}건 (배치 ${BATCH})`);
   const now = new Date().toISOString();
@@ -218,14 +166,13 @@ async function reviewPending(pending, categoryKeys, validCat) {
     }
     const byIndex = new Map((verdicts || []).map((v) => [v.i, v]));
 
-    const logRows = [];
     for (let j = 0; j < batch.length; j++) {
       const s = batch[j];
       const v = byIndex.get(j);
       if (!v) { unsure += 1; continue; }
 
       const verdict = ['approve', 'reject', 'unsure'].includes(v.verdict) ? v.verdict : 'unsure';
-      logRows.push({
+      logItems.push({
         video_id: s.video_id, title: s.title, channel_title: s.channel_title,
         verdict, reason: (v.reason || '').slice(0, 200),
         suggested_category: v.category || null, suggested_country: v.country || null,
@@ -237,9 +184,7 @@ async function reviewPending(pending, categoryKeys, validCat) {
       // 승인 또는 보류: 카테고리·국가 교정을 함께 반영 (보류여도 큐에서 정확도 개선)
       const patch = {};
       if (verdict === 'approve') { patch.approval_status = 'approved'; patch.ai_checked_at = now; } // 방금 승인 → 재검수 대상에서 잠시 제외
-      // 사람이 직접 고친 분류(category_source='user')는 국가와 마찬가지로 건드리지 않는다 —
-      // 이 가드가 국가에만 있고 카테고리에 없어서, 관리자가 바로잡은 분류를 다음 재검수가
-      // 도로 뒤집는 사고가 실제로 났다 (Renesse aan Zee: avenue/user -> beach/ai)
+      // 사람이 직접 고친 분류(category_source='user')는 국가와 마찬가지로 건드리지 않는다
       if (v.category && validCat.has(v.category) && s.category_source !== 'user' && v.category !== s.category) {
         patch.category = v.category;
         patch.category_source = 'ai';
@@ -248,16 +193,9 @@ async function reviewPending(pending, categoryKeys, validCat) {
         patch.country = v.country;
         patch.country_source = 'ai';
       }
-      if (Object.keys(patch).length) {
-        const { error } = await supabase.from('streams').update(patch).eq('video_id', s.video_id);
-        if (error) { console.error('반영 실패:', s.video_id, error.message); failed += 1; continue; }
-      }
+      if (Object.keys(patch).length) Object.assign(s, patch);
       if (verdict === 'approve') approved += 1;
       else unsure += 1;
-    }
-    if (logRows.length) {
-      const { error } = await supabase.from('ai_review_log').insert(logRows);
-      if (error) console.error('AI 로그 기록 실패:', error.message);
     }
     console.log(`  진행 ${Math.min(i + BATCH, pending.length)}/${pending.length}`);
     if (i + BATCH < pending.length) await sleep(DELAY_MS);
@@ -269,10 +207,15 @@ async function reviewPending(pending, categoryKeys, validCat) {
 
 // 승인(공개)된 카탈로그 재검수: 쓰레기로 판정되면 삭제 대신 visibility='hidden'(공개만 차단)로 내리고
 // AI Review Log에 남긴다 → 관리자가 Keep(복구)/Confirm(삭제) 결정. 오탐이어도 데이터는 안 사라짐.
-async function auditApproved(categoryKeys, validCat) {
-  const rows = await fetchApprovedToAudit(AUDIT_PER_RUN);
+async function auditApproved(categoryKeys, validCat, streams, logItems) {
+  const adminRestoredIds = await fetchAdminRestoredIds(logItems); // 관리자가 살린 건 다시 숨기지 않는다
+  // ai_checked_at이 오래됐거나(없는) 것부터 순환 재검수 → 전체가 시간을 두고 한 바퀴 돈다.
+  // 사람이 직접 제보/등록한 것(source='user')은 제외 — 사람이 검토해 넣은 걸 AI가 함부로 내리지 않는다.
+  const rows = streams
+    .filter(r => r.approval_status === 'approved' && r.source !== 'user')
+    .sort((a, b) => String(a.ai_checked_at || '').localeCompare(String(b.ai_checked_at || '')))
+    .slice(0, AUDIT_PER_RUN);
   if (!rows.length) { console.log('재검수: 승인 카탈로그 없음'); return; }
-  const adminRestoredIds = await fetchAdminRestoredIds(); // 관리자가 살린 건 다시 숨기지 않는다
   console.log(`승인 카탈로그 재검수: ${rows.length}건 (오래된 순)`);
   const now = new Date().toISOString();
   let hidden = 0, kept = 0, failed = 0;
@@ -291,7 +234,6 @@ async function auditApproved(categoryKeys, validCat) {
     }
     const byIndex = new Map((verdicts || []).map((v) => [v.i, v]));
 
-    const logRows = [];
     for (let j = 0; j < batch.length; j++) {
       const s = batch[j];
       const v = byIndex.get(j);
@@ -301,7 +243,7 @@ async function auditApproved(categoryKeys, validCat) {
       if (verdict === 'reject' && !adminRestoredIds.has(s.video_id)) {
         patch.visibility = 'hidden'; // 공개에서만 내림(삭제 아님) — Keep으로 복구 가능
         hidden += 1;
-        logRows.push({
+        logItems.push({
           video_id: s.video_id, title: s.title, channel_title: s.channel_title,
           verdict: 'reject', reason: ('재검수: ' + (v?.reason || '')).slice(0, 200),
           suggested_category: v?.category || null, suggested_country: v?.country || null,
@@ -312,12 +254,7 @@ async function auditApproved(categoryKeys, validCat) {
         if (v?.category && validCat.has(v.category) && s.category_source !== 'user' && v.category !== s.category) { patch.category = v.category; patch.category_source = 'ai'; }
         if (v?.country && /^[A-Z]{2}$/.test(v.country) && s.country_source !== 'user' && v.country !== s.country) { patch.country = v.country; patch.country_source = 'ai'; }
       }
-      const { error } = await supabase.from('streams').update(patch).eq('video_id', s.video_id);
-      if (error) { console.error('재검수 반영 실패:', s.video_id, error.message); failed += 1; }
-    }
-    if (logRows.length) {
-      const { error } = await supabase.from('ai_review_log').insert(logRows);
-      if (error) console.error('재검수 로그 실패:', error.message);
+      Object.assign(s, patch);
     }
     console.log(`  재검수 진행 ${Math.min(i + BATCH, rows.length)}/${rows.length}`);
     if (i + BATCH < rows.length) await sleep(DELAY_MS);
@@ -327,14 +264,24 @@ async function auditApproved(categoryKeys, validCat) {
 }
 
 async function main() {
-  const { data: cats } = await supabase.from('categories').select('key').neq('key', 'other');
-  const categoryKeys = (cats || []).map((c) => c.key);
+  const categories = await loadCategories();
+  const categoryKeys = categories.filter(c => c.key !== 'other').map(c => c.key);
   const validCat = new Set([...categoryKeys, 'other']);
 
+  const snapshot = await loadStreams();
+  const streams = snapshot.streams;
+  const logItems = await loadAiReviewLog();
+
+  const pending = streams.filter(r => r.approval_status === 'pending').slice(0, MAX_PER_RUN);
+
   // 대기 큐 검수가 우선. 거기서 무료 할당량이 소진됐으면 재검수는 통째로 건너뛴다(시도해도 전부 429 낭비)
-  const quotaOut = await reviewPending(await fetchPending(), categoryKeys, validCat);
-  if (quotaOut) { console.log('재검수 건너뜀 — 무료 할당량 소진 (다음 실행에서 이어서)'); return; }
-  await auditApproved(categoryKeys, validCat); // 이미 공개된 카탈로그도 순환 재검수 (쓰레기 자동 정리)
+  const quotaOut = await reviewPending(pending, categoryKeys, validCat, streams, logItems);
+  if (!quotaOut) {
+    await auditApproved(categoryKeys, validCat, streams, logItems); // 이미 공개된 카탈로그도 순환 재검수
+  }
+
+  await saveStreams(snapshot);
+  await saveAiReviewLog(logItems);
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });

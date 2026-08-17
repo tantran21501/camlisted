@@ -1,4 +1,4 @@
-"""트래픽 계열 라이브캠 프레임에서 차량을 세어 vehicle_observations에 쌓는다 (1단계: 수집만).
+"""트래픽 계열 라이브캠 프레임에서 차량을 세어 vehicle_observations.json에 쌓는다 (1단계: 수집만).
 
 왜 이걸 만드나: 애드센스가 두 번 "가치가 별로 없는 콘텐츠"로 반려했고, 그 판정의 핵심은
 "이 사이트에만 있는 것이 무엇인가"다. 링크 목록에 문단을 얹는 걸로는 안 바뀐다.
@@ -21,62 +21,46 @@ hqdefault_live(480x360) 순으로 내려가면 전부 커버된다.
 contentDocument SecurityError, canvas는 iframe을 인자로 받지도 않음) 자동 수집으로
 접근 가능한 프레임은 이 썸네일뿐이다. 다운로드해서 분석만 하고 저장하지 않는다.
 
-환경변수: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, (선택) DRY_RUN=1, LIMIT
+상태는 data/streams.json(대상 조회)과 data/vehicle_observations.json(관측 적재)에 저장한다 (DB 없음).
+환경변수: (선택) DRY_RUN=1, LIMIT
 """
 
 import io
+import json
 import os
 import sys
 import collections
+from datetime import datetime, timezone
+from pathlib import Path
 
 import requests
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+ROOT = Path(__file__).resolve().parent.parent
+STREAMS_PATH = ROOT / "data" / "streams.json"
+OBSERVATIONS_PATH = ROOT / "data" / "vehicle_observations.json"
+
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 LIMIT = int(os.environ.get("LIMIT", "600"))
 
 # 차량이 실제로 찍히는 카테고리만. 나머지(해변·야생동물 등)를 돌려봐야 0에 가깝고 시간만 쓴다.
-CATEGORIES = "traffic,avenue,downtown,parking"
+CATEGORIES = {"traffic", "avenue", "downtown", "parking"}
 # COCO 클래스 → 우리 컬럼. 480x360에서 안정적으로 구분되는 건 이 4종뿐이다
 # (SUV/세단 같은 세분류는 이 해상도에서 무리 — 차 한 대가 26~48px에 불과하다).
 VEHICLE_CLASSES = {2: "cars", 3: "motorcycles", 5: "buses", 7: "trucks"}
 CONF = 0.35  # 실측에서 진짜 차량이 0.42~0.82로 잡혔고, 그 아래는 노면 얼룩이 섞이기 시작한다
 
-if not SUPABASE_URL or not SERVICE_KEY:
-    print("SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY 환경변수가 필요합니다.", file=sys.stderr)
-    sys.exit(1)
-
-HEADERS = {
-    "apikey": SERVICE_KEY,
-    "Authorization": f"Bearer {SERVICE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=minimal",
-}
-
 # 라이브 프레임 후보. 앞에서부터 시도해 처음 성공한 것을 쓴다.
 FRAME_SOURCES = [("hq720_live", 1280), ("sddefault_live", 640), ("hqdefault_live", 480)]
 
 # 색 판정 문턱 (PIL HSV: H·S·V 모두 0~255).
-#
-# 이 숫자들은 720p 프레임에서 뽑은 차량 258대를 크롭해 직접 눈으로 보고 맞춘 것이다.
-# 처음엔 유채색 문턱이 s>=45(채도 18%)였는데, 그 정도면 하늘빛이 살짝 반사된 은색 차가
-# 전부 파랑으로 넘어간다. 실제로 첫날 수집분에서 파랑이 프레임 밝기에 따라 15%→30%로
-# 요동쳤고, 크롭을 보니 파랑으로 찍힌 것 대부분이 은색·흰색 차였다.
 SAT_MIN = 70        # 이 아래는 색이 있다고 보지 않는다 (은색/회색 오검출 차단)
-SAT_MIN_BLUE = 110  # 파랑만 더 엄격하게. 하늘·그늘의 푸른 색조가 차체에 얹히는 게 유일하게
-                    # 계통적으로 일어나는 오염이라, 같은 문턱을 주면 파랑만 과다 검출된다.
+SAT_MIN_BLUE = 110  # 파랑만 더 엄격하게
 VAL_DARK = 55       # 이보다 어두우면 색조를 믿을 수 없다 → 검정
 VAL_WHITE = 165     # 무채색 중 이보다 밝으면 흰색, 아니면 회색
 
 
 def classify_color(h, s, v):
-    """차량 대표 HSV 하나를 색 이름으로. 애매하면 유채색이 아니라 무채색 쪽으로 민다.
-
-    의도적으로 보수적이다 — 검증 결과 유채색 비율이 17%로 나오는데 현실은 25~30%다.
-    즉 색이 있는 차 일부를 회색으로 놓친다. 반대로 틀리는 것(회색 차를 파랑이라고 주장)보다
-    이쪽이 낫다고 판단했다. 집계를 낼 때 유채색 비율은 '최소한 이만큼'으로 읽어야 한다.
-    """
+    """차량 대표 HSV 하나를 색 이름으로. 애매하면 유채색이 아니라 무채색 쪽으로 민다."""
     achromatic = "white" if v > VAL_WHITE else "gray"
     if v < VAL_DARK:
         return "black"
@@ -95,18 +79,34 @@ def classify_color(h, s, v):
     return "other"
 
 
-def fetch_targets():
-    url = (
-        f"{SUPABASE_URL}/rest/v1/streams"
-        f"?select=video_id,category,country"
-        f"&content_type=eq.live&status=eq.live&approval_status=eq.approved"
-        f"&or=(visibility.is.null,visibility.eq.listed)"
-        f"&category=in.({CATEGORIES})"
-        f"&limit={LIMIT}"
-    )
-    r = requests.get(url, headers=HEADERS, timeout=30)
-    r.raise_for_status()
-    return r.json()
+def load_streams():
+    with open(STREAMS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_observations():
+    if not OBSERVATIONS_PATH.exists():
+        return []
+    with open(OBSERVATIONS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get("items", [])
+
+
+def save_observations(items):
+    OBSERVATIONS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(OBSERVATIONS_PATH, "w", encoding="utf-8") as f:
+        json.dump({"format": "vehicle-obs-v1", "items": items}, f, ensure_ascii=False)
+
+
+def fetch_targets(snapshot):
+    return [
+        row for row in snapshot["streams"]
+        if (row.get("content_type") or "live") == "live"
+        and row.get("status") == "live"
+        and row.get("approval_status") == "approved"
+        and row.get("visibility") in (None, "listed")
+        and row.get("category") in CATEGORIES
+    ][:LIMIT]
 
 
 def download_frame(video_id):
@@ -125,8 +125,7 @@ def download_frame(video_id):
 
 
 def color_of(hsv_crop):
-    """박스 가운데 절반의 HSV 중앙값으로 대표색을 고른다.
-    가장자리는 노면·그림자가 섞여서 그대로 쓰면 전부 회색으로 쏠린다."""
+    """박스 가운데 절반의 HSV 중앙값으로 대표색을 고른다."""
     import numpy as np
     h, w = hsv_crop.shape[:2]
     if h < 6 or w < 6:
@@ -138,16 +137,9 @@ def color_of(hsv_crop):
     return classify_color(hh, ss, vv)
 
 
-def insert_rows(rows):
-    if DRY_RUN or not rows:
-        return
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/vehicle_observations",
-                      headers=HEADERS, json=rows, timeout=60)
-    r.raise_for_status()
-
-
 def main():
-    targets = fetch_targets()
+    snapshot = load_streams()
+    targets = fetch_targets(snapshot)
     print(f"차량 관측 대상: {len(targets)}대 (dry_run={DRY_RUN})")
     if not targets:
         return
@@ -194,6 +186,7 @@ def main():
 
         rows.append({
             "video_id": vid,
+            "observed_at": datetime.now(timezone.utc).isoformat(),
             "vehicles": n,
             "cars": kinds.get("cars", 0),
             "trucks": kinds.get("trucks", 0),
@@ -206,12 +199,17 @@ def main():
             "frame_w": frame_w,
         })
 
-        # 한 번에 다 보내면 실패 시 통째로 날아가므로 나눠서 적재
+        # 한 번에 다 저장하면 실패 시 통째로 날아가므로 나눠서 적재
         if len(rows) >= 100:
-            insert_rows(rows)
+            items = load_observations() + rows
+            if not DRY_RUN:
+                save_observations(items)
             rows = []
 
-    insert_rows(rows)
+    if rows:
+        items = load_observations() + rows
+        if not DRY_RUN:
+            save_observations(items)
     print(f"완료: 분석 {seen}대 / 썸네일없음 {no_frame}대 / 차량 총 {total_vehicles}대")
     print("  프레임 해상도: " + ", ".join(f"{w}px {n}대" for w, n in sorted(by_width.items(), reverse=True)))
     if by_country:

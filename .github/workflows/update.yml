@@ -10,7 +10,7 @@ on:
     # (검색 1회 = 100유닛, 하루 한도 10,000이라 두 번 다 95회를 쓰면 한도를 넘는다).
     #
     # 분을 정각·15·30·45분에서 떨어뜨린 건 그 시각에 전 세계 예약 작업이 몰리기 때문이다.
-    - cron: '7 15 * * *'   # KST 00:07 — 방문자 통계의 하루 경계(KST 자정)와 맞춘 쪽
+    - cron: '7 15 * * *'   # KST 00:07
     - cron: '23 3 * * *'   # KST 12:23 — 12시간 뒤 예비
   workflow_dispatch: {}
 
@@ -33,8 +33,6 @@ jobs:
       - name: Run update script
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/update.mjs
 
       # ---- AI 썸네일 카테고리 분류 (CLIP 제로샷, 행당 1회만 수행) ----
@@ -63,25 +61,17 @@ jobs:
           pip install transformers pillow requests ultralytics
 
       - name: Classify thumbnails with CLIP
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python scripts/classify_thumbnails.py
 
       # 트래픽 계열 카메라의 차량을 세어 쌓는다. 지금은 수집만 — 프레임 한 장은 표본이 아니라
       # 몇 주 누적한 뒤에 집계 페이지를 낸다. 실패해도 자동화 전체를 세우지 않는다.
       - name: Count vehicles in traffic cams
         continue-on-error: true
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python scripts/detect_vehicles.py
 
       # ---- AI 검수: 승인 대기 큐를 Gemini로 자동 판정 (GEMINI_API_KEY 없으면 스킵) ----
       - name: AI review pending queue
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # GEMINI_MODEL 고정은 뺐다. 비용을 아끼려고 gemini-2.0-flash-lite를 앞세워 봤지만
           # 무료 티어에서 이 구형 모델은 할당량이 아예 0이라(429 "free_tier_input_token_count,
@@ -89,65 +79,11 @@ jobs:
           # 시도하므로, 고정 없이 두면 그때 쓸 수 있는 모델(현재 gemini-flash-latest)이 선택된다.
         run: node scripts/ai_review.mjs
 
-      # ---- 국가/카테고리별 정적 SEO 페이지 재생성 후 변경분만 커밋 ----
-      - name: Generate SEO pages
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: node scripts/generate_pages.mjs
-
-      - name: Commit generated pages
+      # ---- 최종 산출물(data/*.json 등) 변경분만 커밋 ----
+      - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # 생성물 경로를 하나씩 적으면 새 종류의 페이지가 늘 때마다 여기를 같이 고쳐야 하는데,
-          # 실제로 그걸 빠뜨려서 운영자 페이지(ch/)와 최장수 랭킹이 sitemap에는 올라갔는데
-          # 파일은 커밋되지 않아 전부 404가 났다. 생성물은 전부 추적 대상이므로 통째로 add한다.
           git add -A
           # 작업 도중 main에 새 커밋이 올라왔을 수 있으므로 rebase 후 푸시 (경합으로 인한 push 실패 방지)
-          git diff --cached --quiet || (git commit -m "Regenerate SEO pages" && git pull --rebase origin main && git push)
-
-      # 방금 커밋으로 바뀐 페이지만 Bing·Yandex 등에 직접 알린다(IndexNow). 구글에는 사이트맵을
-      # 내고 있지만 Bing 색인은 사실상 비어 있었고, ChatGPT 웹검색이 그 인덱스에 기대므로
-      # LLM이 우리를 인용할 창구가 좁았다. 계정·비용 없이 붙일 수 있어 부가 단계로 둔다.
-      # 실패해도 스크립트가 조용히 넘어가므로 자동화 전체가 깨지지 않는다.
-      - name: Ping IndexNow with changed pages
-        run: node scripts/indexnow.mjs
-
-      # ---- 매일 밤 DB 전체 백업 (텍스트 전용이라 용량이 작음) — 비공개 저장소(camlisted-backups)에 보관.
-      # 무료 Supabase 티어엔 자동 백업이 없어서 직접 구현. 같은 파일(backup/latest.sql)을 매일 덮어써서
-      # 커밋하므로, 그 비공개 저장소의 git 히스토리 자체가 "특정 날짜로 롤백" 역할을 한다 —
-      # 날짜별 파일을 따로 관리할 필요가 없다. 두 시크릿이 없으면 조용히 건너뛴다.
-      - name: Dump database
-        env:
-          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
-        run: |
-          # if: 에서 secrets 컨텍스트를 직접 못 써서 (GitHub Actions 파서가 거부함) 스크립트 안에서 체크한다.
-          if [ -z "$SUPABASE_DB_URL" ]; then
-            echo "SUPABASE_DB_URL 시크릿 없음 — 백업 건너뜀"
-            exit 0
-          fi
-          # 러너에 미리 깔린 pg_dump 버전이 Supabase 서버 버전과 안 맞아 실패하는 걸 피하려고
-          # postgres:17 공식 이미지 안의 pg_dump를 그대로 쓴다. pg_dump는 자기보다 최신 버전 서버는
-          # 덤프를 거부하는데, 실제로 Supabase가 17.6을 쓰고 있는 걸 이번에 확인했다 (16으로 시도했다가
-          # "server version mismatch"로 실패). 같은 메이저 버전이면 마이너 차이는 문제없다.
-          docker run --rm postgres:17 pg_dump "$SUPABASE_DB_URL" --no-owner --no-privileges > db-backup.sql
-          test -s db-backup.sql # 빈 파일이면 실패 처리 (깨진 백업을 조용히 커밋하지 않기 위해)
-
-      - name: Push backup to private repo
-        env:
-          BACKUP_REPO_TOKEN: ${{ secrets.BACKUP_REPO_TOKEN }}
-        run: |
-          if [ -z "$BACKUP_REPO_TOKEN" ] || [ ! -s db-backup.sql ]; then
-            echo "BACKUP_REPO_TOKEN 시크릿 또는 덤프 파일 없음 — 백업 건너뜀"
-            exit 0
-          fi
-          git clone --depth 1 "https://x-access-token:${BACKUP_REPO_TOKEN}@github.com/zenith605-2/camlisted-backups.git" backup-repo
-          mkdir -p backup-repo/backup
-          mv db-backup.sql backup-repo/backup/latest.sql
-          cd backup-repo
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backup/latest.sql
-          git diff --cached --quiet || git commit -m "Backup $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push
+          git diff --cached --quiet || (git commit -m "Update camera data" && git pull --rebase origin main && git push)

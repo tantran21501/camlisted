@@ -1,5 +1,10 @@
 # camlisted.com — 인수인계 / 현재 상태 (2026-07-30 기준)
 
+> **⚠️ 2026-08-17: Supabase 전면 제거됨.** 이 문서는 옛 DB 기반 아키텍처(로그인/투표/댓글/제보/관리자/방문통계)에 대한
+> 기록이다. 현재는 **YouTube API → `data/streams.json` → 정적 페이지**만으로 동작하며 DB·계정·백업 파이프라인이 없습니다.
+> 프론트엔드는 `js/app.js`(조회 전용), 설정은 `config/categories.json`·`config/condition_tags.json`, 야간 자동화는
+> `.github/workflows/update.yml`이 그대로 관리합니다. 아래 내용은 히스토리 참고용으로만 보세요.
+
 이 파일은 Claude Code(터미널/에이전트, 코드 실행 가능)에서 작업하던 내용을
 Claude 모바일 앱(코드 실행 불가, 대화만 가능)에서 이어가기 위한 문서입니다.
 이 파일 하나만 읽고도 프로젝트 맥락을 파악할 수 있게 썼습니다.
