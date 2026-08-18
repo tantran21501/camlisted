@@ -13,6 +13,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    if: github.actor == 'tantran21501'
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: gemini-2.5-flash
