@@ -42,6 +42,16 @@ const DELAY_MS = 8000;       // 요청 간 간격 (무료 모델 분당 요청 �
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+function geminiUrl(model) {
+  const template = process.env.GEMINI_URL;
+  if (template) {
+    return template
+      .replace(/\{\{GEMINI_MODEL\}\}/g, model)
+      .replace(/\{\{GEMINI_API_KEY\}\}/g, GEMINI_API_KEY);
+  }
+  return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+}
+
 function buildPrompt(items, categoryKeys) {
   return `You are a strict moderator for a directory of REAL-WORLD live cameras and ambient footage: fixed/mounted live cams (traffic, city streets, beaches, harbors, airports, train stations, nature/wildlife, skylines, plazas), dashcam driving footage, and first-person walking-tour videos.
 
@@ -78,7 +88,7 @@ Respond ONLY as a compact JSON array, one object per item:
 }
 
 async function requestModel(model, prompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+  const url = geminiUrl(model);
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

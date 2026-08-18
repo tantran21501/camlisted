@@ -140,8 +140,15 @@ def model_candidates() -> List[str]:
     return out
 
 
+def gemini_url(api_key: str, model: str) -> str:
+    template = os.getenv("GEMINI_URL", "").strip()
+    if template:
+        return template.replace("{{GEMINI_MODEL}}", model).replace("{{GEMINI_API_KEY}}", api_key)
+    return f"{GEMINI_API}/{model}:generateContent?key={api_key}"
+
+
 def request_gemini(api_key: str, model: str, prompt: str) -> requests.Response:
-    url = f"{GEMINI_API}/{model}:generateContent?key={api_key}"
+    url = gemini_url(api_key, model)
     return requests.post(
         url,
         headers={"Content-Type": "application/json"},

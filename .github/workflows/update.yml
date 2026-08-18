@@ -13,6 +13,10 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: gemini-2.5-flash
+      GEMINI_URL: https://generativelanguage.googleapis.com/v1beta/models/{{GEMINI_MODEL}}:generateContent?key={{GEMINI_API_KEY}}
     steps:
       - uses: actions/checkout@v4
 
@@ -63,8 +67,6 @@ jobs:
 
       - name: AI resolve remaining locations
         continue-on-error: true
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/ai_location_resolver.py
 
       - name: Export locations snapshot
@@ -78,12 +80,6 @@ jobs:
 
       # ---- AI 검수: 승인 대기 큐를 Gemini로 자동 판정 (GEMINI_API_KEY 없으면 스킵) ----
       - name: AI review pending queue
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # GEMINI_MODEL 고정은 뺐다. 비용을 아끼려고 gemini-2.0-flash-lite를 앞세워 봤지만
-          # 무료 티어에서 이 구형 모델은 할당량이 아예 0이라(429 "free_tier_input_token_count,
-          # limit: 0") 매 실행마다 실패 요청 하나만 낭비했다. 스크립트가 후보를 순서대로
-          # 시도하므로, 고정 없이 두면 그때 쓸 수 있는 모델(현재 gemini-flash-latest)이 선택된다.
         run: node scripts/ai_review.mjs
 
       # ---- 최종 산출물(data/*.json 등) 변경분만 커밋 ----
