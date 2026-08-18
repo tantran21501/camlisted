@@ -1,6 +1,11 @@
 // JSON-only 상태 저장소 헬퍼.
 // Supabase를 전부 걷어내고, 카탈로그/차단목록/스캔기록 등을 git에 커밋되는 JSON 파일로 관리한다.
 // - data/streams.json        : 카탈로그 전체 (방문자가 받는 스냅샷과 동일한 파일 = source of truth)
+// - data/locations.json      : 카메라 위치 스냅샷 (video_id, title, category, country, lat/lng)
+// - data/location_resolve.json : 위치 해석 디버그 (regex + AI 상세 결과)
+// - data/locations_unresolved.json : 위치 미해결 목록
+// - data/geocode-cache.json  : Nominatim geocode cache
+// - data/ai-location-cache.json : Gemini location cache
 // - data/blocklist.json      : 관리자가 지운 videoId (재수집 방지)
 // - data/blocked_channels.json : 채널 통째 차단 목록
 // - data/scanned_channels.json : 채널 스캔 완료 기록 (쿼터 절약 dedup)

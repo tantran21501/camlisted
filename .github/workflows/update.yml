@@ -63,6 +63,20 @@ jobs:
       - name: Classify thumbnails with CLIP
         run: python scripts/classify_thumbnails.py
 
+      - name: Resolve camera locations
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python scripts/location_resolver.py
+
+      - name: AI resolve remaining locations
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/ai_location_resolver.py
+
+      - name: Export locations snapshot
+        run: python scripts/export_locations.py
+
       # 트래픽 계열 카메라의 차량을 세어 쌓는다. 지금은 수집만 — 프레임 한 장은 표본이 아니라
       # 몇 주 누적한 뒤에 집계 페이지를 낸다. 실패해도 자동화 전체를 세우지 않는다.
       - name: Count vehicles in traffic cams
