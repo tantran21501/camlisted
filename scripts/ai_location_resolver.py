@@ -46,8 +46,12 @@ from location_resolver import (  # noqa: E402
 )
 
 GEMINI_API = "https://generativelanguage.googleapis.com/v1beta/models"
-BATCH_SIZE = 10
-MODEL_FALLBACKS = ["gemini-flash-latest", "gemini-2.0-flash", "gemini-2.0-flash-lite"]
+BATCH_SIZE = 50
+MODEL_FALLBACKS = [
+    "gemini-flash-latest",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash-lite",
+]
 
 
 def load_dotenv(path: Path) -> None:
@@ -79,17 +83,11 @@ def channel_country_code(item: Dict[str, Any]) -> Optional[str]:
 def build_prompt(items: List[Dict[str, Any]]) -> str:
     payload = []
     for item in items:
-        loc = item.get("location") or {}
         payload.append({
             "video_id": item.get("video_id"),
             "title": item.get("title", ""),
             "channel_title": item.get("channel_title", ""),
             "channel_country": channel_country_code(item),
-            "failed_hints": item.get("location_hints") or [],
-            "prior_location": {
-                "country": loc.get("country"),
-                "level": loc.get("level"),
-            } if loc else None,
         })
 
     return f"""You are a geolocation extractor for an Earth Camera directory of REAL-WORLD live streams.
@@ -102,32 +100,23 @@ For each item, respond with structured JSON. Rules:
    No emojis, no LIVE/4K/music junk, do NOT copy the full title.
    Example: "Yeouido, Seoul, South Korea"
 
-2. lat/lng — ONLY fill when you are VERY confident (famous landmark with known coords).
-   Default to null; we will geocode geocode_query instead.
-
-3. resolvable=false when:
+2. resolvable=false when:
    - Hardware/product demo (Axis, Reolink, Hikvision, Dahua, Amcrest, PTZ test)
    - Generic backyard/bird feeder with NO city or region in title/channel
    - Music/ambient stream with no geographic place
    - No geographic clue at all
 
-4. Filming location beats channel country. Korean title with 서울/한강 -> KR even if channel unclear.
+3. Filming location beats channel country. Korean title with 서울/한강 -> KR even if channel unclear.
 
-5. failed_hints are BAD regex guesses — do NOT reuse them (e.g. wrong country, junk words).
+4. country — ISO 3166-1 alpha-2 uppercase, or null.
 
-6. location_title — short human label for UI (e.g. "Yeouido, Han River, Seoul").
-
-7. country — ISO 3166-1 alpha-2 uppercase, or null.
-
-8. confidence: 0.9 exact landmark, 0.7 city, 0.5 region, 0.3 country-only, 0.0 unresolvable.
-
-9. level: place | city | region | country | unknown
+5. confidence: 0.9 exact landmark, 0.7 city, 0.5 region, 0.3 country-only, 0.0 unresolvable.
 
 Items:
 {json.dumps(payload, ensure_ascii=False, indent=2)}
 
 Respond ONLY as a JSON array, one object per item:
-[{{"video_id":"...","resolvable":true,"confidence":0.85,"geocode_query":"Place, City, Country","location_title":"Short label","lat":null,"lng":null,"city":"...","region":"...","country":"KR","level":"place","reason":"..."}}]"""
+[{{"video_id":"...","resolvable":true,"confidence":0.85,"geocode_query":"Place, City, Country","country":"KR"}}]"""
 
 
 def model_candidates() -> List[str]:
@@ -163,7 +152,64 @@ def request_gemini(api_key: str, model: str, prompt: str) -> requests.Response:
     )
 
 
-def call_gemini(api_key: str, prompt: str) -> List[Dict[str, Any]]:
+def call_mistral(prompt: str) -> List[Dict[str, Any]]:
+    api_key = os.getenv("MISTRAL_API_KEY")
+    if not api_key:
+        return []
+
+    model = os.getenv("MISTRAL_MODEL", "mistral-large-latest").strip()
+    url = os.getenv("MISTRAL_URL", "https://api.mistral.ai/v1/chat/completions").strip()
+    if url.rstrip("/").endswith("/v1"):
+        url = url.rstrip("/") + "/chat/completions"
+
+    res = requests.post(
+        url,
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0,
+        },
+        timeout=120,
+    )
+    if not res.ok:
+        print(f"  Mistral unavailable ({res.status_code})", file=sys.stderr)
+        return []
+
+    data = res.json()
+    content = (
+        data.get("choices", [{}])[0]
+        .get("message", {})
+        .get("content", "")
+    )
+    if not content:
+        return []
+
+    try:
+        parsed = json.loads(content)
+    except json.JSONDecodeError:
+        # Best-effort: extract first JSON array from the content.
+        match = re.search(r"\[[\s\S]*\]", content)
+        if not match:
+            return []
+        parsed = json.loads(match.group(0))
+
+    if isinstance(parsed, list):
+        return parsed
+    if isinstance(parsed, dict):
+        # tolerate object-wrapped responses
+        for key in ["results", "items", "data"]:
+            v = parsed.get(key)
+            if isinstance(v, list):
+                return v
+    return []
+
+
+def call_gemini(api_key: str, prompt: str) -> tuple[List[Dict[str, Any]], bool]:
+    """Return (rows, gemini_quota_exhausted)."""
     quota_hit = False
     for round_idx in range(3):
         if round_idx:
@@ -190,19 +236,25 @@ def call_gemini(api_key: str, prompt: str) -> List[Dict[str, Any]]:
                 if not isinstance(parsed, list):
                     raise ValueError(f"Expected JSON array from {model}")
                 print(f"  Gemini model: {model}")
-                return parsed
+                return parsed, False
 
             body = response.text.replace("\n", " ")[:400]
             print(f"  Model {model} unavailable ({response.status_code}): {body}")
             if response.status_code == 429:
                 quota_hit = True
+                # Gemini free tier quota is shared across models; no point continuing.
+                break
             if response.status_code not in {404, 400}:
                 time.sleep(2)
 
         if quota_hit:
             break
 
-    raise RuntimeError("All Gemini models failed or quota exhausted")
+    # Gemini quota exceeded / all models failed. Best-effort Mistral fallback.
+    mistral_rows = call_mistral(prompt)
+    if mistral_rows:
+        return mistral_rows, False
+    return [], quota_hit
 
 
 def parse_ai_rows(raw: List[Dict[str, Any]], items: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
@@ -223,29 +275,12 @@ def parse_ai_rows(raw: List[Dict[str, Any]], items: List[Dict[str, Any]]) -> Dic
 
 
 def geocode_variants(ai: Dict[str, Any]) -> List[str]:
-    queries: List[str] = []
-    seen = set()
-
-    def add(q: Optional[str]) -> None:
-        if not q:
-            return
-        q = " ".join(str(q).split())
-        key = q.casefold()
-        if key and key not in seen:
-            seen.add(key)
-            queries.append(q)
-
-    add(ai.get("geocode_query"))
-    city, region, country = ai.get("city"), ai.get("region"), ai.get("country")
-    country_name = COUNTRIES.get((country or "").upper(), country)
-    if city and country_name:
-        add(f"{city}, {country_name}")
-    if city and region and country_name:
-        add(f"{city}, {region}, {country_name}")
-    title = ai.get("location_title")
-    if title and country_name and country_name.casefold() not in str(title).casefold():
-        add(f"{title}, {country_name}")
-    return queries
+    # Slim AI response: only geocode_query is required.
+    q = ai.get("geocode_query") or ai.get("location_title")
+    if not q:
+        return []
+    q = " ".join(str(q).split())
+    return [q]
 
 
 def apply_ai_resolution(
@@ -257,32 +292,30 @@ def apply_ai_resolution(
     result = dict(item)
     result["ai"] = ai
     expected_country = (ai.get("country") or "").upper() or None
-    evidence_label = ai.get("location_title") or ai.get("geocode_query") or ai.get("reason")
+    evidence_label = ai.get("geocode_query")
 
     if not ai.get("resolvable"):
         result["status"] = "unresolved"
-        result["ai_reason"] = ai.get("reason")
         return result
 
+    # Backward compatibility: earlier AI cache might contain direct lat/lng.
     lat, lng = ai.get("lat"), ai.get("lng")
     if valid_coords(lat, lng):
-        address = {"country_code": expected_country} if expected_country else {}
-        if not expected_country or country_matches(address, expected_country):
-            conf = min(float(ai.get("confidence") or 0.7), 0.85)
-            result["location"] = {
-                "lat": float(lat),
-                "lng": float(lng),
-                "city": ai.get("city"),
-                "region": ai.get("region"),
-                "country": expected_country,
-                "level": ai.get("level") or "place",
-                "confidence": conf,
-                "source": "gemini-gps",
-                "renderable": (ai.get("level") or "place") != "country",
-                "evidence": [evidence_label] if evidence_label else [ai.get("reason", "Gemini")],
-            }
-            result["status"] = "resolved"
-            return result
+        conf = min(float(ai.get("confidence") or 0.7), 0.85)
+        result["location"] = {
+            "lat": float(lat),
+            "lng": float(lng),
+            "city": ai.get("city"),
+            "region": ai.get("region"),
+            "country": expected_country,
+            "level": ai.get("level") or "place",
+            "confidence": conf,
+            "source": "gemini-gps",
+            "renderable": True,
+            "evidence": [evidence_label] if evidence_label else ["gemini-gps"],
+        }
+        result["status"] = "resolved"
+        return result
 
     candidates: List[Dict[str, Any]] = []
     for query in geocode_variants(ai):
@@ -302,14 +335,14 @@ def apply_ai_resolution(
             "evidence": [evidence_label or query],
         })
         address = geo.get("address") or {}
-        conf = min(float(ai.get("confidence") or 0.7), 0.75)
+        conf = min(float(ai.get("confidence") or 0.7), 0.85)
         result["location"] = {
             "lat": geo["lat"],
             "lng": geo["lng"],
-            "city": address.get("city") or address.get("town") or address.get("village") or ai.get("city"),
-            "region": address.get("state") or address.get("region") or ai.get("region"),
+            "city": address.get("city") or address.get("town") or address.get("village"),
+            "region": address.get("state") or address.get("region"),
             "country": (address.get("country_code") or expected_country or "").upper() or None,
-            "level": ai.get("level") or "place",
+            "level": "place",
             "confidence": conf,
             "source": "gemini-geocoder",
             "renderable": True,
@@ -321,7 +354,6 @@ def apply_ai_resolution(
 
     result["location_candidates"] = candidates
     result["status"] = "unresolved"
-    result["ai_reason"] = ai.get("reason") or "Geocode failed for AI query"
     return result
 
 
@@ -430,13 +462,18 @@ def main() -> None:
         if vid and vid in ai_cache:
             ai_by_id[vid] = ai_cache[vid]
 
+    quota_exhausted = False
     for start in range(0, len(pending), BATCH_SIZE):
+        if quota_exhausted:
+            break
         batch = pending[start:start + BATCH_SIZE]
         if not batch:
             continue
         print(f"  Gemini batch {start // BATCH_SIZE + 1} ({len(batch)} items)...")
         prompt = build_prompt(batch)
-        rows = call_gemini(api_key, prompt)
+        rows, gemini_quota_hit = call_gemini(api_key, prompt)
+        if gemini_quota_hit:
+            quota_exhausted = True
         parsed = parse_ai_rows(rows, batch)
         for item in batch:
             vid = item["video_id"]
@@ -446,7 +483,18 @@ def main() -> None:
                 continue
             ai_cache[vid] = ai
             ai_by_id[vid] = ai
-        time.sleep(1)
+        # Save after each successful batch, so partial progress is not lost on quota crash.
+        save_json(ai_cache_path, ai_cache)
+        save_json(geocode_cache_path, geocode_cache)
+        if catalog_total:
+            log_progress(
+                "ai",
+                baseline_resolved + sum(1 for v in ai_cache.values() if v.get("resolvable") and v.get("geocode_query")),
+                catalog_total,
+                note=f"after batch {(start // BATCH_SIZE) + 1}",
+            )
+
+        time.sleep(4)
 
     processed: List[Dict[str, Any]] = []
     resolved_count = 0
@@ -460,7 +508,7 @@ def main() -> None:
             loc = result.get("location") or {}
             print(f"  RESOLVED {vid}: {loc.get('source')} — {loc.get('evidence')}")
         else:
-            print(f"  UNRESOLVED {vid}: {result.get('ai_reason') or ai.get('reason', 'unknown')}")
+            print(f"  UNRESOLVED {vid}: geocode_query={ai.get('geocode_query')}")
 
         if catalog_total and (idx % 10 == 0 or idx == len(items)):
             log_progress(
