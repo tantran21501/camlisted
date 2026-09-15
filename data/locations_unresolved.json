@@ -1057,7 +1057,16 @@
     "title": "Live Camera Axis M1075-L  Trykk F5 for oppdatering",
     "channel_id": "UCdsBo64D4fYA0aUH74VPzQA",
     "channel_title": "Per Nord",
-    "location": null,
+    "location": {
+      "country": "Norway",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
     "location_candidates": [],
     "location_hints": [],
     "status": "unresolved",
@@ -2915,7 +2924,16 @@
     "title": "YouTube 24/7 Q6155-E",
     "channel_id": "UCdsBo64D4fYA0aUH74VPzQA",
     "channel_title": "Per Nord",
-    "location": null,
+    "location": {
+      "country": "Norway",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
     "location_candidates": [],
     "location_hints": [],
     "status": "unresolved",
@@ -2932,7 +2950,16 @@
     "title": "Live Camera Axis P1435-LE",
     "channel_id": "UCdsBo64D4fYA0aUH74VPzQA",
     "channel_title": "Per Nord",
-    "location": null,
+    "location": {
+      "country": "Norway",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
     "location_candidates": [],
     "location_hints": [],
     "status": "unresolved",
@@ -3019,7 +3046,16 @@
     "title": "Live Camera Axis Q6318-LE",
     "channel_id": "UCdsBo64D4fYA0aUH74VPzQA",
     "channel_title": "Per Nord",
-    "location": null,
+    "location": {
+      "country": "Norway",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
     "location_candidates": [],
     "location_hints": [],
     "status": "unresolved",
@@ -4006,29 +4042,6 @@
     "status": "unresolved",
     "ai": {
       "video_id": "DOoSsbYZq6s",
-      "resolvable": false,
-      "confidence": 0.0,
-      "geocode_query": null,
-      "country": null
-    }
-  },
-  {
-    "video_id": "q9311L8X2KM",
-    "title": "Debbie Collier Raw Surveillance Footage  4K - Parking Lot Family Dollar",
-    "channel_id": "UCn896xjjlOv5Uvk02FVHUKw",
-    "channel_title": "Gray Hughes Investigates",
-    "location": null,
-    "location_candidates": [],
-    "location_hints": [
-      "Debbie Collier Raw Surveillance - Parking Lot Family Dollar",
-      "Debbie Collier Raw Surveillance",
-      "Parking Lot Family Dollar",
-      "Gray Hughes Investigates",
-      "Investigates"
-    ],
-    "status": "unresolved",
-    "ai": {
-      "video_id": "q9311L8X2KM",
       "resolvable": false,
       "confidence": 0.0,
       "geocode_query": null,
@@ -14181,43 +14194,6 @@
     }
   },
   {
-    "video_id": "Y79XHIwYJHM",
-    "title": "Shibuya 246 Station 放送中｜ふだんの毎日を、少しだけ心地よくする音楽｜J-Pop & Chill Music Live",
-    "channel_id": "UCQkSvWpsZikH13nat4ubZNw",
-    "channel_title": "Shibuya 246 Studio",
-    "location": {
-      "country": "Japan",
-      "level": "country",
-      "confidence": 0.3,
-      "source": "youtube-channel-country",
-      "renderable": false,
-      "evidence": [
-        "YouTube channel country; not camera GPS"
-      ]
-    },
-    "location_candidates": [],
-    "location_hints": [
-      "Shibuya 246 Station 放送中｜ふだんの毎日を、少しだけ心地よくする音楽｜j-pop & Chill Music",
-      "ふだんの毎日を",
-      "少しだけ心地よくする音楽",
-      "Sight 初秋に想う Https",
-      "Shibuya それぞれの午前",
-      "本日のタイムテーブル",
-      "9月15日（火） ▶ :44 20_shibuya Smooth Jazz Vol.06 渋谷（都会）の夜を包むチルジャズbgm Https:",
-      "の夜を包むチルジャズbgm Https",
-      "Epezrnyepbc ▶ :50 23_それでも今日は 〜 Still Today Goes On 迷いながら生きる今日の歌 Https:",
-      "迷いながら生きる今日の歌 Https"
-    ],
-    "status": "unresolved",
-    "ai": {
-      "video_id": "Y79XHIwYJHM",
-      "resolvable": false,
-      "confidence": 0.0,
-      "geocode_query": null,
-      "country": null
-    }
-  },
-  {
     "video_id": "26wX6-esfwE",
     "title": "Italian Home Kitchen Live 24/7 - Fixed Camera, No Cuts - Slow TV | CAM 1",
     "channel_id": "UCEbAEyF9cirGDF0NPHpkseA",
@@ -14513,6 +14489,293 @@
       "confidence": 0.9,
       "geocode_query": "Getijdenpark Feijenoord, Rotterdam, Netherlands",
       "country": "NL"
+    }
+  },
+  {
+    "video_id": "__ANWQtv2GM",
+    "title": "【速報】航空自衛隊の大型無人偵察機「グローバルホーク」が鳥取県沖で通信途絶「訓練中ではなかった」【随時更新 最新情報まとめ】 (2026年9月15日) ANN/テレ朝 LIVE",
+    "channel_id": "UCGCZAYq5Xxojl_tSXcVJhiQ",
+    "channel_title": "ANNnewsCH",
+    "location": {
+      "country": "Japan",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "航空自衛隊の大型無人偵察機「グローバルホーク」が鳥取県沖で通信途絶「訓練中ではなかった」",
+      "航空自衛隊の大型無人偵察機",
+      "グローバルホーク",
+      "が鳥取県沖で通信途絶",
+      "訓練中ではなかった",
+      "随時更新 最新情報まとめ",
+      "テレ朝",
+      "速報 航空自衛隊の大型無人偵察機「グローバルホーク」が鳥取県沖で通信途絶「訓練中ではなかった」 随時更新 最新情報まとめ (2026年9月15日) ann テレ朝",
+      "テレ朝newsはこちら⇒https:",
+      "テレ朝newsはこちら"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "__ANWQtv2GM",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "gMZsV2dmY5A",
+    "title": "(실제경험담)주차뺑소니를 당하셨다고요?! 주차뺑소니 잡는 법을 알려드립니다.",
+    "channel_id": "UC0pIpNhCeKIk-diNDJqCj7g",
+    "channel_title": "보험신",
+    "location": null,
+    "location_candidates": [],
+    "location_hints": [
+      "실제경험담",
+      "주차뺑소니를",
+      "당하셨다고요",
+      "주차뺑소니",
+      "알려드립니다",
+      "(실제경험담)주차뺑소니를 당하셨다고요?! 주차뺑소니 잡는 법을 알려드립니다",
+      "주차뺑소니를 당하셨다고요",
+      "주차뺑소니 잡는 법을 알려드립니다",
+      "보험신",
+      "당하셨나요"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "gMZsV2dmY5A",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "G2ZjkV4jOBg",
+    "title": "【辺野古】監視カメラで嘘バレ!?点呼は生徒自身でやってた!立憲議員厳重注意で職業差別発言幕引きか…【選挙ドットコム/今野忍/水内茂幸/辺野古/自衛隊】",
+    "channel_id": "UCFVuCZ9jBCHGK1DO3ryn9ww",
+    "channel_title": "政治のぞき見ch",
+    "location": {
+      "country": "Japan",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "監視カメラで嘘バレ!?点呼は生徒自身でやってた!立憲議員厳重注意で職業差別発言幕引きか…",
+      "監視カメラで嘘バレ",
+      "点呼は生徒自身でやってた",
+      "立憲議員厳重注意で職業差別発言幕引きか",
+      "選挙ドットコム",
+      "辺野古 監視カメラで嘘バレ!?点呼は生徒自身でやってた!立憲議員厳重注意で職業差別発言幕引きか… 選挙ドットコム 今野忍 水内茂幸 辺野古 自衛隊",
+      "政治のぞき見ch",
+      "米イランが戦況終結の覚書発効、署名は電子！？",
+      "米イランが戦況終結の覚書発効",
+      "署名は電子"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "G2ZjkV4jOBg",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "29CSV-BRAQ4",
+    "title": "🔴Live || શ્રી રામદેવપીર બાળ મિત્ર મંડળ શક્તિ નગર || સમાધી આખ્યાન || Divas 2@pavanputradigital",
+    "channel_id": "UCMxN51RJf5YMCRLHNCpybOQ",
+    "channel_title": "Pavanputra Digital",
+    "location": {
+      "country": "IN",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "Mahesh Jambucha, Missouri, United States",
+      "Whatsapp, Missouri, United States",
+      "હાથબવાળા,શ્રી સવજીભાઇ લાઠીયા",
+      "New Gujrati Song Bhaguda Na Neh, Massachusetts, United States",
+      "Hareshdan Gadhvi Mogal, Massachusetts, United States",
+      "Haresh Dan Gadhvi Muktidan Gadhvi Mogal, Massachusetts, United States",
+      "New Hd Video Pavanputra Digital Mogal, Massachusetts, United States",
+      "New Gujrati Song Gujju Comedy Mogal, Massachusetts, United States",
+      "Mayabhai Ahir Gujrati New Song Ramapir, Nunavut, Canada",
+      "શ્રી રામદેવપીર બાળ મિત્ર મંડળ શક્તિ નગર"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "29CSV-BRAQ4",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "NG5yd35qLAE",
+    "title": "사우디 SOS 걷어찬 트럼프…후티 드론 맹폭에 전 세계 '발칵' [이슈픽] / YTN",
+    "channel_id": "UChlgI3UHCOnwUGzWzbJ3H5w",
+    "channel_title": "YTN",
+    "location": {
+      "country": "South Korea",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "사우디",
+      "걷어찬",
+      "트럼프",
+      "맹폭에",
+      "이슈픽",
+      "사우디 Sos 걷어찬 트럼프…후티 드론 맹폭에 전 세계 '발칵'",
+      "사우디 Sos 걷어찬 트럼프",
+      "후티 드론 맹폭에 전 세계",
+      "사우디 sos 걷어찬 트럼프…후티 드론 맹폭에 전 세계 '발칵' 이슈픽 ytn",
+      "사우디아라비아의"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "NG5yd35qLAE",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "2KznzP3l8Nk",
+    "title": "기름값 치솟자 궁지 몰린 트럼프 '깜짝'…\"러 경유시설 타격 중단하라\" 나토 '분노의 움직임' [이슈픽] / YTN",
+    "channel_id": "UChlgI3UHCOnwUGzWzbJ3H5w",
+    "channel_title": "YTN",
+    "location": {
+      "country": "South Korea",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "기름값",
+      "치솟자",
+      "트럼프",
+      "경유시설",
+      "중단하라",
+      "분노의",
+      "움직임",
+      "이슈픽",
+      "기름값 치솟자 궁지 몰린 트럼프 '깜짝'…\"러 경유시설 타격 중단하라\" 나토 '분노의 움직임'",
+      "기름값 치솟자 궁지 몰린 트럼프"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "2KznzP3l8Nk",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "soegwHsDVVA",
+    "title": "[🔴이슈] 러, 우크라 드론에 정유시설 초토화…에너지 부족 최악/산유국 맞아? '한국 기름'까지 수입/2026년 9월 15일(화)/KBS",
+    "channel_id": "UCcQTRi69dsVYHN3exePtZ1A",
+    "channel_title": "KBS News",
+    "location": {
+      "country": "South Korea",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "우크라",
+      "드론에",
+      "정유시설",
+      "초토화",
+      "에너지",
+      "산유국",
+      "러, 우크라 드론에 정유시설 초토화…에너지 부족 최악",
+      "우크라 드론에 정유시설 초토화",
+      "에너지 부족 최악",
+      "산유국 맞아? '한국 기름'까지 수입"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "soegwHsDVVA",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "6YrqQ9yWuq4",
+    "title": "[🔴이슈] 이란 전쟁에 美 기지 수백 곳 초토화/탄약고도 '텅텅'…펜타곤 보고서 폭로/2026년 9월 15일(화)/KBS",
+    "channel_id": "UCcQTRi69dsVYHN3exePtZ1A",
+    "channel_title": "KBS News",
+    "location": {
+      "country": "South Korea",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "전쟁에",
+      "초토화",
+      "탄약고도",
+      "펜타곤",
+      "보고서",
+      "이란 전쟁에 美 기지 수백 곳 초토화",
+      "이란 전쟁에 美 기지 수백 곳",
+      "탄약고도 '텅텅'…펜타곤 보고서 폭로",
+      "펜타곤 보고서 폭로",
+      "2026년 9월 15일(화)"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "6YrqQ9yWuq4",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
     }
   }
 ]
