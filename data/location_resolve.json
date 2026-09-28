@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-27T19:15:25Z",
+  "generated_at": "2026-09-28T21:30:41Z",
   "input": "/home/runner/work/camlisted/camlisted/data/streams.json",
-  "total": 5414,
-  "resolved": 4889,
-  "unresolved": 525,
+  "total": 5446,
+  "resolved": 4922,
+  "unresolved": 524,
   "resolution_sources": {
-    "place-hint-geocoder": 4073,
-    "youtube-recordingDetails": 695,
-    "youtube-channel-country": 503,
+    "place-hint-geocoder": 4101,
+    "youtube-recordingDetails": 700,
+    "youtube-channel-country": 502,
     "gemini-geocoder": 121
   },
   "cameras": [
@@ -15165,7 +15165,7 @@
         "Kilauea Volcano Livestream",
         "Afartv",
         "the",
-        "Our"
+        "All Three Vents"
       ],
       "status": "resolved"
     },
@@ -17159,8 +17159,7 @@
         "Pause",
         "小歇 Just",
         "Little Pause",
-        "聽雨，很舒服。 在台北安靜的雨巷裡，聽著細細的雨聲與溫柔鋼琴，陪你度過一段舒服、平靜的時光。 24",
-        "在台北安靜的雨巷裡"
+        "Just Pause. Breathe. And Begin Again"
       ],
       "status": "resolved"
     },
@@ -26326,47 +26325,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "FMf4XEP2ZY4",
-      "title": "湘南茅ヶ崎　Beach and Waves　（　江ノ島　）2026　ライブ",
-      "channel_id": "UC_UHINSFCpBr68YW56HYQ2Q",
-      "channel_title": "湘南茅ヶ崎 Beach and Waves",
-      "location": {
-        "lat": 35.3110438,
-        "lng": 139.4875422,
-        "city": "藤沢市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "江ノ島"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "江ノ島",
-          "lat": 35.3110438,
-          "lng": 139.4875422,
-          "display_name": "江ノ島, 国道467号, 一丁目, 片瀬海岸, 藤沢市, 神奈川県, 251-0035, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "江ノ島"
-          ]
-        }
-      ],
-      "location_hints": [
-        "湘南茅ヶ崎 Beach And Waves （ 江ノ島 ）2026 ライブ",
-        "江ノ島",
-        "ライブ",
-        "湘南茅ヶ崎 Beach",
-        "Waves",
-        "湘南茅ヶ崎 Beach And Waves"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "phPgZC9_QhQ",
       "title": "SÃO PAULO from Above 🇧🇷 | Stunning 4K Drone Footage of Brazil’s Mega City",
       "channel_id": "UCbDH6Ga-wuaam2IHqAxm3hg",
@@ -27793,43 +27751,18 @@
       "channel_id": "UCe5o5VIs9avmljPs_pJCHtQ",
       "channel_title": "Mallorca Webcam 2",
       "location": {
-        "lat": 43.3458388,
-        "lng": 13.1415872,
-        "city": null,
-        "region": "Marche",
-        "country": "IT",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
+        "lat": 39.5354523,
+        "lng": 2.4571345,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
         "renderable": true,
         "evidence": [
-          "Mar"
+          "YouTube recordingDetails.location"
         ]
       },
-      "location_candidates": [
-        {
-          "query": "Mar",
-          "lat": 43.3458388,
-          "lng": 13.1415872,
-          "display_name": "Marche, Italia",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Mar"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Checking the Weather, Oregon, United States",
-        "Re-upload, Oregon, United States",
-        "Restaurante Frente, Alabama, United States",
-        "Teilen ↗ Dein Support Hilft Uns, Alle Kameras 24",
-        "Mallorca Tora Beach Paguera 24",
-        "Mallorca Tora Beach Paguera",
-        "Mar Y Mar Restaurant #livestream #beach",
-        "Mar",
-        "Mar Restaurant",
-        "Livestream"
-      ],
+      "location_candidates": [],
+      "location_hints": [],
       "status": "resolved"
     },
     {
@@ -48809,51 +48742,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "cscuZ9wbpO0",
-      "title": "青ヶ島（三宝）港（青ヶ島）",
-      "channel_id": "UCqdejTsUrCvZ55Y8u9v5h9w",
-      "channel_title": "東京都伊豆・小笠原諸島港湾ライブカメラ",
-      "location": {
-        "lat": 34.1173454,
-        "lng": 139.5064361,
-        "city": "東京都",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "東京都伊豆"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "東京都伊豆",
-          "lat": 34.1173454,
-          "lng": 139.5064361,
-          "display_name": "伊豆, 三宅村, 三宅支庁, 東京都, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "東京都伊豆"
-          ]
-        }
-      ],
-      "location_hints": [
-        "東京都伊豆・小笠原諸島港湾ライブカメラ",
-        "東京都伊豆",
-        "小笠原諸島港湾ライブカメラ",
-        "青ヶ島青ヶ島港にある防波堤方面の映像です。",
-        "青ヶ島青ヶ島港にある防波堤方面の映像です",
-        "映像ご使用の際のご連絡について",
-        "著作権について",
-        "ご利用上の注意事項",
-        "青ヶ島（三宝）港（青ヶ島）",
-        "青ヶ島"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "ZwuLUTTHnGE",
       "title": "利島港（利島）",
       "channel_id": "UCqdejTsUrCvZ55Y8u9v5h9w",
@@ -48940,51 +48828,6 @@
         "ご利用上の注意事項",
         "野伏漁港（式根島）",
         "野伏漁港"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "7IygrRRgXYQ",
-      "title": "八重根漁港（八丈島）",
-      "channel_id": "UCqdejTsUrCvZ55Y8u9v5h9w",
-      "channel_title": "東京都伊豆・小笠原諸島港湾ライブカメラ",
-      "location": {
-        "lat": 34.1173454,
-        "lng": 139.5064361,
-        "city": "東京都",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "東京都伊豆"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "東京都伊豆",
-          "lat": 34.1173454,
-          "lng": 139.5064361,
-          "display_name": "伊豆, 三宅村, 三宅支庁, 東京都, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "東京都伊豆"
-          ]
-        }
-      ],
-      "location_hints": [
-        "東京都伊豆・小笠原諸島港湾ライブカメラ",
-        "東京都伊豆",
-        "小笠原諸島港湾ライブカメラ",
-        "八丈島八重根漁港にある岸壁方面の映像です。",
-        "八丈島八重根漁港にある岸壁方面の映像です",
-        "映像ご使用の際のご連絡について",
-        "著作権について",
-        "ご利用上の注意事項",
-        "八重根漁港（八丈島）",
-        "八重根漁港"
       ],
       "status": "resolved"
     },
@@ -49079,51 +48922,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "2v_bBrtolUM",
-      "title": "神津島港（神津島）【公開】",
-      "channel_id": "UCqdejTsUrCvZ55Y8u9v5h9w",
-      "channel_title": "東京都伊豆・小笠原諸島港湾ライブカメラ",
-      "location": {
-        "lat": 34.1173454,
-        "lng": 139.5064361,
-        "city": "東京都",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "東京都伊豆"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "東京都伊豆",
-          "lat": 34.1173454,
-          "lng": 139.5064361,
-          "display_name": "伊豆, 三宅村, 三宅支庁, 東京都, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "東京都伊豆"
-          ]
-        }
-      ],
-      "location_hints": [
-        "東京都伊豆・小笠原諸島港湾ライブカメラ",
-        "東京都伊豆",
-        "小笠原諸島港湾ライブカメラ",
-        "神津島神津島港にある岸壁方面の映像です。",
-        "神津島神津島港にある岸壁方面の映像です",
-        "映像ご使用の際のご連絡について",
-        "著作権について",
-        "ご利用上の注意事項",
-        "神津島港（神津島）",
-        "神津島港"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "PHcM-Xh2fyY",
       "title": "若郷漁港（新島）",
       "channel_id": "UCqdejTsUrCvZ55Y8u9v5h9w",
@@ -49210,51 +49008,6 @@
         "ご利用上の注意事項",
         "三池港（三宅島）",
         "三池港"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "6UMh7x2RSdE",
-      "title": "伊ヶ谷漁港（三宅島）",
-      "channel_id": "UCqdejTsUrCvZ55Y8u9v5h9w",
-      "channel_title": "東京都伊豆・小笠原諸島港湾ライブカメラ",
-      "location": {
-        "lat": 34.1173454,
-        "lng": 139.5064361,
-        "city": "東京都",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "東京都伊豆"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "東京都伊豆",
-          "lat": 34.1173454,
-          "lng": 139.5064361,
-          "display_name": "伊豆, 三宅村, 三宅支庁, 東京都, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "東京都伊豆"
-          ]
-        }
-      ],
-      "location_hints": [
-        "東京都伊豆・小笠原諸島港湾ライブカメラ",
-        "東京都伊豆",
-        "小笠原諸島港湾ライブカメラ",
-        "三宅島伊ヶ谷漁港にある岸壁方面の映像です。",
-        "三宅島伊ヶ谷漁港にある岸壁方面の映像です",
-        "映像ご使用の際のご連絡について",
-        "著作権について",
-        "ご利用上の注意事項",
-        "伊ヶ谷漁港（三宅島）",
-        "伊ヶ谷漁港"
       ],
       "status": "resolved"
     },
@@ -51717,51 +51470,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "_e2Uu-qCM2E",
-      "title": "Poole Harbour Osprey Nest Camera - Aerial View",
-      "channel_id": "UCj0vPqN3PrzH4g_FsWgjNjA",
-      "channel_title": "birdsofpooleharbour",
-      "location": {
-        "lat": 51.3830034,
-        "lng": 0.5512583,
-        "city": "Gillingham",
-        "region": "England",
-        "country": "GB",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Southern, United Kingdom"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Southern, United Kingdom",
-          "lat": 51.3830034,
-          "lng": 0.5512583,
-          "display_name": "Arriva Bus Depot, Sally Port Gardens, Brompton, Gillingham, Kent, England, ME7 4LN, United Kingdom",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Southern, United Kingdom"
-          ]
-        }
-      ],
-      "location_hints": [
-        "New Season Unfold, Ontario, Canada",
-        "Southern, United Kingdom",
-        "Southern England",
-        "Www.birdsofpooleharbour.co.uk",
-        "5r3 = Chick 1, 5r5 = Chick 2, 5r4 = Chick 3, 5r6 = Chick 4",
-        "Poole Harbour Osprey Nest - View",
-        "Poole Harbour Osprey Nest",
-        "View",
-        "Birdsofpooleharbour",
-        "Almost Two Centuries"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "npsBTZlt_7I",
       "title": "【LIVE】首都高 都心環状線 呉服橋JCT付近 ライブカメラ/Tokyo highway Live Camera 2026/08/04 00:25～",
       "channel_id": "UCawcG-FdPCNSu_JGIAZH0OQ",
@@ -53516,26 +53224,6 @@
         "I Love You Venice",
         "Venice"
       ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "JfQTgK0k8XE",
-      "title": "UW Cherry Blossom Cam (facing west from Miller Hall)",
-      "channel_id": "UCHZoP1Jy-g_h3sqzScrOEwQ",
-      "channel_title": "UW Video",
-      "location": {
-        "lat": 47.6516448,
-        "lng": -122.3081762,
-        "level": "gps",
-        "confidence": 1.0,
-        "source": "youtube-recordingDetails",
-        "renderable": true,
-        "evidence": [
-          "YouTube recordingDetails.location"
-        ]
-      },
-      "location_candidates": [],
-      "location_hints": [],
       "status": "resolved"
     },
     {
@@ -71199,11 +70887,11 @@
         "the Peak District, United Kingdom",
         "the Uk",
         "Watch?v=aorgwrn-vx8 Badgers, Foxes & Deer At Badger Wood Https:",
+        "the Uk's Beautiful Peak District National Park",
         "the Peak District",
         "Wildlife",
         "Multiview",
-        "Stream Wildlife Web Multiview",
-        "From the Peak District"
+        "Stream Wildlife Web Multiview"
       ],
       "status": "resolved"
     },
@@ -73959,51 +73647,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "3NZQIHZziuw",
-      "title": "【LIVE】JR本八幡駅北口ライブカメラ　本八幡駅側 LIVECAMERA livestream webcam 電車 鉄道カメラ train station JAPAN 交通情報",
-      "channel_id": "UCkE1JbngfWjKngmTSujg_wA",
-      "channel_title": "千葉県タクシー協会京葉支部 CHIBA TAXI Association Keiyo Branch",
-      "location": {
-        "lat": 35.7216209,
-        "lng": 139.932087,
-        "city": "市川市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "市川市"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "市川市",
-          "lat": 35.7216209,
-          "lng": 139.932087,
-          "display_name": "市川市, 千葉県, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "市川市"
-          ]
-        }
-      ],
-      "location_hints": [
-        "電車 鉄道カメラ Train Station, Japan",
-        "jr本八幡駅北口ライブカメラ 本八幡駅側 Livecamera Livestream 電車 鉄道カメラ Train Station Japan 交通情報",
-        "jr本八幡駅北口ライブカメラ 本八幡駅側 Livecamera Livestream 電車 鉄道カメラ",
-        "Train Station Japan 交通情報",
-        "千葉県タクシー協会京葉支部 Chiba Taxi Association Keiyo Branch",
-        "このカメラは防犯、防災、混雑状況確認等に活用されています。 いいね、チャンネル登録を宜しくお願い致します。 タクシードライバー合同就職説明会を定期的に開催しています。 Https: Www.taxichiba-keiyo.jp",
-        "市川市",
-        "浦安市",
-        "船橋市",
-        "習志野市"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "Aea4taIIVPE",
       "title": "Live City Plaza Camera",
       "channel_id": "UCcDDEzMRly4_FRH3LxOpDNQ",
@@ -76455,51 +76098,6 @@
         "Mmi",
         "V District",
         "Video"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "sFVDzXOpx0o",
-      "title": "Acapulco, Guerrero En Vivo | Vista Playa El Morro",
-      "channel_id": "UCShyUuV_sSnc44oPBMhPBrw",
-      "channel_title": "Webcams de México TV / Canal 10",
-      "location": {
-        "lat": 16.8680495,
-        "lng": -99.8940182,
-        "city": "Acapulco",
-        "region": "Guerrero",
-        "country": "MX",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Acapulco, Guerrero"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Acapulco, Guerrero",
-          "lat": 16.8680495,
-          "lng": -99.8940182,
-          "display_name": "Acapulco, Acapulco de Juárez, Guerrero, 39300, México",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Acapulco, Guerrero"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Acapulco, Guerrero",
-        "Acapulco, Guerrero Vista Playa el Morro",
-        "Bahía santa Lucía, Louisiana, United States",
-        "Sinfonía del Mar, Louisiana, United States",
-        "Entrando, Alabama, United States",
-        "No Publiques Todo En Mayúsculas Ni Uses Demasiados Emojis, Letras O Caracteres",
-        "Esto Incluye Redes Sociales, Números de Teléfono, Correo, Etc",
-        "Acapulco",
-        "Guerrero",
-        "Vista Playa el Morro"
       ],
       "status": "resolved"
     },
@@ -80351,6 +79949,7 @@
       ],
       "location_hints": [
         "the Uk",
+        "the Uk's Beautiful Peak District National Park",
         "Peak District Wildlife",
         "Inside A Stock Dove Nest - \"twiggy & Twinkle\"",
         "Inside",
@@ -80358,8 +79957,7 @@
         "Twiggy",
         "Twinkle",
         "\"twiggy & Twinkle\"",
-        "Barn Owl",
-        "Owl"
+        "Barn Owl"
       ],
       "status": "resolved"
     },
@@ -81020,50 +80618,6 @@
         "Coyote Walked Right Past My Wife",
         "Coyote Walked",
         "Past My Wife"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "bBNay8b8Q74",
-      "title": "Hamptons.com - LIVE! Long Wharf, Sag Harbor, New York (HARBOR CAM)",
-      "channel_id": "UCp2wwvvhIxKlh44p7tH-s_w",
-      "channel_title": "Hamptons. com",
-      "location": {
-        "lat": 41.2946099,
-        "lng": -72.9223227,
-        "city": "New Haven",
-        "region": "Connecticut",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Long Wharf"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Long Wharf",
-          "lat": 41.2946099,
-          "lng": -72.9223227,
-          "display_name": "Long Wharf, New Haven, South Central Connecticut Planning Region, Connecticut, 05610, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Long Wharf"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Hamptons.com - ! Long Wharf, Sag Harbor, New York (harbor )",
-        "Hamptons.com",
-        "Long Wharf",
-        "Sag Harbor",
-        "New York",
-        "Harbor",
-        "Hamptons. Com",
-        "Hamptons",
-        "Many Area Beaches So You Can"
       ],
       "status": "resolved"
     },
@@ -86732,51 +86286,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "g4NgJXbRrBk",
-      "title": "Snow King Mountain Lifts - SeeJH.com",
-      "channel_id": "UCEpDjqeFIGTqHwk-uULx72Q",
-      "channel_title": "See Jackson Hole",
-      "location": {
-        "lat": 60.0416318,
-        "lng": 10.302044,
-        "city": null,
-        "region": null,
-        "country": "NO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Hole"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Hole",
-          "lat": 60.0416318,
-          "lng": 10.302044,
-          "display_name": "Hole, Norge",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Hole"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Snow King Mountain Lifts - Seejh.com",
-        "Snow King Mountain Lifts",
-        "Seejh.com",
-        "See Jackson Hole",
-        "Hole",
-        "Providing More Quality",
-        "the Jackson Hole",
-        "Our",
-        "Exclusive Future Streams",
-        "Exclusive Chat On Selected Streams"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "5HX_7sFSX98",
       "title": "Maria's Cam 2 OUTSIDE  STORE AGDAO PUBLIC MARKET DAVAO CITY PHILIPPINES  #philippines #davaocity",
       "channel_id": "UCZ6ZuSqeKrjFP7w9lS0nx0Q",
@@ -89182,51 +88691,6 @@
         "Fresno Video Surveillance",
         "Pvs Security Integrators",
         "Integrators"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "CZvqU0OqYro",
-      "title": "🔴【LIVE】江の島ライブカメラ(Live Camera in Enoshima Island)",
-      "channel_id": "UCSzlMnbA7Fl0qSIggqllwFg",
-      "channel_title": "WITH SEA",
-      "location": {
-        "lat": 33.009397,
-        "lng": 129.3522449,
-        "city": "西海市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Enoshima Island"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Enoshima Island",
-          "lat": 33.009397,
-          "lng": 129.3522449,
-          "display_name": "江島, 西海市, 長崎県, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Enoshima Island"
-          ]
-        }
-      ],
-      "location_hints": [
-        "江の島ライブカメラ( In Enoshima Island)",
-        "江の島ライブカメラ",
-        "◆ウェイティング登録はこちら Https:",
-        "ウェイティング登録はこちら Https",
-        "#contact ◆with Sea 江の島 詳細 Https:",
-        "Sea 江の島 詳細 Https",
-        "#江の島ライブカメラ #withsea #livecamera #enoshima",
-        "Enoshima Island",
-        "In Enoshima Island",
-        "With Sea"
       ],
       "status": "resolved"
     },
@@ -100380,48 +99844,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "NK98sgeJiXE",
-      "title": "Solebad Werne",
-      "channel_id": "UCIeAa1ORzuGMaaBNcuLgAvw",
-      "channel_title": "Solebad Werne",
-      "location": {
-        "lat": 51.6587831,
-        "lng": 7.6322296,
-        "city": "Werne",
-        "region": "Nordrhein-Westfalen",
-        "country": "DE",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Solebad Werne"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Solebad Werne",
-          "lat": 51.6587831,
-          "lng": 7.6322296,
-          "display_name": "Solebad Werne, 2, Am Hagen, Werne, Kreis Unna, Nordrhein-Westfalen, 59368, Deutschland",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Solebad Werne"
-          ]
-        }
-      ],
-      "location_hints": [
-        "M² Wasserfläche, Indiana, United States",
-        "Ganzjährig Unter Freiem Himmel, Indiana, United States",
-        "Solebad Werne",
-        "Werne",
-        "Werne das Modernste",
-        "Drei Funktionsbereiche Eingeteilt",
-        "Kontakt"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "PMetnXeBFSk",
       "title": "✈️ RE-Live Planespotting at Frankfurt Airport – B747 Paradise Takeoffs & Landings - FRA - EDDF 2026",
       "channel_id": "UC3yyv3A3atZf0d0ybFMrhbw",
@@ -109232,44 +108654,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "cJg57DfzptM",
-      "title": "Columbia Hotel Camera",
-      "channel_id": "UC4AoiIN2ErfWcE5-YyjDDIg",
-      "channel_title": "Ashland Fiber Network",
-      "location": {
-        "lat": 42.1954929,
-        "lng": -122.7118934,
-        "city": "Ashland",
-        "region": "Oregon",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Columbia Hotel"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Columbia Hotel",
-          "lat": 42.1954929,
-          "lng": -122.7118934,
-          "display_name": "Columbia Hotel, 262, East Main Street, Ashland, Jackson County, Oregon, 95520, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Columbia Hotel"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Columbia Hotel",
-        "Ashland Fiber Network",
-        "Network"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "PWJiDUUSNvs",
       "title": "🔴24/7 LIVE CAT TV NO ADS😺 Unlimited Wild Birds and Squirrels at Autumn Festival",
       "channel_id": "UC-DqJ54Dx0a5SzANKdTKwPg",
@@ -109589,7 +108973,7 @@
         "Kilauea Volcano Livestream",
         "Afartv",
         "the",
-        "Our"
+        "All Three Vents"
       ],
       "status": "resolved"
     },
@@ -125030,7 +124414,7 @@
         "Kilauea Volcano Livestream",
         "Afartv",
         "the",
-        "Our"
+        "All Three Vents"
       ],
       "status": "resolved"
     },
@@ -145335,11 +144719,11 @@
         "올림픽공원",
         "리리리방",
         "올림픽공원 리리리방ㅋㅋㅋㅋㅋㅋ",
-        "메일 : Mikkangtv@naver.com",
+        "메일 Mikkangtv@naver.com",
+        "메일 Mikkangtv",
         "This Stream Is Created With #prismlivestudio",
         "Created",
         "Prismlivestudio",
-        "Mikkangtv",
         "Naver.com"
       ],
       "status": "resolved"
@@ -151756,51 +151140,6 @@
         "Scenic Landscapes",
         "Most Beautiful Places In the World",
         "Stunning Nature & Scenic Landscapes"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "K3e4M0lAq-o",
-      "title": "🔴LIVE | 💦 POOL PARTY TIME! ☀️ Swimming & Healthy Summer Habits | Cam & Sam",
-      "channel_id": "UCManytxjIedRJxFc2GgyasA",
-      "channel_title": "Cam & Sam - Kids Songs & Nursery Rhymes",
-      "location": {
-        "lat": 14.7212976,
-        "lng": -91.2588406,
-        "city": "San Marcos La Laguna",
-        "region": "Sololá",
-        "country": "GT",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Swimming"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Swimming",
-          "lat": 14.7212976,
-          "lng": -91.2588406,
-          "display_name": "Swimming, San Marcos La Laguna, Sololá, 07016, Guatemala",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Swimming"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Pool Party Time! Swimming & Healthy Summer Habits",
-        "Pool Party Time",
-        "Swimming",
-        "Healthy Summer Habits",
-        "& Sam",
-        "Sam",
-        "& Sam - Kids Songs & Nursery Rhymes",
-        "Rhymes",
-        "Kids Songs",
-        "Nursery Rhymes"
       ],
       "status": "resolved"
     },
@@ -159417,43 +158756,6 @@
         "the Chiricahua Mountain Range",
         "Far Southeastern Arizona",
         "the Arizona Desert"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "-Q20DkjKgpM",
-      "title": "Campus Point Surf Cam",
-      "channel_id": "UCxd6_Ql2p4OoSXbKZGP0bmg",
-      "channel_title": "GRIT",
-      "location": {
-        "lat": 38.9953683,
-        "lng": 21.9877132,
-        "city": null,
-        "region": null,
-        "country": "GR",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Grit"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Grit",
-          "lat": 38.9953683,
-          "lng": 21.9877132,
-          "display_name": "Ελλάς",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Grit"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Campus Point Surf",
-        "Grit"
       ],
       "status": "resolved"
     },
@@ -171310,51 +170612,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "tclkS75MV5I",
-      "title": "ITAJAÍ SC AO VIVO | PORTO DE ITAJAÍ – 2K – FASTSIGNAL | CONEXÃODCTV",
-      "channel_id": "UC37R9R29MAwvrOBafYoBtow",
-      "channel_title": "ConexãoDCTV - Oficial",
-      "location": {
-        "lat": -26.9046787,
-        "lng": -48.6552979,
-        "city": null,
-        "region": "Santa Catarina",
-        "country": "BR",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Itajaí Sc"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Itajaí Sc",
-          "lat": -26.9046787,
-          "lng": -48.6552979,
-          "display_name": "Itajaí, Santa Catarina, Região Sul, Brasil",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Itajaí Sc"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Itajaí, South Carolina, United States",
-        "Brasil Inscreva, Sergipe, Brazil",
-        "Um dos Maiores Portos do Brasil",
-        "Itajaí Sc",
-        "Itajaí",
-        "Porto de Itajaí – 2k – Fastsignal",
-        "Porto de Itajaí",
-        "Fastsignal",
-        "Conexãodctv",
-        "Itajaí Sc Porto de Itajaí"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "fYSeYdJ5do8",
       "title": "PRAIA GRANDE - BAGUARI - UBATUBA 1 - AO VIVO",
       "channel_id": "UCVQG1pBkRM4xlRrBmV65kUw",
@@ -179144,51 +178401,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "ju1gl5PF_G8",
-      "title": "[No Mid-Roll Ads] Cozy Fall Sleep by the Sea 🌙 24/7 LIVE Ocean Waves & Fire Sounds | Night Porch",
-      "channel_id": "UCP7lMaoGpi9Ob2yfi0q0CDA",
-      "channel_title": "Cozy Hideaway",
-      "location": {
-        "lat": 42.1844661,
-        "lng": -122.6641868,
-        "city": "Ashland",
-        "region": "Oregon",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Relax, Oregon, United States"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Relax, Oregon, United States",
-          "lat": 42.1844661,
-          "lng": -122.6641868,
-          "display_name": "Relax Inn, 535, Clover Lane, Ashland, Jackson County, Oregon, 97520, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Relax, Oregon, United States"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Relax, Oregon, United States",
-        "Meditating, Oregon, United States",
-        "Subscribe Helps, Maine, United States",
-        "Unwind Beside Glowing Fireplaces, Oregon, United States",
-        "Cozy Beach Houses, Seaside Cottages, And Ocean Porches",
-        "No Mid-roll Ads",
-        "Cozy Fall Sleep By the Sea 24",
-        "Cozy Fall Sleep",
-        "the Sea",
-        "7 Ocean Waves & Fire Sounds"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "Bqa2kmJ-tKQ",
       "title": "Morning Coffee & Relaxing Italian Music | Mediterranean Vibes, Ocean Sounds & Dreamy Views 🌅🌊☀️",
       "channel_id": "UCb_QGe9EWyCXBbKkY85nBfg",
@@ -181250,51 +180462,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "Rz-It_HrsOo",
-      "title": "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気 夜景 【4K配信】 Japan Nagoya Live Camera",
-      "channel_id": "UCjmqhsGQ9J1QK4r5mUrZb4A",
-      "channel_title": "鉄道沿線の生活",
-      "location": {
-        "lat": 35.1851045,
-        "lng": 136.8998438,
-        "city": "名古屋市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Japan Nagoya"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Japan Nagoya",
-          "lat": 35.1851045,
-          "lng": 136.8998438,
-          "display_name": "名古屋市, 愛知県, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Japan Nagoya"
-          ]
-        }
-      ],
-      "location_hints": [
-        "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気 夜景",
-        "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気",
-        "Japan Nagoya",
-        "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気 夜景 4k配信 japan nagoya",
-        "鉄道沿線の生活",
-        "サンライズ出雲･瀬戸",
-        "名鉄･近鉄は地下ﾎｰﾑのためこのｶﾒﾗからは見れません",
-        "画角を変えるを含む",
-        "タカラダニ",
-        "天候の良い午前中･夏季"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "0zkWBUQIFCg",
       "title": "【LIVE】福島駅方面 大阪環状線・梅田貨物線ライブカメラ 2026/09/20 17:00～ Osaka, JAPAN | Train Camera",
       "channel_id": "UCRruWUK0POjg2veibHucffQ",
@@ -182273,51 +181440,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "xoRChxF1pxg",
-      "title": "NANCY GRACE ROMAN SPACE TELESCOPE - LIVE DE ACOMPANHAMENTO",
-      "channel_id": "UCKqaYQJxujMSKCnCNahbNwg",
-      "channel_title": "Space Orbit",
-      "location": {
-        "lat": 22.1941261,
-        "lng": 113.5477265,
-        "city": "澳門 Macau",
-        "region": "澳門 Macau",
-        "country": "CN",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "de Acompanhamento"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "de Acompanhamento",
-          "lat": 22.1941261,
-          "lng": 113.5477265,
-          "display_name": "澳門特別行政區政府醫療專業委員會 Governo da Região Administrativa Especial de Macau, Conselho dos Profissionais de Saúde;預防及控制吸煙辦公室 / 醫療系統建設跟進委員會 Gabinete Para a Prevenção e Controlo do Tabagismo / Comissão de Acompanhamento da Rede de Infra-Estruturas do Sistema de Saú, 5, 加思欄馬路 Estrada de São Francisco, 雀仔園 Horta da Mitra, 大堂區 Sé, 澳門 Macau, 519020, 中国",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "de Acompanhamento"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Nancy Grace Roman Space Telescope - de Acompanhamento",
-        "Nancy Grace Roman Space Telescope",
-        "de Acompanhamento",
-        "Space Orbit",
-        "Orbit",
-        "No Telegram Https",
-        "Tempo Real Até O Seu Destino",
-        "Apps da Apple E Google",
-        "Quandolanca.com.br",
-        "Pt Ou Nas Lojas de Apps da Apple E Google! Acesse A Loja do Fogueteiro Em Https:"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "Mq86Ang_R6c",
       "title": "보면 볼수록 빠져드는 '진짜 과학' 이야기, AI로봇부터 양자컴퓨팅의 모든 것!｜진짜 과학 몰아보기 [반복재생] / YTN 사이언스",
       "channel_id": "UCZdBJIbJz0P9xyFipgOj1fA",
@@ -183134,51 +182256,6 @@
       },
       "location_candidates": [],
       "location_hints": [],
-      "status": "resolved"
-    },
-    {
-      "video_id": "FjYG9QhxkzU",
-      "title": "Sea-EagleCAM4 Live Stream",
-      "channel_id": "UCZss13TJZLtZ0ones3HpYMQ",
-      "channel_title": "Sea-EagleCAM4",
-      "location": {
-        "lat": -27.9973303,
-        "lng": 153.2993133,
-        "city": null,
-        "region": "Queensland",
-        "country": "AU",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Birdlife, Australia"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Birdlife, Australia",
-          "lat": -27.9973303,
-          "lng": 153.2993133,
-          "display_name": "Birdlife Court, Nerang, Queensland, 4211, Australia",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Birdlife, Australia"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Birdlife, Australia",
-        "Conservation of, Australia",
-        "Sea-eaglecam.org For Information On the Nest, Our Research And Chat",
-        "Sea-eaglecam4 Stream",
-        "Sea",
-        "Sea-eaglecam",
-        "Sea-eaglecam4",
-        "Https",
-        "Sea-eaglecam.org",
-        "Information"
-      ],
       "status": "resolved"
     },
     {
@@ -184082,51 +183159,6 @@
       "location_hints": [
         "Talk Engine",
         "Engine"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "I9st2m0r4q8",
-      "title": "恆春古城城牆景觀即時影像",
-      "channel_id": "UCizx4r-CVRK5EmJDgD7eMOA",
-      "channel_title": "Lecker Kitchen 萊客廚坊",
-      "location": {
-        "lat": 42.8916422,
-        "lng": 116.8130821,
-        "city": "克什克腾旗 ᠬᠡᠰᠢᠭᠲᠡᠨ ᠬᠣᠰᠢᠭᠤ",
-        "region": "内蒙古自治区 ᠦᠪᠦᠷ ᠮᠣᠩᠭᠤᠯ ᠤᠨ ᠥᠪᠡᠷᠲᠡᠭᠡᠨ ᠵᠠᠰᠠᠬᠣ ᠣᠷᠣᠨ",
-        "country": "CN",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "萊客廚坊"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "萊客廚坊",
-          "lat": 42.8916422,
-          "lng": 116.8130821,
-          "display_name": "皮房井子出场点, 浩来呼热苏木, 克什克腾旗 ᠬᠡᠰᠢᠭᠲᠡᠨ ᠬᠣᠰᠢᠭᠤ, 赤峰市 ᠤᠯᠠᠭᠠᠨᠬᠠᠳᠠ ᠬᠣᠲᠠ, 内蒙古自治区 ᠦᠪᠦᠷ ᠮᠣᠩᠭᠤᠯ ᠤᠨ ᠥᠪᠡᠷᠲᠡᠭᠡᠨ ᠵᠠᠰᠠᠬᠣ ᠣᠷᠣᠨ, 中国",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "萊客廚坊"
-          ]
-        }
-      ],
-      "location_hints": [
-        "恆春古城城牆景觀即時影像",
-        "Lecker Kitchen 萊客廚坊",
-        "萊客廚坊",
-        "畫面由萊客廚坊提供",
-        "Bit.ly",
-        "萊客廚坊 Line 官方帳號：https:",
-        "萊客廚坊 Line 官方帳號",
-        "Https",
-        "Lin.ee",
-        "Rltheyaw"
       ],
       "status": "resolved"
     },
@@ -188767,51 +187799,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "tusny7uGPS8",
-      "title": "【LIVE】関西国際空港(KIX)ライブカメラ　第1ターミナル｜ Kansai International Airport - Osaka, Japan＜カンテレNEWS＞",
-      "channel_id": "UCQhaZjODkIjuv38d-i5TVRw",
-      "channel_title": "カンテレNEWS",
-      "location": {
-        "lat": 34.6937569,
-        "lng": 135.5014539,
-        "city": "大阪市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Osaka, Japan"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Osaka, Japan",
-          "lat": 34.6937569,
-          "lng": 135.5014539,
-          "display_name": "大阪市, 大阪府, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Osaka, Japan"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Osaka, Japan",
-        "関西国際空港(kix)ライブカメラ 第1ターミナル｜ Kansai International Airport - Osaka, japan＜カンテレnews＞",
-        "ライブカメラ",
-        "Japan",
-        "カンテレnews",
-        "関西国際空港(kix)ライブカメラ 第1ターミナル｜ Kansai International Airport",
-        "Osaka, japan＜カンテレnews＞",
-        "▣ カンテレ報道への情報提供・取材依頼 ◇ Https:",
-        "カンテレ報道への情報提供",
-        "12942 ▣ newsランナー ◇ 月〜金・夕方4時50分から放送中！ ◇ Hp：https:"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "YxbqlYjwsU0",
       "title": "JOMA Construction Pond Build 2026 LIVE",
       "channel_id": "UCXy_Etr5h7qDTAjJPlMabpA",
@@ -190808,51 +189795,6 @@
         "Sea Isle City Beach Patrol — Sea Isle City, Nj Https:",
         "Spinnaker South Panoramic - Sea Isle City — Sea Isle City, Nj Https:",
         "Spinnaker South – Boardwalk Southeast View — Sea Isle City, Nj Https:"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "_ycROTOcbLw",
-      "title": "LIVESTREAM: Tracking Monster Nor’easter As It Slams East Coast With Dangerous, Major Flooding",
-      "channel_id": "UC1FbPiXx59_ltnFVx7IxWow",
-      "channel_title": "FOX Weather",
-      "location": {
-        "lat": 40.8077797,
-        "lng": -84.0572225,
-        "city": null,
-        "region": "Ohio",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "All, United States"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "All, United States",
-          "lat": 40.8077797,
-          "lng": -84.0572225,
-          "display_name": "Allen County, Ohio, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "All, United States"
-          ]
-        }
-      ],
-      "location_hints": [
-        "All, United States",
-        "Fox Weathen",
-        "Fox Weath",
-        "Fox Weather",
-        "Weather",
-        "Whatever Mother Nature Throws Your Way",
-        "Your Area",
-        "Watch More Fox Weather Videos: Https:",
-        "Watch More Fox Weather Videos",
-        "Https"
       ],
       "status": "resolved"
     },
@@ -193108,51 +192050,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "XjbNR4F9G0M",
-      "title": "우주는 어디까지 이어질까? 상상을 넘어서는 우주 이야기",
-      "channel_id": "UCqQgmjFrXIi5NSsO9xsYJuQ",
-      "channel_title": "우주거미줄",
-      "location": {
-        "lat": 37.4265418,
-        "lng": 126.6688722,
-        "city": "인천광역시",
-        "region": null,
-        "country": "KR",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "이야기"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "이야기",
-          "lat": 37.4265418,
-          "lng": 126.6688722,
-          "display_name": "이야기 어린이공원, 청학동, 연수구, 인천광역시, 대한민국",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "이야기"
-          ]
-        }
-      ],
-      "location_hints": [
-        "우주는",
-        "어디까지",
-        "이어질까",
-        "상상을",
-        "넘어서는",
-        "이야기",
-        "우주는 어디까지 이어질까? 상상을 넘어서는 우주 이야기",
-        "우주는 어디까지 이어질까",
-        "상상을 넘어서는 우주 이야기",
-        "우주거미줄"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "cqhaC8znCzk",
       "title": "THE UNIVERSE IS SENDING YOU THIS FREQUENCY - FINANCIAL ABUNDANCE & BLESSINGS (888 Hz)",
       "channel_id": "UCPr71H9bJ7oLBUQoUn9mPbQ",
@@ -193671,51 +192568,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "Qa5LqU9xxtc",
-      "title": "Pattaya Beach Road CAM, - links to  Air Quality, Weather",
-      "channel_id": "UC3T-pUHcNSSerUdq0W17wvg",
-      "channel_title": "PattayaBob360IRL",
-      "location": {
-        "lat": 14.8971921,
-        "lng": 100.83273,
-        "city": null,
-        "region": null,
-        "country": "TH",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Thailand"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Thailand",
-          "lat": 14.8971921,
-          "lng": 100.83273,
-          "display_name": "ประเทศไทย",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Thailand"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Pattaya Beach Road , - Links To Air Quality, Weather",
-        "Links To Air Quality, Weather",
-        "Thailand",
-        "Ask, Maine, United States",
-        "Cook Vs Dining Out Or Using Grab, Thailands Door-dash",
-        "Pattaya Beach Road",
-        "Links",
-        "Air Quality",
-        "Weather",
-        "Pattayabob Irl"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "q0-DDh1zdY4",
       "title": "Live Zandvoort Boulevard and Beach Camera",
       "channel_id": "UCgDKPUQWlxzaqPm6tOFrInw",
@@ -194065,51 +192917,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "MIXaMQkjKhY",
-      "title": "Directo webcam desde el Parque Natural de las Ubiñas, Jomezana, Asturias. Meteorología y vida. 24/7",
-      "channel_id": "UCaoPxnZgNFn-P2uwIaTunEg",
-      "channel_title": "Jomezana",
-      "location": {
-        "lat": 43.0580171,
-        "lng": -5.8548212,
-        "city": "Lena",
-        "region": "Asturias / Asturies",
-        "country": "ES",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Jomezana"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Jomezana",
-          "lat": 43.0580171,
-          "lng": -5.8548212,
-          "display_name": "Xomezana, Lena, Asturias / Asturies, España",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Jomezana"
-          ]
-        }
-      ],
-      "location_hints": [
-        "el Parque Natural de Las Ubiñas",
-        "Jomezana",
-        "Valle del Huerna Y Autopista A-66 Oviedo León",
-        "Valle del Huerna",
-        "Autopista",
-        "Oviedo León",
-        "Vídeos de Naturaleza",
-        "Asturiano Xomezana",
-        "Lena Situada",
-        "Asturiano Xomezana Riba"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "Fp7l8XASb9Y",
       "title": "LIVE Banzai Pipeline Surf Cam: North Shore, Oahu - Hawaii | explore.org",
       "channel_id": "UCJRuk-FJ6dzX0MOpnd0UDCg",
@@ -194151,6 +192958,2533 @@
         "Org",
         "Hawaii Explore.org",
         "Sunsets"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "nZHYewijJQ0",
+      "title": "Balneário Camboriú ao vivo - Avenida Atlântica (Restaurante Pau da VIOLA)",
+      "channel_id": "UCi1vQx48j_nfrMg6XH5PItQ",
+      "channel_title": "CLIMA BC Brazil",
+      "location": {
+        "lat": -23.4505747,
+        "lng": -46.5182087,
+        "city": "Guarulhos",
+        "region": "São Paulo",
+        "country": "BR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Clima Bc Brazil"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Clima Bc Brazil",
+          "lat": -23.4505747,
+          "lng": -46.5182087,
+          "display_name": "Bom Clima, Distrito-sede de Guarulhos, Guarulhos, São Paulo, Região Sudeste, Brasil",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Clima Bc Brazil"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Clima Bc Brazil",
+        "Brazil",
+        "Balneário Camboriú, South Carolina, United States",
+        "Praia, South Carolina, United States",
+        "Centro de Balneário Camboriú, Santa Catarina, Brazil",
+        "Praia, Brazil",
+        "Orla Balneario Camboriu, Brazil",
+        "Beach, Brazil",
+        "Um dos Destinos Turísticos Mais Famosos do Brasil",
+        "Balneário Camboriú - Avenida Atlântica (restaurante Pau da Viola)"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "TQW3IqKsUzc",
+      "title": "[LIVE] AO VIVO Santa Maria RS - Veja Tempo Região Central Rio Grande do Sul com Escuta Aerea",
+      "channel_id": "UCqI8nU3-dstxAS3YCXhKuPg",
+      "channel_title": "Câmeras ao Vivo RS - Pôr do Sol Guaíba",
+      "location": {
+        "lat": -29.6897217,
+        "lng": -53.8043117,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
+        "renderable": true,
+        "evidence": [
+          "YouTube recordingDetails.location"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [],
+      "status": "resolved"
+    },
+    {
+      "video_id": "DjJtiXKJf8M",
+      "title": "Maria's Cam11 New Salmonan Agdao infront of the School #philippines #davaocity",
+      "channel_id": "UCZ6ZuSqeKrjFP7w9lS0nx0Q",
+      "channel_title": "Maria Deseo - Philippines Live Webcam",
+      "location": {
+        "lat": 12.7503486,
+        "lng": 122.7312101,
+        "city": null,
+        "region": null,
+        "country": "PH",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Philippines"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Philippines",
+          "lat": 12.7503486,
+          "lng": 122.7312101,
+          "display_name": "Philippines",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Philippines"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Maria's Cam11 New Salmonan Agdao Infront of the School #philippines #davaocity",
+        "Philippines",
+        "Maria Deseo - Philippines",
+        "Davao City, Philippines",
+        "Agdao Davao City, Philippines",
+        "Rosemary Street Agdao Davao City, Philippines",
+        "Maya-maya st. Davao City, Philippines",
+        "Supporting, Maine, United States",
+        "Maria's",
+        "New Salmonan Agdao Infront of the School"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "vwwvrhNa_8Q",
+      "title": "Live Webcam East Beach, Isle of Berneray, Outer Hebrides, Scotland, 24 Hour Live Streaming",
+      "channel_id": "UCWuoYuUza2qNg4L2Di-rZsA",
+      "channel_title": "East Beach Berneray",
+      "location": {
+        "lat": 40.8508545,
+        "lng": -96.6697878,
+        "city": "Lincoln",
+        "region": "Nebraska",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "2,500 Acres"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "2,500 Acres",
+          "lat": 40.8508545,
+          "lng": -96.6697878,
+          "display_name": "Sunset Acres, Lincoln, Lancaster County, Nebraska, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "2,500 Acres"
+          ]
+        }
+      ],
+      "location_hints": [
+        "East Beach, Isle of Berneray, Outer Hebrides, Scotland, 24 Hour Streaming",
+        "Www.berneray. For Other of Berneray, Visit Our Friends At Coralbox: Https:",
+        "Www.coralboxwebcam.co.uk",
+        "2,500 Acres",
+        "Beach",
+        "Isle of Berneray",
+        "Outer Hebrides",
+        "Scotland",
+        "Hour",
+        "East Beach Berneray"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "CnlAKQUjJB8",
+      "title": "🔴 LIVE RIGHT NOW: Global Webcams 24/7 🌎 See Icons of the World in Real Time",
+      "channel_id": "UCrlqY1M1yxakXvK9iBIiz-A",
+      "channel_title": "Window Seat",
+      "location": {
+        "lat": 48.1404112,
+        "lng": -123.409035,
+        "city": "Port Angeles",
+        "region": "Washington",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Now"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Now",
+          "lat": 48.1404112,
+          "lng": -123.409035,
+          "display_name": "Coast Guard Air Station Port Angeles, 1, Ediz Hook Road, Port Angeles, Clallam County, Washington, 98362, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Now"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Studying, Oregon, United States",
+        "Relaxation, Oregon, United States",
+        "Right Now: Global 24",
+        "Now",
+        "Global",
+        "7 See Icons of the World In",
+        "See Icons of the",
+        "Window Seat",
+        "Seat",
+        "Dazzling City"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ROtH7hEQFHo",
+      "title": "🔴 [24/7 LIVE] กล้องตรวจการณ์สภาพการจราจรสด (Traffic Cam) ถ.จันทอุดม จ.ระยอง Thailand",
+      "channel_id": "UCNZAFJShwwBE_U4zu8qRNJA",
+      "channel_title": "GoPro Solution",
+      "location": {
+        "lat": 14.1088869,
+        "lng": 100.7055442,
+        "city": "ตำบลคลองห้า",
+        "region": null,
+        "country": "TH",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Traffic"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Traffic, Thailand",
+          "lat": 14.1088869,
+          "lng": 100.7055442,
+          "display_name": "Sivalee Buddha traffic circle, หมู่ที่ 9, ตำบลคลองห้า, องค์การบริหารส่วนตำบลคลองห้า, อำเภอคลองหลวง, จังหวัดปทุมธานี, ประเทศไทย",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Traffic"
+          ]
+        }
+      ],
+      "location_hints": [
+        "ดม จ.ระยอง, Thailand",
+        "กล้องตรวจการณ์สภาพการจราจรสด (traffic ) ถ.จันทอุดม จ.ระยอง Thailand",
+        "ดม จ.ระยอง Thailand",
+        "องตรวจการณ",
+        "สภาพการจราจรสด",
+        "Traffic",
+        "ถ.จ",
+        "นทอ",
+        "Gopro Solution",
+        "Solution"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "OdY-pbgl1Mk",
+      "title": "Jimmy Woo's Chaweng | Soi Green Mango | Koh Samui | Thailand | Live Street Webcam | 2160p 4K",
+      "channel_id": "UCgRLgl6q8u7pHgSygccuN9A",
+      "channel_title": "Jimmywoo's Samui",
+      "location": {
+        "lat": 14.8971921,
+        "lng": 100.83273,
+        "city": null,
+        "region": null,
+        "country": "TH",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Thailand"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Thailand",
+          "lat": 14.8971921,
+          "lng": 100.83273,
+          "display_name": "ประเทศไทย",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Thailand"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Thailand",
+        "Jimmy Woo's Chaweng Soi Green Mango Koh Samui Thailand Street 2160p",
+        "@9.531831,100.063309,15z",
+        "Jimmy Woo's Chaweng",
+        "Soi Green Mango",
+        "Koh Samui",
+        "Street",
+        "2160p",
+        "Jimmywoo's Samui",
+        "Samui"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Jolvi-UqRzQ",
+      "title": "🔴 LIVE Bendung Katulampa Bogor — Real Time | Cemerlang CCTV",
+      "channel_id": "UC0fVOHCQqw3S8DWHE7OdCMA",
+      "channel_title": "Pakuan Network",
+      "location": {
+        "lat": -6.6331569,
+        "lng": 106.837195,
+        "city": "Bogor",
+        "region": "Jawa Barat",
+        "country": "ID",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Bendung Katulampa Bogor —"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Bendung Katulampa Bogor —",
+          "lat": -6.6331569,
+          "lng": 106.837195,
+          "display_name": "Bendung Katulampa, Bogor Timur, Bogor, Jawa Barat, 16144, Indonesia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Bendung Katulampa Bogor —"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Ketinggian Air), Tetap Rujuk Instansi Terkait Seperti Bpbd",
+        "Bendung Katulampa Bogor —",
+        "Bendung Katulampa Bogor",
+        "Cemerlang",
+        "Pakuan Network",
+        "Network",
+        "24 Jam — Bendung Katulampa Bogor ( )",
+        "Jam",
+        "Ketinggian Air",
+        "Tetap Rujuk Instansi Terkait Seperti Bpbd"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "bAvyAuNooYs",
+      "title": "CCTV KUJON",
+      "channel_id": "UCs0qha28uWUM3qQGw4V5-vg",
+      "channel_title": "Dinas Perhubungan Kabupaten Magelang",
+      "location": {
+        "lat": -7.5136144,
+        "lng": 110.2145133,
+        "city": null,
+        "region": "Jawa Tengah",
+        "country": "ID",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Magelang, Indonesia"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Magelang, Indonesia",
+          "lat": -7.5136144,
+          "lng": 110.2145133,
+          "display_name": "Magelang, Jawa Tengah, Indonesia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Magelang, Indonesia"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Magelang, Indonesia",
+        "Kujon",
+        "Dinas Perhubungan Kabupaten Magelang",
+        "Magelang",
+        "Simpang Kujon",
+        "Channel Official Dinas Perhubungan Kabupaten Magelang",
+        "Channel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "AGbGuDTRgDU",
+      "title": "CCTV Simpang Paseban View Selatan Bantul",
+      "channel_id": "UCtlo6u2OierMgKSMrboSS8w",
+      "channel_title": "CCTV Pemerintah Kabupaten Bantul",
+      "location": {
+        "lat": -7.8982543,
+        "lng": 110.3855534,
+        "city": null,
+        "region": "Daerah Istimewa Yogyakarta",
+        "country": "ID",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Bantul, Indonesia"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Bantul, Indonesia",
+          "lat": -7.8982543,
+          "lng": 110.3855534,
+          "display_name": "Bantul, Daerah Istimewa Yogyakarta, Indonesia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Bantul, Indonesia"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Bantul, Indonesia",
+        "Simpang Paseban View Selatan Bantul",
+        "Pemerintah Kabupaten Bantul",
+        "Bantul"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "v01O3BLA2iw",
+      "title": "CCTV JUMOYO",
+      "channel_id": "UCs0qha28uWUM3qQGw4V5-vg",
+      "channel_title": "Dinas Perhubungan Kabupaten Magelang",
+      "location": {
+        "lat": -7.5136144,
+        "lng": 110.2145133,
+        "city": null,
+        "region": "Jawa Tengah",
+        "country": "ID",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Magelang, Indonesia"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Magelang, Indonesia",
+          "lat": -7.5136144,
+          "lng": 110.2145133,
+          "display_name": "Magelang, Jawa Tengah, Indonesia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Magelang, Indonesia"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Magelang, Indonesia",
+        "Jumoyo",
+        "Dinas Perhubungan Kabupaten Magelang",
+        "Magelang",
+        "Simpang Jumoyo",
+        "Channel Official Dinas Perhubungan Kabupaten Magelang",
+        "Channel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "f-RddZelgSc",
+      "title": "CCTV BLABAK",
+      "channel_id": "UCCYRwYO_XVeDgWfZCRvm8Bg",
+      "channel_title": "ATCS Dishub Kab Magelang",
+      "location": {
+        "lat": -7.8628761,
+        "lng": 112.0363715,
+        "city": "Kota Kediri",
+        "region": "Jawa Timur",
+        "country": "ID",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Blabak"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Blabak",
+          "lat": -7.8628761,
+          "lng": 112.0363715,
+          "display_name": "Blabak, Kota Kediri, Jawa Timur, 64135, Indonesia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Blabak"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Blabak",
+        "Atcs Dishub Kab Magelang",
+        "Magelang",
+        "Simpang Blabak",
+        "Yogyakarta",
+        "Muntilan"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "0il1J0_qjU0",
+      "title": "He Kills His Friend... To Pay For His Wedding",
+      "channel_id": "UCmOCpBKeoBPp-HwarhIBA2g",
+      "channel_title": "Best Documentary",
+      "location": {
+        "lat": 12.0918925,
+        "lng": 75.1951763,
+        "city": "Payyanur",
+        "region": "Kerala",
+        "country": "IN",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Pay"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Pay",
+          "lat": 12.0918925,
+          "lng": 75.1951763,
+          "display_name": "Payyanur, Railway Station-Naval Academy Road, Kotti, Payyanur, Payyannur Taluk, Kannur, Kerala, 671350, India",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Pay"
+          ]
+        }
+      ],
+      "location_hints": [
+        "He Kills His Friend... To Pay For His Wedding",
+        "He Kills His Friend",
+        "Pay",
+        "His Wedding",
+        "Best Documentary",
+        "Documentary",
+        "the Attic of",
+        "the Ensuing Publicity Directed",
+        "Her",
+        "Her Community"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "iQW4B8genT4",
+      "title": "After paying the fine, the fat man became resentful and plotted to harm Hoang Manh.",
+      "channel_id": "UC7_keT2OWmUIHyZNKeARICQ",
+      "channel_title": "Hoàng Mạnh Police",
+      "location": {
+        "lat": 38.7945952,
+        "lng": -106.5348379,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
+        "renderable": true,
+        "evidence": [
+          "YouTube recordingDetails.location"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Mv8RGNJW-jU",
+      "title": "8 ЖУТКИХ ВИДЕО ЗАПИСАННЫХ НА КАМЕРУ ВИДЕОНАБЛЮДЕНИЯ",
+      "channel_id": "UCqYaTB7BS5TStfhWmzfmsDQ",
+      "channel_title": "Xancapp",
+      "location": {
+        "lat": 19.3605914,
+        "lng": -99.0733955,
+        "city": "Ciudad de México",
+        "region": "Ciudad de México",
+        "country": "MX",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "T.me"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "T.me",
+          "lat": 19.3605914,
+          "lng": -99.0733955,
+          "display_name": "Edificio T, Explanada principal, Colonia La Purísima, Ciudad de México, Iztapalapa, Ciudad de México, 09310, México",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "T.me"
+          ]
+        }
+      ],
+      "location_hints": [
+        "В Темных Уголках Мира Всегда Есть Что-то, Что Стоит Узнать",
+        "8 Жутких Видео Записанных На Камеру Видеонаблюдения",
+        "Жутких Видео Записанных На Камеру Видеонаблюдения",
+        "Xancapp",
+        "T.me",
+        "Xancapproom Boosty: Https:",
+        "Xancapproom Boosty",
+        "Https",
+        "Boosty.to",
+        "В Темных Уголках Мира Всегда Есть"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "BJYgCUpN3MU",
+      "title": "СМЕРТЕЛЬНОЕ ПАДЕНИЕ СОСЕДОВА ПОПАЛО НА ЗАПИСИ КАМЕР ВИДЕОНАБЛЮДЕНИЯ",
+      "channel_id": "UCQLL55-1W-OfY2gbzuGpT9A",
+      "channel_title": "Будда Гришна",
+      "location": {
+        "lat": 58.424756,
+        "lng": 44.2533273,
+        "city": null,
+        "region": "Костромская область",
+        "country": "RU",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Https"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Https",
+          "lat": 58.424756,
+          "lng": 44.2533273,
+          "display_name": "Костромская область, Центральный федеральный округ, Россия",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Https"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Смертельное Падение Соседова Попало На Записи Камер Видеонаблюдения",
+        "Смертельное Падение Соседова Попало На Записи",
+        "Камер Видеонаблюдения",
+        "Будда Гришна",
+        "Гришна",
+        "Поддержать Будда Гришна: Https:",
+        "Поддержать Будда Гришна",
+        "Https",
+        "Dalink.to",
+        "Buddagrishna Max: Https:"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "R3Z6c-ymwyo",
+      "title": "10 REAL Entities Captured CLEARLY on Camera Footage",
+      "channel_id": "UCK3ZW9f2JhXEScJhucMZspQ",
+      "channel_title": "Haunted Frequency",
+      "location": {
+        "lat": -38.1988521,
+        "lng": 146.3191193,
+        "city": null,
+        "region": "Victoria",
+        "country": "AU",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Frequency"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Frequency",
+          "lat": -38.1988521,
+          "lng": 146.3191193,
+          "display_name": "Frequency, Hernes Oak, Victoria, 3825, Australia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Frequency"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Basement Closet Behind Someone Playing the Drums, Ontario, Canada",
+        "China",
+        "France",
+        "10 Real Entities Captured Clearly On",
+        "Real Entities Captured Clearly",
+        "Haunted Frequency",
+        "Frequency",
+        "the End of",
+        "Wisconsin Who Crosses the Entire Garden Faster"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "W5CNluNCWss",
+      "title": "Real GHOST VIDEOS That Are Freaky as Heck (Caught on Camera)",
+      "channel_id": "UCw4ccFtBN7dhQBcHmE0qylg",
+      "channel_title": "Slapped Ham",
+      "location": {
+        "lat": 47.8188015,
+        "lng": 9.643729,
+        "city": "Weingarten",
+        "region": "Baden-Württemberg",
+        "country": "DE",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Freaky"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Freaky",
+          "lat": 47.8188015,
+          "lng": 9.643729,
+          "display_name": "Freaky, 3, Danziger Straße, Eggers, Weingarten, GVV Mittleres Schussental, Landkreis Ravensburg, Baden-Württemberg, 88250, Deutschland",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Freaky"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Real Ghost Videos That Are Freaky As Heck (caught On )",
+        "Real Ghost Videos",
+        "Freaky",
+        "Heck",
+        "Caught",
+        "Caught On",
+        "Slapped Ham",
+        "Ham",
+        "His Bathroom",
+        "Creepy Videos"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "6TByrCd23_Q",
+      "title": "titan camera man is sus 0_0 #skibiditoilet #sus #animation #prisma3d #viral #viralvideo",
+      "channel_id": "UC4Bvy72rr1r-HdwS7Zoa7IQ",
+      "channel_title": "Zero_",
+      "location": {
+        "lat": 48.7558214,
+        "lng": -0.5758315,
+        "city": "Saint-Georges-des-Groseillers",
+        "region": "Normandie",
+        "country": "FR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Titan Man"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Titan Man",
+          "lat": 48.7558214,
+          "lng": -0.5758315,
+          "display_name": "Titan, Le Hameau de Vère, Saint-Georges-des-Groseillers, Argentan, Orne, Normandie, France métropolitaine, 61100, France",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Titan Man"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Titan Man Is Sus 0_0 #skibiditoilet #sus #animation #prisma3d #viral #viralvideo",
+        "Titan Man",
+        "Sus",
+        "Skibiditoilet",
+        "Animation",
+        "Viral",
+        "Viralvideo",
+        "Zero_",
+        "Titan Tv Woman X Titan Man Sus0_0",
+        "Titan Tv Woman X Titan Man"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "gz2Rl9mmDJk",
+      "title": "9 Paranormal Encounters Caught on Camera That Are Hard to Explain",
+      "channel_id": "UCMsiCIikbpOyNbi7y5zUUlQ",
+      "channel_title": "The Eerie Whispers",
+      "location": {
+        "lat": 47.489391,
+        "lng": 9.6916539,
+        "city": "Hard",
+        "region": "Vorarlberg",
+        "country": "AT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Hard"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Hard",
+          "lat": 47.489391,
+          "lng": 9.6916539,
+          "display_name": "Hard, Bezirk Bregenz, Vorarlberg, Österreich",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Hard"
+          ]
+        }
+      ],
+      "location_hints": [
+        "9 Paranormal Encounters Caught On That Are Hard To Explain",
+        "Paranormal Encounters Caught",
+        "Hard",
+        "Explain",
+        "the Eerie Whispers",
+        "Whispers",
+        "Strange",
+        "the Mysterious Disappearance of Mark Granger",
+        "the",
+        "Welcome To \"the Eerie Whispers\""
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "wfm4LcRGE5o",
+      "title": "กล้องวงจรปิด 📹 EP.1 เมื่อทุกคนทำเสื้อตัวละ 10,000 บาทเลอะเครื่องสำอาง 🫣😨😱 l Bew Varaporn",
+      "channel_id": "UCHxUo3oQLnND1loFjxHvOTA",
+      "channel_title": "Bew Varaporn",
+      "location": {
+        "lat": 58.424756,
+        "lng": 44.2533273,
+        "city": null,
+        "region": "Костромская область",
+        "country": "RU",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Https"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Https",
+          "lat": 58.424756,
+          "lng": 44.2533273,
+          "display_name": "Костромская область, Центральный федеральный округ, Россия",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Https"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Bew Varaporn",
+        "Varaporn",
+        "3wyc6va 𝐌𝐲 𝐨𝐭𝐡𝐞𝐫 𝐜𝐡𝐚𝐧𝐧𝐞𝐥𝐬 :) 𝐅𝐁 - Https:",
+        "𝐌𝐲 𝐨𝐭𝐡𝐞𝐫 𝐜𝐡𝐚𝐧𝐧𝐞𝐥𝐬",
+        "Https",
+        "Www.facebook.com",
+        "Bewvarapornp",
+        "𝐈𝐆 : Https:",
+        "Www.instagram.com",
+        "Bewvaraporn"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "h9uoIK_Myb4",
+      "title": "วิธีบันทึกวีดีโอ จากกล้องวงจรปิดลงมือถือ ทั้งบันทึกสดและย้อนหลัง",
+      "channel_id": "UCmM5mGVNvPGzXEOe2uXO-uw",
+      "channel_title": "นะ สารพัดคลิป",
+      "location": {
+        "lat": 15.8068173,
+        "lng": 102.0315027,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
+        "renderable": true,
+        "evidence": [
+          "YouTube recordingDetails.location"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [],
+      "status": "resolved"
+    },
+    {
+      "video_id": "mcm8zvEjBzk",
+      "title": "CCTV footage reveals Albert Ojwang's final hours in police custody",
+      "channel_id": "UChBQgieUidXV1CmDxSdRm3g",
+      "channel_title": "Citizen TV Kenya",
+      "location": {
+        "lat": 51.6031068,
+        "lng": -0.1123048,
+        "city": "Greater London",
+        "region": "England",
+        "country": "GB",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Police Custody"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Police Custody",
+          "lat": 51.6031068,
+          "lng": -0.1123048,
+          "display_name": "Wood Green Police Custody Centre, 347, High Road, Hornsey, London Borough of Haringey, Greater London, England, N22 8HU, United Kingdom",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Police Custody"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Police Custody",
+        "Reveals Albert Ojwang's Final Hours In Police Custody",
+        "Reveals Albert Ojwang's Final Hours",
+        "Citizen Kenya",
+        "Kenya",
+        "Citizen Tv Kenya",
+        "Custody",
+        "Nairobi's Central Police Station",
+        "Kibera",
+        "Across Kenya"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "KHJqAfFOR6Y",
+      "title": "Albert Ojwang murder: Deleted CCTV footage that was later retrieved by IPOA",
+      "channel_id": "UCqBJ47FjJcl61fmSbcadAVg",
+      "channel_title": "NTV Kenya",
+      "location": {
+        "lat": 1.4174159,
+        "lng": 37.5358841,
+        "city": "Waso ward",
+        "region": "Samburu",
+        "country": "KE",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Deleted"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Deleted",
+          "lat": 1.4174159,
+          "lng": 37.5358841,
+          "display_name": "unknown line to be deleted, Waso ward, Samburu East, Samburu, Kenya",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Deleted"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Albert Ojwang Murder: Deleted That Was Later Retrieved By Ipoa",
+        "Albert Ojwang Murder",
+        "Deleted",
+        "Later Retrieved",
+        "Ipoa",
+        "Ntv Kenya",
+        "Kenya",
+        "Updates",
+        "Www.ntvkenya.co.ke",
+        "Paper: Daily Nation"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "A1R6zLT3E7k",
+      "title": "IIT Bombay Student Sahil Wakode CCTV Footage Under Crime Branch Scanner | #thehardafacts | News18",
+      "channel_id": "UCef1-8eOpJgud7szVPlZQAQ",
+      "channel_title": "CNN-News18",
+      "location": {
+        "lat": -16.5568536,
+        "lng": 15.7867319,
+        "city": null,
+        "region": "Cunene",
+        "country": "AO",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Cnn"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Cnn",
+          "lat": -16.5568536,
+          "lng": 15.7867319,
+          "display_name": "Cunene, Angola",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Cnn"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Iit Bombay Student Sahil Wakode Under Crime Branch Scanner",
+        "Iit Bombay Student Sahil Wakode Under",
+        "Crime Branch Scanner",
+        "#thehardafacts",
+        "Thehardafacts",
+        "News18",
+        "Iit Bombay Student Sahil Wakode Under Crime Branch Scanner #thehardafacts News18",
+        "Cnn-news",
+        "Cnn-news18",
+        "Cnn"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "gS5KTnYLH1Y",
+      "title": "Exclusive CCTV footage Captures Final moments at Utumishi Academy before the Arson",
+      "channel_id": "UCfjtl8OdiEhaHspR0VOUIBA",
+      "channel_title": "Rogers Lugose",
+      "location": {
+        "lat": 10.4299251,
+        "lng": 123.8479649,
+        "city": "Cebu City",
+        "region": "Central Visayas",
+        "country": "PH",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Taptap"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Taptap",
+          "lat": 10.4299251,
+          "lng": 123.8479649,
+          "display_name": "Taptap, Cebu City, Central Visayas, 6000, Philippines",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Taptap"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Utumishi Academy Before the Arson",
+        "Exclusive Captures Final Moments At Utumishi Academy Before the Arson",
+        "Exclusive Captures Final Moments",
+        "Rogers Lugose",
+        "Lugose",
+        "Mpesa",
+        "Remitly",
+        "Taptap To +254726046455-denis Lugose Paypal:kenyakanivo@gmail.com",
+        "Taptap",
+        "Denis Lugose Paypal"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "sPgKu2E-jdw",
+      "title": "Scooby Doo Surveillance Cam (w/ 2 iPhones)",
+      "channel_id": "UCY1kMZp36IQSyNx_9h4mpCg",
+      "channel_title": "Mark Rober",
+      "location": {
+        "lat": -1.2607219,
+        "lng": 36.7985339,
+        "city": "Nairobi",
+        "region": "Nairobi",
+        "country": "KE",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Mark Rob"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Mark Rob",
+          "lat": -1.2607219,
+          "lng": 36.7985339,
+          "display_name": "St. Mark, Parklands/Highridge ward, Highridge division, Westlands, Nairobi, 97104, Kenya",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Mark Rob"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Scooby Doo Surveillance (w",
+        "Scooby Doo Surveillance",
+        "2 Iphones)",
+        "Iphones",
+        "Scooby Doo Surveillance (w 2 Iphones)",
+        "W 2 Iphones",
+        "Mark Roben",
+        "Mark Rob",
+        "Mark Rober",
+        "Rober"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "aL8kVjA0HR4",
+      "title": "Time-lapse Daily Surveillance Series | Timelapse Surveillance | April 9th 2020",
+      "channel_id": "UCJ0CQ__CadT6RofoSOrECqQ",
+      "channel_title": "Time Ripper",
+      "location": {
+        "lat": 26.2034071,
+        "lng": -98.2300124,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
+        "renderable": true,
+        "evidence": [
+          "YouTube recordingDetails.location"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [],
+      "status": "resolved"
+    },
+    {
+      "video_id": "J08CNW2fUGQ",
+      "title": "【秋巷茶韻】古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜古屋溪橋 品茶靜心 - Gentle Chinese Guzheng Music",
+      "channel_id": "UC71kF1q5TAYZenoN-ji-6rw",
+      "channel_title": "Peaceful Zen Harmony",
+      "location": {
+        "lat": 23.9269883,
+        "lng": 120.5612721,
+        "city": "永靖鄉",
+        "region": null,
+        "country": "TW",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "秋巷茶韻"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "秋巷茶韻",
+          "lat": 23.9269883,
+          "lng": 120.5612721,
+          "display_name": "永靖鄉棒球場, 光雲村, 永靖鄉, 彰化縣, 臺灣",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "秋巷茶韻"
+          ]
+        }
+      ],
+      "location_hints": [
+        "秋巷茶韻",
+        "古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜古屋溪橋 品茶靜心 - Gentle Chinese Guzheng Music",
+        "古箏竹笛療癒音樂",
+        "超好聽的中國古典音樂 古箏",
+        "古屋溪橋 品茶靜心",
+        "Gentle Chinese Guzheng Music",
+        "秋巷茶韻 古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜古屋溪橋 品茶靜心",
+        "秋巷茶韻 古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜古屋溪橋 品茶靜心 - gentle chinese guzheng music",
+        "Peaceful Zen Harmony",
+        "Harmony"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "EVdGZ1bzIuc",
+      "title": "Sandra Callejón presenta: ¨ Callejón con Salida¨ - Lunes 28 09 2026",
+      "channel_id": "UC6kfsRwH9KmZyj1rgKD37ig",
+      "channel_title": "WO Radio 96.7 FM",
+      "location": {
+        "lat": 46.796024,
+        "lng": 11.9694238,
+        "city": "Bruneck - Brunico",
+        "region": "Trentino-Alto Adige/Südtirol",
+        "country": "IT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Lunes"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Lunes",
+          "lat": 46.796024,
+          "lng": 11.9694238,
+          "display_name": "Luns - Lunes, Dietenheim - Teodone, Bruneck - Brunico, Pustertal - Val Pusteria, Bolzano - Bozen, Trentino-Alto Adige/Südtirol, 39031, Italia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Lunes"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Sandra Callejón Presenta: ¨ Callejón Con Salida¨ - Lunes 28 09 2026",
+        "Sandra Callejón Presenta",
+        "Callejón Con Salida",
+        "Lunes",
+        "Lunes 28 09 2026",
+        "Wo Radio . Fm",
+        "Wo Radio 96.7 Fm",
+        "Wo Radio",
+        "Carlos Paz Fm",
+        "Desde Carlos Paz Fm 96.7 - Https:"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "gvGZYVI5s4U",
+      "title": "엔타리아 하코 궁수",
+      "channel_id": "UCKOJWE4GA6nX-UgNqeF88jw",
+      "channel_title": "BJ우주",
+      "location": {
+        "lat": 34.7698479,
+        "lng": 127.660331,
+        "city": "여수시",
+        "region": "전남광주통합특별시",
+        "country": "KR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "메이플"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "메이플",
+          "lat": 34.7698479,
+          "lng": 127.660331,
+          "display_name": "메이플, 가곡길, 선원동, 여수시, 전남광주통합특별시, 59677, 대한민국",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "메이플"
+          ]
+        }
+      ],
+      "location_hints": [
+        "엔타리아",
+        "엔타리아 하코 궁수",
+        "bj우주",
+        "메이플",
+        "리그오브레전드",
+        "메이플플래닛",
+        "메이플스타",
+        "온라인",
+        "겜우주",
+        "좋아요"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "zK1BzT-6KRE",
+      "title": "Construction Cam",
+      "channel_id": "UCO83s-yTeCcjzAo1IHrIqww",
+      "channel_title": "Buckeye Honda",
+      "location": {
+        "lat": 10.9578668,
+        "lng": 76.5100787,
+        "city": "Thachampara",
+        "region": "Kerala",
+        "country": "IN",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Construction"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Construction",
+          "lat": 10.9578668,
+          "lng": 76.5100787,
+          "display_name": "construction, Thachampara, Mannarkad, Palakkad, Kerala, 678593, India",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Construction"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Construction",
+        "Buckeye Honda",
+        "Honda",
+        "Lancaster",
+        "Buckeyehonda.com"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "0t_wStRuryc",
+      "title": "Tehachapi Live Train Cams at the Tehachapi Loop 🚂",
+      "channel_id": "UC6RIkXobtXWJElbwEHIC-sg",
+      "channel_title": "Tehachapi Live Train Cams",
+      "location": {
+        "lat": 43.6612626,
+        "lng": -79.394011,
+        "city": "Toronto",
+        "region": "Ontario",
+        "country": "CA",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Helix, Ontario, Canada"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Helix, Ontario, Canada",
+          "lat": 43.6612626,
+          "lng": -79.394011,
+          "display_name": "Helix of Life, Anatomy Lane, University, Downtown, Toronto, Golden Horseshoe, Ontario, M5S 3K9, Canada",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Helix, Ontario, Canada"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Helix, Ontario, Canada",
+        "1,200 M",
+        "Tehachapi California Usa",
+        "the Tehachapi Loop",
+        "Tehachapi Train At the Tehachapi Loop",
+        "Tehachapi Train",
+        "Train",
+        "Tunnel",
+        "the Union Pacific Railroad Track Record",
+        "View of the"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "pmqlU48HVU4",
+      "title": "BENIDORM LIVE WEBCAM 🇪🇸 🔴 LIVE: Benidorm Resort Beach Cam NOW! ☀️🌊🏖️",
+      "channel_id": "UCVlxVWLL0C1U9HRe9Nt55Lw",
+      "channel_title": "BeniCam - Benidorm Webcam",
+      "location": {
+        "lat": 38.5411928,
+        "lng": -0.1233831,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
+        "renderable": true,
+        "evidence": [
+          "YouTube recordingDetails.location"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Zksbxgm6VHA",
+      "title": "Thassos Live from Hotel Angelica",
+      "channel_id": "UCUT8t0c6nWr-g-RylAZkr8g",
+      "channel_title": "Hotel Angelica Thassos",
+      "location": {
+        "lat": 43.7772063,
+        "lng": 11.249879,
+        "city": "Firenze",
+        "region": "Toscana",
+        "country": "IT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Hotel Angelica"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Hotel Angelica",
+          "lat": 43.7772063,
+          "lng": 11.249879,
+          "display_name": "Hotel Angelica, Via Fiume, Quartiere 1, Firenze, Toscana, 50100, Italia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Hotel Angelica"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Hotel Angelica",
+        "Thassos From Hotel Angelica",
+        "Thassos",
+        "Hotel Angelica Thassos"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "zx35ZVMpnr0",
+      "title": "Mexico 🇲🇽 4K Drone Footage | Tulum Coast, Caribbean Waters & Tropical Paradise",
+      "channel_id": "UC1rJC1fTt_vQV_nLhNdXVwg",
+      "channel_title": "World Scenery 4K",
+      "location": {
+        "lat": 20.2288485,
+        "lng": -87.4405517,
+        "city": "Tulum",
+        "region": "Quintana Roo",
+        "country": "MX",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Tulum Coast"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Tulum Coast",
+          "lat": 20.2288485,
+          "lng": -87.4405517,
+          "display_name": "Gran Museo de la Costa Occidental, Avenida Ruinas Tamul, Tulum, Quintana Roo, 77780, México",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Tulum Coast"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Mexico 🇽 Drone",
+        "Mexico",
+        "Tulum Coast, Caribbean Waters & Tropical Paradise",
+        "Fly Above, Mexico",
+        "the Cultural Richness of, Mexico",
+        "the Cultural Richness of Mexico City",
+        "Drone",
+        "Tulum Coast",
+        "Caribbean",
+        "Tropical Paradise"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "sQH2EGuPT6E",
+      "title": "Miami 4K Aerial 🇺🇸 🚤 Luxury Yachts, Skyline Views & Deep House Paradise",
+      "channel_id": "UC6pHGmrDZivABWtbrJ9DxKw",
+      "channel_title": "Deep Tides",
+      "location": {
+        "lat": 44.1932181,
+        "lng": -121.8120762,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Flow, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Flow, Oregon, United States",
+          "lat": 44.1932181,
+          "lng": -121.8120762,
+          "display_name": "Collier Cone lava flow, Lane County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Flow, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Miami 🇺 Luxury Yachts, Skyline Views & Deep House Paradise",
+        "Flow, Oregon, United States",
+        "Miami",
+        "Luxury Yachts",
+        "Skyline Views",
+        "Deep",
+        "Paradise",
+        "Deep Tides",
+        "Tides",
+        "Florida"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "mvqJJztN4S0",
+      "title": "Autumn 2026 in 4K 🍁 Fall Foliage – Colorful Forests, Scenic Mountains & Tranquil Landscapes",
+      "channel_id": "UCWU3aUdBTuVL5nXIazxLOkA",
+      "channel_title": "Global Wonders 4K",
+      "location": {
+        "lat": 44.5682907,
+        "lng": -123.3295862,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Nature Lover, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Nature Lover, Oregon, United States",
+          "lat": 44.5682907,
+          "lng": -123.3295862,
+          "display_name": "Nature Lover, Benton County, Oregon, 97370, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Nature Lover, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Autumn 2026 In Fall Foliage – Colorful Forests, Scenic Mountains & Tranquil Landscapes",
+        "Nature Lover, Oregon, United States",
+        "Autumn 2026 In Fall Foliage",
+        "Global Wonders K",
+        "Global Wonders",
+        "Towering",
+        "Stunning",
+        "Welcome To Global Wonders"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "7aL-54_sFzY",
+      "title": "🎶 Italian Bliss & Mediterranean Music 🎶 Tranquil Amalfi Coast & Lake Como 4K",
+      "channel_id": "UCU5Z2JGSFpbZ4wBcEd_6-Jg",
+      "channel_title": "Sole Vista",
+      "location": {
+        "lat": 44.0606286,
+        "lng": -123.052853,
+        "city": "Eugene",
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Sleep, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Sleep, Oregon, United States",
+          "lat": 44.0606286,
+          "lng": -123.052853,
+          "display_name": "Chase Commons Safe Sleep Site, Eugene, Lane County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Sleep, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Relaxing, Oregon, United States",
+        "Charm of, Italy",
+        "A Calm, Cinematic Atmosphere Inspired By Mediterranean Coastal Life Perfect For:",
+        "Focus, Study, And Productive Work Sessions",
+        "Meditation, Sleep, And Stress Relief",
+        "Sleep, Oregon, United States",
+        "the Warmth of, Italy",
+        "Views of, Italy",
+        "Scenic Views of Italy And the Mediterranean",
+        "Scenic Views of Italy"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Mi12zEbj1JQ",
+      "title": "【LIVE】佐賀市お天気ライブカメラ(北方面)／Saga City, Saga Perf, Japan Weather LiveCAM (North side)",
+      "channel_id": "UCvKPdEH175PWXTqbIrm2uyA",
+      "channel_title": "新栄地研株式会社／車載動画・空撮",
+      "location": {
+        "lat": 33.2639134,
+        "lng": 130.3008378,
+        "city": "佐賀市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "佐賀市"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "佐賀市",
+          "lat": 33.2639134,
+          "lng": 130.3008378,
+          "display_name": "佐賀市, 佐賀県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "佐賀市"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Saga Perf, Japan",
+        "佐賀市",
+        "佐賀市お天気ライブカメラ(北方面)／saga City, Saga Perf, Japan Weather Livecam (north Side)",
+        "佐賀市お天気ライブカメラ",
+        "Japan Weather Livecam",
+        "ライブカメラから佐賀市",
+        "Www.shineichiken.co.jp​ youtubeチャンネル Https:",
+        "youtubeチャンネル Https",
+        "Www.shineichiken.co.jp youtubeチャンネル Https:",
+        "Www.shineichiken.co.jp youtubeチャンネル Https"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "B6FI2dMIsfs",
+      "title": "Vibrant Summer⛅Ed Sheeran, Martin Garrix, Kygo, Dua Lipa, Avicii, Robin Schulz",
+      "channel_id": "UC7q8u-yNA5gds4KZBuOcGxQ",
+      "channel_title": "Deep Universe Radio",
+      "location": {
+        "lat": 43.6737574,
+        "lng": -70.2541457,
+        "city": "Portland",
+        "region": "Maine",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Contact, Maine, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Contact, Maine, United States",
+          "lat": 43.6737574,
+          "lng": -70.2541457,
+          "display_name": "Chlorine Contact Tanks, East End, Portland, Cumberland County, Maine, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Contact, Maine, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Vibrant Summer Ed Sheeran, Martin Garrix, Kygo, Dua Lipa, Avicii, Robin Schulz",
+        "Make, Maine, United States",
+        "Just Give, Maine, United States",
+        "Contact, Maine, United States",
+        "Vibrant Summer Ed Sheeran",
+        "Martin Garrix",
+        "Kygo",
+        "Dua Lipa",
+        "Avicii",
+        "Robin Schulz"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "MA2evwquK6Q",
+      "title": "Beautiful Relaxing Peaceful Music, Calm Music 24/7, \"Tropical Shores\" By Tim Janis",
+      "channel_id": "UCdi8yQBdBfn1ECu3ayH_TnA",
+      "channel_title": "Tim Janis",
+      "location": {
+        "lat": 43.0960967,
+        "lng": -87.9694332,
+        "city": "Milwaukee",
+        "region": "Wisconsin",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Music"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Music",
+          "lat": 43.0960967,
+          "lng": -87.9694332,
+          "display_name": "Music, North 44th Street, Lincoln Creek, Old North Milwaukee, Milwaukee, Milwaukee County, Wisconsin, 53216, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Music"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Beautiful Relaxing Peaceful Music, Calm Music 24",
+        "7, \"tropical Shores\" By Tim Janis",
+        "Beautiful Relaxing",
+        "Music",
+        "Calm Music",
+        "Tropical Shores",
+        "Tim Janis",
+        "Janis",
+        "Maine",
+        "Tuscany Just Went"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "i6DH-eLlLjo",
+      "title": "🔴 24/7 Nature Escape | Immersive Documentaries from the Wild | Incredible Animal Habitats | STREAM 🔴",
+      "channel_id": "UCSmi9AQVgpfy-iP8omwd7vA",
+      "channel_title": "Ultimate Nature Documentaries",
+      "location": {
+        "lat": 38.6361772,
+        "lng": -90.2895599,
+        "city": "Saint Louis",
+        "region": "Missouri",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "the Wild"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "the Wild",
+          "lat": 38.6361772,
+          "lng": -90.2895599,
+          "display_name": "The Wild, Saint Louis, Missouri, 63018, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "the Wild"
+          ]
+        }
+      ],
+      "location_hints": [
+        "the Wild",
+        "7 Nature Escape",
+        "Nature Escape",
+        "Immersive Documentaries From the Wild",
+        "Immersive Documentaries",
+        "Incredible Animal Habitats",
+        "Ultimate Nature Documentaries",
+        "Documentaries",
+        "Around the",
+        "Dense Forests"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "f_yY-0miTzo",
+      "title": "📸 Webcam 4K | Live Stream from Ala Moana, Honolulu, Hawaii 🌴🌊",
+      "channel_id": "UCqLFAHac-UD2ueQmcf2r-CQ",
+      "channel_title": "WOZ ERE",
+      "location": {
+        "lat": 21.2934829,
+        "lng": -157.845308,
+        "city": "East Honolulu",
+        "region": "Hawaii",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Ala Moana"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Ala Moana",
+          "lat": 21.2934829,
+          "lng": -157.845308,
+          "display_name": "Ala Moana, East Honolulu, Honolulu, Honolulu County, Hawaii, 96841, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Ala Moana"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Stream From Ala Moana, Honolulu, Hawaii",
+        "Dreaming of Your Next Vacation, Oregon, United States",
+        "Ala Moana",
+        "Honolulu",
+        "Hawaii",
+        "Woz Ere",
+        "Ere",
+        "Stunning",
+        "the Heart of Honolulu",
+        "Wherever You"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "5JF-2csxmFs",
+      "title": "Madrid Walking Tour 🇪🇸 LIVE — Gran Vía, Puerta del Sol & Old Town | Spain",
+      "channel_id": "UC9gSu3OwkMdqRKYZqnmy5xw",
+      "channel_title": "SGK Walks",
+      "location": {
+        "lat": 40.416782,
+        "lng": -3.703507,
+        "city": "Madrid",
+        "region": "Comunidad de Madrid",
+        "country": "ES",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Madrid, Spain"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Madrid, Spain",
+          "lat": 40.416782,
+          "lng": -3.703507,
+          "display_name": "Madrid, Comunidad de Madrid, España",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Madrid, Spain"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Madrid Walking Tour — Gran Vía, Puerta del Sol & Old Town",
+        "Spain",
+        "Let, Maine, United States",
+        "Through the Vibrant Capital of, Spain",
+        "Madrid, Spain",
+        "the Vibrant Capital of Spain Enjoy the Energy of the City",
+        "Join, Maine, United States",
+        "Madrid Walking Tour",
+        "Gran Vía",
+        "Puerta del Sol"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "NTvb6vfESuc",
+      "title": "Most Beautiful Cities In The World 8K Video Ultra HD With Soft Piano Music - 60 FPS - 8K Nature Film",
+      "channel_id": "UCFEkwFTrP1WrQym33cul9qQ",
+      "channel_title": "Eric - 8K Nature Film",
+      "location": {
+        "lat": 48.8534951,
+        "lng": 2.3483915,
+        "city": "Paris",
+        "region": "Île-de-France",
+        "country": "FR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Paris, France"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Paris, France",
+          "lat": 48.8534951,
+          "lng": 2.3483915,
+          "display_name": "Paris, Île-de-France, France métropolitaine, France",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Paris, France"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Paris, France",
+        "New York, United States",
+        "London, United Kingdom",
+        "Amsterdam, Netherlands",
+        "Barcelona, Spain",
+        "Rome, Italy",
+        "Lisbon, Portugal",
+        "Tokyo, Japan",
+        "Vienna, Austria",
+        "san Diego, United States"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "UlxPQDk1TaE",
+      "title": "🔴 HELSINKI NIGHTLIFE WALK 24/7 🇫🇮✨ Summer Nightlife in Finland 🔴 PRE-RECORDED SLOW TV CITY SOUND",
+      "channel_id": "UCDCh_co9bI5yMjTsLeHYAVA",
+      "channel_title": "Helsinki Walks 🇫🇮",
+      "location": {
+        "lat": 45.5566343,
+        "lng": -122.3990004,
+        "city": "Troutdale",
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Trip, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Trip, Oregon, United States",
+          "lat": 45.5566343,
+          "lng": -122.3990004,
+          "display_name": "Troutdale Reynolds Industrial Park, North Troutdale, Troutdale, Multnomah County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Trip, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Finland Pre-recorded Slow Tv City",
+        "Finland Pre-recorded Slow Tv City Sound",
+        "7 🇫🇮 Summer Nightlife In Finland Pre-recorded Slow Tv City Sound",
+        "Finland, Ontario, Canada",
+        "Trip, Oregon, United States",
+        "Experience the Atmosphere of, Finland",
+        "Helsinki, Finland",
+        "Sleeping, Oregon, United States",
+        "Finland",
+        "Helsinki Nightlife Walk 24"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "CE9gtZeDIUg",
+      "title": "Treviso - Piazza dei Signori",
+      "channel_id": "UC7exwYK7nitTlhfztT7HsVA",
+      "channel_title": "ComuneDiTreviso",
+      "location": {
+        "lat": 45.6658649,
+        "lng": 12.2455762,
+        "city": "Treviso",
+        "region": "Veneto",
+        "country": "IT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Treviso - Piazza Dei Signori"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Treviso - Piazza Dei Signori",
+          "lat": 45.6658649,
+          "lng": 12.2455762,
+          "display_name": "Piazza dei Signori, San Zeno, Treviso, Veneto, 31100, Italia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Treviso - Piazza Dei Signori"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Treviso - Piazza Dei Signori",
+        "Treviso",
+        "Piazza Dei Signori",
+        "Comuneditreviso"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "S6v-8dHcd04",
+      "title": "🔴Assisi - Piazza del Comune Live Webcam",
+      "channel_id": "UC2W2O6m0KmMvRoGe3IbCvhA",
+      "channel_title": "Umbria Webcam 2",
+      "location": {
+        "lat": 42.965916,
+        "lng": 12.490236,
+        "city": null,
+        "region": "Umbria",
+        "country": "IT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Umbria, Italy"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Umbria, Italy",
+          "lat": 42.965916,
+          "lng": 12.490236,
+          "display_name": "Umbria, Italia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Umbria, Italy"
+          ]
+        }
+      ],
+      "location_hints": [
+        "da Hotel, Illinois, United States",
+        "Umbria, Italy",
+        "State Direttamente Selezionate Dal Nostro Team, Alabama, United States",
+        "Assisi - Piazza del Comune",
+        "Assisi",
+        "Piazza del Comune",
+        "Umbria",
+        "Umbria 2",
+        "Diretta di Piazza del Comune",
+        "Www.urbisassisi.it"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "uJ8dXdN2xS8",
+      "title": "🔴 Stockholm Summer Night Walk 🇸🇪 | Sweden Nightlife 4K HDR | 24/7 City Walk | Pre-Recorded Loop",
+      "channel_id": "UChMnps0BRm1qF0YEoEo69gw",
+      "channel_title": "Stockholm HD",
+      "location": {
+        "lat": 45.5566343,
+        "lng": -122.3990004,
+        "city": "Troutdale",
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Trip, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Trip, Oregon, United States",
+          "lat": 45.5566343,
+          "lng": -122.3990004,
+          "display_name": "Troutdale Reynolds Industrial Park, North Troutdale, Troutdale, Multnomah County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Trip, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Sweden Nightlife Hdr",
+        "Relaxing Background Videos, Oregon, United States",
+        "Trip, Oregon, United States",
+        "Experience the Magic of Stockholm, Sweden",
+        "Stockholm, Sweden",
+        "Public Areas of Stockholm, Sweden",
+        "Reminiscing, Oregon, United States",
+        "Sleeping, Oregon, United States",
+        "Your Relaxing Window Into, Sweden",
+        "Sweden's Capital"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "gDAxPneA2Is",
+      "title": "PRAÇA CENTRAL de Serra Branca - PB | AO VIVO 24h",
+      "channel_id": "UCxdSxKcL9F0SBcUlfXe6yCg",
+      "channel_title": "Paróquia Nossa Senhora da Conceição",
+      "location": {
+        "lat": -7.4815274,
+        "lng": -36.6634581,
+        "city": null,
+        "region": "Paraíba",
+        "country": "BR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Serra Branca"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Serra Branca",
+          "lat": -7.4815274,
+          "lng": -36.6634581,
+          "display_name": "Serra Branca, Paraíba, Região Nordeste, Brasil",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Serra Branca"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Central de Serra Branca, Paraíba, Brazil",
+        "Uma Visão Constante da Cidade de Serra Branca, Paraíba, Brazil",
+        "Inscreva, Sergipe, Brazil",
+        "Pascomserrabranca Inscreva, Sergipe, Brazil",
+        "Serra Branca",
+        "Praça Central de Serra Branca - Pb",
+        "Central de Serra Branca",
+        "Praça Central de Serra Branca",
+        "Pb 24h",
+        "Praça Central de Serra Branca - Pb 24h"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "j4M6XsSALEM",
+      "title": "Praça São Pedro | Vaticano",
+      "channel_id": "UCD-GdIJRclRYByEppr0EXxQ",
+      "channel_title": "Arquidiocese de São José do Rio Preto",
+      "location": {
+        "lat": 41.9022351,
+        "lng": 12.4573573,
+        "city": null,
+        "region": null,
+        "country": "VA",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "St. Peter's Square, Vatican City"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "St. Peter's Square, Vatican City",
+          "lat": 41.9022351,
+          "lng": 12.4573573,
+          "display_name": "Piazza San Pietro, Civitas Vaticana - Città del Vaticano",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "St. Peter's Square, Vatican City"
+          ]
+        }
+      ],
+      "location_hints": [
+        "St. Peter's Square, Vatican City",
+        "Vaticano",
+        "Praça São Pedro Vaticano",
+        "Praça São Pedro",
+        "São Pedro",
+        "de São José do Rio Preto",
+        "Preto",
+        "São José do Rio Preto",
+        "Arquidiocese de São José do Rio Preto"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ZWjABfPFjrU",
+      "title": "Let AI Find Things for You",
+      "channel_id": "UCibcDM4-0XhcZp4ILcR4BxQ",
+      "channel_title": "I Didn't Know AI Could Do That",
+      "location": {
+        "lat": 13.7034206,
+        "lng": -2.1413246,
+        "city": "You",
+        "region": "Nord",
+        "country": "BF",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "You"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "You",
+          "lat": 13.7034206,
+          "lng": -2.1413246,
+          "display_name": "You, Loroum, Nord, Burkina Faso",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "You"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Create Amazing Images, Oregon, United States",
+        "Let Ai Find Things For You",
+        "Let Ai Find Things",
+        "You",
+        "I Didn't Know Ai Could do That",
+        "That",
+        "I Didn't Know Ai Could do"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "4sTvZRCHmb8",
+      "title": "🔴 PRAÇA DO LOUVOR AO VIVO 24H 🌈 Músicas Gospel Infantis • Histórias Bíblicas em Canções • Karaokê 3D",
+      "channel_id": "UCWkxoGG7ouFZtu7_ovV8FWQ",
+      "channel_title": "Praça do Louvor",
+      "location": {
+        "lat": -20.302239,
+        "lng": -40.3063622,
+        "city": "Vitória",
+        "region": "Espírito Santo",
+        "country": "BR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "do Louvor"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "do Louvor",
+          "lat": -20.302239,
+          "lng": -40.3063622,
+          "display_name": "Escadaria do Louvor, São Benedito, Vitória, Espírito Santo, Região Sudeste, 29047-850, Brasil",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "do Louvor"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Chuva de Bênçãos do Arco-íris Inscreva, Sergipe, Brazil",
+        "Coração Limpinho, Chavezinha do Perdão & O Lanchinho da Partilha",
+        "Inscreva, Sergipe, Brazil",
+        "Praça do Louvor 24h Músicas Gospel Infantis",
+        "do Louvor",
+        "Músicas Gospel Infantis",
+        "Histórias Bíblicas Em Canções",
+        "Histórias Bíblicas",
+        "Canções",
+        "Karaokê 3d"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "PeTHS4MivaE",
+      "title": "Local & National News Updates | North Carolina Forecast & What's #trending",
+      "channel_id": "UCfmkz6A3aTJwJzox2xhAuRw",
+      "channel_title": "WRAL",
+      "location": {
+        "lat": 35.8168398,
+        "lng": -78.6025983,
+        "city": "Raleigh",
+        "region": "North Carolina",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Downtown Raleigh, North Carolina, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Downtown Raleigh, North Carolina, United States",
+          "lat": 35.8168398,
+          "lng": -78.6025983,
+          "display_name": "Best Western Raleigh North-Downtown, 2715, Capital Boulevard, Raleigh, Wake County, North Carolina, 27604, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Downtown Raleigh, North Carolina, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Downtown Raleigh, North Carolina, United States",
+        "Bringing You the Most Up, Tocantins, Brazil",
+        "Updates",
+        "Local & National News Updates",
+        "Local",
+        "National News Updates",
+        "North Carolina Forecast & What's #trending",
+        "Carolina Forecast",
+        "What's",
+        "Trending"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "vvCOmEfsFF8",
+      "title": "Business Africa Explained 🔴 LIVE 24/7 — Africa's Biggest Business Deals, Scandals & Money Stories",
+      "channel_id": "UCQEEz6xahGDEV1czdaZNajA",
+      "channel_title": "African Business Explained",
+      "location": {
+        "lat": 51.5468275,
+        "lng": -0.0144772,
+        "city": "Greater London",
+        "region": "England",
+        "country": "GB",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Explained"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Explained",
+          "lat": 51.5468275,
+          "lng": -0.0144772,
+          "display_name": "The Waterglades explained, Olympic Park Avenue, Stratford, London Borough of Newham, Greater London, England, E20 1FT, United Kingdom",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Explained"
+          ]
+        }
+      ],
+      "location_hints": [
+        "7 — Africa's Biggest Business Deals, Scandals & Money Stories",
+        "Back, Tocantins, Brazil",
+        "Business Africa Explained 24",
+        "Business Africa Explained",
+        "Africa's Biggest Business Deals",
+        "Scandals",
+        "Money Stories",
+        "African Business Explained",
+        "Explained",
+        "Rotation"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "NG7ZX42nZKc",
+      "title": "🔴​ franceinfo - DIRECT TV - actualité France et monde, interviews, documentaires et analyses",
+      "channel_id": "UCO6K_kkdP-lnSCiO3tPx7WA",
+      "channel_title": "franceinfo",
+      "location": {
+        "lat": 48.8432668,
+        "lng": 2.3569301,
+        "city": "Paris",
+        "region": "Île-de-France",
+        "country": "FR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Actualité, France"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Actualité, France",
+          "lat": 48.8432668,
+          "lng": 2.3569301,
+          "display_name": "Les recherches participatives / La recherche au museum / et autres sujets selon d'actualité, Allée Mangin, Quartier du Jardin des Plantes, Paris 5e Arrondissement, Paris, Île-de-France, France métropolitaine, 75005, France",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Actualité, France"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Actualité, France",
+        "Et Sur Tous Les Écrans Numériques, Louisiana, United States",
+        "?sub_confirmation=1 Sur Cette Chaîne Youtube, Retrouvez :",
+        "Les Directs, Extraits Et Replays des Journaux Télévisés (jt 13h Et Jt 20h)",
+        "Décrypter Les Grands Enjeux Géopolitiques, Économiques Et Sociétaux",
+        "​ Franceinfo",
+        "Direct Tv",
+        "Franceinfo",
+        "la Tnt",
+        "Continu Franceinfo Propose des Émissions Diffusées Simultanément"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "e9_9xivUJEg",
+      "title": "Tucker Carlson 24/7 Station",
+      "channel_id": "UCGttrUON87gWfU6dMWm1fcA",
+      "channel_title": "Tucker Carlson",
+      "location": {
+        "lat": 46.5836687,
+        "lng": 11.1649184,
+        "city": "Völlan - Foiana",
+        "region": "Trentino-Alto Adige/Südtirol",
+        "country": "IT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "7 Station"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "7 Station",
+          "lat": 46.5836687,
+          "lng": 11.1649184,
+          "display_name": "7. Station - 7a Stazione, Ackpfeif - Acquaviva, Völlan - Foiana, Lana, Burggrafenamt - Burgraviato, Bolzano - Bozen, Trentino-Alto Adige/Südtirol, 39011, Italia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "7 Station"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Tucker Carlson 24",
+        "Tucker Carlson",
+        "7 Station",
+        "Station",
+        "Tucker Carlson Station",
+        "Carlson",
+        "Tuckercarlson.com",
+        "American Renewal Is Possible. Join Us At Tuckercarlson.com",
+        "American Renewal",
+        "Possible"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Gm7NDOHeNFM",
+      "title": "ԿԱՐԵՎՈՐ ԼՈՒՐԵՐԻ ՆՈՐ ՄԱՆՐԱՄԱՍՆԵՐԸ. ՈՒՂԻՂ ԵԹԵՐ",
+      "channel_id": "UC8HwfxKgBPeTrwbWNmowzgQ",
+      "channel_title": "ABnews",
+      "location": {
+        "lat": 58.424756,
+        "lng": 44.2533273,
+        "city": null,
+        "region": "Костромская область",
+        "country": "RU",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Https"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Https",
+          "lat": 58.424756,
+          "lng": 44.2533273,
+          "display_name": "Костромская область, Центральный федеральный округ, Россия",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Https"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Կարեվոր Լուրերի Նոր Մանրամասները. Ուղիղ Եթեր",
+        "Կարեվոր Լուրերի Նոր Մանրամասները",
+        "Ուղիղ Եթեր",
+        "Abnews",
+        "Abn Social Facebook - Https:",
+        "Abn Social Facebook",
+        "Https",
+        "Www.facebook.com",
+        "Abnews.am Instagram - Https:",
+        "Abnews.am Instagram"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ehTW39Ht1yA",
+      "title": "Nghe Lời Phật Dạy: Nửa Đời Còn Lại Hãy Sống Chậm – Càng Đơn Giản Càng Bình Yên, Hạnh Phúc",
+      "channel_id": "UCLSi_xbXJI_lGNzHZLBOBHA",
+      "channel_title": "Tịnh Khẩu Tu Tâm",
+      "location": {
+        "lat": 23.9891553,
+        "lng": -98.7026825,
+        "city": null,
+        "region": "Tamaulipas",
+        "country": "MX",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Tâm"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Tâm",
+          "lat": 23.9891553,
+          "lng": -98.7026825,
+          "display_name": "Tamaulipas, México",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Tâm"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Tịnh Khẩu Tu Tâm",
+        "Tâm"
       ],
       "status": "resolved"
     },
@@ -215852,43 +217186,6 @@
       }
     },
     {
-      "video_id": "RpS0Kk-NK6M",
-      "title": "東京駅トレインビュー・新幹線ライブカメラ（有楽町カーブ）",
-      "channel_id": "UC6Ljvl0Kghy9Fhe6SXViTPw",
-      "channel_title": "東京駅トレインビュー🚄ライブカメラ",
-      "location": {
-        "country": "Japan",
-        "level": "country",
-        "confidence": 0.3,
-        "source": "youtube-channel-country",
-        "renderable": false,
-        "evidence": [
-          "YouTube channel country; not camera GPS"
-        ]
-      },
-      "location_candidates": [],
-      "location_hints": [
-        "東京駅トレインビュー・新幹線ライブカメラ（有楽町カーブ）",
-        "東京駅トレインビュー",
-        "新幹線ライブカメラ",
-        "有楽町カーブ",
-        "東京駅トレインビュー ライブカメラ",
-        "ライブカメラ",
-        "画面の左から東海道新幹線",
-        "上野東京ライン",
-        "山手線・京浜東北線 新幹線はのぞみ、ひかり、こだまのほか、特急踊り子・湘南、サフィール踊り子、ひたち・ときわ、サンライズ瀬戸・出雲等が見られます。 Https:",
-        "京浜東北線 新幹線はのぞみ"
-      ],
-      "status": "unresolved",
-      "ai": {
-        "video_id": "RpS0Kk-NK6M",
-        "resolvable": true,
-        "confidence": 0.9,
-        "geocode_query": "Tokyo Station, Yurakucho, Japan",
-        "country": "JP"
-      }
-    },
-    {
       "video_id": "gdDUaT5mEjc",
       "title": "시진핑, 무역·타이완 문제 쓴소리...CCTV 일부 도착 화면 삭제 / YTN",
       "channel_id": "UChlgI3UHCOnwUGzWzbJ3H5w",
@@ -216506,42 +217803,6 @@
       }
     },
     {
-      "video_id": "9PQv4eYQQfM",
-      "title": "드론낚시 start",
-      "channel_id": "UCAKsZ26TYWxZLwySM7j0puQ",
-      "channel_title": "초이소장",
-      "location": {
-        "country": "South Korea",
-        "level": "country",
-        "confidence": 0.3,
-        "source": "youtube-channel-country",
-        "renderable": false,
-        "evidence": [
-          "YouTube channel country; not camera GPS"
-        ]
-      },
-      "location_candidates": [],
-      "location_hints": [
-        "드론낚시",
-        "드론낚시 Start",
-        "초이소장",
-        "감사합니다",
-        "메일: Cyd5764@naver.com 감사합니다",
-        "Naver.com 감사합니다",
-        "This Stream Is Created With #prismlivestudio",
-        "Created",
-        "Prismlivestudio"
-      ],
-      "status": "unresolved",
-      "ai": {
-        "video_id": "9PQv4eYQQfM",
-        "resolvable": false,
-        "confidence": 0.0,
-        "geocode_query": null,
-        "country": null
-      }
-    },
-    {
       "video_id": "R8XYnaVOtRk",
       "title": "AI가 진행하는 Real Koi Pond 24/7 LIVE | Relaxing Water Sounds + Chill Music",
       "channel_id": "UC-VFEEl4Xd5sB4q6POPOfmg",
@@ -216744,12 +218005,12 @@
       }
     },
     {
-      "video_id": "o3z04c8JYmQ",
-      "title": "우주는 어떻게 시작됐고, 어떻게 끝날까?",
-      "channel_id": "UCqQgmjFrXIi5NSsO9xsYJuQ",
-      "channel_title": "우주거미줄",
+      "video_id": "zoOfrLQrliI",
+      "title": "7 Filmagens Assustadoras de Câmeras de Segurança que Revelaram Momentos de Terror!",
+      "channel_id": "UCs1INYNkXFgCi4JPn52AvPg",
+      "channel_title": "Capturados por Câmeras Sobrenatural",
       "location": {
-        "country": "UA",
+        "country": "Brazil",
         "level": "country",
         "confidence": 0.3,
         "source": "youtube-channel-country",
@@ -216760,20 +218021,19 @@
       },
       "location_candidates": [],
       "location_hints": [
-        "우주는",
-        "어떻게",
-        "시작됐고",
-        "끝날까",
-        "우주는 어떻게 시작됐고, 어떻게 끝날까?",
-        "우주는 어떻게 시작됐고",
-        "어떻게 끝날까",
-        "우주거미줄",
-        "우주는 어떻게 시작됐고, 어떻게 끝날까? 8",
-        "우리는"
+        "Inscreva, Sergipe, Brazil",
+        "Câmeras de Segurança Que Revelaram Momentos de Terror",
+        "Capturados Por Câmeras Sobrenatural",
+        "Sobrenatural",
+        "Capturados",
+        "Câmeras Sobrenatural",
+        "Segurança São Instaladas",
+        "Explicar Registrados",
+        "Segurança Podem Revelar Acontecimentos Que Provavelmente"
       ],
       "status": "unresolved",
       "ai": {
-        "video_id": "o3z04c8JYmQ",
+        "video_id": "zoOfrLQrliI",
         "resolvable": false,
         "confidence": 0.0,
         "geocode_query": null,
@@ -216781,12 +218041,12 @@
       }
     },
     {
-      "video_id": "J1M79LA_6J4",
-      "title": "우리는 혼자일까? 우주와 생명, 풀리지 않은 질문들",
-      "channel_id": "UCqQgmjFrXIi5NSsO9xsYJuQ",
-      "channel_title": "우주거미줄",
+      "video_id": "Opg6vrfo0nY",
+      "title": "วิธีปิดโฆษณา app v360 pro app ดูกล้องวงจรปิด CCTV",
+      "channel_id": "UCT5TdLbWGjGwhIVj72UF8Jg",
+      "channel_title": "คนบ้านบ้าน channel",
       "location": {
-        "country": "UA",
+        "country": "Thailand",
         "level": "country",
         "confidence": 0.3,
         "source": "youtube-channel-country",
@@ -216796,21 +218056,10 @@
         ]
       },
       "location_candidates": [],
-      "location_hints": [
-        "우리는",
-        "혼자일까",
-        "우주와",
-        "풀리지",
-        "질문들",
-        "우리는 혼자일까? 우주와 생명, 풀리지 않은 질문들",
-        "우리는 혼자일까",
-        "우주와 생명",
-        "풀리지 않은 질문들",
-        "우주거미줄"
-      ],
+      "location_hints": [],
       "status": "unresolved",
       "ai": {
-        "video_id": "J1M79LA_6J4",
+        "video_id": "Opg6vrfo0nY",
         "resolvable": false,
         "confidence": 0.0,
         "geocode_query": null,
@@ -216818,12 +218067,12 @@
       }
     },
     {
-      "video_id": "8mpN5E7M51E",
-      "title": "[🔴실시간] 우주가 생긴 그 날부터 계속... 세기를 넘어 만난 \"불교와 과학\" | 24시간 라이브 스트리밍",
-      "channel_id": "UCvot8u2dA2sDhZbK-_k4Ejw",
-      "channel_title": "BBS 컬쳐",
+      "video_id": "0Is9-YIwJrU",
+      "title": "【秋巷古韻】古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜山村石路 品茶靜心 - Calm Chinese Guzheng Music",
+      "channel_id": "UCMbKdAWwMac2Zy9MfOzAWHQ",
+      "channel_title": "Guzheng Serenity",
       "location": {
-        "country": "South Korea",
+        "country": "Taiwan",
         "level": "country",
         "confidence": 0.3,
         "source": "youtube-channel-country",
@@ -216834,20 +218083,50 @@
       },
       "location_candidates": [],
       "location_hints": [
-        "우주가",
-        "날부터",
-        "세기를",
-        "불교와",
-        "라이브",
-        "스트리밍",
-        "실시간",
-        "우주가 생긴 그 날부터 계속... 세기를 넘어 만난 \"불교와 과학\"",
-        "우주가 생긴 그 날부터 계속",
-        "세기를 넘어 만난"
+        "古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜山村石路 品茶靜心 - Calm Chinese Guzheng Music",
+        "山村石路 品茶靜心",
+        "秋巷古韻 古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜山村石路 品茶靜心",
+        "秋巷古韻 古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜山村石路 品茶靜心 - calm chinese guzheng music",
+        "古箏竹笛療癒音樂｜超好聽的中國古典音樂 古箏、琵琶、竹笛、二胡｜山村石路 品茶靜心 - Calm Chinese Guzheng Music 歡迎來到",
+        "秋巷古韻",
+        "古箏竹笛療癒音樂",
+        "超好聽的中國古典音樂 古箏",
+        "Calm Chinese Guzheng Music",
+        "Guzheng Serenity"
       ],
       "status": "unresolved",
       "ai": {
-        "video_id": "8mpN5E7M51E",
+        "video_id": "0Is9-YIwJrU",
+        "resolvable": false,
+        "confidence": 0.0,
+        "geocode_query": null,
+        "country": null
+      }
+    },
+    {
+      "video_id": "xqHH8QfNXAw",
+      "title": "貴人天降❗️紫水晶招貴人頻率啟動✨宇宙級貴人正在為你鋪路，助你輕鬆躍升「頂級人生」！三天內人脈大洗牌！宇宙直接給你開後門🚀（⚠️注意：連續聆聽3天以上效果更驚人）吸引力法则音乐 招贵人sub",
+      "channel_id": "UChrRjs7gffjTNmcxNXart0g",
+      "channel_title": "聚金閣FortunePavilion",
+      "location": {
+        "country": "Taiwan",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "貴人天降 紫水晶招貴人頻率啟動 宇宙級貴人正在為你鋪路，助你輕鬆躍升「頂級人生」！三天內人脈大洗牌！宇宙直接給你開後門 （ 注意：連續聆聽3天以上效果更驚人）吸引力法则音乐 招贵人sub",
+        "聚金閣fortunepavilion",
+        "Buymeacoffee.com"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "xqHH8QfNXAw",
         "resolvable": false,
         "confidence": 0.0,
         "geocode_query": null,
@@ -216855,5 +218134,5 @@
       }
     }
   ],
-  "ai_resolved_at": "2026-09-27T19:15:44Z"
+  "ai_resolved_at": "2026-09-28T21:30:56Z"
 }
