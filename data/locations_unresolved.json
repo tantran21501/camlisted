@@ -15876,7 +15876,7 @@
     "channel_id": "UCll9pImzgSpuwenHRSy0INw",
     "channel_title": "Out Of Range",
     "location": {
-      "country": "South Korea",
+      "country": "United States",
       "level": "country",
       "confidence": 0.3,
       "source": "youtube-channel-country",
@@ -16815,31 +16815,77 @@
     }
   },
   {
-    "video_id": "9FSJ-qmsE78",
-    "title": "[성남 세광교회] 2026년 9월 30일(수) 새벽예배 - \"사사기 21장\"",
-    "channel_id": "UCuTebY9OezymdvLQRFIrHTA",
-    "channel_title": "성남 세광교회",
-    "location": null,
+    "video_id": "4qt_JiZzVRU",
+    "title": "키나 벌이 원양어선 타고 돌아왔더니 물가 무쳤다 아이온2 카이시넬 6700 수호성 [ 세로화면 ]",
+    "channel_id": "UCS-Qm4nfFCLgIqHQZ1v9LLA",
+    "channel_title": "눈사람",
+    "location": {
+      "country": "South Korea",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
     "location_candidates": [],
     "location_hints": [
-      "세광교회",
-      "새벽예배",
-      "사사기",
-      "성남 세광교회",
-      "2026년 9월 30일(수) 새벽예배 - \"사사기 21장\"",
-      "성남 세광교회 2026년 9월 30일(수) 새벽예배",
-      "\"사사기 21장\"",
-      "성남 세광교회 2026년 9월 30일(수) 새벽예배 - \"사사기 21장\"",
-      "이스라엘",
-      "사람들이"
+      "원양어선",
+      "돌아왔더니",
+      "무쳤다",
+      "아이온",
+      "카이시넬",
+      "수호성",
+      "세로화면",
+      "키나 벌이 원양어선 타고 돌아왔더니 물가 무쳤다 아이온2 카이시넬 6700 수호성",
+      "키나 벌이 원양어선 타고 돌아왔더니 물가",
+      "키나 벌이 원양어선 타고 돌아왔더니 물가 무쳤다 아이온2 카이시넬 6700 수호성 세로화면"
     ],
     "status": "unresolved",
     "ai": {
-      "video_id": "9FSJ-qmsE78",
-      "resolvable": true,
-      "confidence": 0.9,
-      "geocode_query": "Seikwang Church, Seongnam, South Korea",
-      "country": "KR"
+      "video_id": "4qt_JiZzVRU",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
+    }
+  },
+  {
+    "video_id": "BVrMcdKCvuo",
+    "title": "해선트레이더 2026-09-30 수 (새벽장-공개송출) 해외선물 실시간 추세 신호차트 송출 (항셍,나스닥,에센피,오일,골드,실버,코스피) #해외선물 #해외선물실시간",
+    "channel_id": "UCv2RyAqHL2fS0Sd6k_yGnsg",
+    "channel_title": "해선트레이더",
+    "location": {
+      "country": "South Korea",
+      "level": "country",
+      "confidence": 0.3,
+      "source": "youtube-channel-country",
+      "renderable": false,
+      "evidence": [
+        "YouTube channel country; not camera GPS"
+      ]
+    },
+    "location_candidates": [],
+    "location_hints": [
+      "해선트레이더",
+      "새벽장",
+      "공개송출",
+      "해외선물",
+      "신호차트",
+      "나스닥",
+      "에센피",
+      "코스피",
+      "해외선물실시간",
+      "해선트레이더 수 (새벽장-공개송출) 해외선물 실시간 추세 신호차트 송출 (항셍,나스닥,에센피,오일,골드,실버,코스피) #해외선물 #해외선물실시간"
+    ],
+    "status": "unresolved",
+    "ai": {
+      "video_id": "BVrMcdKCvuo",
+      "resolvable": false,
+      "confidence": 0.0,
+      "geocode_query": null,
+      "country": null
     }
   }
 ]
