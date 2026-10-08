@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-07T20:54:34Z",
+  "generated_at": "2026-10-08T20:59:10Z",
   "input": "/home/runner/work/camlisted/camlisted/data/streams.json",
-  "total": 5847,
-  "resolved": 5288,
-  "unresolved": 559,
+  "total": 5883,
+  "resolved": 5318,
+  "unresolved": 565,
   "resolution_sources": {
-    "place-hint-geocoder": 4383,
-    "youtube-recordingDetails": 764,
-    "youtube-channel-country": 544,
-    "gemini-geocoder": 141
+    "place-hint-geocoder": 4412,
+    "youtube-recordingDetails": 766,
+    "youtube-channel-country": 548,
+    "gemini-geocoder": 140
   },
   "cameras": [
     {
@@ -14853,8 +14853,8 @@
         "7 Kilauea Volcano Livestream In Hawaii ( B)",
         "Kilauea Volcano Livestream",
         "Afartv",
-        "Orange",
-        "Red"
+        "Kaluapele",
+        "the Surface"
       ],
       "status": "resolved"
     },
@@ -19539,46 +19539,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "zUSvqFTPJt0",
-      "title": "CCTV Simpang Korpri View Barat Bantul",
-      "channel_id": "UCdkc9vAwtyoI9N0oAdsNB3g",
-      "channel_title": "CCTV Pemerintah Kabupaten Bantul 2",
-      "location": {
-        "lat": -7.8982543,
-        "lng": 110.3855534,
-        "city": null,
-        "region": "Daerah Istimewa Yogyakarta",
-        "country": "ID",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Bantul, Indonesia"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Bantul, Indonesia",
-          "lat": -7.8982543,
-          "lng": 110.3855534,
-          "display_name": "Bantul, Daerah Istimewa Yogyakarta, Indonesia",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Bantul, Indonesia"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Bantul, Indonesia",
-        "Simpang Korpri View Barat Bantul",
-        "Pemerintah Kabupaten Bantul",
-        "Bantul",
-        "Pemerintah Kabupaten Bantul 2"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "y_e0PnNN1oc",
       "title": "Sydney Airport LIVE | 7th AUG 2026 | Planespotting | SYD - YSSY",
       "channel_id": "UCsG_EDkchZZMevcbHqXDe7A",
@@ -22423,8 +22383,8 @@
         "Airnavradar.go.link",
         "Ldt5c",
         "Iad",
-        "Morrow Aviation Archives © 2020-2026",
-        "Morrow Aviation Archives"
+        "Morrow Aviation© 2020-2026. We’ll Catch You Down the Runway",
+        "Ll Catch You Down the Runway"
       ],
       "status": "resolved"
     },
@@ -23441,49 +23401,6 @@
         "Optics * Day",
         "Optics",
         "Day"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "RrzGCllm11Q",
-      "title": "Willow Lawn Station | Ruislip Lido Railway | Live Cam",
-      "channel_id": "UCk6DYLw_vFZjdd4n7uFS77g",
-      "channel_title": "Ruislip Lido Railway",
-      "location": {
-        "lat": 51.5930135,
-        "lng": -0.4318151,
-        "city": "Greater London",
-        "region": "England",
-        "country": "GB",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Willow Lawn Station"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Willow Lawn Station",
-          "lat": 51.5930135,
-          "lng": -0.4318151,
-          "display_name": "Willow Lawn, R59, Northwood, London Borough of Hillingdon, Greater London, England, HA4 7TY, United Kingdom",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Willow Lawn Station"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Willow Lawn Station",
-        "Ruislip Lido Railway",
-        "Willow Lawn Station Ruislip Lido Railway",
-        "Railway",
-        "the Car Park",
-        "Ruislip Lido",
-        "Www.ruisliplidorailway.org",
-        "the Railway"
       ],
       "status": "resolved"
     },
@@ -26644,51 +26561,6 @@
       },
       "location_candidates": [],
       "location_hints": [],
-      "status": "resolved"
-    },
-    {
-      "video_id": "MH0_mPt-VXE",
-      "title": "FR24 - MSY New Orleans LIVE 24/7",
-      "channel_id": "UCcGI_kXwKl_QhyW9jK_8gIA",
-      "channel_title": "Flightradar24",
-      "location": {
-        "lat": 29.9942002,
-        "lng": -90.2643044,
-        "city": "Kenner",
-        "region": "Louisiana",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Msy New Orleans"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Msy New Orleans",
-          "lat": 29.9942002,
-          "lng": -90.2643044,
-          "display_name": "Louis Armstrong New Orleans International Airport, Connecticut Avenue, Kenner, Jefferson Parish, Louisiana, 70062, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Msy New Orleans"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Reproduction, Oregon, United States",
-        "Fr24 - Msy New Orleans 24",
-        "Msy New Orleans",
-        "Fr24",
-        "Flightradar",
-        "Flightradar24",
-        "New Orleans",
-        "Msy Airport",
-        "the Heart of the Gulf",
-        "Camstreamer"
-      ],
       "status": "resolved"
     },
     {
@@ -32530,51 +32402,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "0v8x5wyXeB8",
-      "title": "Seoul Namsan 4K LIVE 🔴 | Namsan Tower | 서울 남산타워 라이브 | ソウル南山タワーライブ | 首尔南山塔直播",
-      "channel_id": "UC_WJaEpQOURh6dNEXqA8FgA",
-      "channel_title": "한강 라이브 365",
-      "location": {
-        "lat": 37.5512692,
-        "lng": 126.9882959,
-        "city": "서울특별시",
-        "region": null,
-        "country": "KR",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "남산타워"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "남산타워",
-          "lat": 37.5512692,
-          "lng": 126.9882959,
-          "display_name": "남산서울타워, 105, 남산공원길, 용산동2가, 용산2가동, 용산구, 서울특별시, 04340, 대한민국",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "남산타워"
-          ]
-        }
-      ],
-      "location_hints": [
-        "남산타워",
-        "라이브",
-        "서울 남산타워 라이브",
-        "ソウル南山タワーライブ",
-        "seoul namsan namsan tower 서울 남산타워 라이브 ソウル南山タワーライブ 首尔南山塔直播",
-        "한강 라이브",
-        "한강 라이브 365",
-        "한강과",
-        "남산타워를",
-        "중심으로"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "25JQQZFy0Ps",
       "title": "OC Pier Cam",
       "channel_id": "UCaInTXiabNlYe1zreHafFvA",
@@ -34866,7 +34693,7 @@
           "query": "the",
           "lat": -5.0598744,
           "lng": -42.8235102,
-          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Avenida Campo Maior, Nova Brasilia, Teresina, Piauí, Região Nordeste, 64002-620, Brasil",
+          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Rua Gaston de Greslan, Parque Alvorada, Teresina, Piauí, Região Nordeste, 64004-450, Brasil",
           "source": "place-hint-geocoder",
           "evidence": [
             "the"
@@ -43645,6 +43472,7 @@
         }
       ],
       "location_hints": [
+        "Watch Rocket Launches From Florida’s Space Coast , 24",
         "Politics, Oregon, United States",
         "Afartv – Volcano, Aurora, Space & Nature Streams In",
         "Now: Spacex Gigabay Construction",
@@ -43653,8 +43481,7 @@
         "Starship’s Giant Florida Factory Rises On the Space Coast",
         "Starship",
         "S Giant Florida Factory Rises",
-        "the Space Coast",
-        "Now: Spacex Gigabay Construction Starship’s Giant Florida Factory Rises On the Space Coast"
+        "the Space Coast"
       ],
       "status": "resolved"
     },
@@ -49564,51 +49391,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "PanCpNz1gPg",
-      "title": "美ヶ原高原・長和町町営駐車場（山本小屋ふる里館前）ライブカメラ",
-      "channel_id": "UCm9d_cxZig30MMDv09_o96g",
-      "channel_title": "王ヶ頭カメラ",
-      "location": {
-        "lat": 35.0546199,
-        "lng": 135.7632495,
-        "city": "京都市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "松本市と上田市"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "松本市と上田市",
-          "lat": 35.0546199,
-          "lng": 135.7632495,
-          "display_name": "上賀茂松本町, 上賀茂山端線, 上賀茂岡本口町, 北区, 京都市, 京都府, 603-8062, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "松本市と上田市"
-          ]
-        }
-      ],
-      "location_hints": [
-        "美ヶ原高原・長和町町営駐車場（山本小屋ふる里館前）ライブカメラ",
-        "長和町町営駐車場",
-        "山本小屋ふる里館前",
-        "ライブカメラ",
-        "王ヶ頭カメラ",
-        "松本市と上田市",
-        "長野県、松本市と上田市の間にある美ヶ原高原 その山頂,王ヶ頭より映像を配信しております 標高は2034ｍ",
-        "長野県",
-        "松本市と上田市の間にある美ヶ原高原 その山頂",
-        "王ヶ頭より映像を配信しております"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "6mYHv47tpKE",
       "title": "旧軽井沢町営駐車場ライブカメラ",
       "channel_id": "UCe0IyAHwKBq-ohmOxboQGEg",
@@ -53867,51 +53649,6 @@
         "Leeville Pk",
         "Traffic",
         "City of Lebanon"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "isQSAV9rJvQ",
-      "title": "Oceanside, CA Harbor - Live",
-      "channel_id": "UCwtwNjuQsTiCK8EUJtJd8YQ",
-      "channel_title": "Americas Boating Club Oceanside / USPS",
-      "location": {
-        "lat": 33.1958696,
-        "lng": -117.379483,
-        "city": "Oceanside",
-        "region": "California",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Oceanside, California, United States"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Oceanside, California, United States",
-          "lat": 33.1958696,
-          "lng": -117.379483,
-          "display_name": "Oceanside, San Diego County, California, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Oceanside, California, United States"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Oceanside, California, United States",
-        "Oceanside, Ca Harbor",
-        "Please Donate To America's Boating Club Oceanside To Help Support This . Https:",
-        "America's Boating",
-        "Oceanside Harbor, California, United States",
-        "Part of, United States",
-        "Oceanside",
-        "Harbor",
-        "Americas Boating Club Oceanside Usps",
-        "Usps"
       ],
       "status": "resolved"
     },
@@ -68564,51 +68301,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "8J80F86f114",
-      "title": "Palermo Live Webcam",
-      "channel_id": "UCNlinmcGuYdoPgfR-aG8YSQ",
-      "channel_title": "Panocam webcam panoramiche",
-      "location": {
-        "lat": 38.1112268,
-        "lng": 13.3524434,
-        "city": "Palermo",
-        "region": "Sicilia",
-        "country": "IT",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Palermo"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Palermo",
-          "lat": 38.1112268,
-          "lng": 13.3524434,
-          "display_name": "Palermo, Sicilia, Italia",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Palermo"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Palermo È, Illinois, United States",
-        "Palermo",
-        "Panocam Panoramiche",
-        "Panoramiche",
-        "Africa",
-        "Panocam.it",
-        "Index.php",
-        "Acquista Una Panoramica: Https:",
-        "Acquista Una Panoramica",
-        "Https"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "6y5CqAHxGX0",
       "title": "Relaxing Night Walk in NEW YORK CITY 🗽 8th Avenue, MANHATTAN Tour NYC",
       "channel_id": "UCnvLGayHxWh5YZjpJjZ6WRg",
@@ -69068,51 +68760,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "uUirqfUMK94",
-      "title": "Oslo Skimore LIVE",
-      "channel_id": "UCgAmmVZsZ4vfDH-vtWawaOg",
-      "channel_title": "Norway Live",
-      "location": {
-        "lat": 69.775599,
-        "lng": 19.3031746,
-        "city": "Tromsø",
-        "region": null,
-        "country": "NO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Experience, Norway"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Experience, Norway",
-          "lat": 69.775599,
-          "lng": 19.3031746,
-          "display_name": "Sami Rendeering Experience, Ullstindvegen, Vågnes - Skearronjárga, Tromsø, Troms, 9023, Norge",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Experience, Norway"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Norway",
-        "Experience, Norway",
-        "Beautiful, Norway",
-        "Beautiful Norway",
-        "Norway – Experience Norway, 24",
-        "Experience Norway",
-        "@norwaylive Explore Norway, Here And Now",
-        "Utforsk Norge, Her Og Nå. Contact: Post@norwaylive.tv",
-        "Oslo Skimore",
-        "the City"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "T2Qu7cgwJmw",
       "title": "School surveillance video from April 2022 tornado in Andover, KS",
       "channel_id": "UCUDA_CGXq8k1ojZz5LijnHA",
@@ -69235,51 +68882,6 @@
         "One of, Norway",
         "Hafjell, Norway",
         ": Skiing In Norway",
-        "Experience, Norway",
-        "Beautiful, Norway",
-        "Beautiful Norway",
-        "Norway – Experience Norway, 24",
-        "Experience Norway",
-        "@norwaylive Explore Norway, Here And Now"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "3xohetm5I7Y",
-      "title": "Marka LIVE",
-      "channel_id": "UCgAmmVZsZ4vfDH-vtWawaOg",
-      "channel_title": "Norway Live",
-      "location": {
-        "lat": 69.775599,
-        "lng": 19.3031746,
-        "city": "Tromsø",
-        "region": null,
-        "country": "NO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Experience, Norway"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Experience, Norway",
-          "lat": 69.775599,
-          "lng": 19.3031746,
-          "display_name": "Sami Rendeering Experience, Ullstindvegen, Vågnes - Skearronjárga, Tromsø, Troms, 9023, Norge",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Experience, Norway"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Norway",
-        "Hvordan Ser Det, Utah, United States",
-        "the Program Broadcasts All Year Round, Tocantins, Brazil",
-        "Fra Aspiranter, Til Pensjonerte Turgåere",
         "Experience, Norway",
         "Beautiful, Norway",
         "Beautiful Norway",
@@ -69556,96 +69158,6 @@
         "Macau City Street Walking Tour",
         "Watchers Club",
         "Experiences Across the City"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "QTMXSlNd5k4",
-      "title": "Oppdal Skisenter LIVE",
-      "channel_id": "UCgAmmVZsZ4vfDH-vtWawaOg",
-      "channel_title": "Norway Live",
-      "location": {
-        "lat": 62.5351785,
-        "lng": 9.6233763,
-        "city": null,
-        "region": null,
-        "country": "NO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Oppdal, Norway"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Oppdal, Norway",
-          "lat": 62.5351785,
-          "lng": 9.6233763,
-          "display_name": "Oppdal, Trøndelag, Norge",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Oppdal, Norway"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Norway",
-        "Å Lure På Hvordan Det Ser, Utah, United States",
-        "Oppdal, Norway",
-        ": Skiing In Norway",
-        "Vangslia, Stølen, Hovden Og Ådalen",
-        "Experience, Norway",
-        "Beautiful, Norway",
-        "Beautiful Norway",
-        "Norway – Experience Norway, 24",
-        "Experience Norway"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "8EKxnxlagvI",
-      "title": "Beitostølen LIVE",
-      "channel_id": "UCgAmmVZsZ4vfDH-vtWawaOg",
-      "channel_title": "Norway Live",
-      "location": {
-        "lat": 61.2487161,
-        "lng": 8.9062594,
-        "city": "Beitostølen",
-        "region": null,
-        "country": "NO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Beitostølen, Norway"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Beitostølen, Norway",
-          "lat": 61.2487161,
-          "lng": 8.9062594,
-          "display_name": "Beitostølen, Øystre Slidre, Innlandet, 2953, Norge",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Beitostølen, Norway"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Norway",
-        "Disse Ligger På Vestsiden Av Dalen, California, United States",
-        "Beitostølen, Norway",
-        ": Skiing In Norway",
-        "Experience, Norway",
-        "Beautiful, Norway",
-        "Beautiful Norway",
-        "Norway – Experience Norway, 24",
-        "Experience Norway",
-        "@norwaylive Explore Norway, Here And Now"
       ],
       "status": "resolved"
     },
@@ -69978,51 +69490,6 @@
         "Sampson Street",
         "Sampson Street East",
         "Trains"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "z_5NCwXPSqM",
-      "title": "Norway LIVE",
-      "channel_id": "UCgAmmVZsZ4vfDH-vtWawaOg",
-      "channel_title": "Norway Live",
-      "location": {
-        "lat": 69.775599,
-        "lng": 19.3031746,
-        "city": "Tromsø",
-        "region": null,
-        "country": "NO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Experience, Norway"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Experience, Norway",
-          "lat": 69.775599,
-          "lng": 19.3031746,
-          "display_name": "Sami Rendeering Experience, Ullstindvegen, Vågnes - Skearronjárga, Tromsø, Troms, 9023, Norge",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Experience, Norway"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Norway",
-        "Experience, Norway",
-        "Beautiful, Norway",
-        "Beautiful Norway",
-        "Norway – Experience Norway, 24",
-        "Experience Norway",
-        "@norwaylive Explore Norway, Here And Now",
-        "Utforsk Norge, Her Og Nå. Contact: Post@norwaylive.tv",
-        "Rekke Plattformer",
-        "Different Places"
       ],
       "status": "resolved"
     },
@@ -98468,7 +97935,7 @@
           "query": "the",
           "lat": -5.0598744,
           "lng": -42.8235102,
-          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Avenida Campo Maior, Nova Brasilia, Teresina, Piauí, Região Nordeste, 64002-620, Brasil",
+          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Rua Gaston de Greslan, Parque Alvorada, Teresina, Piauí, Região Nordeste, 64004-450, Brasil",
           "source": "place-hint-geocoder",
           "evidence": [
             "the"
@@ -101803,14 +101270,14 @@
       "location_hints": [
         "Multichannel , Omsk, Russia, Siberia",
         "Россия, Г. Омск, Многоканальная Камера",
-        "En: Public Online Omsk City, Russia, Siberia. Real Weather, Real Road Conditions",
         "Multichannel",
         "Omsk",
         "Russia",
         "Siberia",
         "Россия",
         "Омск",
-        "Многоканальная Камера"
+        "Многоканальная Камера",
+        "Smotriomsk"
       ],
       "status": "resolved"
     },
@@ -102890,51 +102357,6 @@
       },
       "location_candidates": [],
       "location_hints": [],
-      "status": "resolved"
-    },
-    {
-      "video_id": "gwUwOto2gJg",
-      "title": "LIVE PEMANTAUAN CCTV PANTAI WEDIOMBO",
-      "channel_id": "UCkEiJMkX7n3rZpZ2PDVc3Ow",
-      "channel_title": "Kominfo Gunungkidul",
-      "location": {
-        "lat": -7.9930377,
-        "lng": 110.5579309,
-        "city": null,
-        "region": "Daerah Istimewa Yogyakarta",
-        "country": "ID",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Gunungkidul, Indonesia"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Gunungkidul, Indonesia",
-          "lat": -7.9930377,
-          "lng": 110.5579309,
-          "display_name": "Gunungkidul, Daerah Istimewa Yogyakarta, Indonesia",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Gunungkidul, Indonesia"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Gunungkidul, Indonesia",
-        "Pemantauan Pantai Wediombo",
-        "Kominfo Gunungkidul",
-        "Gunungkidul",
-        "#livcctvgunungkidul #cctvgunungkidul #diskominfogunungkidul : Https:",
-        "Livcctvgunungkidul",
-        "Cctvgunungkidul",
-        "Diskominfogunungkidul",
-        "Https",
-        "App-smartcity.gunungkidulkab.go.id"
-      ],
       "status": "resolved"
     },
     {
@@ -105841,8 +105263,8 @@
         "7 Kilauea Volcano Livestream In Hawaii ( A)",
         "Kilauea Volcano Livestream",
         "Afartv",
-        "Orange",
-        "Red"
+        "Kaluapele",
+        "the Surface"
       ],
       "status": "resolved"
     },
@@ -120094,33 +119516,33 @@
       "channel_id": "UCVrFrtgV3IiWeDXk0M0lqww",
       "channel_title": "Get Licensed - Frontline Security",
       "location": {
-        "lat": 44.9675818,
-        "lng": -88.4269462,
-        "city": "Town of How",
-        "region": "Wisconsin",
-        "country": "US",
+        "lat": 52.5222217,
+        "lng": -1.892288,
+        "city": "Birmingham",
+        "region": "England",
+        "country": "GB",
         "level": "place",
         "confidence": 0.8,
         "source": "place-hint-geocoder",
         "renderable": true,
         "evidence": [
-          "How"
+          "Uk Security"
         ]
       },
       "location_candidates": [
         {
-          "query": "How",
-          "lat": 44.9675818,
-          "lng": -88.4269462,
-          "display_name": "Town of How, Oconto County, Wisconsin, United States",
+          "query": "Uk Security",
+          "lat": 52.5222217,
+          "lng": -1.892288,
+          "display_name": "Security, Holford Drive, Holford Industrial Estate, Aston, Nechells, Birmingham, West Midlands, England, B6 7UG, United Kingdom",
           "source": "place-hint-geocoder",
           "evidence": [
-            "How"
+            "Uk Security"
           ]
         }
       ],
       "location_hints": [
-        "Www.get-licensed.co.uk Explore the Frontline Security Podcast: Https:",
+        "Uk Security",
         "Www.get-licensed.co.uk",
         "How To Use A System",
         "How",
@@ -120912,8 +120334,8 @@
         "7 Kilauea Volcano Livestream In Hawaii ( C)",
         "Kilauea Volcano Livestream",
         "Afartv",
-        "Orange",
-        "Red"
+        "Kaluapele",
+        "the Surface"
       ],
       "status": "resolved"
     },
@@ -127138,7 +126560,7 @@
           "query": "the",
           "lat": -5.0598744,
           "lng": -42.8235102,
-          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Avenida Campo Maior, Nova Brasilia, Teresina, Piauí, Região Nordeste, 64002-620, Brasil",
+          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Rua Gaston de Greslan, Parque Alvorada, Teresina, Piauí, Região Nordeste, 64004-450, Brasil",
           "source": "place-hint-geocoder",
           "evidence": [
             "the"
@@ -143269,51 +142691,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "WLFlHxAaZ9c",
-      "title": "🔴LIVE | 175+ UFO Videos That Defy Explanation | Non Stop UFOs",
-      "channel_id": "UCy6HF6TYSqEfiHOwtpX5y0w",
-      "channel_title": "Orbit - Beyond the Blue",
-      "location": {
-        "lat": 33.9964854,
-        "lng": -96.229987,
-        "city": null,
-        "region": "Oklahoma",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Blue"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Blue",
-          "lat": 33.9964854,
-          "lng": -96.229987,
-          "display_name": "Blue, Bryan County, Oklahoma, 74726, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Blue"
-          ]
-        }
-      ],
-      "location_hints": [
-        "175+ Ufo Videos That Defy Explanation",
-        "Ufo Videos",
-        "Defy Explanation",
-        "Non Stop Ufos",
-        "Orbit - Beyond the Blue",
-        "Blue",
-        "Orbit",
-        "Beyond the Blue",
-        "One Long Compilation Featuring Mysterious Orbs",
-        "Around the"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "l7dUJiOU0cM",
       "title": "飛騨馬瀬川ライブ　岐阜県下呂市からライブ中継",
       "channel_id": "UCJGSEWFXV6oDswwK2O6Ax7g",
@@ -150829,7 +150206,7 @@
           "query": "the",
           "lat": -5.0598744,
           "lng": -42.8235102,
-          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Avenida Campo Maior, Nova Brasilia, Teresina, Piauí, Região Nordeste, 64002-620, Brasil",
+          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Rua Gaston de Greslan, Parque Alvorada, Teresina, Piauí, Região Nordeste, 64004-450, Brasil",
           "source": "place-hint-geocoder",
           "evidence": [
             "the"
@@ -153065,13 +152442,13 @@
         "Iran, United States",
         "Iran America War",
         "Bihar, Indiana, United States",
-        "News18 Mp Cg : Iran America War",
         "Easy, Tocantins, Brazil",
         "News18 Mp Cg : Krishna Janmashtami",
         "Mp Cg",
         "Krishna Janmashtami",
         "Nepal Floods Update",
-        "Chitrakoot Floods"
+        "Chitrakoot Floods",
+        "News Mp Chhattisgarh"
       ],
       "status": "resolved"
     },
@@ -157978,43 +157355,18 @@
       "channel_id": "UCpb8WxAsZPIwaAsNbbKLzmg",
       "channel_title": "ms36K",
       "location": {
-        "lat": 40.7365804,
-        "lng": -73.8783932,
-        "city": "New York",
-        "region": "New York",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
+        "lat": 40.7127753,
+        "lng": -74.0059728,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
         "renderable": true,
         "evidence": [
-          "Elmhurst, New York, United States"
+          "YouTube recordingDetails.location"
         ]
       },
-      "location_candidates": [
-        {
-          "query": "Elmhurst, New York, United States",
-          "lat": 40.7365804,
-          "lng": -73.8783932,
-          "display_name": "Elmhurst, Queens, Queens County, New York, 11373, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Elmhurst, New York, United States"
-          ]
-        }
-      ],
-      "location_hints": [
-        "7 — Times Square, Brooklyn Bridge, World Trade Center, People & More",
-        "New York City — Times Square, Brooklyn Bridge, World Trade Center, People & More",
-        "Elmhurst, New York, United States",
-        "New York, New York, United States",
-        "Brooklyn, New York, United States",
-        "Queens, New York, United States",
-        "Little, Italy",
-        "Laguardia, New York — East Elmhurst, Ny Https:",
-        "Earthcam : Times Square Crossroads (new York City, Ny) — New York, Ny Https:",
-        "George Washington Bridge - Nyc Side — New York, Ny Https:"
-      ],
+      "location_candidates": [],
+      "location_hints": [],
       "status": "resolved"
     },
     {
@@ -177372,51 +176724,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "0mCvOcMW82w",
-      "title": "Singapore CBD Live Stream 4K Webcam",
-      "channel_id": "UCeh-xpdolXxtC7ey15ccW-g",
-      "channel_title": "Christoph Burgdorfer",
-      "location": {
-        "lat": 1.2813242,
-        "lng": 103.8486747,
-        "city": "Singapore",
-        "region": null,
-        "country": "SG",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Singapore Cbd"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Singapore Cbd",
-          "lat": 1.2813242,
-          "lng": 103.8486747,
-          "display_name": "Yoga Lab CBD, Boon Tat Street, Chinatown, Tanjong Pagar, Outram, Central Region, Singapore, 069624, Singapore",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Singapore Cbd"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Singapore Cbd Stream",
-        "Singapore Cbd",
-        "View Over the, Singapore",
-        "Smog Also Check Out My, Singapore",
-        "Results?search_query=singapore+port+ +",
-        "Singapore",
-        "A View Over the Singapore Cbd",
-        "Christoph Burgdorfen",
-        "Christoph Burgdorf",
-        "Christoph Burgdorfer"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "5XtbLHjjIyU",
       "title": "Balneário Camboriú ao vivo - Avenida Atlântica - SC",
       "channel_id": "UCi1vQx48j_nfrMg6XH5PItQ",
@@ -178976,51 +178283,6 @@
         "Bulletins",
         "Stories",
         "Updates"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "GFdpsq-7t04",
-      "title": "IIT Bombay Case: CCTV Footage Shows Sahil Wakode Cheating During Exam | Professor Doolla | News18",
-      "channel_id": "UCef1-8eOpJgud7szVPlZQAQ",
-      "channel_title": "CNN-News18",
-      "location": {
-        "lat": -16.5568536,
-        "lng": 15.7867319,
-        "city": null,
-        "region": "Cunene",
-        "country": "AO",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Cnn"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Cnn",
-          "lat": -16.5568536,
-          "lng": 15.7867319,
-          "display_name": "Cunene, Angola",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Cnn"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Iit Bombay Case: Shows Sahil Wakode Cheating During Exam",
-        "Iit Bombay Case",
-        "Shows Sahil Wakode Cheating During Exam",
-        "Professor Doolla",
-        "News18",
-        "Iit Bombay Case: Shows Sahil Wakode Cheating During Exam Professor Doolla News18",
-        "Cnn-news",
-        "Cnn-news18",
-        "Cnn",
-        "the Iit Bombay Examination Hall"
       ],
       "status": "resolved"
     },
@@ -182414,7 +181676,7 @@
           "query": "the",
           "lat": -5.0598744,
           "lng": -42.8235102,
-          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Avenida Campo Maior, Nova Brasilia, Teresina, Piauí, Região Nordeste, 64002-620, Brasil",
+          "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Rua Gaston de Greslan, Parque Alvorada, Teresina, Piauí, Região Nordeste, 64004-450, Brasil",
           "source": "place-hint-geocoder",
           "evidence": [
             "the"
@@ -185939,7 +185201,8 @@
         "Haunted Frequency",
         "Frequency",
         "the End of",
-        "Wisconsin Who Crosses the Entire Garden Faster"
+        "Wisconsin Who Crosses the Entire Garden Faster",
+        "Ghosts Caught"
       ],
       "status": "resolved"
     },
@@ -187270,51 +186533,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "gDAxPneA2Is",
-      "title": "PRAÇA CENTRAL de Serra Branca - PB | AO VIVO 24h",
-      "channel_id": "UCxdSxKcL9F0SBcUlfXe6yCg",
-      "channel_title": "Paróquia Nossa Senhora da Conceição",
-      "location": {
-        "lat": -7.4815274,
-        "lng": -36.6634581,
-        "city": null,
-        "region": "Paraíba",
-        "country": "BR",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Serra Branca"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Serra Branca",
-          "lat": -7.4815274,
-          "lng": -36.6634581,
-          "display_name": "Serra Branca, Paraíba, Região Nordeste, Brasil",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Serra Branca"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Central de Serra Branca, Paraíba, Brazil",
-        "Uma Visão Constante da Cidade de Serra Branca, Paraíba, Brazil",
-        "Inscreva, Sergipe, Brazil",
-        "Pascomserrabranca Inscreva, Sergipe, Brazil",
-        "Serra Branca",
-        "Praça Central de Serra Branca - Pb",
-        "Central de Serra Branca",
-        "Praça Central de Serra Branca",
-        "Pb 24h",
-        "Praça Central de Serra Branca - Pb 24h"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "PeTHS4MivaE",
       "title": "Local & National News Updates | North Carolina Forecast & What's #trending",
       "channel_id": "UCfmkz6A3aTJwJzox2xhAuRw",
@@ -187883,51 +187101,6 @@
         "Milenio Sigue Nuestro Las",
         "Horas",
         "Https"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "_yiC7ZYkSkI",
-      "title": "ESTAMOS AL AIRE: Gran MARATÓN Gran de 31 MINUTOS",
-      "channel_id": "UC-qGzxz4cJjbWCdYndyO1gg",
-      "channel_title": "NTV Chile",
-      "location": {
-        "lat": -31.7613365,
-        "lng": -71.3187697,
-        "city": null,
-        "region": null,
-        "country": "CL",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Chile"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Chile",
-          "lat": -31.7613365,
-          "lng": -71.3187697,
-          "display_name": "Chile",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Chile"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Estamos, Alabama, United States",
-        "Ntv Chile",
-        "Chile",
-        "Ntv, Chile",
-        "Estamos Al Aire: Gran Maratón Gran de 31 Minutos",
-        "Estamos",
-        "Aire",
-        "Gran Maratón Gran de",
-        "Minutos",
-        "Un Especial Imperdible del Noticiero de Títeres Que"
       ],
       "status": "resolved"
     },
@@ -190251,46 +189424,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "SAfiCTMfG9w",
-      "title": "Gardens Plaza Skyline Cam looking South",
-      "channel_id": "UC-szBTOZqw5cvTbOtgwy7KA",
-      "channel_title": "Jim Ginn",
-      "location": {
-        "lat": 48.8587705,
-        "lng": 13.0958529,
-        "city": "Lalling",
-        "region": "Bayern",
-        "country": "DE",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Ginn"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Ginn",
-          "lat": 48.8587705,
-          "lng": 13.0958529,
-          "display_name": "Ginn, Stritzling, Lalling, Lalling (VGem), Landkreis Deggendorf, Bayern, 94551, Deutschland",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Ginn"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Gardens Plaza Skyline Looking South",
-        "Gardens Plaza Skyline Looking",
-        "Jim Ginn",
-        "Ginn",
-        "Seetheview.com"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "OjV7RCuOx4s",
       "title": "명동대성당 Myeongdong Catholic Cathedral",
       "channel_id": "UC0lTglWJB9LWTudoRN8MEGA",
@@ -190510,49 +189643,6 @@
         "Meditation, Oregon, United States",
         "@naturezilla1 Thank You, Naturezilla",
         "Mountain Stream Flowing 24"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "1LKfIz99wBQ",
-      "title": "EarthCam Live:  Salmon Fishing and River (Pulaski, NY)",
-      "channel_id": "UC6qrG3W8SMK0jior2olka3g",
-      "channel_title": "EarthCam",
-      "location": {
-        "lat": 43.567014,
-        "lng": -76.127703,
-        "city": "Village of Pulaski",
-        "region": "New York",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Pulaski, Ny"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Pulaski, Ny",
-          "lat": 43.567014,
-          "lng": -76.127703,
-          "display_name": "Village of Pulaski, Town of Richland, Oswego County, New York, 13142, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Pulaski, Ny"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Earthcam : Salmon Fishing And River (pulaski, Ny)",
-        "Pulaski, Ny",
-        "Earthcam",
-        "Salmon Fishing",
-        "River",
-        "Pulaski",
-        "Lake Ontario",
-        "Destinations Across the Globe Inspiring Exploration"
       ],
       "status": "resolved"
     },
@@ -191709,13 +190799,13 @@
         "Streets of Thailand",
         "Thailand",
         "Streets of, Thailand",
-        "Experience the Real, Thailand",
-        "Enjoy, Thailand",
+        "Nightlife Around Koh Samui, Oregon, United States",
+        "Simply Missing, Thailand",
+        "Welcome To Streets of Thailand! Explore Koh Samui And Beyond Through 24",
         "the Deck Beach Club Bang Rak Beach - Koh Samui",
         "the Deck Beach",
         "Bang Rak Beach",
-        "Koh Samui",
-        "Www.youtube.com"
+        "Koh Samui"
       ],
       "status": "resolved"
     },
@@ -193545,8 +192635,8 @@
         "One of the Most Closely Watched Eagle",
         "the",
         "Florida Runs Oct",
-        "Their Nest",
-        "the Coming Months"
+        "Updates: Https:",
+        "Updates"
       ],
       "status": "resolved"
     },
@@ -194669,51 +193759,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "hJBJFiYBKiI",
-      "title": "Wolfeboro Real Estate live stream of downtown Wolfeboro a/k/a  wolfeborocam.com",
-      "channel_id": "UC3DCb0LxBCMkMHbu9f6P4sQ",
-      "channel_title": "Wolfeboro Bay Real Estate",
-      "location": {
-        "lat": 43.6093756,
-        "lng": -71.1748676,
-        "city": "Wolfeboro",
-        "region": "New Hampshire",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Wolfeboro, New Hampshire, United States"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Wolfeboro, New Hampshire, United States",
-          "lat": 43.6093756,
-          "lng": -71.1748676,
-          "display_name": "Wolfeboro, Carroll County, New Hampshire, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Wolfeboro, New Hampshire, United States"
-          ]
-        }
-      ],
-      "location_hints": [
-        "America",
-        "Wolfeboro, New Hampshire, United States",
-        "the Heart of, United States",
-        "the Heart of America's Oldest Summer Resort Town",
-        "Wolfeboro Real Estate Stream of Downtown Wolfeboro A",
-        "Wolfeboro Real Estate",
-        "of Downtown Wolfeboro",
-        "A Wolfeborocam.com",
-        "Wolfeborocam.com",
-        "Wolfeboro Real Estate Stream of Downtown Wolfeboro A K A Wolfeborocam.com"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "LkZZTkRHLVQ",
       "title": "Market Square, Portsmouth, NH US",
       "channel_id": "UC8gbWbcNNyb5-NIXvFklkOA",
@@ -194863,8 +193908,8 @@
         "Жк Океанус",
         "Аренда В Нячанге",
         "Нячанге",
-        "Туристический Офис: Https:",
-        "Туристический Офис"
+        "Экскурсии",
+        "Сим Карты"
       ],
       "status": "resolved"
     },
@@ -195444,13 +194489,13 @@
         }
       ],
       "location_hints": [
+        "Andrew-mountbatten-windsor-and-thames-valley-police-agreed-warrants, Tocantins, Brazil",
         "the Full Story, First. Download the Sky News App: Https:",
         "Watch Sky News",
         "Sky",
         "Sky News",
         "Daily Podcast",
         "Content",
-        "Trib.al",
         "News.sky.com",
         "Story",
         "Www.youtube.com"
@@ -195601,14 +194646,14 @@
       "location_hints": [
         "Eat Everything In A Grocery Store, Win $1,000,000",
         "Hippeas, Michigan, United States",
+        "Www.amazon.co.uk",
         "Raised $20,000,000 To Plant 20,000,000 Trees",
         "Helped 2,000 People Walk Again",
         "Helped 1,000 Blind People See",
         "Helped 1,000 Deaf People Hear",
         "Gave $5,000,000 To One Person",
         "Eat Everything",
-        "Grocery Store",
-        "Win"
+        "Grocery Store"
       ],
       "status": "resolved"
     },
@@ -198037,51 +197082,6 @@
         "Wisconsin",
         "Village of Greendale",
         "Your Local Government"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "UQBED1DREUE",
-      "title": "［LIVE CAMERA］札幌 狸小路 ライブカメラ（４丁目） Tanukikoji Shopping Street in Sapporo, Hokkaido, Japan.",
-      "channel_id": "UCRZplV8vE67bgCI6_3sm3mQ",
-      "channel_title": "たぬきやLIVE",
-      "location": {
-        "lat": 43.4519831,
-        "lng": 142.8197834,
-        "city": null,
-        "region": "北海道地方",
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Hokkaido, Japan"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Hokkaido, Japan",
-          "lat": 43.4519831,
-          "lng": 142.8197834,
-          "display_name": "北海道, 北海道地方, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Hokkaido, Japan"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Hokkaido, Japan",
-        "［ ］札幌 狸小路 ライブカメラ（４丁目） Tanukikoji Shopping Street In Sapporo, Hokkaido, Japan",
-        "札幌 狸小路 ライブカメラ",
-        "Japan",
-        "たぬきやlive",
-        "北海道おみやげnews（by たぬきや） Https:",
-        "北海道おみやげnews",
-        "たぬきや",
-        "Tanukiya.japan Https:",
-        "Tanukiya.japan Https"
       ],
       "status": "resolved"
     },
@@ -201740,51 +200740,6 @@
       "status": "resolved"
     },
     {
-      "video_id": "BfhSvPwWZA4",
-      "title": "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気 夜景 【】 Japan Nagoya Live Camera",
-      "channel_id": "UCjmqhsGQ9J1QK4r5mUrZb4A",
-      "channel_title": "鉄道沿線の生活",
-      "location": {
-        "lat": 35.1851045,
-        "lng": 136.8998438,
-        "city": "名古屋市",
-        "region": null,
-        "country": "JP",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Japan Nagoya"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Japan Nagoya",
-          "lat": 35.1851045,
-          "lng": 136.8998438,
-          "display_name": "名古屋市, 愛知県, 日本",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Japan Nagoya"
-          ]
-        }
-      ],
-      "location_hints": [
-        "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気 夜景",
-        "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気",
-        "Japan Nagoya",
-        "名古屋駅 ライブカメラ 愛知 鉄道 新幹線 天気 夜景 japan nagoya",
-        "鉄道沿線の生活",
-        "サンライズ出雲･瀬戸",
-        "名鉄･近鉄は地下ﾎｰﾑのためこのｶﾒﾗからは見れません",
-        "画角を変えるを含む",
-        "タカラダニ",
-        "天候の良い午前中･夏季"
-      ],
-      "status": "resolved"
-    },
-    {
       "video_id": "-o-0x1vgU78",
       "title": "JR 中央本線ライブカメラ③（春日居町 ⇔ 石和温泉）熊野権現踏切【10月】",
       "channel_id": "UCZ974tQkAeV7_l_opPHCcdg",
@@ -204082,11 +203037,11 @@
         "Thailand",
         "Streets of Thailand",
         "Streets of, Thailand",
-        "Experience the Real, Thailand",
-        "Enjoy, Thailand",
+        "Nightlife Around Koh Samui, Oregon, United States",
+        "Simply Missing, Thailand",
+        "Welcome To Streets of Thailand! Explore Koh Samui And Beyond Through 24",
         "Zephyr Beach",
-        "Lamai Beach",
-        "Koh Samui"
+        "Lamai Beach"
       ],
       "status": "resolved"
     },
@@ -204858,11 +203813,11 @@
         "Thailand",
         "Streets of Thailand",
         "Streets of, Thailand",
-        "Experience the Real, Thailand",
-        "Enjoy, Thailand",
+        "Nightlife Around Koh Samui, Oregon, United States",
+        "Simply Missing, Thailand",
+        "Welcome To Streets of Thailand! Explore Koh Samui And Beyond Through 24",
         "Zephyr Beach",
-        "Lamai Beach",
-        "Koh Samui"
+        "Lamai Beach"
       ],
       "status": "resolved"
     },
@@ -204952,51 +203907,6 @@
         "Socialmediapolicy)",
         "Socialmediapolicy",
         "Http: Www.leegov.com Socialmediapolicy"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "AnQRM1q16kc",
-      "title": "Webcam Lanzarote - Live Stream from the Beachbar in Costa Teguise",
-      "channel_id": "UCPNkrps0FeHFXthbVjR0nlA",
-      "channel_title": "Beach Bar Lanzarote",
-      "location": {
-        "lat": 28.9959062,
-        "lng": -13.4971609,
-        "city": "Teguise",
-        "region": "Canarias",
-        "country": "ES",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Costa Teguise"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Costa Teguise",
-          "lat": 28.9959062,
-          "lng": -13.4971609,
-          "display_name": "Costa Teguise, Teguise, Las Palmas, Canarias, 35508, España",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Costa Teguise"
-          ]
-        }
-      ],
-      "location_hints": [
-        "@28.997172,-13.4895319,19z",
-        "the Beachbar",
-        "Costa Teguise",
-        "Lanzarote - Stream From the Beachbar In Costa Teguise",
-        "Lanzarote",
-        "Beach Bar Lanzarote",
-        "Www.google.com",
-        "Maps",
-        "Place",
-        "Beach+bar"
       ],
       "status": "resolved"
     },
@@ -206240,59 +205150,15 @@
       ],
       "location_hints": [
         "Thirdpolararch.com Boston, Massachusetts, United States",
-        "Watch?v=lzsucdo4vfy Updated Wed Oct 7, 2 Pm Et ━━━━━━━━━━━━━━━━ 24",
+        "Watch?v=tjpzbreyigm Updated Thu Oct 8, 3 Pm Et ━━━━━━━━━━━━━━━━ Boston , 24",
+        "Weather As It Happens: Fog, Thunderstorms, Snow, Big Gusts",
         "Common.cold.fyi Pink-sky Alerts On Your Phone (free, No Account) → Https:",
         "Licensing: Hello@thirdpolararch.com Boston, Ma #bostonlive #bostoncommon #boston",
+        "Prudential Center, 200 Clarendon",
         "Free, No Account",
         "End, Tocantins, Brazil",
         "Boston Common - Fall Foliage",
-        "Boston Common",
-        "Fall Foliage",
-        "7 Skyline"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "zvClTAMszi4",
-      "title": "Winter Park Eagle Cam Live Stream",
-      "channel_id": "UC51tfMdZhBpyEUP_uWOC-ZA",
-      "channel_title": "Winter Park Eagle Cam",
-      "location": {
-        "lat": 39.8611075,
-        "lng": -105.7861061,
-        "city": "Winter Park",
-        "region": "Colorado",
-        "country": "US",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Winter Park Eagle"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Winter Park Eagle",
-          "lat": 39.8611075,
-          "lng": -105.7861061,
-          "display_name": "Eagle Wind, Fantasy Meadow, Winter Park, Grand County, Colorado, 80482, United States",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "Winter Park Eagle"
-          ]
-        }
-      ],
-      "location_hints": [
-        "Winter Park Eagle Stream",
-        "Winter Park Eagle",
-        "Eagle",
-        "Florida",
-        "Florida Welcome",
-        "Winter Park",
-        "Bald Eagle Behavior",
-        "Their Natural Habitat",
-        "One Eye"
+        "Boston Common"
       ],
       "status": "resolved"
     },
@@ -207388,11 +206254,11 @@
         "de Aeroportos do, Brazil",
         "Guarulhos É O Principal Aeroporto do Brasil",
         "Aeroportos do Brasil",
-        "Sbgrlive A Verdadeira História da Sbgr , Aonde E Como Tudo Começou - Https:",
         "Ex: Acessa O Meu, Acabei de Postar, Me Segue Lá No E Etc",
         "Que Vocês Veem Atualmente No, Brazil",
         "Guarulhos Ao",
-        "Sbgr - Aeroporto Internacional de Guarulhos - Gru Airport"
+        "Sbgr - Aeroporto Internacional de Guarulhos - Gru Airport",
+        "Sbgr"
       ],
       "status": "resolved"
     },
@@ -207438,45 +206304,6 @@
         "Aviação",
         "Aviação Tv",
         "Airport Video Comentários"
-      ],
-      "status": "resolved"
-    },
-    {
-      "video_id": "rpx_jaK7Bzc",
-      "title": "07/10/2026 - TV Câmara Ao Vivo",
-      "channel_id": "UCKAap-159oZbRwpPrvzdWhg",
-      "channel_title": "tvcamaragoiania",
-      "location": {
-        "lat": -22.9247566,
-        "lng": -43.6477584,
-        "city": "Rio de Janeiro",
-        "region": "Rio de Janeiro",
-        "country": "BR",
-        "level": "place",
-        "confidence": 0.8,
-        "source": "place-hint-geocoder",
-        "renderable": true,
-        "evidence": [
-          "2026 - Tv Câmara"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "2026 - Tv Câmara",
-          "lat": -22.9247566,
-          "lng": -43.6477584,
-          "display_name": "Travessa Camara, Três Pontes, Aço, Santa Cruz, Rio de Janeiro, Região Sudeste, 23585-812, Brasil",
-          "source": "place-hint-geocoder",
-          "evidence": [
-            "2026 - Tv Câmara"
-          ]
-        }
-      ],
-      "location_hints": [
-        "2026 - Tv Câmara",
-        "Tv Câmara",
-        "Tvcamaragoiania",
-        "Vídeos Oficial da Câmara Municipal de Goiânia"
       ],
       "status": "resolved"
     },
@@ -209218,6 +208045,2519 @@
         "Orphan Andy",
         "Celebration of the Rainbow Flag",
         "Harvey Milk Plaza"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "T-MSOMJ1M9k",
+      "title": "UKRAINE LIVE NOW 🔴 Real-Time Cameras: Kyiv, Kharkiv, Odesa, Zaporizhzhia, Donetsk and more",
+      "channel_id": "UCq1xihNfMHU_Ekmqs_382Sg",
+      "channel_title": "Aurelian Mocanu",
+      "location": {
+        "lat": 50.0132811,
+        "lng": 36.2280126,
+        "city": "Харків",
+        "region": "Харківська область",
+        "country": "UA",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Ukraine Now"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Ukraine Now",
+          "lat": 50.0132811,
+          "lng": 36.2280126,
+          "display_name": "Будівництво ЖК NOW, Наукова, Шевченківський район, Харків, Харківська міська громада, Харківський район, Харківська область, Україна",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Ukraine Now"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Ukraine Now : Kyiv, Kharkiv, Odesa, Zaporizhzhia, Donetsk And More",
+        "Sexual Content, Oregon, United States",
+        "Ukraine Now",
+        "Kyiv",
+        "Kharkiv",
+        "Odesa",
+        "Zaporizhzhia",
+        "Donetsk",
+        "More",
+        "Aurelian Mocanu"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "FUhW3r5ROGc",
+      "title": "Palermo Live Webcam",
+      "channel_id": "UCNlinmcGuYdoPgfR-aG8YSQ",
+      "channel_title": "Panocam webcam panoramiche",
+      "location": {
+        "lat": 38.1112268,
+        "lng": 13.3524434,
+        "city": "Palermo",
+        "region": "Sicilia",
+        "country": "IT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Palermo"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Palermo",
+          "lat": 38.1112268,
+          "lng": 13.3524434,
+          "display_name": "Palermo, Sicilia, Italia",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Palermo"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Palermo È, Illinois, United States",
+        "Palermo",
+        "Panocam Panoramiche",
+        "Panoramiche",
+        "Africa",
+        "Panocam.it",
+        "Index.php",
+        "Acquista Una Panoramica: Https:",
+        "Acquista Una Panoramica",
+        "Https"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "eLrPiGikPvM",
+      "title": "Aaj Tak LIVE TV: Nana Patekar Last Rites| INDIA Alliance Protest | Rahul Gandhi | Gyanesh Kumar | EC",
+      "channel_id": "UCt4t-jeY85JegMlZ-E5UWtA",
+      "channel_title": "Aaj Tak",
+      "location": {
+        "lat": 19.9600778,
+        "lng": 73.7695743,
+        "city": "Nashik",
+        "region": "Maharashtra",
+        "country": "IN",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Rahul Gandhi"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Rahul Gandhi",
+          "lat": 19.9600778,
+          "lng": 73.7695743,
+          "display_name": "Rahul farm build 19, Mumbai Agra Highway Elevated Corridor, Rane Nagar, CIDCO, Nashik, Nashik Subdistrict, Nashik, Maharashtra, 422001, India",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Rahul Gandhi"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aaj Tak Tv: Nana Patekar Last Rites",
+        "Aaj Tak Tv",
+        "Nana Patekar Last Rites",
+        "India Alliance Protest",
+        "Rahul Gandhi",
+        "Gyanesh Kumar",
+        "Aaj Tak",
+        "Tak",
+        "Channel",
+        "About Channel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "wt6SIE7BXS8",
+      "title": "Watch FOX Weather Channel Live Stream: Tracking Breaking Weather News, Local and National Forecasts",
+      "channel_id": "UC1FbPiXx59_ltnFVx7IxWow",
+      "channel_title": "FOX Weather",
+      "location": {
+        "lat": 40.8077797,
+        "lng": -84.0572225,
+        "city": null,
+        "region": "Ohio",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "All, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "All, United States",
+          "lat": 40.8077797,
+          "lng": -84.0572225,
+          "display_name": "Allen County, Ohio, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "All, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Stay Up, Tocantins, Brazil",
+        "America's Weather Center",
+        "All, United States",
+        "Fox Weathen",
+        "Fox Weath",
+        "Fox Weather",
+        "Weather",
+        "Your Area",
+        "Whatever Mother Nature Throws Your Way",
+        "Stream 24"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "A0yh3pL6VMk",
+      "title": "APACE - 24036",
+      "channel_id": "UC25IwM9F3NIb-XOSUNXOTuA",
+      "channel_title": "APACE III",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 24036"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 24036",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 24036"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 24036",
+        "Apace",
+        "Apace Iii",
+        "Iii",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "rD8km54GKsk",
+      "title": "APACE - 22045",
+      "channel_id": "UCMplRgfOcQm19xCql197Vtg",
+      "channel_title": "APACE II",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 22045"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 22045",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 22045"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 22045",
+        "Apace",
+        "Apace Ii",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ZeJdlXW3-gI",
+      "title": "APACE - 24078",
+      "channel_id": "UC25IwM9F3NIb-XOSUNXOTuA",
+      "channel_title": "APACE III",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 24078"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 24078",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 24078"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 24078",
+        "Apace",
+        "Apace Iii",
+        "Iii",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "oBz6JWyRALY",
+      "title": "APACE - 17012",
+      "channel_id": "UCgyDSQMtn-8iaaG4Llxzwxw",
+      "channel_title": "APACE I",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 17012"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 17012",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 17012"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 17012",
+        "Apace",
+        "Apace I",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "4ZiucC7cvw8",
+      "title": "【10月のJAZZ】レインボーブリッジの夜景｜深い眠りのために｜ Tokyo Live Camera Mt.Fuji & Rainbow Bridge",
+      "channel_id": "UC8W6RWFeN4cmx6C3tPNEdaQ",
+      "channel_title": "TOKYO LIVE CAMERA",
+      "location": {
+        "lat": 35.6545886,
+        "lng": 139.7965201,
+        "level": "gps",
+        "confidence": 1.0,
+        "source": "youtube-recordingDetails",
+        "renderable": true,
+        "evidence": [
+          "YouTube recordingDetails.location"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [],
+      "status": "resolved"
+    },
+    {
+      "video_id": "nm4MHCt6Izg",
+      "title": "APACE - 2400717",
+      "channel_id": "UC25IwM9F3NIb-XOSUNXOTuA",
+      "channel_title": "APACE III",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 2400717"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 2400717",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 2400717"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 2400717",
+        "Apace",
+        "Apace Iii",
+        "Iii",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "pss_sFOuX6U",
+      "title": "APACE - 22009",
+      "channel_id": "UCMplRgfOcQm19xCql197Vtg",
+      "channel_title": "APACE II",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 22009"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 22009",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 22009"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 22009",
+        "Apace",
+        "Apace Ii",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "bpA2tj-LrGk",
+      "title": "APACE - 21002",
+      "channel_id": "UCgyDSQMtn-8iaaG4Llxzwxw",
+      "channel_title": "APACE I",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 21002"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 21002",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 21002"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 21002",
+        "Apace",
+        "Apace I",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "5DBINuLJ2lo",
+      "title": "APACE - 22096",
+      "channel_id": "UCMplRgfOcQm19xCql197Vtg",
+      "channel_title": "APACE II",
+      "location": {
+        "lat": 46.6972894,
+        "lng": 15.9096217,
+        "city": null,
+        "region": null,
+        "country": "SI",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Apace - 22096"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Apace - 22096",
+          "lat": 46.6972894,
+          "lng": 15.9096217,
+          "display_name": "Apače, 9253, Slovenija",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Apace - 22096"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Aplikasi Yang Dikembangkan Oleh Anak Bangsa, Indonesia",
+        "Apace - 22096",
+        "Apace",
+        "Apace Ii",
+        "12 Golongan",
+        "Langsung Maupun Rekaman",
+        "Ruas Dan Simpang",
+        "Artificial Intelligence"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "HogpVUxGsNI",
+      "title": "Bozdoğan Canlı Yayını |  Genel Görünüm",
+      "channel_id": "UCzwOBP_uK9NtOYysvNPZfHw",
+      "channel_title": "Bir Başka Bozdoğan",
+      "location": {
+        "lat": 37.6739133,
+        "lng": 28.3132041,
+        "city": "Bozdoğan",
+        "region": "Ege Bölgesi",
+        "country": "TR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Bozdoğan"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Bozdoğan",
+          "lat": 37.6739133,
+          "lng": 28.3132041,
+          "display_name": "Bozdoğan, Aydın, Ege Bölgesi, 09760, Türkiye",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Bozdoğan"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Bozdoğan Canlı Yayını",
+        "Genel Görünüm",
+        "Bozdoğan Canlı Yayını Genel Görünüm",
+        "Bir Başka Bozdoğan",
+        "Bozdoğan",
+        "Bozdoğan Canli Yayin",
+        "Şehi̇r Kamerasi",
+        "Şehi",
+        "R Kamerasi",
+        "24 Canli İzle Bu Yayın 7"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "CkIwikCui18",
+      "title": "Warszawa na żywo 🇵🇱 | Warsaw LIVE – panorama i Stadion Narodowy / City Skyline & National Stadium",
+      "channel_id": "UCPQH7Qez-TIVJv5cmquVFyg",
+      "channel_title": "Warsaw Livestream",
+      "location": {
+        "lat": 52.2333742,
+        "lng": 21.0711489,
+        "city": null,
+        "region": "województwo mazowieckie",
+        "country": "PL",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Warsaw, Poland"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Warsaw, Poland",
+          "lat": 52.2333742,
+          "lng": 21.0711489,
+          "display_name": "Warszawa, województwo mazowieckie, Polska",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Warsaw, Poland"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Panoramic View of Warsaw, Poland",
+        "Warsaw, Poland",
+        "Warszawa Na Żywo",
+        "Warsaw – Panorama I Stadion Narodowy",
+        "Warsaw",
+        "I Stadion Narodowy",
+        "City Skyline & National Stadium",
+        "City Skyline",
+        "National Stadium",
+        "Warszawa Na Żywo Warsaw"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "NlOphlXM_XU",
+      "title": "LIVE: USS Abraham Lincoln returns to San Diego after Middle East deployment",
+      "channel_id": "UC52X5wxOL_s5yw0dQk7NtgA",
+      "channel_title": "Associated Press",
+      "location": {
+        "lat": 54.6080367,
+        "lng": 33.1682495,
+        "city": "Ельня",
+        "region": "Смоленская область",
+        "country": "RU",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Deployment"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Deployment",
+          "lat": 54.6080367,
+          "lng": 33.1682495,
+          "display_name": "Yelnya military deployment area, Ельня, Ельнинский муниципальный округ, Смоленская область, Центральный федеральный округ, 216330, Россия",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Deployment"
+          ]
+        }
+      ],
+      "location_hints": [
+        ": Uss Abraham Lincoln Returns To san Diego After Middle East Deployment",
+        "Uss Abraham Lincoln Returns",
+        "san Diego After Middle",
+        "Deployment",
+        "Associated Press",
+        "Press",
+        "Naval Air Station",
+        "san Diego",
+        "Sea",
+        "Including Top Stories"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "8qv8k8yE95s",
+      "title": "Kensington Cam3  Philadelphia, PA.",
+      "channel_id": "UCQ1awPPNFA4AxnJ6dQyXfbg",
+      "channel_title": "Spotlight Rescue",
+      "location": {
+        "lat": 39.9527237,
+        "lng": -75.1635262,
+        "city": "Philadelphia",
+        "region": "Pennsylvania",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Philadelphia, Pennsylvania, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Philadelphia, Pennsylvania, United States",
+          "lat": 39.9527237,
+          "lng": -75.1635262,
+          "display_name": "Philadelphia, Philadelphia County, Pennsylvania, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Philadelphia, Pennsylvania, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Philadelphia, Pennsylvania, United States",
+        "Kensington Cam3 Philadelphia, Pa",
+        "Attack, Oregon, United States",
+        "Bias, Oregon, United States",
+        "Ban, Oregon, United States",
+        "Bullying, Oregon, United States",
+        "Homophobia, Oregon, United States",
+        "Excessive Use of Emojis, Oregon, United States",
+        "Other Channels, Oregon, United States",
+        "Violent, Oregon, United States"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "7Y_W3__lD-g",
+      "title": "【📹無料公開中】この映像、止めたくても止まらない！恐怖映像を体感せよ！！『ほんとうに映った！監死カメラ16』",
+      "channel_id": "UCRC-jLlVmVPq4nf0S8l9tnQ",
+      "channel_title": "AMG公式チャンネル",
+      "location": {
+        "lat": 35.3068918,
+        "lng": 139.616285,
+        "city": "横須賀市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "この映像"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "この映像",
+          "lat": 35.3068918,
+          "lng": 139.616285,
+          "display_name": "コの字裏, 湘南鷹取, 横須賀市, 神奈川県, 238-8550, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "この映像"
+          ]
+        }
+      ],
+      "location_hints": [
+        "この映像、止めたくても止まらない！恐怖映像を体感せよ！！『ほんとうに映った！監死カメラ16』",
+        "この映像",
+        "止めたくても止まらない",
+        "恐怖映像を体感せよ",
+        "ほんとうに映った",
+        "無料公開中 この映像、止めたくても止まらない！恐怖映像を体感せよ！！『ほんとうに映った！監死カメラ16』",
+        "amg公式チャンネル",
+        "#監死カメラ 製作国：日本 製作年：2016年",
+        "監死カメラ 製作国",
+        "スタッフ"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "xNi8g47Wkes",
+      "title": "3 formas fáciles para conectar tu cámara de seguridad | Guía completa",
+      "channel_id": "UC5kvTZRa5QFzsV2iFqc6gaw",
+      "channel_title": "MateoEC",
+      "location": {
+        "lat": -22.2454015,
+        "lng": -45.4609067,
+        "city": "Pedralva",
+        "region": "Minas Gerais",
+        "country": "BR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "la App"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "la App",
+          "lat": -22.2454015,
+          "lng": -45.4609067,
+          "display_name": "APP, Usina, Pedralva, Minas Gerais, Região Sudeste, Brasil",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "la App"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Conexión Hotspot Si Tienes Alguna Pregunta, Maine, United States",
+        "3 Formas Fáciles Para Conectar Tu Cámara de Seguridad",
+        "Formas Fáciles",
+        "Conectar Tu Cámara de Seguridad",
+        "Guía Completa",
+        "Mateoec",
+        "Este Video",
+        "Seguridad Sin Usar el Código Qr",
+        "la App",
+        "Cámara Con Qr"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ziEHE4UmYGU",
+      "title": "ВИДЫ КАМЕР ВИДЕОНАБЛЮДЕНИЯ. КАК ВЫБРАТЬ КАМЕРУ ВИДЕОНАБЛЮДЕНИЯ В 2025 ГОДУ?",
+      "channel_id": "UCKyybE7_LMDNVleN4_HDyPQ",
+      "channel_title": "Видеонаблюдение ISON",
+      "location": {
+        "lat": 57.7997399,
+        "lng": 28.4245718,
+        "city": "городской округ Псков",
+        "region": "Псковская область",
+        "country": "RU",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Году"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Году",
+          "lat": 57.7997399,
+          "lng": 28.4245718,
+          "display_name": "Братское кладбище советских воинов, погибших при освобождении города Пскова в 1944 году, Андрохново, городской округ Псков, Псковская область, Северо-Западный федеральный округ, Россия",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Году"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Виды Камер Видеонаблюдения. Как Выбрать Камеру Видеонаблюдения В 2025 Году?",
+        "Виды Камер Видеонаблюдения",
+        "Как Выбрать Камеру Видеонаблюдения В",
+        "Году",
+        "Видеонаблюдение Ison",
+        "Ison",
+        "Конфигуратор: Https:",
+        "Конфигуратор",
+        "Https",
+        "Isoncom.ru"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "MKiITEsOwRA",
+      "title": "Cheap Wi-Fi IP Surveillance Camera (Very little DIY needed)",
+      "channel_id": "UC59xAr7pRzJVtSZkfKBCHhg",
+      "channel_title": "Electrical Projects [CreativeLab]",
+      "location": {
+        "lat": 51.5151716,
+        "lng": -0.0945084,
+        "city": "City of London",
+        "region": "England",
+        "country": "GB",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Cheap"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Cheap",
+          "lat": 51.5151716,
+          "lng": -0.0945084,
+          "display_name": "Cheap, St Paul's, City of London, Greater London, England, United Kingdom",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Cheap"
+          ]
+        }
+      ],
+      "location_hints": [
+        "To Flash It You'll Need A Usb To Uart Converter, For Example, This One: Https:",
+        "Esp32cam Arduino Ide By Default Doesn't Have Esp32 , So You'll Need To Go File",
+        "Cheap Wi-fi Ip Surveillance (very Little Diy Needed)",
+        "Cheap",
+        "Fi Ip Surveillance",
+        "Very Little Diy Needed",
+        "Electrical Projects Creativelab",
+        "Creativelab",
+        "Electrical Projects",
+        "Arduino Ide Examples"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "SHILFQx5-D0",
+      "title": "Real Ghost Caught on Camera [Vol 17]",
+      "channel_id": "UC8N2tbBI96wNKh65xQUlTaw",
+      "channel_title": "HORROR NIGHTS HINDI",
+      "location": {
+        "lat": 43.6021188,
+        "lng": 1.4749659,
+        "city": "Toulouse",
+        "region": "Occitanie",
+        "country": "FR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Vol 17"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Vol 17",
+          "lat": 43.6021188,
+          "lng": 1.4749659,
+          "display_name": "17, Rue du Vol à Voile, Moscou, Duroux, Bonhoure / Guilheméry / Château de l'Hers / Limayrac / Côte Pavée, Toulouse, Haute-Garonne, Occitanie, France métropolitaine, 31500, France",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Vol 17"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Real Ghost Caught On",
+        "Real Ghost Caught",
+        "Vol 17",
+        "Vol",
+        "Real Ghost Caught On Vol 17",
+        "Horror Nights Hindi",
+        "Hindi",
+        "Basement",
+        "Epidemic Sound",
+        "5 Scary Paranormal Videos Join Our Community Instagram - Https:"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "RCtojg2a2T0",
+      "title": "পিচ্চি রাজাকে নিয়ে যেভাবে পালিয়ে যায় পুলিশের এসআই | CCTV Footage | Picchi Raja | Jugantor",
+      "channel_id": "UCKbhCXpZwAmFN4UHeT8HTjA",
+      "channel_title": "Daily Jugantor",
+      "location": {
+        "lat": 40.9699889,
+        "lng": -77.7278831,
+        "city": null,
+        "region": "Pennsylvania",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "য় প"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "য় প",
+          "lat": 40.9699889,
+          "lng": -77.7278831,
+          "display_name": "Pennsylvania, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "য় প"
+          ]
+        }
+      ],
+      "location_hints": [
+        "পিচ্চি রাজাকে নিয়ে যেভাবে পালিয়ে যায় পুলিশের এসআই",
+        "য় প",
+        "র এসআই",
+        "Picchi Raja",
+        "Jugantor",
+        "Daily Jugantor",
+        "Reporting",
+        "Paper",
+        "Portal",
+        "the Copyright Act"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "6x1sHvtm6zk",
+      "title": "Premanand Maharaj के शिष्य Rasik Dulari की मौत का CCTV कनेक्शन! सामने आई ये टाइमलाइन |Vrindavan",
+      "channel_id": "UC7wXt18f2iA3EDXeqAVuKng",
+      "channel_title": "Republic Bharat",
+      "location": {
+        "lat": 42.625,
+        "lng": -119.75,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Operation, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Operation, Oregon, United States",
+          "lat": 42.625,
+          "lng": -119.75,
+          "display_name": "Oregon Sunstone Operation, Lake County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Operation, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Operation, Oregon, United States",
+        "Premanand Maharaj के शिष्य Rasik Dulari की मौत का कनेक्शन! सामने आई ये टाइमलाइन",
+        "Premanand Maharaj क",
+        "य Rasik Dulari क",
+        "त क",
+        "आई य",
+        "इमल",
+        "Vrindavan",
+        "Republic Bharat",
+        "Bharat"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "nl43yxz3LRs",
+      "title": "🔴 LIVE 24/7 | Chinese Country Fairs & Village Markets Walk · Replay Marathon",
+      "channel_id": "UCcUqGIRRqBEGNZlUsOiIRlw",
+      "channel_title": "좌우간에",
+      "location": {
+        "lat": 50.1821204,
+        "lng": 4.021761,
+        "city": "Dimont",
+        "region": "Hauts-de-France",
+        "country": "FR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Village"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Village",
+          "lat": 50.1821204,
+          "lng": 4.021761,
+          "display_name": "Dimont, Avesnes-sur-Helpe, Nord, Hauts-de-France, France métropolitaine, 59216, France",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Village"
+          ]
+        }
+      ],
+      "location_hints": [
+        "좌우간에",
+        "먹고살자",
+        "Let’s Make A Living! “좌우간에, 먹고살자\"",
+        "Chinese Country Fairs & Village Markets Walk · Replay Marathon",
+        "Chinese Country Fairs",
+        "Village",
+        "Walk",
+        "Replay Marathon",
+        "Chinese Street",
+        "Www.youtube.com"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "4DOQBeVYrjA",
+      "title": "🔥 신나는 트롯힙합  VOL.8 | 🎤 10개곡 연속듣기 — 나 자신아 잘 살았다.! | 10월 05일 07시 | 10월 05일 18시 | 10월 06일  | 10월 09일 03시",
+      "channel_id": "UCWTU46MPS_2WFxmA6lghO-w",
+      "channel_title": "고향집 트롯",
+      "location": {
+        "lat": 37.2020523,
+        "lng": 127.0448276,
+        "city": "화성시",
+        "region": null,
+        "country": "KR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "신나는"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "신나는",
+          "lat": 37.2020523,
+          "lng": 127.0448276,
+          "display_name": "신나는 교회, 병점중앙로, 진안동, 병점구, 화성시, 경기도, 18418, 대한민국",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "신나는"
+          ]
+        }
+      ],
+      "location_hints": [
+        "신나는",
+        "트롯힙합",
+        "연속듣기",
+        "자신아",
+        "살았다",
+        "신나는 트롯힙합 Vol.8",
+        "신나는 트롯힙합 Vol",
+        "10개곡 연속듣기 — 나 자신아 잘 살았다.!",
+        "나 자신아 잘 살았다",
+        "10월 05일 07시"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Frq7ndfEjUc",
+      "title": "유튜브 홍보 전문 소프트웨어 🏆 검색 노출 조회수 키워드 순위까지 강력하게 향상 ~텔레 TubeLT",
+      "channel_id": "UCBJtqBTt66p-JGFNHicnCBg",
+      "channel_title": "TubeLT Traffic",
+      "location": {
+        "lat": 35.9022248,
+        "lng": 128.6068147,
+        "city": "대구광역시",
+        "region": null,
+        "country": "KR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "소프트웨어"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "소프트웨어",
+          "lat": 35.9022248,
+          "lng": 128.6068147,
+          "display_name": "소프트웨어 벤처타워, 117, 동북로, 산격2동, 북구, 대구광역시, 41519, 대한민국",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "소프트웨어"
+          ]
+        }
+      ],
+      "location_hints": [
+        "유튜브",
+        "소프트웨어",
+        "조회수",
+        "키워드",
+        "순위까지",
+        "강력하게",
+        "유튜브 홍보 전문 소프트웨어 검색 노출 조회수 키워드 순위까지 강력하게 향상 ~텔레 Tubelt",
+        "유튜브 홍보 전문 소프트웨어 검색 노출",
+        "조회수 키워드 순위까지 강력하게 향상",
+        "텔레 Tubelt"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "5sFglcMEm7I",
+      "title": "【怪奇聊天室】57怪奇物語頻道24小時線上直播｜Taiwan StrangerThings 24h live program｜精選合集",
+      "channel_id": "UC1vZbSVKcH6kt8p6vQ1-1xw",
+      "channel_title": "57怪奇物語",
+      "location": {
+        "lat": 25.0476686,
+        "lng": 121.6130088,
+        "city": "臺北市",
+        "region": null,
+        "country": "TW",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Program"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Program, Taiwan",
+          "lat": 25.0476686,
+          "lng": 121.6130088,
+          "display_name": "國際研究生教學研究大樓, 75, 研究院路二段12巷, 中研里, 南港區, 三重埔, 臺北市, 115, 臺灣",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Program"
+          ]
+        }
+      ],
+      "location_hints": [
+        "57怪奇物語頻道24小時線上直播｜taiwan Strangerthings 24h program｜精選合集",
+        "Taiwan Strangerthings",
+        "怪奇聊天室 57怪奇物語頻道24小時線上直播｜taiwan Strangerthings 24h program｜精選合集",
+        "挖掘奇聞怪談｜探索神祕禁地 世上真有外星生物嗎？最新幽浮檔案，帶您探訪外星文明！前進各國小鎮，搜尋奇聞怪談，深度剖析玄案疑雲，抽絲剝繭挖掘詭譎真相，攤開世界地圖，想了解地球上的怪奇之事，請鎖定57怪奇物語！ 電視頻道：57台東森財經台(每週六晚間11:00)",
+        "怪奇聊天室",
+        "Program",
+        "精選合集",
+        "怪奇物語",
+        "57怪奇物語",
+        "57怪奇物語 帶您踏上奇幻之旅！ Https:"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "9iRAqBMakXY",
+      "title": "台視新聞台HD 24 小時線上直播｜TAIWAN TTV NEWS HD (Live)｜台湾のTTV ニュースHD (生放送)｜대만 뉴스 라이브",
+      "channel_id": "UC8ROUUjHzEQm-ndb69CX8Ww",
+      "channel_title": "台視新聞 TTV NEWS",
+      "location": {
+        "lat": 25.0574471,
+        "lng": 121.5580945,
+        "city": "臺北市",
+        "region": null,
+        "country": "TW",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "生放送"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "生放送",
+          "lat": 25.0574471,
+          "lng": 121.5580945,
+          "display_name": "民生公園, 介壽里, 松山區, 中崙, 臺北市, 臺灣",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "生放送"
+          ]
+        }
+      ],
+      "location_hints": [
+        "라이브",
+        "台視新聞台hd 24 小時線上直播｜taiwan Ttv News ( )｜台湾のttv ニュースhd (生放送)｜대만 뉴스 라이브",
+        "Taiwan Ttv News",
+        "台湾のttv ニュースhd",
+        "대만 뉴스 라이브",
+        "專業、用心、堅持的新聞台 台視新聞，台灣電視新聞的領航者！台視作為國內第一家電視台，每個重要新聞事件，每次關鍵時刻，台視新聞始終立足歷史時空經緯，秉持優質、專業的使命，為您堅守新聞最前線，掌握第一手報導，長期建立的新聞品牌形象深植每一位觀眾心中無可取代。 2015年1月1日起，台視新聞台正式開台，台視新聞邁向全新聞頻道，24小時不間斷提供高畫質的即時新聞及優質豐富的新聞節目，以服務更廣大的收視觀眾，讓台視新聞繼續陪伴您成長，記錄台灣和世界的現在與未來。 民國107年1月1日起，台視公司授權松大娛樂經紀股份有限公司負責上傳影片及管理帳號相關業務。",
+        "台視新聞台hd",
+        "小時線上直播",
+        "生放送",
+        "台視新聞 Ttv"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "mjh3Gu9Nf1A",
+      "title": "24/7 Epic Space Anthems",
+      "channel_id": "UCR1fEqF_a0-Z36xer0jzZXQ",
+      "channel_title": "Travel Through The Nebula",
+      "location": {
+        "lat": 19.1454001,
+        "lng": 72.8229714,
+        "city": "Mumbai",
+        "region": "Maharashtra",
+        "country": "IN",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Nebula"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Nebula",
+          "lat": 19.1454001,
+          "lng": 72.8229714,
+          "display_name": "Nebula, Oshiwara, K/W Ward, Mumbai Zone 3, Mumbai, Mumbai Suburban District, Maharashtra, India",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Nebula"
+          ]
+        }
+      ],
+      "location_hints": [
+        "7 Epic Space Anthems",
+        "Epic Space Anthems",
+        "Travel Through the Nebula",
+        "Nebula",
+        "Through the Nebula",
+        "Solo Post Rock-project"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "nCwtd38bKDM",
+      "title": "EN VIVO: Trayectoria de las tormentas tropicales Isaias y Simon en México",
+      "channel_id": "UCUsm-fannqOY02PNN67C0KA",
+      "channel_title": "NMás",
+      "location": {
+        "lat": 45.4945781,
+        "lng": 25.3551349,
+        "city": "Șimon",
+        "region": null,
+        "country": "RO",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Simon"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Simon",
+          "lat": 45.4945781,
+          "lng": 25.3551349,
+          "display_name": "Șimon, Bran, Brașov, 507028, România",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Simon"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Las Tormentas Tropicales Isaias",
+        ": Trayectoria de Las Tormentas Tropicales Isaias Y Simon En México",
+        "Trayectoria de Las Tormentas Tropicales Isaias",
+        "Simon",
+        "México",
+        "Nmás",
+        "#nmás #huracan #rachel Suscríbete Aquí: Https:",
+        "Huracan",
+        "Rachel Suscríbete Aquí",
+        "Https"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "6FEU1c-aexo",
+      "title": "24/7 Italian Vibes & Mediterranean Music 🎶 Scenic Amalfi Coast & Lake Como Dreamy| Morning Coffee 4K",
+      "channel_id": "UCHy2Ko6Q0IXeQ50kfE6B59w",
+      "channel_title": "Melodia Vibes Italy",
+      "location": {
+        "lat": 45.4938787,
+        "lng": -122.9242821,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Working, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Working, Oregon, United States",
+          "lat": 45.4938787,
+          "lng": -122.9242821,
+          "display_name": "Working Theory farm, Witch Hazel Village, Witch Hazel, Washington County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Working, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Melodia Vibes Italy",
+        "Italy",
+        "Melodia Vibes, Italy",
+        "Working, Oregon, United States",
+        "the Beauty of, Italy",
+        "Escape Into, Italy",
+        "Soothing Journey Through, Italy",
+        "Vibes of, Italy",
+        "Musical Journey Across, Italy",
+        "7 Italian Vibes & Mediterranean Music Scenic Amalfi Coast & Lake Como Dreamy"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "UYVDZJi_4-Y",
+      "title": "日本のアマルフィ、雑賀崎漁港を望む。紀州温泉漁火の宿シーサイド観潮。絶景の夕陽をご覧ください。",
+      "channel_id": "UCMrJOt8ptWFYjjBHy2Xz9lg",
+      "channel_title": "和歌の浦温泉萬波&漁火の宿シーサイド観潮",
+      "location": {
+        "lat": 34.2342931,
+        "lng": 135.1783549,
+        "city": "和歌山市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "和歌山県和歌山市"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "和歌山県和歌山市",
+          "lat": 34.2342931,
+          "lng": 135.1783549,
+          "display_name": "和歌山市, 和歌山県, 640-8511, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "和歌山県和歌山市"
+          ]
+        }
+      ],
+      "location_hints": [
+        "日本のアマルフィ、雑賀崎漁港を望む。紀州温泉漁火の宿シーサイド観潮。絶景の夕陽をご覧ください。",
+        "日本のアマルフィ",
+        "雑賀崎漁港を望む",
+        "紀州温泉漁火の宿シーサイド観潮",
+        "絶景の夕陽をご覧ください",
+        "和歌の浦温泉萬波&漁火の宿シーサイド観潮",
+        "和歌の浦温泉萬波",
+        "漁火の宿シーサイド観潮",
+        "the Amalfi of, Japan",
+        "和歌山県和歌山市"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "NNlURcoxwrU",
+      "title": "September 8K 🍂 Autumn Begins 🍂 Golden Forests, Peaceful Lakes and the First Colors of Fall",
+      "channel_id": "UC9fckGN4Fr7e_LNwIxPt2gA",
+      "channel_title": "Timeless Earthscapes 8K",
+      "location": {
+        "lat": 43.9122477,
+        "lng": -121.3572027,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Sleeping, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Sleeping, Oregon, United States",
+          "lat": 43.9122477,
+          "lng": -121.3572027,
+          "display_name": "Central Oregon's Sleeping Giant, Trail of the Molten Land #3922, Deschutes County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Sleeping, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "September 8k Autumn Begins Golden Forests, Peaceful Lakes And the First Colors of Fall",
+        "Sleeping, Oregon, United States",
+        "Licenses, Oregon, United States",
+        "Timeless Earthscapes K",
+        "Timeless Earthscapes 8k",
+        "Timeless Earthscapes",
+        "Breathtaking",
+        "the Crisp Autumn Atmosphere",
+        "Open.spotify.com",
+        "Album"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "Z3504DWoAFY",
+      "title": "[4K] MOST BEAUTIFUL CITIES – Travel the World with Deep House Chill",
+      "channel_id": "UCZlvVZpVJG2F_6MfYBOsz1A",
+      "channel_title": "Roamer - World Cinematic",
+      "location": {
+        "lat": 45.4938787,
+        "lng": -122.9242821,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Working, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Working, Oregon, United States",
+          "lat": 45.4938787,
+          "lng": -122.9242821,
+          "display_name": "Working Theory farm, Witch Hazel Village, Witch Hazel, Washington County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Working, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Working, Oregon, United States",
+        "Most Beautiful Cities – Travel the World With Deep House Chill",
+        "Most Beautiful Cities",
+        "the",
+        "Deep",
+        "Roamer - World Cinematic",
+        "Cinematic",
+        "Roamer",
+        "World Cinematic",
+        "Soundtrack Guide You Through the City"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "hSqqaXqnQB8",
+      "title": "24/7 Italian Vibes & Morning Coffee 🎶 Scenic Amalfi Coast & Lake Como Dreamy| Mediterranean Music 4K",
+      "channel_id": "UCHy2Ko6Q0IXeQ50kfE6B59w",
+      "channel_title": "Melodia Vibes Italy",
+      "location": {
+        "lat": 45.4938787,
+        "lng": -122.9242821,
+        "city": null,
+        "region": "Oregon",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Working, Oregon, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Working, Oregon, United States",
+          "lat": 45.4938787,
+          "lng": -122.9242821,
+          "display_name": "Working Theory farm, Witch Hazel Village, Witch Hazel, Washington County, Oregon, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Working, Oregon, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Melodia Vibes Italy",
+        "Italy",
+        "Melodia Vibes, Italy",
+        "Working, Oregon, United States",
+        "the Beauty of, Italy",
+        "Escape Into, Italy",
+        "Soothing Journey Through, Italy",
+        "Vibes of, Italy",
+        "Musical Journey Across, Italy",
+        "7 Italian Vibes & Morning Coffee Scenic Amalfi Coast & Lake Como Dreamy"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "askzxcpRqZQ",
+      "title": "Osaka Bay Live Camera | SUMA-Technica",
+      "channel_id": "UCyj9jzwYpdryKA3y3cxxoNQ",
+      "channel_title": "SUMA- Technica",
+      "location": {
+        "lat": 34.6932379,
+        "lng": 135.1943764,
+        "city": "神戸市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Kobe, Japan"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Kobe, Japan",
+          "lat": 34.6932379,
+          "lng": 135.1943764,
+          "display_name": "神戸市, 兵庫県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Kobe, Japan"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Kobe, Japan",
+        "取り扱っている製品の紹介動画を中心に、様々な動画を掲載していこうと思っています。 ホームページも覗いて見てください。 Https:",
+        "取り扱っている製品の紹介動画を中心に",
+        "様々な動画を掲載していこうと思っています",
+        "ホームページも覗いて見てください",
+        "Suma-technica.jp 宜しくお願いします。",
+        "Suma-technica.jp 宜しくお願いします",
+        "取り扱っている製品の紹介動画を中心に、様々な動画を掲載していこうと思っています。 ホームページも覗いて見てください。 Https: Suma-technica.jp 宜しくお願いします。",
+        "Osaka Bay",
+        "Suma-technica"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "jUzDyJyjVUs",
+      "title": "LIVE: I Bombed My Big Performance! 🎤🫣🎶 | The Next Headliner 1 - 5 | L.O.L. Surprise!",
+      "channel_id": "UCo2rby93CZTX-rg7aBtG11Q",
+      "channel_title": "L.O.L. Surprise!",
+      "location": {
+        "lat": -23.6152548,
+        "lng": -46.7019379,
+        "city": "São Paulo",
+        "region": "São Paulo",
+        "country": "BR",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "L.o.l. Surprise!"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "L.o.l. Surprise!",
+          "lat": -23.6152548,
+          "lng": -46.7019379,
+          "display_name": "Edifício Surprise, 849, Rua Francisco Tramontano, Morumbi, São Paulo, Região Sudeste, 05690-040, Brasil",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "L.o.l. Surprise!"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Tot-style Fantasy Fun, Indiana, United States",
+        "Slumber Party, Oregon, United States",
+        ": I Bombed My Big Performance!",
+        "I Bombed My Big Performance",
+        "the Next Headliner 1 - 5",
+        "the Next Headliner",
+        "L.o.l. Surprise!",
+        "L.o.l",
+        "Surprise",
+        "5 L.o.l. Surprise!"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ZONavaMiwSs",
+      "title": "🔴 Makkah Live | Kaaba Live Now | Makkah Live Today HD | Mecca Live HD 🕋",
+      "channel_id": "UCEaze57ikunwcQIy28cTuYQ",
+      "channel_title": "Shoaib Islamic World",
+      "location": {
+        "lat": 21.420847,
+        "lng": 39.826869,
+        "city": null,
+        "region": "منطقة مكة المكرمة",
+        "country": "SA",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Makkah"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Makkah",
+          "lat": 21.420847,
+          "lng": 39.826869,
+          "display_name": "محافظة مكة المكرمة, منطقة مكة المكرمة, السعودية",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Makkah"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Streams Continuously Masjid, Alabama, United States",
+        "Gmail.com Follow, Maine, United States",
+        "Makkah",
+        "Kaaba Now",
+        "Makkah Today",
+        "Mecca",
+        "Makkah Kaaba Now Makkah Today Mecca",
+        "Shoaib Islamic World",
+        "Shoaib Islamic",
+        "Our"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "ahSSjY-k27E",
+      "title": "RAMDEVPIR MAHARAJ NO JYOT PATH || RANUJA || LIVE 2026",
+      "channel_id": "UCZaSaIvSiepuC2jm7Dm45qQ",
+      "channel_title": "Mahi Digital Studio.Dev.Muvada",
+      "location": {
+        "lat": 38.6367981,
+        "lng": -90.2287265,
+        "city": "Saint Louis",
+        "region": "Missouri",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Photography, Missouri, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Photography, Missouri, United States",
+          "lat": 38.6367981,
+          "lng": -90.2287265,
+          "display_name": "International Photography Hall of Fame and Museum, 3415, Olive Street, Covenant Blu Grand Center, Saint Louis, Missouri, 63103, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Photography, Missouri, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Photography, Missouri, United States",
+        "Ramdevpir Maharaj No Jyot Path",
+        "Ranuja",
+        "Mahi Digital Studio.dev.muvada",
+        "Studio.dev.muvada",
+        "Bhuvaji - Kadusinh Bhuvaji",
+        "Bhuvaji",
+        "Kadusinh Bhuvaji",
+        "@mahidigitalstudio7733",
+        "Jimi"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "sBfZC7DHzc8",
+      "title": "Cincinnati Skyline, Ohio River, Brent Spence Bridge - Livestream from Covington, Kentucky",
+      "channel_id": "UCQc7Ol2itgbnMXPjZmPdRRQ",
+      "channel_title": "Aaron Preslin",
+      "location": {
+        "lat": 39.0831712,
+        "lng": -84.5107548,
+        "city": "Covington",
+        "region": "Kentucky",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Covington"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Covington",
+          "lat": 39.0831712,
+          "lng": -84.5107548,
+          "display_name": "Covington, Kenton County, Kentucky, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Covington"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Livestream From Covington, Kentucky",
+        "Cincinnati Skyline, Ohio River, Brent Spence Bridge - Livestream From Covington, Kentucky",
+        "42384 Hamilton County Police, Fire And Ems Dispatch - Https:",
+        "Usa",
+        "Covington",
+        "Aaron Preslin",
+        "Preslin",
+        "the Ohio River",
+        "the Cincinnati Area Can",
+        "the Top"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "TM1Fa1xJSb8",
+      "title": "Lutheran Church of Hope Construction Cam",
+      "channel_id": "UCDnKKkT-vB7LHDtGRRII8WA",
+      "channel_title": "Lutheran Church of Hope",
+      "location": {
+        "lat": 33.6670616,
+        "lng": -93.5915665,
+        "city": "Hope",
+        "region": "Arkansas",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Hope"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Hope",
+          "lat": 33.6670616,
+          "lng": -93.5915665,
+          "display_name": "Hope, Hempstead County, Arkansas, 71801, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Hope"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Lutheran Church of Hope Construction",
+        "Lutheran Church of Hope",
+        "Hope",
+        "Check Out Our Building Project's Progress!",
+        "Check Out Our Building Project's Progress",
+        "Broomfield",
+        "Our Church",
+        "Person",
+        "Www.lchope.org",
+        "#elca #lutheran #church #churchonline #colorado #broomfieldco"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "_HKcJtoWhrQ",
+      "title": "🔴 Onni 606 LIVE Cam — Downtown Bellevue 3-Tower Project | 24/7",
+      "channel_id": "UCY7-2Mvmq1mLb-0YQPbNtYA",
+      "channel_title": "Onni606",
+      "location": {
+        "lat": 47.6124709,
+        "lng": -122.2045589,
+        "city": "Bellevue",
+        "region": "Washington",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Downtown Bellevue, Washington, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Downtown Bellevue, Washington, United States",
+          "lat": 47.6124709,
+          "lng": -122.2045589,
+          "display_name": "Bellevue Downtown Park, Bellevue, King County, Washington, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Downtown Bellevue, Washington, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Downtown Bellevue, Washington, United States",
+        "Ave, Nebraska, United States",
+        "3 Towers, Each ~600 Ft",
+        "1,300+ Apartments + Hotel Rooms + ~896,000 Sq Ft of Office",
+        "1,289 Homes, A Hotel, And ~896,000 Sq Ft of Office",
+        "Onni 606 — Downtown Bellevue 3-tower Project",
+        "Onni",
+        "Downtown Bellevue",
+        "Tower Project",
+        "Onni 606"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "1suAgaip2GY",
+      "title": "DogMode: North Inside",
+      "channel_id": "UCfGR-qjLY3WCk8JSMYba3Gw",
+      "channel_title": "Dog Mode",
+      "location": {
+        "lat": 42.7281292,
+        "lng": -71.6723831,
+        "city": "Brookline",
+        "region": "New Hampshire",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Inside"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Inside, United States",
+          "lat": 42.7281292,
+          "lng": -71.6723831,
+          "display_name": "Inside, Summit Loop Trail, West Brookline, Brookline, Hillsborough County, New Hampshire, 03033, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Inside"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Dogmode: North Inside",
+        "Dogmode",
+        "Inside",
+        "Dog Mode",
+        "Mode"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "keqeiohUVnw",
+      "title": "Tehachapi Live Train Cams at Giumarra Vineyards 🍇 in Edison CA.",
+      "channel_id": "UC6RIkXobtXWJElbwEHIC-sg",
+      "channel_title": "Tehachapi Live Train Cams",
+      "location": {
+        "lat": 35.3474591,
+        "lng": -118.8717638,
+        "city": null,
+        "region": "California",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Edison, California, United States"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Edison, California, United States",
+          "lat": 35.3474591,
+          "lng": -118.8717638,
+          "display_name": "Edison, Kern County, California, 93306, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Edison, California, United States"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Edison, California, United States",
+        "Bakersfield, California, United States",
+        "Sicily, Italy",
+        "Tehachapi California Usa",
+        "Giumarra Vineyards",
+        "Edison",
+        "Tehachapi Train At Giumarra Vineyards In Edison Ca",
+        "Tehachapi Train",
+        "Train",
+        "the Union Pacific Railroad Track Record"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "y9HfKgMyB9E",
+      "title": "石垣島７３０交差点ＬＩＶＥカメラ",
+      "channel_id": "UCQJE3qm7Sjc5-JXAYjAfkrw",
+      "channel_title": "石垣島ライブカメラ -ishigaki island-",
+      "location": {
+        "lat": 26.5707754,
+        "lng": 128.0255901,
+        "city": null,
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Okinawa, Japan"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Okinawa, Japan",
+          "lat": 26.5707754,
+          "lng": 128.0255901,
+          "display_name": "沖縄県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Okinawa, Japan"
+          ]
+        }
+      ],
+      "location_hints": [
+        "石垣島７３０交差点ｌｉｖｅカメラ",
+        "石垣島ライブカメラ -ishigaki Island",
+        "石垣島ライブカメラ",
+        "Okinawa, Japan",
+        "石垣市",
+        "お礼とご案内",
+        "3y9iqcl ドーム型カメラ Https:",
+        "ドーム型カメラ Https",
+        "3fvuwcw ゼリ男チャンネル Https:",
+        "ゼリ男チャンネル Https"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "MBxbkzEuzXc",
+      "title": "【LIVE】国道156号清水町交差点－交通情報ライブカメラ",
+      "channel_id": "UCViEINl4jn95elupZZPk__w",
+      "channel_title": "TCNライブ 高岡ケーブルネットワーク",
+      "location": {
+        "lat": 36.7362147,
+        "lng": 137.0187306,
+        "city": "高岡市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "富山県高岡市"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "富山県高岡市",
+          "lat": 36.7362147,
+          "lng": 137.0187306,
+          "display_name": "高岡市, 富山県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "富山県高岡市"
+          ]
+        }
+      ],
+      "location_hints": [
+        "国道156号清水町交差点－交通情報ライブカメラ",
+        "交通情報ライブカメラ",
+        "tcnライブ 高岡ケーブルネットワーク",
+        "高岡ケーブルネットワーク",
+        "富山県高岡市",
+        "高岡ケーブルライブカメラサイト",
+        "野村カメラ",
+        "広小路カメラ",
+        "昭和町カメラ",
+        "県道カメラ画像"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "oWzkS5g6oqc",
+      "title": "浅原橋西交差点ライブカメラ",
+      "channel_id": "UCHZt37s-l_ZGuWcEMiFuSVA",
+      "channel_title": "山梨県南アルプス市・富士川町道路ライブカメラ",
+      "location": {
+        "lat": 35.6084642,
+        "lng": 138.465092,
+        "city": "南アルプス市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "山梨県南アルプス市"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "山梨県南アルプス市",
+          "lat": 35.6084642,
+          "lng": 138.465092,
+          "display_name": "南アルプス市, 山梨県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "山梨県南アルプス市"
+          ]
+        }
+      ],
+      "location_hints": [
+        "浅原橋西交差点ライブカメラ",
+        "山梨県南アルプス市",
+        "山梨県南アルプス市・富士川町道路ライブカメラ",
+        "富士川町道路ライブカメラ",
+        "浅原橋西交差点（山梨県南アルプス市）のライブ映像です。 交通状況や天気の確認などにお役立てください。",
+        "のライブ映像です",
+        "交通状況や天気の確認などにお役立てください",
+        "撮影方向： 浅原橋側から西方面を撮影 道路名称： 韮崎南アルプス中央線・浅原橋西交差点 映像提供：有限会社峡西シーエーテーブイ Http:",
+        "浅原橋側から西方面を撮影 道路名称",
+        "韮崎南アルプス中央線"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "DxaFMHEHjcI",
+      "title": "ぐんまの道路ライブカメラ（（主）高崎渋川線（バイパス）　辻久保交差点）",
+      "channel_id": "UCydMXEczHn6Qn_pwjcf5ipA",
+      "channel_title": "ぐんまの道路ライブカメラ【西部地域1】",
+      "location": {
+        "lat": 33.1951357,
+        "lng": 131.6449315,
+        "city": "大分市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "バイパス"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "バイパス",
+          "lat": 33.1951357,
+          "lng": 131.6449315,
+          "display_name": "バイパス, 大字片島, 大分市, 大分県, 870-8504, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "バイパス"
+          ]
+        }
+      ],
+      "location_hints": [
+        "ぐんまの道路ライブカメラ（（主）高崎渋川線（バイパス） 辻久保交差点）",
+        "ぐんまの道路ライブカメラ",
+        "バイパス",
+        "ぐんまの道路ライブカメラ 西部地域",
+        "ぐんまの道路ライブカメラ 西部地域1",
+        "群馬県高崎市",
+        "高崎渋川線",
+        "辻久保交差点",
+        "西部地域",
+        "西部地域1"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "j-G9iGDtPyM",
+      "title": "【LIVE】東京都台東区　大関横丁交差点(三ノ輪駅前)　ライブカメラ　Japan Tokyo Live Camera",
+      "channel_id": "UC8HLYEGSvHBroUqZMcGaSHg",
+      "channel_title": "三ノ輪駅前ライブカメラ",
+      "location": {
+        "lat": 35.7294495,
+        "lng": 139.7910987,
+        "city": "台東区",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "三ノ輪駅前"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "三ノ輪駅前",
+          "lat": 35.7294495,
+          "lng": 139.7910987,
+          "display_name": "三ノ輪駅前, 昭和通り, 根岸五丁目, 根岸, 台東区, 東京都, 110-0003, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "三ノ輪駅前"
+          ]
+        }
+      ],
+      "location_hints": [
+        "ライブカメラ, Japan",
+        "東京都台東区 大関横丁交差点(三ノ輪駅前) ライブカメラ Japan Tokyo",
+        "東京都台東区 大関横丁交差点",
+        "三ノ輪駅前",
+        "ライブカメラ Japan Tokyo",
+        "三ノ輪駅前ライブカメラ",
+        "昭和通り・日光街道・明治通り大関横丁交差点(三ノ輪駅前)の現在の映像です。",
+        "昭和通り",
+        "日光街道",
+        "明治通り大関横丁交差点"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "BuBGphGBPEA",
+      "title": "富士川大橋西交差点ライブカメラ",
+      "channel_id": "UCHZt37s-l_ZGuWcEMiFuSVA",
+      "channel_title": "山梨県南アルプス市・富士川町道路ライブカメラ",
+      "location": {
+        "lat": 35.6084642,
+        "lng": 138.465092,
+        "city": "南アルプス市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "山梨県南アルプス市"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "山梨県南アルプス市",
+          "lat": 35.6084642,
+          "lng": 138.465092,
+          "display_name": "南アルプス市, 山梨県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "山梨県南アルプス市"
+          ]
+        }
+      ],
+      "location_hints": [
+        "富士川大橋西交差点ライブカメラ",
+        "山梨県南アルプス市",
+        "山梨県南アルプス市・富士川町道路ライブカメラ",
+        "富士川町道路ライブカメラ",
+        "富士川大橋西交差点（山梨県富士川町）のライブ映像です。 交通状況や天気の確認などにお役立てください。",
+        "山梨県富士川町",
+        "のライブ映像です",
+        "交通状況や天気の確認などにお役立てください",
+        "南アルプス市",
+        "山梨県峡西地域（南アルプス市、富士川町）のlive映像配信サービスです。 主要な交差点に設置した道路カメラからの映像をリアルタイムにご覧いただけます。 渋滞や積雪などの状況確認にお役立てください。"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "y6QFNj0Wbdw",
+      "title": "佐賀県佐賀市神野東交差点ライブカメラ",
+      "channel_id": "UCk0PUXhysjDAYeWoC8po9fQ",
+      "channel_title": "佐賀県佐賀市神野東交差点ライブカメラ",
+      "location": {
+        "lat": 33.2639134,
+        "lng": 130.3008378,
+        "city": "佐賀市",
+        "region": null,
+        "country": "JP",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "佐賀県佐賀市"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "佐賀県佐賀市",
+          "lat": 33.2639134,
+          "lng": 130.3008378,
+          "display_name": "佐賀市, 佐賀県, 日本",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "佐賀県佐賀市"
+          ]
+        }
+      ],
+      "location_hints": [
+        "佐賀県佐賀市",
+        "佐賀県佐賀市神野東交差点ライブカメラ",
+        "ライブカメラ映像について",
+        "現在の配信は、佐賀県佐賀市神野東交差点の定点ライブカメラ映像です。 地域の交通状況や天候、街の様子などの確認にご活用ください。",
+        "現在の配信は",
+        "佐賀県佐賀市神野東交差点の定点ライブカメラ映像です",
+        "地域の交通状況や天候",
+        "街の様子などの確認にご活用ください",
+        "ライブカメラ設置をご検討の方へ",
+        "プライバシー保護について O 撮影された映像は、個人情報保護の観点から、解像度を落として配信しています。"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "JXPDb-7vPFk",
+      "title": "Zona de Caça de Mértola (2K c/ AUDIO) ▪ Centro Cinegético ▪ PRLIC (Parque Exterior)",
+      "channel_id": "UCD7auDu01mSAKiUJ7Xxls3w",
+      "channel_title": "Mértola Bio Live Cam",
+      "location": {
+        "lat": 37.6418516,
+        "lng": -7.6579702,
+        "city": "Mértola",
+        "region": null,
+        "country": "PT",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Caça de Mértola"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Caça de Mértola",
+          "lat": 37.6418516,
+          "lng": -7.6579702,
+          "display_name": "Capital Nacional da Caça, Rua da Achada de São Sebastião, Mértola, Beja, 7750-295, Portugal",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Caça de Mértola"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Veado, Gamo, Javali",
+        "Perdiz-vermelha, Coelho-bravo, Lebre-ibérica",
+        "Raposa, Texugo, Sacarrabos, Gineta",
+        "Áreas Protegidas do Parque Natural do Vale do Guadiana, Zonas de Caça, Outras",
+        "Caça de Mértola",
+        "Zona de Caça de Mértola (2k C",
+        "Zona de Caça de Mértola",
+        "Audio) ▪ Centro Cinegético ▪ Prlic (parque Exterior)",
+        "Audio",
+        "Centro Cinegético"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "2ShQXl3zTd0",
+      "title": "🔴 DIRECTO Parque Nacional de Doñana (marisma), Andalucía; España",
+      "channel_id": "UC5qVpOmBF-4orw2cld8oDtg",
+      "channel_title": "SEOBirdLife DIRECTO2",
+      "location": {
+        "lat": 37.2611686,
+        "lng": -6.5175751,
+        "city": "Almonte",
+        "region": "Andalucía",
+        "country": "ES",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Almonte, Huelva"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Almonte, Huelva",
+          "lat": 37.2611686,
+          "lng": -6.5175751,
+          "display_name": "Almonte, El Condado, Huelva, Andalucía, España",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Almonte, Huelva"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Directo Parque Nacional de Doñana (marisma), Andalucía; España",
+        "España",
+        "Almonte, Huelva",
+        "Parque Nacional de Doñana",
+        "Marisma",
+        "Andalucía",
+        "Seobirdlife Directo",
+        "Seobirdlife Directo2",
+        "Seobirdlife",
+        "Cámaras de Seobirdlife"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "WOOJaQmQ_u4",
+      "title": "🔴IN LIVE  Webcam Picos de Europa Refugio Collado Jermoso by WOLKAM STREAM COMPANY",
+      "channel_id": "UCq19Y98jvY_Tjgm6QMk6vWA",
+      "channel_title": "Wolkam IT",
+      "location": {
+        "lat": 51.5545377,
+        "lng": 5.078536,
+        "city": "Tilburg",
+        "region": "Noord-Brabant",
+        "country": "NL",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Wolkam"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Wolkam",
+          "lat": 51.5545377,
+          "lng": 5.078536,
+          "display_name": "Residentie Wolkam, Lange Schijfstraat, Tilburg Centrum, Oud-Zuid, Tilburg, Noord-Brabant, Nederland, 5038 TT, Nederland",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Wolkam"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Pico Gilbo, Louisiana, United States",
+        "Bienvenidos, Alabama, United States",
+        "Quieren Planificar Rutas de Montañismo O Actividades, Alabama, United States",
+        "Como la Ascensión, Alabama, United States",
+        "la Subida, Alabama, United States",
+        "Europa Refugio Collado Jermoso",
+        "In Picos de Europa Refugio Collado Jermoso By Wolkam Stream Company",
+        "Picos de Europa Refugio Collado Jermoso",
+        "Wolkam",
+        "Company"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "B_LPH0BnAnM",
+      "title": "Winter Park Eagle Cam Live Stream",
+      "channel_id": "UC51tfMdZhBpyEUP_uWOC-ZA",
+      "channel_title": "Winter Park Eagle Cam",
+      "location": {
+        "lat": 39.8611075,
+        "lng": -105.7861061,
+        "city": "Winter Park",
+        "region": "Colorado",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Winter Park Eagle"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Winter Park Eagle",
+          "lat": 39.8611075,
+          "lng": -105.7861061,
+          "display_name": "Eagle Wind, Fantasy Meadow, Winter Park, Grand County, Colorado, 80482, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Winter Park Eagle"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Winter Park Eagle Stream",
+        "Winter Park Eagle",
+        "Eagle",
+        "Florida",
+        "Florida Welcome",
+        "Winter Park",
+        "Bald Eagle Behavior",
+        "Their Natural Habitat",
+        "One Eye"
+      ],
+      "status": "resolved"
+    },
+    {
+      "video_id": "v1bZPujlP1o",
+      "title": "Achieva Osprey Cam",
+      "channel_id": "UC1UN2oqV9WVZAVbVTijBFww",
+      "channel_title": "Achieva Credit Union",
+      "location": {
+        "lat": 40.9745493,
+        "lng": -77.0785945,
+        "city": null,
+        "region": "Pennsylvania",
+        "country": "US",
+        "level": "place",
+        "confidence": 0.8,
+        "source": "place-hint-geocoder",
+        "renderable": true,
+        "evidence": [
+          "Union"
+        ]
+      },
+      "location_candidates": [
+        {
+          "query": "Union",
+          "lat": 40.9745493,
+          "lng": -77.0785945,
+          "display_name": "Union County, Pennsylvania, United States",
+          "source": "place-hint-geocoder",
+          "evidence": [
+            "Union"
+          ]
+        }
+      ],
+      "location_hints": [
+        "Achieva Osprey",
+        "Achieva Credit Union",
+        "Union",
+        "Interacting",
+        "All Walks of Life",
+        "the Form of Competitive Rates"
       ],
       "status": "resolved"
     },
@@ -215447,58 +216787,6 @@
       }
     },
     {
-      "video_id": "XGBAmnzJybE",
-      "title": "🔴 LIVE | Seoul Gangnam Walking Tour 🇰🇷 | Gangnam Club, restaurants, cafés | Gangnam Live TV 강남라이브",
-      "channel_id": "UCSkaixM5p8mYuBIdy2J0ZHw",
-      "channel_title": "Watchers Club",
-      "location": {
-        "lat": 37.5177,
-        "lng": 127.0473,
-        "city": "서울특별시",
-        "region": null,
-        "country": "KR",
-        "level": "place",
-        "confidence": 0.85,
-        "source": "gemini-geocoder",
-        "renderable": true,
-        "evidence": [
-          "Gangnam, Seoul, South Korea"
-        ]
-      },
-      "location_candidates": [
-        {
-          "query": "Gangnam, Seoul, South Korea",
-          "lat": 37.5177,
-          "lng": 127.0473,
-          "display_name": "강남구, 서울특별시, 대한민국",
-          "source": "gemini-geocoder",
-          "evidence": [
-            "Gangnam, Seoul, South Korea"
-          ]
-        }
-      ],
-      "location_hints": [
-        "강남라이브",
-        "Gangnam Club, Restaurants, Cafés",
-        "Gangnam Tv 강남라이브",
-        "seoul gangnam walking tour gangnam club, restaurants, cafés gangnam tv 강남라이브",
-        "Apgujeong, Oregon, United States",
-        "Tv 강남라이브 Walk the City",
-        "워킹투어",
-        "라이브",
-        "서울의",
-        "대표적인"
-      ],
-      "status": "resolved",
-      "ai": {
-        "video_id": "XGBAmnzJybE",
-        "resolvable": true,
-        "confidence": 0.9,
-        "geocode_query": "Gangnam, Seoul, South Korea",
-        "country": "KR"
-      }
-    },
-    {
       "video_id": "1vhtYFrjxBw",
       "title": "中央ロープウェイ第一駐車場ライブカメラ",
       "channel_id": "UC1xeTccsAQdz7-fF0eAa5HA",
@@ -216257,7 +217545,7 @@
       }
     },
     {
-      "video_id": "xZbsosW_EuY",
+      "video_id": "cV0eXDxPFe8",
       "title": "荘川お天気カメラ（ライブ配信）",
       "channel_id": "UC3mTHHc_Xh-ShRw0ABbkzPg",
       "channel_title": "ドローン酒屋",
@@ -216296,7 +217584,7 @@
       ],
       "status": "resolved",
       "ai": {
-        "video_id": "xZbsosW_EuY",
+        "video_id": "cV0eXDxPFe8",
         "resolvable": true,
         "confidence": 0.7,
         "geocode_query": "Shokawa, Gifu, Japan",
@@ -232429,43 +233717,6 @@
       }
     },
     {
-      "video_id": "R8XYnaVOtRk",
-      "title": "AI가 진행하는 Real Koi Pond 24/7 LIVE | Relaxing Water Sounds + Chill Music",
-      "channel_id": "UC-VFEEl4Xd5sB4q6POPOfmg",
-      "channel_title": "AI Koi Pond",
-      "location": {
-        "country": "South Korea",
-        "level": "country",
-        "confidence": 0.3,
-        "source": "youtube-channel-country",
-        "renderable": false,
-        "evidence": [
-          "YouTube channel country; not camera GPS"
-        ]
-      },
-      "location_candidates": [],
-      "location_hints": [
-        "진행하는",
-        "ai가 진행하는 Real Koi Pond 24",
-        "ai가 진행하는 Real Koi Pond",
-        "ai가 진행하는 real koi pond relaxing water sounds + chill music",
-        "Relaxing, Oregon, United States",
-        "이곳은",
-        "영상이나",
-        "영상이",
-        "정원의",
-        "비단잉어"
-      ],
-      "status": "unresolved",
-      "ai": {
-        "video_id": "R8XYnaVOtRk",
-        "resolvable": false,
-        "confidence": 0.0,
-        "geocode_query": null,
-        "country": null
-      }
-    },
-    {
       "video_id": "NsFHt76uwh8",
       "title": "【LIVE】浅草ライブカメラ「浅草寺 宝蔵門」【ASAKUSA】",
       "channel_id": "UCh1UcGFBIuFo5I-I1WMyclA",
@@ -234075,7 +235326,254 @@
         "geocode_query": null,
         "country": null
       }
+    },
+    {
+      "video_id": "at8VDA8HfO0",
+      "title": "【心霊闇動画】怪奇現象が続く一軒家の監視カメラ…今回は玄関に何かがうつり込んだ！【霊のうごめく家③】【63】",
+      "channel_id": "UC4vYtUU72GOm-_XdzbbpUsw",
+      "channel_title": "心霊闇動画",
+      "location": {
+        "country": "Japan",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "怪奇現象が続く一軒家の監視カメラ…今回は玄関に何かがうつり込んだ！",
+        "怪奇現象が続く一軒家の監視カメラ",
+        "今回は玄関に何かがうつり込んだ",
+        "霊のうごめく家③",
+        "心霊闇動画 怪奇現象が続く一軒家の監視カメラ…今回は玄関に何かがうつり込んだ！ 霊のうごめく家③ 63",
+        "Syamidouga ▼心霊闇動画のチャンネル登録はこちら Https:",
+        "心霊闇動画のチャンネル登録はこちら Https",
+        "@syamidouga?sub_confirmation=1 #ホラー #心霊映像 #心霊動画",
+        "ホラー",
+        "心霊闇動画"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "at8VDA8HfO0",
+        "resolvable": false,
+        "confidence": 0.0,
+        "geocode_query": null,
+        "country": null
+      }
+    },
+    {
+      "video_id": "o1eUq28RzwA",
+      "title": "백송교회 실시간 온라인 금요 오전 예배 [닫힌 문을 여는 기도 - 서지영 목사] 2026.10.9",
+      "channel_id": "UC6KqENdFZCP3amvDQSvAF2w",
+      "channel_title": "백송교회백송영성수련원",
+      "location": {
+        "country": "South Korea",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "백송교회",
+        "온라인",
+        "서지영",
+        "백송교회 실시간 온라인 금요 오전 예배",
+        "닫힌 문을 여는 기도 - 서지영 목사",
+        "닫힌 문을 여는 기도",
+        "서지영 목사",
+        "서지영 목사 2026.10.9",
+        "백송교회 실시간 온라인 금요 오전 예배 닫힌 문을 여는 기도 - 서지영 목사 2026.10.9",
+        "백송교회백송영성수련원"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "o1eUq28RzwA",
+        "resolvable": true,
+        "confidence": 0.9,
+        "geocode_query": "Baeksong Church, Goyang, South Korea",
+        "country": "KR"
+      }
+    },
+    {
+      "video_id": "X7G368EWLzw",
+      "title": "🔴 24시간 LIVE · 중간광고 없음 | 그 시절 옛날 거리 노래 라디오 📻 흑백 필름 속 1950~70년대 골목 | 틀어두는 레트로",
+      "channel_id": "UCE736AuvCQGoWP15MfSAnlQ",
+      "channel_title": "기록극장",
+      "location": {
+        "country": "South Korea",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "중간광고",
+        "라디오",
+        "틀어두는",
+        "레트로",
+        "24시간 · 중간광고 없음",
+        "중간광고 없음",
+        "그 시절 옛날 거리 노래 라디오 흑백 필름 속 1950~70년대 골목",
+        "그 시절 옛날 거리 노래 라디오",
+        "흑백 필름 속",
+        "틀어두는 레트로"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "X7G368EWLzw",
+        "resolvable": false,
+        "confidence": 0.0,
+        "geocode_query": null,
+        "country": null
+      }
+    },
+    {
+      "video_id": "HulVSUwjTlk",
+      "title": "🌸 10월 9일, 한글날에는 새벽까지 꼭! 들어보세요 🌸지금 들으면! 한달내내 좋은일 생기는 부처님노래 기도음악 #불교음악 #명상음악 #행운음악",
+      "channel_id": "UCb7p0x3AwPrYSJIG_0WV5Sg",
+      "channel_title": "소원을빌다",
+      "location": {
+        "country": "South Korea",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "한글날에는",
+        "새벽까지",
+        "들어보세요",
+        "들으면",
+        "한달내내",
+        "좋은일",
+        "생기는",
+        "부처님노래",
+        "기도음악",
+        "불교음악"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "HulVSUwjTlk",
+        "resolvable": false,
+        "confidence": 0.0,
+        "geocode_query": null,
+        "country": null
+      }
+    },
+    {
+      "video_id": "BJjy4ULoQvU",
+      "title": "길을 걷다 우연히 마주친 낯선 거리의 기분 좋은 리듬 Chill R&B",
+      "channel_id": "UCHbyjAViI_b2AnX6FBbFMVg",
+      "channel_title": "Lateflow | Chill Pop & R&B",
+      "location": {
+        "country": "South Korea",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "우연히",
+        "마주친",
+        "거리의",
+        "길을 걷다 우연히 마주친 낯선 거리의 기분 좋은 리듬 Chill R&b",
+        "길을 걷다 우연히 마주친 낯선 거리의",
+        "기분 좋은 리듬",
+        "흐릿하게",
+        "노을이",
+        "가로등을",
+        "하나둘"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "BJjy4ULoQvU",
+        "resolvable": false,
+        "confidence": 0.0,
+        "geocode_query": null,
+        "country": null
+      }
+    },
+    {
+      "video_id": "PviVQGo7_do",
+      "title": "ぐんまの道路ライブカメラ（上信自動車道　松谷東交差点）",
+      "channel_id": "UCVuOdqtmmJod2GmhxlLfmCw",
+      "channel_title": "ぐんまの道路ライブカメラ【北部地域】",
+      "location": null,
+      "location_candidates": [],
+      "location_hints": [
+        "ぐんまの道路ライブカメラ（上信自動車道 松谷東交差点）",
+        "ぐんまの道路ライブカメラ",
+        "上信自動車道 松谷東交差点",
+        "ぐんまの道路ライブカメラ 北部地域",
+        "北部地域",
+        "Maps.app.goo.gl",
+        "Usrpdpegugmaosvr9"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "PviVQGo7_do",
+        "resolvable": true,
+        "confidence": 0.9,
+        "geocode_query": "Matsuya Higashi Intersection, Joshin Expressway, Gunma, Japan",
+        "country": "JP"
+      }
+    },
+    {
+      "video_id": "d76K-8VrB9I",
+      "title": "佐賀市佐賀市大和町交差点ライブカメラ",
+      "channel_id": "UCGIAyP_5Iw_hllYv2Mk8zMw",
+      "channel_title": "佐賀市佐賀市大和町交差点ライブカメラ",
+      "location": {
+        "country": "Japan",
+        "level": "country",
+        "confidence": 0.3,
+        "source": "youtube-channel-country",
+        "renderable": false,
+        "evidence": [
+          "YouTube channel country; not camera GPS"
+        ]
+      },
+      "location_candidates": [],
+      "location_hints": [
+        "佐賀市佐賀市",
+        "佐賀市佐賀市大和町交差点ライブカメラ",
+        "ライブカメラ映像について",
+        "現在の配信は、佐賀市佐賀市大和町の定点ライブカメラ映像です。 地域の交通状況や天候、街の様子などの確認にご活用ください。",
+        "現在の配信は",
+        "佐賀市佐賀市大和町の定点ライブカメラ映像です",
+        "地域の交通状況や天候",
+        "街の様子などの確認にご活用ください",
+        "ライブカメラ設置をご検討の方へ",
+        "プライバシー保護について O 撮影された映像は、個人情報保護の観点から、解像度を落として配信しています。"
+      ],
+      "status": "unresolved",
+      "ai": {
+        "video_id": "d76K-8VrB9I",
+        "resolvable": true,
+        "confidence": 0.9,
+        "geocode_query": "Yamato-cho Intersection, Saga City, Japan",
+        "country": "JP"
+      }
     }
   ],
-  "ai_resolved_at": "2026-10-07T20:54:49Z"
+  "ai_resolved_at": "2026-10-08T20:59:28Z"
 }
