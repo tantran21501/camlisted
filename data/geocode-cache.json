@@ -4268,17 +4268,6 @@
   },
   "the people demo 3": null,
   "the people demo": null,
-  "people": {
-    "lat": 34.5412252,
-    "lng": 108.9237067,
-    "display_name": "中国",
-    "address": {
-      "country": "中国",
-      "country_code": "cn"
-    },
-    "category": "boundary",
-    "type": "administrative"
-  },
   "cámaras tolhuin": null,
   "cámaras tolhuin, argentina": null,
   "norway now": {
@@ -43047,23 +43036,6 @@
     "category": "tourism",
     "type": "guest_house"
   },
-  "about": {
-    "lat": 2.9058378,
-    "lng": 11.2156685,
-    "display_name": "About, Ebolowa II, Communauté urbaine d'Ebolowa, Mvila, Sud, Cameroun",
-    "address": {
-      "village": "About",
-      "city": "Ebolowa II",
-      "municipality": "Communauté urbaine d'Ebolowa",
-      "county": "Mvila",
-      "state": "Sud",
-      "ISO3166-2-lvl4": "CM-SU",
-      "country": "Cameroun",
-      "country_code": "cm"
-    },
-    "category": "place",
-    "type": "village"
-  },
   "overwater paradise, white sand beaches & ocean escape": null,
   "overwater paradise, white sand beaches & ocean escape, united states": null,
   "bora bora 8k drone overwater paradise, white sand beaches & ocean escape": null,
@@ -43447,20 +43419,6 @@
   "how lasers impact surveillance - hong kong, united states": null,
   "how lasers impact surveillance": null,
   "how lasers impact surveillance, united states": null,
-  "hong kong": {
-    "lat": 22.2818333,
-    "lng": 114.1582831,
-    "display_name": "香港 Hong Kong, 中国",
-    "address": {
-      "city": "香港 Hong Kong",
-      "region": "香港 Hong Kong",
-      "ISO3166-2-lvl3": "CN-HK",
-      "country": "中国",
-      "country_code": "cn"
-    },
-    "category": "boundary",
-    "type": "administrative"
-  },
   "12 times security caught terrifying encounters": null,
   "12 times security caught terrifying encounters, united states": null,
   "times security caught terrifying encounters": null,
@@ -93427,22 +93385,6 @@
   "#8131okichan 沖縄県 国際通り安里三叉路 マキシアルパビル ライブ映像 okinawa kokusai street": null,
   "沖縄県 国際通り安里三叉路 マキシアルパビル ライブ映像 okinawa kokusai": null,
   "#ユニオンdeスカラ#スポーツ麻雀barつもりば#blackpenthousenaha#みんなのうなぎ#スポーツandダーツバーtat#ゴールデンスワロー中華料理 #すしやコトブキ安里店#鳥貴族安里店#ホルモン人安里店#とりいちず #ホテルオーシャン#ホテルヒューイットリゾート那覇": null,
-  "street": {
-    "lat": 51.1267494,
-    "lng": -2.7397217,
-    "display_name": "Street, Somerset, England, United Kingdom",
-    "address": {
-      "village": "Street",
-      "county": "Somerset",
-      "ISO3166-2-lvl6": "GB-SOM",
-      "state": "England",
-      "ISO3166-2-lvl4": "GB-ENG",
-      "country": "United Kingdom",
-      "country_code": "gb"
-    },
-    "category": "boundary",
-    "type": "administrative"
-  },
   "street, japan": {
     "lat": 35.5460417,
     "lng": 139.1296588,
@@ -96257,6 +96199,518 @@
   },
   "in cafe on the beach, gangneung, south korea": null,
   "higashiura intersection, matsukawa, japan": null,
+  "마카오": {
+    "lat": 22.1757605,
+    "lng": 113.5514142,
+    "display_name": "澳門 Macau, 中国",
+    "address": {
+      "state": "澳門 Macau",
+      "ISO3166-2-lvl3": "CN-MO",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "나이트": {
+    "lat": 18.7867043,
+    "lng": 99.0007492,
+    "display_name": "Night Bazaar, ถนนช้างคลาน, แขวงเม็งราย, ตำบลช้างคลาน, เทศบาลนครเชียงใหม่, ฟ้าฮ่าม, อำเภอเมืองเชียงใหม่, จังหวัดเชียงใหม่, 55520, ประเทศไทย",
+    "address": {
+      "tourism": "Night Bazaar",
+      "road": "ถนนช้างคลาน",
+      "suburb": "แขวงเม็งราย",
+      "city_district": "ตำบลช้างคลาน",
+      "city": "เทศบาลนครเชียงใหม่",
+      "municipality": "ฟ้าฮ่าม",
+      "county": "อำเภอเมืองเชียงใหม่",
+      "province": "จังหวัดเชียงใหม่",
+      "ISO3166-2-lvl4": "TH-50",
+      "postcode": "55520",
+      "country": "ประเทศไทย",
+      "country_code": "th"
+    },
+    "category": "tourism",
+    "type": "attraction"
+  },
+  "환영합니다": {
+    "lat": 42.9030738,
+    "lng": 129.4068561,
+    "display_name": "연변인민은 당신을 환영합니다, 公园路 공원로, 光石村 광석촌, 坎下屯, 朝阳川镇 조양천진, 延吉市 연길시, 延边朝鲜族自治州 연변조선족자치주, 吉林省, 133407, 中国",
+    "address": {
+      "tourism": "연변인민은 당신을 환영합니다",
+      "road": "公园路 공원로",
+      "suburb": "光石村 광석촌",
+      "village": "坎下屯",
+      "town": "朝阳川镇 조양천진",
+      "county": "延吉市 연길시",
+      "region": "延边朝鲜族自治州 연변조선족자치주",
+      "state": "吉林省",
+      "ISO3166-2-lvl4": "CN-JL",
+      "postcode": "133407",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "tourism",
+    "type": "artwork"
+  },
+  "기부하고": null,
+  "만원을": null,
+  "join": {
+    "lat": 45.7337395,
+    "lng": 5.881818,
+    "display_name": "Join, Le Clos Vert, Grésine, Brison-Saint-Innocent, Chambéry, Savoie, Auvergne-Rhône-Alpes, France métropolitaine, 73100, France",
+    "address": {
+      "isolated_dwelling": "Join",
+      "neighbourhood": "Le Clos Vert",
+      "quarter": "Grésine",
+      "village": "Brison-Saint-Innocent",
+      "municipality": "Chambéry",
+      "county": "Savoie",
+      "ISO3166-2-lvl6": "FR-73",
+      "state": "Auvergne-Rhône-Alpes",
+      "ISO3166-2-lvl4": "FR-ARA",
+      "region": "France métropolitaine",
+      "postcode": "73100",
+      "country": "France",
+      "country_code": "fr"
+    },
+    "category": "place",
+    "type": "isolated_dwelling"
+  },
+  "october 26": {
+    "lat": 30.0940216,
+    "lng": 31.2648891,
+    "display_name": "26, شارع 6 أكتوبر, مساكن الزاويه الحمراء, الشرابية, القاهرة, 11659, مصر",
+    "address": {
+      "house_number": "26",
+      "road": "شارع 6 أكتوبر",
+      "neighbourhood": "مساكن الزاويه الحمراء",
+      "suburb": "الشرابية",
+      "city": "القاهرة",
+      "state": "القاهرة",
+      "ISO3166-2-lvl4": "EG-C",
+      "postcode": "11659",
+      "country": "مصر",
+      "country_code": "eg"
+    },
+    "category": "place",
+    "type": "house"
+  },
+  "dayton, ohio news sports and weather. video's and wdtn.com": null,
+  "wdtn - downtown dayton": null,
+  "wdtn - downtown dayton, united states": null,
+  "wdtn": null,
+  "wdtn, united states": null,
+  "downtown dayton": {
+    "lat": 43.085039,
+    "lng": -89.3735562,
+    "display_name": "East Dayton Street, Tenney-Lapham, Downtown, Madison, Dane County, Wisconsin, 53703, United States",
+    "address": {
+      "road": "East Dayton Street",
+      "neighbourhood": "Tenney-Lapham",
+      "quarter": "Downtown",
+      "city": "Madison",
+      "county": "Dane County",
+      "state": "Wisconsin",
+      "ISO3166-2-lvl4": "US-WI",
+      "postcode": "53703",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "highway",
+    "type": "residential"
+  },
+  "横浜ベイブリッジ・山下埠頭・本牧埠頭ライブカメラ｜工場夜景 yokohama bay bridge h.view": null,
+  "横浜ベイブリッジ": {
+    "lat": 35.4603897,
+    "lng": 139.6777665,
+    "display_name": "横浜ベイブリッジ, 首都高速湾岸線, 大黒ふ頭, 鶴見区, 横浜市, 神奈川県, 231-0017, 日本",
+    "address": {
+      "bridge": "横浜ベイブリッジ",
+      "road": "首都高速湾岸線",
+      "neighbourhood": "大黒ふ頭",
+      "suburb": "鶴見区",
+      "city": "横浜市",
+      "province": "神奈川県",
+      "ISO3166-2-lvl4": "JP-14",
+      "postcode": "231-0017",
+      "country": "日本",
+      "country_code": "jp"
+    },
+    "category": "bridge",
+    "type": "yes"
+  },
+  "ciudad de méxico. vista monumento a la revolución, mexico": null,
+  "investigating flock: america's mass surveillance company": null,
+  "america's mass surveillance company": null,
+  "investigating flock": null,
+  "investigating flock, united states": null,
+  "tommy g": null,
+  "tommy g, united states": {
+    "lat": 36.2047848,
+    "lng": -93.1279467,
+    "display_name": "Tommy, Boone County, Arkansas, 72601, United States",
+    "address": {
+      "road": "Tommy",
+      "county": "Boone County",
+      "state": "Arkansas",
+      "ISO3166-2-lvl4": "US-AR",
+      "postcode": "72601",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "highway",
+    "type": "residential"
+  },
+  "사망설": null,
+  "웃으며": null,
+  "나타났다": null,
+  "'사망설 김정은' 웃으며 나타났다...중국 단둥 '깜짝 방문' 영상 공개": null,
+  "사망설 김정은": null,
+  "웃으며 나타났다": null,
+  "깜짝 방문": null,
+  "영상 공개": null,
+  "이 장면": null,
+  "맞았다": null,
+  "저격당일": null,
+  "박정희가 쏜게 맞았다! x발, 저격당일 공개되자 초토화": null,
+  "박정희가 쏜게 맞았다": null,
+  "저격당일 공개되자 초토화": null,
+  "저격명단": null,
+  "육영수 제거? 저격명단 충격, cctv에 찍힌 모습 경악": null,
+  "육영수 제거": null,
+  "저격명단 충격": null,
+  "可商用视频素材｜智能安防系统ai天眼监控摄像头天网大数据 #视频素材 #剪辑素材 #智能安防 #智能监控 #天眼": null,
+  "可商用视频素材": null,
+  "智能安防系统ai天眼监控摄像头天网大数据": null,
+  "视频素材": {
+    "lat": 31.883975,
+    "lng": 117.2781612,
+    "display_name": "蔬菜副食品公司宿舍, 一里井社区, 双岗街道, 庐阳区, 合肥市, 安徽省, 中国",
+    "address": {
+      "residential": "蔬菜副食品公司宿舍",
+      "neighbourhood": "一里井社区",
+      "suburb": "双岗街道",
+      "city": "庐阳区",
+      "state": "安徽省",
+      "ISO3166-2-lvl4": "CN-AH",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "landuse",
+    "type": "residential"
+  },
+  "至春日": {
+    "lat": 35.4520528,
+    "lng": 137.7541598,
+    "display_name": "春日, 阿智村, 下伊那郡, 長野県, 395-0301, 日本",
+    "address": {
+      "quarter": "春日",
+      "village": "阿智村",
+      "county": "下伊那郡",
+      "province": "長野県",
+      "ISO3166-2-lvl4": "JP-20",
+      "postcode": "395-0301",
+      "country": "日本",
+      "country_code": "jp"
+    },
+    "category": "place",
+    "type": "quarter"
+  },
+  "選項 a 一個億、選項 b 每秒漲一毛，他一緊張點錯，本以為要熬三十年，才發現花越多錢、到賬翻倍越快，從此人生開掛！# 系統流 #逆襲爽劇 #都市奇遇": null,
+  "都市奇遇": {
+    "lat": 35.0128812,
+    "lng": 135.7835478,
+    "display_name": "京都市美術館, 二条通, 岡崎南御所町, 永観堂町飛地, 左京区, 京都市, 京都府, 606-8334, 日本",
+    "address": {
+      "tourism": "京都市美術館",
+      "road": "二条通",
+      "neighbourhood": "岡崎南御所町",
+      "hamlet": "永観堂町飛地",
+      "suburb": "左京区",
+      "city": "京都市",
+      "province": "京都府",
+      "ISO3166-2-lvl4": "JP-26",
+      "postcode": "606-8334",
+      "country": "日本",
+      "country_code": "jp"
+    },
+    "category": "tourism",
+    "type": "museum"
+  },
+  "精品沙雕動畫": null,
+  "超火懸疑探案！扎紙匠憑一手玄學，幫警方破連環詭案#沙雕劇情 #funny #動漫": null,
+  "超火懸疑探案": null,
+  "扎紙匠憑一手玄學": null,
+  "幫警方破連環詭案": null,
+  "沙雕劇情": null,
+  "funny": {
+    "lat": 60.3641448,
+    "lng": 24.754744,
+    "display_name": "Funny, Vanhamyllynranta, Klaukkala, Nurmijärvi, Helsingin seutukunta, Uusimaa, Manner-Suomi, 01840, Suomi / Finland",
+    "address": {
+      "road": "Funny",
+      "suburb": "Vanhamyllynranta",
+      "town": "Klaukkala",
+      "municipality": "Helsingin seutukunta",
+      "state": "Uusimaa",
+      "ISO3166-2-lvl4": "FI-18",
+      "region": "Manner-Suomi",
+      "postcode": "01840",
+      "country": "Suomi / Finland",
+      "country_code": "fi"
+    },
+    "category": "highway",
+    "type": "path"
+  },
+  "超火懸疑探案系列！扎紙匠探案用玄學的手法，幫助警方屢破奇案！帽子叔叔要相信科學！#沙雕劇情 #funny #動漫": null,
+  "超火懸疑探案系列": null,
+  "扎紙匠探案用玄學的手法": null,
+  "幫助警方屢破奇案": null,
+  "帽子叔叔要相信科學": null,
+  "walking inside, china": null,
+  "广州尹边村握手楼": null,
+  "found guangzhou's \"handshake buildings\"! walking inside china's narrowest streets 广州尹边村握手楼": null,
+  "yinbian village street walk join, maine, united states": null,
+  "guangzhou, china": {
+    "lat": 23.1288429,
+    "lng": 113.2589581,
+    "display_name": "广州市, 广东省, 中国",
+    "address": {
+      "city": "广州市",
+      "state": "广东省",
+      "ISO3166-2-lvl4": "CN-GD",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "sandra callejón presenta: ¨ callejón con salida¨ - lunes 26 10 2026": null,
+  "the ultimate late night perreo intenso mix 2026 (style: arcangel, daddy yankee)": null,
+  "style: arcangel, daddy yankee": null,
+  "style: arcangel, daddy yankee, spain": null,
+  "maximum-intensity training, oregon, united states": null,
+  "lyrics, oregon, united states": null,
+  "music only, with no rain or ambient sounds": null,
+  "music only, with no rain or ambient sounds, japan": null,
+  "bookshop & coffee lights down a snowy lamplit lane": null,
+  "bookshop": {
+    "lat": 6.9566309,
+    "lng": 79.8885968,
+    "display_name": "Bookshop, Peliyagoda Watta, Pattiya, Gampaha District, Western Province, Sri Lanka",
+    "address": {
+      "commercial": "Bookshop",
+      "hamlet": "Peliyagoda Watta",
+      "village": "Pattiya",
+      "state_district": "Gampaha District",
+      "ISO3166-2-lvl5": "LK-12",
+      "state": "Western Province",
+      "ISO3166-2-lvl4": "LK-1",
+      "country": "Sri Lanka",
+      "country_code": "lk"
+    },
+    "category": "landuse",
+    "type": "commercial"
+  },
+  "traveler, oregon, united states": {
+    "lat": 45.3168138,
+    "lng": -122.5801471,
+    "display_name": "Traveler Road, Gaffney Lane, Oregon City, Clackamas County, Oregon, 97045, United States",
+    "address": {
+      "road": "Traveler Road",
+      "quarter": "Gaffney Lane",
+      "town": "Oregon City",
+      "county": "Clackamas County",
+      "state": "Oregon",
+      "ISO3166-2-lvl4": "US-OR",
+      "postcode": "97045",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "highway",
+    "type": "residential"
+  },
+  "earthquake tracking, aurora forecasts and an iss tracker on one globe, 24": null,
+  "earthquake 24": {
+    "lat": 34.0802222,
+    "lng": -109.907484,
+    "display_name": "24, Earthquake Drive, Indian Pine, Navajo County, Arizona, 85935, United States",
+    "address": {
+      "house_number": "24",
+      "road": "Earthquake Drive",
+      "village": "Indian Pine",
+      "county": "Navajo County",
+      "state": "Arizona",
+      "ISO3166-2-lvl4": "US-AZ",
+      "postcode": "85935",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "place",
+    "type": "house"
+  },
+  "education complex construction (ncec)": null,
+  "ncec": {
+    "lat": 51.1732438,
+    "lng": 0.0078293,
+    "display_name": "NCEC, St. Piers Lane, Dormansland, Tandridge, Surrey, England, RH7 6PW, United Kingdom",
+    "address": {
+      "building": "NCEC",
+      "road": "St. Piers Lane",
+      "suburb": "Dormansland",
+      "village": "Dormansland",
+      "county": "Surrey",
+      "ISO3166-2-lvl6": "GB-SRY",
+      "state": "England",
+      "ISO3166-2-lvl4": "GB-ENG",
+      "postcode": "RH7 6PW",
+      "country": "United Kingdom",
+      "country_code": "gb"
+    },
+    "category": "building",
+    "type": "yes"
+  },
+  "bcc construction stream": null,
+  "bcc construction stream, united states": null,
+  "bcc construction": null,
+  "bcc construction, united states": null,
+  "blount community church": null,
+  "blount community church, united states": null,
+  "church": {
+    "lat": 37.7672666,
+    "lng": -122.4292613,
+    "display_name": "Church, Market Street, Duboce Triangle, Castro District, Mission, San Francisco, California, 94143, United States",
+    "address": {
+      "railway": "Church",
+      "road": "Market Street",
+      "neighbourhood": "Duboce Triangle",
+      "quarter": "Castro District",
+      "suburb": "Mission",
+      "city": "San Francisco",
+      "state": "California",
+      "ISO3166-2-lvl4": "US-CA",
+      "postcode": "94143",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "railway",
+    "type": "station"
+  },
+  "este canal comparto, michigan, united states": null,
+  ": minicasa 4x5m completa - 9 videos en 1": null,
+  "minicasa": {
+    "lat": 28.5079922,
+    "lng": 34.5156299,
+    "display_name": "Dahab: Minicasa, طريق السلام, عصلة, دهب, جنوب سيناء, 45214, مصر",
+    "address": {
+      "tourism": "Dahab: Minicasa",
+      "road": "طريق السلام",
+      "suburb": "عصلة",
+      "city": "دهب",
+      "state": "جنوب سيناء",
+      "ISO3166-2-lvl4": "EG-JS",
+      "postcode": "45214",
+      "country": "مصر",
+      "country_code": "eg"
+    },
+    "category": "tourism",
+    "type": "guest_house"
+  },
+  "7 days tik tok: @ brave survival life best regards, brave survival life": null,
+  "he built the secret four style of underground rooms and swimming pools": null,
+  "he built the secret four style of underground": null,
+  "he built the secret four style of underground, united states": null,
+  "rooms": {
+    "lat": 55.7504564,
+    "lng": 37.7197244,
+    "display_name": "Rooms, 2-я Кабельная улица, Дангауэровка, район Лефортово, Москва, Центральный федеральный округ, 111024, Россия",
+    "address": {
+      "tourism": "Rooms",
+      "road": "2-я Кабельная улица",
+      "neighbourhood": "Дангауэровка",
+      "suburb": "район Лефортово",
+      "city": "Москва",
+      "state": "Москва",
+      "ISO3166-2-lvl4": "RU-MOW",
+      "region": "Центральный федеральный округ",
+      "postcode": "111024",
+      "country": "Россия",
+      "country_code": "ru"
+    },
+    "category": "tourism",
+    "type": "hostel"
+  },
+  "오션힐스영천": null,
+  "오션힐스영천cc": null,
+  "기상상황": null,
+  "안내드립니다": null,
+  "오션힐스영천cc 실시간 기상상황 안내드립니다": null,
+  "掛尾交差点ライブカメラ": null,
+  "ケーブルテレビ富山ライブカメラ": null,
+  "久保交差点": {
+    "lat": 33.1137073,
+    "lng": 131.789879,
+    "display_name": "土橋交差点, 国道217号, 千代田, 戸室, 臼杵市, 大分県, 875-0052, 日本",
+    "address": {
+      "highway": "土橋交差点",
+      "road": "国道217号",
+      "neighbourhood": "千代田",
+      "quarter": "戸室",
+      "city": "臼杵市",
+      "province": "大分県",
+      "ISO3166-2-lvl4": "JP-44",
+      "postcode": "875-0052",
+      "country": "日本",
+      "country_code": "jp"
+    },
+    "category": "highway",
+    "type": "traffic_signals"
+  },
+  "柏崎地下道": {
+    "lat": 36.0226782,
+    "lng": 139.4201078,
+    "display_name": "柏崎, 国道254号旧道, 若松町二丁目, 柏崎, 東松山市, 埼玉県, 355-0073, 日本",
+    "address": {
+      "highway": "柏崎",
+      "road": "国道254号旧道",
+      "neighbourhood": "若松町二丁目",
+      "quarter": "柏崎",
+      "city": "東松山市",
+      "province": "埼玉県",
+      "ISO3166-2-lvl4": "JP-11",
+      "postcode": "355-0073",
+      "country": "日本",
+      "country_code": "jp"
+    },
+    "category": "highway",
+    "type": "bus_stop"
+  },
+  "オジュウカメラ配信 2026年10月26日": null,
+  "オジュウカメラ配信 2026年10月26日 ヴェルサイユリゾートファーム": null,
+  "アライマウンテンリゾートのライブ配信": null,
+  "アライマウンテンリゾート": null,
+  "ocean hills yeongcheon cc, yeongcheon, south korea": null,
+  "kakeo intersection, toyama, japan": null,
+  "versailles resort farm, hidaka, hokkaido, japan": null,
+  "lotte arai resort, myoko, niigata, japan": {
+    "lat": 36.9908665,
+    "lng": 138.1816022,
+    "display_name": "ロッテ新井リゾート, 両善寺西野谷新田線, 妙高市, 新潟県, 944-0056, 日本",
+    "address": {
+      "tourism": "ロッテ新井リゾート",
+      "road": "両善寺西野谷新田線",
+      "city": "妙高市",
+      "province": "新潟県",
+      "ISO3166-2-lvl4": "JP-15",
+      "postcode": "944-0056",
+      "country": "日本",
+      "country_code": "jp"
+    },
+    "category": "tourism",
+    "type": "attraction"
+  },
   "가까이": {
     "lat": 13.9051389,
     "lng": 100.5055619,
@@ -96276,6 +96730,9 @@
     "category": "landuse",
     "type": "religious"
   },
+  "around the, south korea": null,
+  "the location, south korea": null,
+  "including the 325-mile nakasendo trail in japan and 600-mile european treks": null,
   "lua": {
     "lat": 44.23073,
     "lng": -0.98509,
@@ -96368,13 +96825,15 @@
     "type": "administrative"
   },
   "spotting": {
-    "lat": 27.913242,
-    "lng": -15.3901548,
-    "display_name": "Spotting, Cofete, Las Majoreras, Ingenio, Las Palmas, Canarias, 35240, España",
+    "lat": 27.9190388,
+    "lng": -15.3957628,
+    "display_name": "Spotting, Perimetral sur, Las Puntillas, Las Majoreras, Ingenio, Las Palmas, Canarias, 35240, España",
     "address": {
       "tourism": "Spotting",
-      "road": "Cofete",
+      "road": "Perimetral sur",
+      "neighbourhood": "Las Puntillas",
       "suburb": "Las Majoreras",
+      "town": "Ingenio",
       "city": "Ingenio",
       "province": "Las Palmas",
       "ISO3166-2-lvl6": "ES-GC",
@@ -96538,10 +96997,10 @@
   "朝天宮": {
     "lat": 32.0347115,
     "lng": 118.7674333,
-    "display_name": "朝天宫, 建邺路, 朝天宫街道, 秦淮区, 南京市, 江苏省, 210004, 中国",
+    "display_name": "朝天宫, 莫愁路, 朝天宫街道, 秦淮区, 南京市, 江苏省, 210004, 中国",
     "address": {
       "railway": "朝天宫",
-      "road": "建邺路",
+      "road": "莫愁路",
       "suburb": "朝天宫街道",
       "city": "秦淮区",
       "state": "江苏省",
@@ -96593,16 +97052,16 @@
   "the": {
     "lat": -5.0598744,
     "lng": -42.8235102,
-    "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Rua João Cabral, Pirajá, Teresina, Piauí, Região Nordeste, 64002-170, Brasil",
+    "display_name": "Aeroporto de Teresina - Senador Petrônio Portella, Avenida Campo Maior, Nova Brasilia, Teresina, Piauí, Região Nordeste, 64002-620, Brasil",
     "address": {
       "aeroway": "Aeroporto de Teresina - Senador Petrônio Portella",
-      "road": "Rua João Cabral",
-      "suburb": "Pirajá",
+      "road": "Avenida Campo Maior",
+      "suburb": "Nova Brasilia",
       "city": "Teresina",
       "state": "Piauí",
       "ISO3166-2-lvl4": "BR-PI",
       "region": "Região Nordeste",
-      "postcode": "64002-170",
+      "postcode": "64002-620",
       "country": "Brasil",
       "country_code": "br"
     },
@@ -96631,9 +97090,24 @@
     "category": "tourism",
     "type": "museum"
   },
+  "bangkok night walk": null,
+  "bangkok night walk, thailand": null,
+  "bangkok": {
+    "lat": 13.7524938,
+    "lng": 100.4935089,
+    "display_name": "กรุงเทพมหานคร, ประเทศไทย",
+    "address": {
+      "city": "กรุงเทพมหานคร",
+      "ISO3166-2-lvl4": "TH-10",
+      "country": "ประเทศไทย",
+      "country_code": "th"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
   "新營市": {
-    "lat": 23.306321,
-    "lng": 120.3233909,
+    "lat": 23.3063865,
+    "lng": 120.3232684,
     "display_name": "新營, 工業街, 中營里, 新營區, 臺南市, 730, 臺灣",
     "address": {
       "railway": "新營",
@@ -96705,13 +97179,14 @@
     "type": "park"
   },
   "台南新營市": {
-    "lat": 23.3207698,
-    "lng": 120.3128984,
-    "display_name": "臺南市立新營體育場, 長榮路二段, 護鎮里, 新營區, 臺南市, 730, 臺灣",
+    "lat": 23.3042355,
+    "lng": 120.3195524,
+    "display_name": "公誠國小, 5, 公誠街, 興業里, 新營區, 臺南市, 730, 臺灣",
     "address": {
-      "leisure": "臺南市立新營體育場",
-      "road": "長榮路二段",
-      "suburb": "護鎮里",
+      "emergency": "公誠國小",
+      "house_number": "5",
+      "road": "公誠街",
+      "suburb": "興業里",
       "town": "新營區",
       "city": "臺南市",
       "ISO3166-2-lvl4": "TW-TNN",
@@ -96719,8 +97194,8 @@
       "country": "臺灣",
       "country_code": "tw"
     },
-    "category": "leisure",
-    "type": "stadium"
+    "category": "emergency",
+    "type": "assembly_point"
   },
   "台中市": {
     "lat": 24.163162,
@@ -96860,7 +97335,7 @@
     "lng": 105.833152,
     "display_name": "Nhà sàn Bác Hồ, Đường Xoài, Phường Ba Đình, Thành phố Hà Nội, 11120, Việt Nam",
     "address": {
-      "tourism": "Nhà sàn Bác Hồ",
+      "building": "Nhà sàn Bác Hồ",
       "road": "Đường Xoài",
       "suburb": "Phường Ba Đình",
       "city": "Thành phố Hà Nội",
@@ -96869,8 +97344,8 @@
       "country": "Việt Nam",
       "country_code": "vn"
     },
-    "category": "tourism",
-    "type": "attraction"
+    "category": "building",
+    "type": "house"
   },
   "en daiba": {
     "lat": 10.29324,
@@ -96922,24 +97397,24 @@
     "type": "reef"
   },
   "台湾台北市": {
-    "lat": 25.0290168,
-    "lng": 121.5183254,
-    "display_name": "陸軍台北辦事處, 136, 南昌路一段, 南福里, 中正區, 龍匣口, 臺北市, 100, 臺灣",
+    "lat": 25.0375356,
+    "lng": 121.502687,
+    "display_name": "老松國小, 64, 桂林路, 福音里, 萬華區, 艋舺, 臺北市, 108312, 臺灣",
     "address": {
-      "military": "陸軍台北辦事處",
-      "house_number": "136",
-      "road": "南昌路一段",
-      "neighbourhood": "南福里",
-      "suburb": "中正區",
-      "village": "龍匣口",
+      "emergency": "老松國小",
+      "house_number": "64",
+      "road": "桂林路",
+      "neighbourhood": "福音里",
+      "suburb": "萬華區",
+      "village": "艋舺",
       "city": "臺北市",
       "ISO3166-2-lvl4": "TW-TPE",
-      "postcode": "100",
+      "postcode": "108312",
       "country": "臺灣",
       "country_code": "tw"
     },
-    "category": "military",
-    "type": "office"
+    "category": "emergency",
+    "type": "assembly_point"
   },
   "타이베이시": {
     "lat": 25.0375198,
@@ -96972,6 +97447,10 @@
     "category": "highway",
     "type": "residential"
   },
+  "walk bangkok city": null,
+  "walk bangkok city, south korea": null,
+  "bangkok night walk bangkok city street walking tour": null,
+  "bangkok night walk bangkok city street walking tour, south korea": null,
   "城市漫步": {
     "lat": 34.72291,
     "lng": 113.9771038,
@@ -97153,7 +97632,7 @@
   "閲覧注意": {
     "lat": 23.8561772,
     "lng": 120.9428912,
-    "display_name": "日月潭纜車, 中正路, 日月村, 魚池鄉, 南投縣, 55546, 臺灣",
+    "display_name": "日月潭纜車, 中正路, 日月村, 魚池鄉, 南投縣, 555, 臺灣",
     "address": {
       "aerialway": "日月潭纜車",
       "road": "中正路",
@@ -97162,7 +97641,7 @@
       "town": "魚池鄉",
       "county": "南投縣",
       "ISO3166-2-lvl4": "TW-NAN",
-      "postcode": "55546",
+      "postcode": "555",
       "country": "臺灣",
       "country_code": "tw"
     },
@@ -97243,6 +97722,21 @@
     },
     "category": "landuse",
     "type": "forest"
+  },
+  "macau city": {
+    "lat": 22.1899448,
+    "lng": 113.5380454,
+    "display_name": "澳門 Macau, 999078, 中国",
+    "address": {
+      "city": "澳門 Macau",
+      "state": "澳門 Macau",
+      "ISO3166-2-lvl3": "CN-MO",
+      "postcode": "999078",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "place",
+    "type": "city"
   },
   "new, china": {
     "lat": 42.1448051,
@@ -97451,6 +97945,47 @@
     "category": "place",
     "type": "town"
   },
+  "walking tour, south korea": null,
+  "8pm seoul friday night walking tour, korea travel": null,
+  "july 17th friday": null,
+  "july 17th friday, south korea": null,
+  "july, south korea": null,
+  "friday": {
+    "lat": 4.9755666,
+    "lng": 5.6396995,
+    "display_name": "Friday, Ekeremor, Bayelsa, Nigeria",
+    "address": {
+      "village": "Friday",
+      "county": "Ekeremor",
+      "state": "Bayelsa",
+      "ISO3166-2-lvl4": "NG-BY",
+      "country": "Nigeria",
+      "country_code": "ng"
+    },
+    "category": "place",
+    "type": "village"
+  },
+  "friday, south korea": {
+    "lat": 37.3799785,
+    "lng": 127.1360514,
+    "display_name": "FRIDAY, 10, 서현로321번길, 서현동, 분당, 분당구, 성남시, 경기도, 13577, 대한민국",
+    "address": {
+      "building": "FRIDAY",
+      "house_number": "10",
+      "road": "서현로321번길",
+      "quarter": "서현동",
+      "suburb": "분당",
+      "borough": "분당구",
+      "city": "성남시",
+      "province": "경기도",
+      "ISO3166-2-lvl4": "KR-41",
+      "postcode": "13577",
+      "country": "대한민국",
+      "country_code": "kr"
+    },
+    "category": "building",
+    "type": "commercial"
+  },
   "rcn": {
     "lat": 45.6987574,
     "lng": 8.281246,
@@ -97507,6 +98042,28 @@
     "category": "information",
     "type": "board"
   },
+  "高雄市楠梓區": {
+    "lat": 22.7283255,
+    "lng": 120.3262434,
+    "display_name": "楠梓區, 高雄市, 811, 臺灣",
+    "address": {
+      "suburb": "楠梓區",
+      "city": "高雄市",
+      "ISO3166-2-lvl4": "TW-KHH",
+      "postcode": "811",
+      "country": "臺灣",
+      "country_code": "tw"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "korean nightlife hongdae": null,
+  "korean nightlife hongdae, south korea": null,
+  "fantastic seoul walk": null,
+  "fantastic seoul walk, south korea": null,
+  "new year walking tour": null,
+  "new year walking tour, south korea": null,
+  "www.youtube.com, south korea": null,
   "the, new zealand": {
     "lat": 52.6650158,
     "lng": -7.3035259,
@@ -97593,25 +98150,36 @@
     "category": "railway",
     "type": "station"
   },
-  "由新北市": {
-    "lat": 25.0174094,
-    "lng": 121.4681735,
-    "display_name": "中山國中, 56, 文化路一段188巷, 新民里, 板橋區, 新板特區, 新北市, 22041, 臺灣",
+  "各縣市": {
+    "lat": 25.8691106,
+    "lng": 110.0061021,
+    "display_name": "龙胜各族自治县, 桂林市, 广西壮族自治区, 541701, 中国",
     "address": {
-      "emergency": "中山國中",
-      "house_number": "56",
-      "road": "文化路一段188巷",
-      "neighbourhood": "新民里",
-      "suburb": "板橋區",
-      "village": "新板特區",
-      "city": "新北市",
-      "ISO3166-2-lvl4": "TW-NWT",
-      "postcode": "22041",
-      "country": "臺灣",
-      "country_code": "tw"
+      "county": "龙胜各族自治县",
+      "city": "桂林市",
+      "state": "广西壮族自治区",
+      "ISO3166-2-lvl4": "CN-GX",
+      "postcode": "541701",
+      "country": "中国",
+      "country_code": "cn"
     },
-    "category": "emergency",
-    "type": "assembly_point"
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "由新北市": {
+    "lat": 39.828217,
+    "lng": 116.3440637,
+    "display_name": "北京新发地汽车交易市场, 花乡街道, 丰台区, 北京市, 中国",
+    "address": {
+      "retail": "北京新发地汽车交易市场",
+      "suburb": "花乡街道",
+      "city": "丰台区",
+      "ISO3166-2-lvl4": "CN-BJ",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "landuse",
+    "type": "retail"
   },
   "route": {
     "lat": 0.3873626,
@@ -97704,9 +98272,34 @@
     "category": "place",
     "type": "locality"
   },
+  "the location": {
+    "lat": 40.3670762,
+    "lng": 49.9686579,
+    "display_name": "The location, Səməd bəy Mehmandarov küçəsi, Bakı, 1016, Azərbaycan",
+    "address": {
+      "house_number": "The location",
+      "road": "Səməd bəy Mehmandarov küçəsi",
+      "city": "Bakı",
+      "postcode": "1016",
+      "country": "Azərbaycan",
+      "country_code": "az"
+    },
+    "category": "place",
+    "type": "house"
+  },
+  "@watchersclub?sub_confirmation=1 ⭐ join membership https:": null,
+  "@watchersclub?sub_confirmation=1 ⭐ join membership https:, south korea": null,
+  "watchersclub": null,
+  "watchersclub, south korea": null,
+  "join membership https": null,
+  "join membership https, south korea": null,
+  "@watchersclub": null,
+  "@watchersclub, south korea": null,
+  "join official website https:": null,
+  "join official website https:, south korea": null,
   "雲林縣政府": {
-    "lat": 23.696417,
-    "lng": 120.527817,
+    "lat": 23.697128,
+    "lng": 120.527954,
     "display_name": "稅務局(雲林縣政府), 府文路, 埤口, 鎮西里, 斗六市, 雲林縣, 64054, 臺灣",
     "address": {
       "highway": "稅務局(雲林縣政府)",
@@ -97722,6 +98315,19 @@
     },
     "category": "highway",
     "type": "bus_stop"
+  },
+  "busan city": {
+    "lat": 35.1799528,
+    "lng": 129.0752365,
+    "display_name": "부산광역시, 대한민국",
+    "address": {
+      "city": "부산광역시",
+      "ISO3166-2-lvl4": "KR-26",
+      "country": "대한민국",
+      "country_code": "kr"
+    },
+    "category": "boundary",
+    "type": "administrative"
   },
   "maps": {
     "lat": 42.8904733,
@@ -97779,61 +98385,76 @@
     "category": "railway",
     "type": "stop"
   },
-  "마카오": {
-    "lat": 22.1757605,
-    "lng": 113.5514142,
-    "display_name": "澳門 Macau, 中国",
+  "itaewon night street walk seoul": null,
+  "itaewon night street walk seoul, south korea": null,
+  "itaewon": {
+    "lat": 37.5345026,
+    "lng": 126.9943705,
+    "display_name": "이태원, 이태원로, 이태원, 이태원1동, 용산구, 서울특별시, 04406, 대한민국",
     "address": {
-      "state": "澳門 Macau",
-      "ISO3166-2-lvl3": "CN-MO",
-      "country": "中国",
-      "country_code": "cn"
+      "railway": "이태원",
+      "road": "이태원로",
+      "neighbourhood": "이태원",
+      "suburb": "이태원1동",
+      "borough": "용산구",
+      "city": "서울특별시",
+      "ISO3166-2-lvl4": "KR-11",
+      "postcode": "04406",
+      "country": "대한민국",
+      "country_code": "kr"
+    },
+    "category": "railway",
+    "type": "station"
+  },
+  "korean culture tv5 itaewon youth night walk": null,
+  "korean culture tv5 itaewon youth night walk, south korea": null,
+  "korean": {
+    "lat": 36.638392,
+    "lng": 127.6961188,
+    "display_name": "대한민국",
+    "address": {
+      "country": "대한민국",
+      "country_code": "kr"
     },
     "category": "boundary",
     "type": "administrative"
   },
-  "나이트": {
-    "lat": 18.7867043,
-    "lng": 99.0007492,
-    "display_name": "Night Bazaar, ถนนช้างคลาน, แขวงเม็งราย, ตำบลช้างคลาน, เทศบาลนครเชียงใหม่, ฟ้าฮ่าม, อำเภอเมืองเชียงใหม่, จังหวัดเชียงใหม่, 55520, ประเทศไทย",
+  "july 19th sunday": null,
+  "july 19th sunday, south korea": null,
+  "july": {
+    "lat": -15.638786,
+    "lng": 34.704887,
+    "display_name": "July, Neno, Southern Region, Malawi",
     "address": {
-      "tourism": "Night Bazaar",
-      "road": "ถนนช้างคลาน",
-      "suburb": "แขวงเม็งราย",
-      "city_district": "ตำบลช้างคลาน",
-      "city": "เทศบาลนครเชียงใหม่",
-      "municipality": "ฟ้าฮ่าม",
-      "county": "อำเภอเมืองเชียงใหม่",
-      "province": "จังหวัดเชียงใหม่",
-      "ISO3166-2-lvl4": "TH-50",
-      "postcode": "55520",
-      "country": "ประเทศไทย",
-      "country_code": "th"
+      "village": "July",
+      "state": "Neno",
+      "ISO3166-2-lvl4": "MW-NE",
+      "region": "Southern Region",
+      "ISO3166-2-lvl3": "MW-S",
+      "country": "Malawi",
+      "country_code": "mw"
     },
-    "category": "tourism",
-    "type": "attraction"
+    "category": "place",
+    "type": "village"
   },
-  "환영합니다": {
-    "lat": 42.9030738,
-    "lng": 129.4068561,
-    "display_name": "연변인민은 당신을 환영합니다, 公园路 공원로, 光石村 광석촌, 坎下屯, 朝阳川镇 조양천진, 延吉市 연길시, 延边朝鲜族自治州 연변조선족자치주, 吉林省, 133407, 中国",
+  "sunday": {
+    "lat": 6.73164,
+    "lng": -10.47781,
+    "display_name": "Sunday, Cooper Farm, Todee, Montserrado County, Liberia",
     "address": {
-      "tourism": "연변인민은 당신을 환영합니다",
-      "road": "公园路 공원로",
-      "suburb": "光石村 광석촌",
-      "village": "坎下屯",
-      "town": "朝阳川镇 조양천진",
-      "county": "延吉市 연길시",
-      "region": "延边朝鲜族自治州 연변조선족자치주",
-      "state": "吉林省",
-      "ISO3166-2-lvl4": "CN-JL",
-      "postcode": "133407",
-      "country": "中国",
-      "country_code": "cn"
+      "isolated_dwelling": "Sunday",
+      "hamlet": "Cooper Farm",
+      "county": "Todee",
+      "state": "Montserrado County",
+      "ISO3166-2-lvl4": "LR-MO",
+      "country": "Liberia",
+      "country_code": "lr"
     },
-    "category": "tourism",
-    "type": "artwork"
+    "category": "place",
+    "type": "isolated_dwelling"
   },
+  "sunday, south korea": null,
+  "seoul sunday street walking tour": null,
   "venice": {
     "lat": 45.4371908,
     "lng": 12.3345898,
@@ -97891,10 +98512,10 @@
   "idi": {
     "lat": 40.6325354,
     "lng": -79.10639,
-    "display_name": "Indiana County/Jimmy Stewart Field, Raymond Drive, White Township, Indiana County, Pennsylvania, 15701, United States",
+    "display_name": "Indiana County/Jimmy Stewart Field, Jack Drive, White Township, Indiana County, Pennsylvania, 15701, United States",
     "address": {
       "aeroway": "Indiana County/Jimmy Stewart Field",
-      "road": "Raymond Drive",
+      "road": "Jack Drive",
       "city": "White Township",
       "county": "Indiana County",
       "state": "Pennsylvania",
@@ -98016,13 +98637,12 @@
     "type": "yes"
   },
   "dash": {
-    "lat": 3.1534488,
-    "lng": 101.5207778,
-    "display_name": "Lebuhraya DASH, Kampung Melayu Subang, Seksyen U16, Shah Alam, Petaling, Selangor, 40800, Malaysia",
+    "lat": 3.1484138,
+    "lng": 101.4997306,
+    "display_name": "Lebuhraya DASH, Seksyen U9, Shah Alam, Petaling, Selangor, 40800, Malaysia",
     "address": {
       "road": "Lebuhraya DASH",
-      "residential": "Kampung Melayu Subang",
-      "quarter": "Seksyen U16",
+      "quarter": "Seksyen U9",
       "city": "Shah Alam",
       "district": "Petaling",
       "state": "Selangor",
@@ -98214,8 +98834,27 @@
     "category": "boundary",
     "type": "administrative"
   },
-  "기부하고": null,
-  "만원을": null,
+  "seoul myeongdong & jongno walking tour": null,
+  "seoul myeongdong & jongno walking tour, south korea": null,
+  "seoul myeongdong": {
+    "lat": 37.5608977,
+    "lng": 126.9863762,
+    "display_name": "명동, 퇴계로, 충무로1가, 명동, 중구, 서울특별시, 64537, 대한민국",
+    "address": {
+      "railway": "명동",
+      "road": "퇴계로",
+      "quarter": "충무로1가",
+      "suburb": "명동",
+      "borough": "중구",
+      "city": "서울특별시",
+      "ISO3166-2-lvl4": "KR-11",
+      "postcode": "64537",
+      "country": "대한민국",
+      "country_code": "kr"
+    },
+    "category": "railway",
+    "type": "station"
+  },
   "리니지": {
     "lat": 45.958771,
     "lng": 14.2218557,
@@ -98453,6 +99092,24 @@
     "category": "place",
     "type": "hamlet"
   },
+  "마지막": {
+    "lat": 41.0021487,
+    "lng": 28.826698,
+    "display_name": "마지막, Şahmerdan Sokağı, Çobançeşme Mahallesi, Bahçelievler, İstanbul, Marmara Bölgesi, 34197, Türkiye",
+    "address": {
+      "tourism": "마지막",
+      "road": "Şahmerdan Sokağı",
+      "suburb": "Çobançeşme Mahallesi",
+      "province": "İstanbul",
+      "ISO3166-2-lvl4": "TR-34",
+      "region": "Marmara Bölgesi",
+      "postcode": "34197",
+      "country": "Türkiye",
+      "country_code": "tr"
+    },
+    "category": "tourism",
+    "type": "hotel"
+  },
   "anyma": {
     "lat": 36.6594796,
     "lng": 51.4390501,
@@ -98493,8 +99150,8 @@
     "type": "park"
   },
   "小時直播": {
-    "lat": 35.7888549,
-    "lng": 138.9321586,
+    "lat": 35.7890246,
+    "lng": 138.9324483,
     "display_name": "小室, 青梅街道, 保之瀬, 丹波山村, 北都留郡, 山梨県, 日本",
     "address": {
       "highway": "小室",
@@ -98859,7 +99516,7 @@
     "lng": 31.1721913,
     "display_name": "Aspendos Amfi Tiyatrosu, 07-04, Belkıs Mahallesi, Serik, Antalya, Akdeniz Bölgesi, Türkiye",
     "address": {
-      "tourism": "Aspendos Amfi Tiyatrosu",
+      "historic": "Aspendos Amfi Tiyatrosu",
       "road": "07-04",
       "city_district": "Belkıs Mahallesi",
       "town": "Serik",
@@ -98869,8 +99526,8 @@
       "country": "Türkiye",
       "country_code": "tr"
     },
-    "category": "tourism",
-    "type": "attraction"
+    "category": "historic",
+    "type": "theatre"
   },
   "yosuke": {
     "lat": -22.2305508,
@@ -98921,25 +99578,6 @@
       "postcode": "57131",
       "country": "Việt Nam",
       "country_code": "vn"
-    },
-    "category": "tourism",
-    "type": "hotel"
-  },
-  "마지막": {
-    "lat": 41.0021487,
-    "lng": 28.826698,
-    "display_name": "마지막, Şahmerdan Sokağı, Çobançeşme Mahallesi, Bahçelievler, İstanbul, Marmara Bölgesi, 34180, Türkiye",
-    "address": {
-      "tourism": "마지막",
-      "road": "Şahmerdan Sokağı",
-      "suburb": "Çobançeşme Mahallesi",
-      "city": "İstanbul",
-      "province": "İstanbul",
-      "ISO3166-2-lvl4": "TR-34",
-      "region": "Marmara Bölgesi",
-      "postcode": "34180",
-      "country": "Türkiye",
-      "country_code": "tr"
     },
     "category": "tourism",
     "type": "hotel"
@@ -99009,15 +99647,13 @@
     "type": "administrative"
   },
   "一座城市": {
-    "lat": 22.2833798,
-    "lng": 114.146738,
-    "display_name": "1座 Block 1, 80, 卑利士道 Breezy Path, 太平山 Tai Ping Shan, 西半山 Mid-Levels West, 中西區 Central and Western District, 香港島 Hong Kong Island, 香港 Hong Kong, 中国",
+    "lat": 22.2717117,
+    "lng": 114.1483483,
+    "display_name": "1座 Block 1, 柯士甸山道 Mount Austin Road, 爐峰峽 Victoria Gap, 中西區 Central and Western District, 香港島 Hong Kong Island, 香港 Hong Kong, 中国",
     "address": {
       "building": "1座 Block 1",
-      "house_number": "80",
-      "road": "卑利士道 Breezy Path",
-      "neighbourhood": "太平山 Tai Ping Shan",
-      "quarter": "西半山 Mid-Levels West",
+      "road": "柯士甸山道 Mount Austin Road",
+      "quarter": "爐峰峽 Victoria Gap",
       "suburb": "中西區 Central and Western District",
       "city_district": "香港島 Hong Kong Island",
       "city": "香港 Hong Kong",
@@ -99045,8 +99681,8 @@
     "type": "administrative"
   },
   "台東縣市": {
-    "lat": 32.8811421,
-    "lng": 120.35902,
+    "lat": 32.9227794,
+    "lng": 120.3911652,
     "display_name": "台东线, 东台市, 盐城市, 江苏省, 中国",
     "address": {
       "road": "台东线",
@@ -99057,7 +99693,7 @@
       "country_code": "cn"
     },
     "category": "highway",
-    "type": "tertiary"
+    "type": "secondary"
   },
   "縣治及最大城市": {
     "lat": 23.6183541,
@@ -99196,6 +99832,8 @@
     "category": "landuse",
     "type": "industrial"
   },
+  "11 チャンネル登録者100人突破 2026": null,
+  "30 日本vsブラジル戦 渋谷にてlive配信を決行（実況なし） 2026": null,
   "booth": {
     "lat": 39.5955345,
     "lng": -80.0218384,
@@ -99308,15 +99946,15 @@
   "펜타곤": {
     "lat": 38.8733004,
     "lng": -77.0552897,
-    "display_name": "The Pentagon, Pentagon Access Road, Arlington, Arlington County, Virginia, 20310, United States",
+    "display_name": "The Pentagon, North Boundary Drive, Arlington, Arlington County, Virginia, 20301, United States",
     "address": {
       "military": "The Pentagon",
-      "road": "Pentagon Access Road",
+      "road": "North Boundary Drive",
       "city": "Arlington",
       "county": "Arlington County",
       "state": "Virginia",
       "ISO3166-2-lvl4": "US-VA",
-      "postcode": "20310",
+      "postcode": "20301",
       "country": "United States",
       "country_code": "us"
     },
@@ -99459,23 +100097,6 @@
     },
     "category": "landuse",
     "type": "industrial"
-  },
-  "traffic": {
-    "lat": 54.347527,
-    "lng": 18.6072363,
-    "display_name": "Traffic, Siedlce, Gdańsk, województwo pomorskie, Polska",
-    "address": {
-      "residential": "Traffic",
-      "suburb": "Siedlce",
-      "city_district": "Gdańsk",
-      "city": "Gdańsk",
-      "state": "województwo pomorskie",
-      "ISO3166-2-lvl4": "PL-22",
-      "country": "Polska",
-      "country_code": "pl"
-    },
-    "category": "landuse",
-    "type": "residential"
   },
   "ln+": {
     "lat": 38.1965927,
@@ -99871,14 +100492,15 @@
     "type": "river"
   },
   "estados unidos, spain": {
-    "lat": 30.864639,
-    "lng": -83.537938,
-    "display_name": "Spain, Brooks County, Georgia, United States",
+    "lat": 45.7030061,
+    "lng": -97.7859363,
+    "display_name": "Spain, Lowell Township, Marshall County, South Dakota, United States",
     "address": {
       "hamlet": "Spain",
-      "county": "Brooks County",
-      "state": "Georgia",
-      "ISO3166-2-lvl4": "US-GA",
+      "municipality": "Lowell Township",
+      "county": "Marshall County",
+      "state": "South Dakota",
+      "ISO3166-2-lvl4": "US-SD",
       "country": "United States",
       "country_code": "us"
     },
@@ -99975,11 +100597,12 @@
     "type": "drain"
   },
   "카메라": {
-    "lat": 41.0565069,
-    "lng": 23.4225327,
-    "display_name": "Άνω Καμήλα, Δήμος Σερρών, Περιφερειακή Ενότητα Σερρών, Περιφέρεια Κεντρικής Μακεδονίας, Αποκεντρωμένη Διοίκηση Μακεδονίας - Θράκης, 621 00, Ελλάς",
+    "lat": 41.0202792,
+    "lng": 23.4833612,
+    "display_name": "Κάτω Καμήλα, Δημοτική Ενότητα Σκουτάρεως, Δήμος Σερρών, Περιφερειακή Ενότητα Σερρών, Περιφέρεια Κεντρικής Μακεδονίας, Αποκεντρωμένη Διοίκηση Μακεδονίας - Θράκης, 621 00, Ελλάς",
     "address": {
-      "village": "Άνω Καμήλα",
+      "village": "Κάτω Καμήλα",
+      "city": "Δημοτική Ενότητα Σκουτάρεως",
       "municipality": "Δήμος Σερρών",
       "county": "Περιφερειακή Ενότητα Σερρών",
       "state": "Περιφέρεια Κεντρικής Μακεδονίας",
@@ -100207,8 +100830,8 @@
     "type": "train_station"
   },
   "된 일본": {
-    "lat": 34.4022348,
-    "lng": 132.8562185,
+    "lat": 34.402252,
+    "lng": 132.8559191,
     "display_name": "堂延, 国道2号, 西野町, 竹原市, 広島県, 725-0001, 日本",
     "address": {
       "highway": "堂延",
@@ -100396,17 +101019,16 @@
     "type": "construction"
   },
   "skywatch - 24": {
-    "lat": 43.6812697,
-    "lng": -71.5318537,
-    "display_name": "24, Skywatch Road, Center Harbor, Belknap County, New Hampshire, 03226, United States",
+    "lat": 38.2367591,
+    "lng": -85.2438119,
+    "display_name": "24, Skywatch Court, Shelby County, Kentucky, 40065, United States",
     "address": {
       "house_number": "24",
-      "road": "Skywatch Road",
-      "city": "Center Harbor",
-      "county": "Belknap County",
-      "state": "New Hampshire",
-      "ISO3166-2-lvl4": "US-NH",
-      "postcode": "03226",
+      "road": "Skywatch Court",
+      "county": "Shelby County",
+      "state": "Kentucky",
+      "ISO3166-2-lvl4": "US-KY",
+      "postcode": "40065",
       "country": "United States",
       "country_code": "us"
     },
@@ -100594,6 +101216,25 @@
     "category": "natural",
     "type": "peak"
   },
+  "commentator‼": {
+    "lat": 39.2606258,
+    "lng": -76.7281242,
+    "display_name": "Comet Park Commentator's Box, Hilltop Road, Bloomsbury, Catonsville, Baltimore County, Maryland, 21228, United States",
+    "address": {
+      "building": "Comet Park Commentator's Box",
+      "road": "Hilltop Road",
+      "neighbourhood": "Bloomsbury",
+      "town": "Catonsville",
+      "county": "Baltimore County",
+      "state": "Maryland",
+      "ISO3166-2-lvl4": "US-MD",
+      "postcode": "21228",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "building",
+    "type": "yes"
+  },
   "공포의": {
     "lat": 47.5068969,
     "lng": 19.0650193,
@@ -100648,12 +101289,12 @@
     "type": "office"
   },
   "讓你看穿市": {
-    "lat": 31.6486561,
-    "lng": 92.1792528,
-    "display_name": "路让村, 那曲镇, 色尼区 གསེར་རྙེད་ཆུས།, 那曲市 ནག་ཆུ་ས་ཁུལ།, 西藏自治区 བོད་རང་སྐྱོང་ལྗོངས།, 中国",
+    "lat": 31.5089729,
+    "lng": 92.8125862,
+    "display_name": "壤隆朵, 尼玛乡, 色尼区 གསེར་རྙེད་ཆུས།, 那曲市 ནག་ཆུ་ས་ཁུལ།, 西藏自治区 བོད་རང་སྐྱོང་ལྗོངས།, 中国",
     "address": {
-      "village": "路让村",
-      "town": "那曲镇",
+      "village": "壤隆朵",
+      "town": "尼玛乡",
       "district": "色尼区 གསེར་རྙེད་ཆུས།",
       "region": "那曲市 ནག་ཆུ་ས་ཁུལ།",
       "state": "西藏自治区 བོད་རང་སྐྱོང་ལྗོངས།",
@@ -100814,7 +101455,7 @@
     "lng": 6.7612881,
     "display_name": "Arma 3, Decauville, Bardonecchia, Torino, Piemonte, Italia",
     "address": {
-      "building": "Arma 3",
+      "historic": "Arma 3",
       "road": "Decauville",
       "village": "Bardonecchia",
       "county": "Torino",
@@ -100824,7 +101465,7 @@
       "country": "Italia",
       "country_code": "it"
     },
-    "category": "building",
+    "category": "historic",
     "type": "bunker"
   },
   "한국어": {
@@ -100947,28 +101588,6 @@
     },
     "category": "building",
     "type": "public"
-  },
-  "join": {
-    "lat": 45.7337395,
-    "lng": 5.881818,
-    "display_name": "Join, Le Clos Vert, Grésine, Brison-Saint-Innocent, Chambéry, Savoie, Auvergne-Rhône-Alpes, France métropolitaine, 73100, France",
-    "address": {
-      "isolated_dwelling": "Join",
-      "neighbourhood": "Le Clos Vert",
-      "quarter": "Grésine",
-      "village": "Brison-Saint-Innocent",
-      "municipality": "Chambéry",
-      "county": "Savoie",
-      "ISO3166-2-lvl6": "FR-73",
-      "state": "Auvergne-Rhône-Alpes",
-      "ISO3166-2-lvl4": "FR-ARA",
-      "region": "France métropolitaine",
-      "postcode": "73100",
-      "country": "France",
-      "country_code": "fr"
-    },
-    "category": "place",
-    "type": "isolated_dwelling"
   },
   "smart view": {
     "lat": 41.949842,
@@ -101108,10 +101727,10 @@
   "東海道新幹線": {
     "lat": 23.0801374,
     "lng": 113.1631689,
-    "display_name": "新干线, 广佛新干线出口, 六村社区, 河西村, 大沥镇, 南海区, 佛山市, 广东省, 528248, 中国",
+    "display_name": "新干线, 广佛江珠高速, 六村社区, 河西村, 大沥镇, 南海区, 佛山市, 广东省, 528248, 中国",
     "address": {
       "highway": "新干线",
-      "road": "广佛新干线出口",
+      "road": "广佛江珠高速",
       "quarter": "六村社区",
       "town": "大沥镇",
       "city": "南海区",
@@ -101248,14 +101867,14 @@
     "type": "administrative"
   },
   "觀光夜市": {
-    "lat": 25.0022293,
-    "lng": 121.30632,
-    "display_name": "觀光夜市, 中正路, 小檜溪, 東埔里, 桃園區, 桃園市, 330, 臺灣",
+    "lat": 25.0023268,
+    "lng": 121.3061759,
+    "display_name": "觀光夜市, 中正路489巷, 小檜溪, 永安里, 桃園區, 桃園市, 330, 臺灣",
     "address": {
       "highway": "觀光夜市",
-      "road": "中正路",
+      "road": "中正路489巷",
       "hamlet": "小檜溪",
-      "suburb": "東埔里",
+      "suburb": "永安里",
       "town": "桃園區",
       "city": "桃園市",
       "ISO3166-2-lvl4": "TW-TAO",
@@ -101532,97 +102151,6 @@
     "category": "boundary",
     "type": "administrative"
   },
-  "october 26": {
-    "lat": 30.0940216,
-    "lng": 31.2648891,
-    "display_name": "26, شارع 6 أكتوبر, مساكن الزاويه الحمراء, الشرابية, القاهرة, 11659, مصر",
-    "address": {
-      "house_number": "26",
-      "road": "شارع 6 أكتوبر",
-      "neighbourhood": "مساكن الزاويه الحمراء",
-      "suburb": "الشرابية",
-      "city": "القاهرة",
-      "state": "القاهرة",
-      "ISO3166-2-lvl4": "EG-C",
-      "postcode": "11659",
-      "country": "مصر",
-      "country_code": "eg"
-    },
-    "category": "place",
-    "type": "house"
-  },
-  "dayton, ohio news sports and weather. video's and wdtn.com": null,
-  "wdtn - downtown dayton": null,
-  "wdtn - downtown dayton, united states": null,
-  "wdtn": null,
-  "wdtn, united states": null,
-  "downtown dayton": {
-    "lat": 43.085039,
-    "lng": -89.3735562,
-    "display_name": "East Dayton Street, Tenney-Lapham, Downtown, Madison, Dane County, Wisconsin, 53703, United States",
-    "address": {
-      "road": "East Dayton Street",
-      "neighbourhood": "Tenney-Lapham",
-      "quarter": "Downtown",
-      "city": "Madison",
-      "county": "Dane County",
-      "state": "Wisconsin",
-      "ISO3166-2-lvl4": "US-WI",
-      "postcode": "53703",
-      "country": "United States",
-      "country_code": "us"
-    },
-    "category": "highway",
-    "type": "residential"
-  },
-  "横浜ベイブリッジ・山下埠頭・本牧埠頭ライブカメラ｜工場夜景 yokohama bay bridge h.view": null,
-  "横浜ベイブリッジ": {
-    "lat": 35.4603897,
-    "lng": 139.6777665,
-    "display_name": "横浜ベイブリッジ, 首都高速湾岸線, 大黒ふ頭, 鶴見区, 横浜市, 神奈川県, 231-0017, 日本",
-    "address": {
-      "bridge": "横浜ベイブリッジ",
-      "road": "首都高速湾岸線",
-      "neighbourhood": "大黒ふ頭",
-      "suburb": "鶴見区",
-      "city": "横浜市",
-      "province": "神奈川県",
-      "ISO3166-2-lvl4": "JP-14",
-      "postcode": "231-0017",
-      "country": "日本",
-      "country_code": "jp"
-    },
-    "category": "bridge",
-    "type": "yes"
-  },
-  "ciudad de méxico. vista monumento a la revolución, mexico": null,
-  "investigating flock: america's mass surveillance company": null,
-  "america's mass surveillance company": null,
-  "investigating flock": null,
-  "investigating flock, united states": null,
-  "tommy g": null,
-  "tommy g, united states": {
-    "lat": 36.2047848,
-    "lng": -93.1279467,
-    "display_name": "Tommy, Boone County, Arkansas, 72601, United States",
-    "address": {
-      "road": "Tommy",
-      "county": "Boone County",
-      "state": "Arkansas",
-      "ISO3166-2-lvl4": "US-AR",
-      "postcode": "72601",
-      "country": "United States",
-      "country_code": "us"
-    },
-    "category": "highway",
-    "type": "residential"
-  },
-  "사망설": null,
-  "웃으며": null,
-  "나타났다": null,
-  "'사망설 김정은' 웃으며 나타났다...중국 단둥 '깜짝 방문' 영상 공개": null,
-  "사망설 김정은": null,
-  "웃으며 나타났다": null,
   "중국 단둥": {
     "lat": 40.5791477,
     "lng": 124.4407146,
@@ -101637,18 +102165,6 @@
     "category": "boundary",
     "type": "administrative"
   },
-  "깜짝 방문": null,
-  "영상 공개": null,
-  "이 장면": null,
-  "맞았다": null,
-  "저격당일": null,
-  "박정희가 쏜게 맞았다! x발, 저격당일 공개되자 초토화": null,
-  "박정희가 쏜게 맞았다": null,
-  "저격당일 공개되자 초토화": null,
-  "저격명단": null,
-  "육영수 제거? 저격명단 충격, cctv에 찍힌 모습 경악": null,
-  "육영수 제거": null,
-  "저격명단 충격": null,
   "智慧城市": {
     "lat": 23.1679477,
     "lng": 113.3977212,
@@ -101687,353 +102203,649 @@
     "type": "church"
   },
   "数字城市": {
-    "lat": 37.5451337,
-    "lng": 126.9719573,
-    "display_name": "숙대입구, 지하306, 한강대로, 갈월동, 남영동, 용산구, 서울특별시, 04320, 대한민국",
+    "lat": 22.2385037,
+    "lng": 113.5495025,
+    "display_name": "珠海数字化城市管理中心, 吉大街道, 香洲区, 珠海市, 广东省, 519000, 中国",
     "address": {
-      "railway": "숙대입구",
-      "house_number": "지하306",
-      "road": "한강대로",
-      "quarter": "갈월동",
-      "suburb": "남영동",
-      "borough": "용산구",
-      "city": "서울특별시",
-      "ISO3166-2-lvl4": "KR-11",
-      "postcode": "04320",
-      "country": "대한민국",
-      "country_code": "kr"
-    },
-    "category": "railway",
-    "type": "station"
-  },
-  "可商用视频素材｜智能安防系统ai天眼监控摄像头天网大数据 #视频素材 #剪辑素材 #智能安防 #智能监控 #天眼": null,
-  "可商用视频素材": null,
-  "智能安防系统ai天眼监控摄像头天网大数据": null,
-  "视频素材": {
-    "lat": 31.883975,
-    "lng": 117.2781612,
-    "display_name": "蔬菜副食品公司宿舍, 一里井社区, 双岗街道, 庐阳区, 合肥市, 安徽省, 中国",
-    "address": {
-      "residential": "蔬菜副食品公司宿舍",
-      "neighbourhood": "一里井社区",
-      "suburb": "双岗街道",
-      "city": "庐阳区",
-      "state": "安徽省",
-      "ISO3166-2-lvl4": "CN-AH",
+      "commercial": "珠海数字化城市管理中心",
+      "suburb": "吉大街道",
+      "city": "香洲区",
+      "state": "广东省",
+      "ISO3166-2-lvl4": "CN-GD",
+      "postcode": "519000",
       "country": "中国",
       "country_code": "cn"
     },
     "category": "landuse",
-    "type": "residential"
+    "type": "commercial"
   },
-  "至春日": {
-    "lat": 35.4520528,
-    "lng": 137.7541598,
-    "display_name": "春日, 阿智村, 下伊那郡, 長野県, 395-0301, 日本",
+  "port de québec": {
+    "lat": 18.3480083,
+    "lng": -76.8810368,
+    "display_name": "Quebec, Port Maria, Saint Mary, Middlesex County, Jamaica",
     "address": {
-      "quarter": "春日",
-      "village": "阿智村",
-      "county": "下伊那郡",
-      "province": "長野県",
-      "ISO3166-2-lvl4": "JP-20",
-      "postcode": "395-0301",
-      "country": "日本",
-      "country_code": "jp"
+      "hamlet": "Quebec",
+      "city_district": "Port Maria",
+      "town": "Port Maria",
+      "county": "Saint Mary",
+      "ISO3166-2-lvl6": "JM-05",
+      "state_district": "Middlesex County",
+      "country": "Jamaica",
+      "country_code": "jm"
     },
     "category": "place",
-    "type": "quarter"
+    "type": "hamlet"
   },
-  "選項 a 一個億、選項 b 每秒漲一毛，他一緊張點錯，本以為要熬三十年，才發現花越多錢、到賬翻倍越快，從此人生開掛！# 系統流 #逆襲爽劇 #都市奇遇": null,
-  "都市奇遇": {
-    "lat": 35.0128812,
-    "lng": 135.7835478,
-    "display_name": "京都市美術館, 二条通, 岡崎南御所町, 永観堂町飛地, 左京区, 京都市, 京都府, 606-8334, 日本",
+  "locquirec , plougasnou & carantec": null,
+  "st. peter & paul glocken 2": null,
+  "st. peter & paul glocken 2, germany": null,
+  "7 lisbon airport 27.10.2026": null,
+  "7 lisbon airport 27.10.2026, portugal": null,
+  "freighter : ships under the mackinac bridge, up close 24": null,
+  "freighter : ships under the mackinac bridge, up close": null,
+  "freighter": {
+    "lat": 51.7546877,
+    "lng": 0.5167616,
+    "display_name": "Freighter House Depot, Boreham, Chelmsford, Essex, England, CM2 5PH, United Kingdom",
     "address": {
-      "tourism": "京都市美術館",
-      "road": "二条通",
-      "neighbourhood": "岡崎南御所町",
-      "hamlet": "永観堂町飛地",
-      "suburb": "左京区",
-      "city": "京都市",
-      "province": "京都府",
-      "ISO3166-2-lvl4": "JP-26",
-      "postcode": "606-8334",
-      "country": "日本",
-      "country_code": "jp"
+      "depot": "Freighter House Depot",
+      "suburb": "Boreham",
+      "village": "Boreham",
+      "city": "Chelmsford",
+      "municipality": "Essex",
+      "ISO3166-2-lvl6": "GB-ESS",
+      "county": "Essex",
+      "state": "England",
+      "ISO3166-2-lvl4": "GB-ENG",
+      "postcode": "CM2 5PH",
+      "country": "United Kingdom",
+      "country_code": "gb"
+    },
+    "category": "landuse",
+    "type": "depot"
+  },
+  "panorama rio de janeiro - copacabana beach - posto 6": null,
+  "rio de janeiro": {
+    "lat": -22.9110137,
+    "lng": -43.2093727,
+    "display_name": "Rio de Janeiro, Região Sudeste, Brasil",
+    "address": {
+      "city": "Rio de Janeiro",
+      "state": "Rio de Janeiro",
+      "ISO3166-2-lvl4": "BR-RJ",
+      "region": "Região Sudeste",
+      "country": "Brasil",
+      "country_code": "br"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "новини зараз": null,
+  "новини зараз, ua": null,
+  "ictv онлайн": null,
+  "ictv онлайн, ua": null,
+  "телемарафон єдині новини: онлайн": null,
+  "телемарафон єдині новини: онлайн, ua": null,
+  "телемарафон єдині новини": null,
+  "телемарафон єдині новини, ua": null,
+  "онлайн": null,
+  "онлайн, ua": null,
+  "телеканал ictv": null,
+  "телеканал ictv, ua": null,
+  "ictv": null,
+  "ictv, ua": null,
+  "стань спонсором каналу: https:": null,
+  "стань спонсором каналу: https:, ua": null,
+  "стань спонсором каналу": null,
+  "стань спонсором каналу, ua": null,
+  "taiwan 24": {
+    "lat": 20.1256092,
+    "lng": -101.1665608,
+    "display_name": "24, Calle Taiwán, La Mora, Uriangato, Guanajuato, 38983, México",
+    "address": {
+      "house_number": "24",
+      "road": "Calle Taiwán",
+      "quarter": "La Mora",
+      "city": "Uriangato",
+      "county": "Uriangato",
+      "state": "Guanajuato",
+      "ISO3166-2-lvl4": "MX-GUA",
+      "postcode": "38983",
+      "country": "México",
+      "country_code": "mx"
+    },
+    "category": "place",
+    "type": "house"
+  },
+  "taipei, taichung, kaohsiung": null,
+  "taipei, taichung, kaohsiung, taiwan": null,
+  "taiwan taipei, taichung, kaohsiung 台灣即時影像": null,
+  "news18 india : up-bihar mlc election result 2026": null,
+  "#27oct26 #लाइव_संध्या_शयन_आरती #श्री_महाकालेश्वर_ज्योतिर्लिंग # #shri_mahakaleshwar_jyotirlinga": null,
+  "divya darshan": null,
+  "divya darshan, in": null,
+  "aaj ki taaja khabar": null,
+  "aaj ki taaja khabar, in": null,
+  "up mlc election result": null,
+  "up mlc election result, in": null,
+  "vote counting": null,
+  "katihar, bihar": {
+    "lat": 25.5586421,
+    "lng": 87.6457196,
+    "display_name": "Katihar, Bihar, India",
+    "address": {
+      "state_district": "Katihar",
+      "state": "Bihar",
+      "ISO3166-2-lvl4": "IN-BR",
+      "country": "India",
+      "country_code": "in"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "day-5": {
+    "lat": -34.6140643,
+    "lng": -68.329081,
+    "display_name": "5, Day, San Rafael, Departamento San Rafael, Mendoza, 5600, Argentina",
+    "address": {
+      "house_number": "5",
+      "road": "Day",
+      "neighbourhood": "San Rafael",
+      "city": "San Rafael",
+      "state_district": "Departamento San Rafael",
+      "state": "Mendoza",
+      "ISO3166-2-lvl4": "AR-M",
+      "postcode": "5600",
+      "country": "Argentina",
+      "country_code": "ar"
+    },
+    "category": "place",
+    "type": "house"
+  },
+  "traffic": {
+    "lat": 54.347527,
+    "lng": 18.6072363,
+    "display_name": "Traffic, Siedlce, Gdańsk, województwo pomorskie, Polska",
+    "address": {
+      "residential": "Traffic",
+      "suburb": "Siedlce",
+      "city_district": "Gdańsk",
+      "city": "Gdańsk",
+      "state": "województwo pomorskie",
+      "ISO3166-2-lvl4": "PL-22",
+      "country": "Polska",
+      "country_code": "pl"
+    },
+    "category": "landuse",
+    "type": "residential"
+  },
+  "dramatizada sobre el padre patricio sánchez molinari, louisiana, united states": null,
+  "dos hombres ingresan, alabama, united states": null,
+  "dos entran, alabama, united states": null,
+  "seguridad del padre patricio": null,
+  "seguridad del padre patricio, united states": null,
+  "secretos y traiciones": null,
+  "secretos y traiciones, united states": null,
+  "traiciones": null,
+  "traiciones, united states": null,
+  "secretos": {
+    "lat": -53.1607227,
+    "lng": -70.8913441,
+    "display_name": "Secretos, Pedro Sarmiento de Gamboa, Barrio Croata, Punta Arenas, Provincia de Magallanes, Región de Magallanes y de la Antártica Chilena, 6212814, Chile",
+    "address": {
+      "tourism": "Secretos",
+      "road": "Pedro Sarmiento de Gamboa",
+      "neighbourhood": "Barrio Croata",
+      "city": "Punta Arenas",
+      "county": "Provincia de Magallanes",
+      "state": "Región de Magallanes y de la Antártica Chilena",
+      "ISO3166-2-lvl4": "CL-MA",
+      "postcode": "6212814",
+      "country": "Chile",
+      "country_code": "cl"
     },
     "category": "tourism",
-    "type": "museum"
+    "type": "motel"
   },
-  "精品沙雕動畫": null,
-  "超火懸疑探案！扎紙匠憑一手玄學，幫警方破連環詭案#沙雕劇情 #funny #動漫": null,
-  "超火懸疑探案": null,
-  "扎紙匠憑一手玄學": null,
-  "幫警方破連環詭案": null,
-  "沙雕劇情": null,
-  "funny": {
-    "lat": 60.3641448,
-    "lng": 24.754744,
-    "display_name": "Funny, Vanhamyllynranta, Klaukkala, Nurmijärvi, Helsingin seutukunta, Uusimaa, Manner-Suomi, 01840, Suomi / Finland",
+  "8 real-life ghost caught on": null,
+  "8 real-life ghost caught on, united states": null,
+  "real-life ghost caught": null,
+  "real-life ghost caught, united states": null,
+  "paranormal activity part 36": null,
+  "paranormal activity part 36, united states": null,
+  "paranormal activity part": null,
+  "paranormal activity part, united states": null,
+  "leaked: it just got worse for gavin newsom as hidden video goes viral": null,
+  "leaked, united states": null,
+  "just got worse": null,
+  "just got worse, united states": null,
+  "gavin newsom": null,
+  "gavin newsom, united states": null,
+  "hidden video goes viral": null,
+  "hidden video goes viral, united states": null,
+  "the rubin report": null,
+  "the rubin report, united states": null,
+  "report": {
+    "lat": -11.9545488,
+    "lng": -77.132488,
+    "display_name": "Report, Fundo Marquez, Callao, Lima Metropolitana, Callao, 07046, Perú",
     "address": {
-      "road": "Funny",
-      "suburb": "Vanhamyllynranta",
-      "town": "Klaukkala",
-      "municipality": "Helsingin seutukunta",
-      "state": "Uusimaa",
-      "ISO3166-2-lvl4": "FI-18",
-      "region": "Manner-Suomi",
-      "postcode": "01840",
-      "country": "Suomi / Finland",
-      "country_code": "fi"
+      "road": "Report",
+      "neighbourhood": "Fundo Marquez",
+      "city": "Callao",
+      "county": "Callao",
+      "state_district": "Lima Metropolitana",
+      "state": "Callao",
+      "ISO3166-2-lvl4": "PE-CAL",
+      "postcode": "07046",
+      "country": "Perú",
+      "country_code": "pe"
     },
     "category": "highway",
-    "type": "path"
+    "type": "residential"
   },
-  "超火懸疑探案系列！扎紙匠探案用玄學的手法，幫助警方屢破奇案！帽子叔叔要相信科學！#沙雕劇情 #funny #動漫": null,
-  "超火懸疑探案系列": null,
-  "扎紙匠探案用玄學的手法": null,
-  "幫助警方屢破奇案": null,
-  "帽子叔叔要相信科學": null,
-  "walking inside, china": null,
-  "广州尹边村握手楼": null,
-  "found guangzhou's \"handshake buildings\"! walking inside china's narrowest streets 广州尹边村握手楼": null,
-  "yinbian village street walk join, maine, united states": null,
-  "guangzhou, china": {
-    "lat": 23.1288429,
-    "lng": 113.2589581,
-    "display_name": "广州市, 广东省, 中国",
+  "message, maine, united states": null,
+  "12 необъяснимых видео снятых на камеру": null,
+  "12 необъяснимых видео снятых на камеру, kz": null,
+  "необъяснимых видео снятых на камеру": null,
+  "необъяснимых видео снятых на камеру, kz": null,
+  "феликс кинг": null,
+  "феликс кинг, kz": null,
+  "кинг": null,
+  "кинг, kz": null,
+  "tulang, indonesia": {
+    "lat": 3.7747072,
+    "lng": 116.8006486,
+    "display_name": "Tulang, Nunukan, Kalimantan Utara, Indonesia",
     "address": {
-      "city": "广州市",
-      "state": "广东省",
-      "ISO3166-2-lvl4": "CN-GD",
+      "village": "Tulang",
+      "county": "Nunukan",
+      "state": "Kalimantan Utara",
+      "ISO3166-2-lvl4": "ID-KU",
+      "country": "Indonesia",
+      "country_code": "id"
+    },
+    "category": "place",
+    "type": "village"
+  },
+  "áncash noticias edición central 27-10-26": null,
+  "comparamos, alabama, united states": null,
+  "qq6mtktifqc ▶ todos los directos, en orden → https:": null,
+  "hbo con los libros de harry potter": null,
+  "hbo con los libros de harry potter, spain": null,
+  "y no todos aprueban": null,
+  "y no todos aprueban, spain": null,
+  "alex fm": {
+    "lat": 43.1878772,
+    "lng": 13.7026959,
+    "display_name": "Parco Fluviale Alex Langer, Monte Urano, Fermo, Marche, Italia",
+    "address": {
+      "park": "Parco Fluviale Alex Langer",
+      "village": "Monte Urano",
+      "county": "Fermo",
+      "ISO3166-2-lvl6": "IT-FM",
+      "state": "Marche",
+      "ISO3166-2-lvl4": "IT-57",
+      "country": "Italia",
+      "country_code": "it"
+    },
+    "category": "leisure",
+    "type": "park"
+  },
+  "japan's nightlife": null,
+  "i didn't expect this from japan's nightlife": null,
+  "journey takes you through little, japan": null,
+  "my travels take, maine, united states": null,
+  "i didn't expect": null,
+  "i didn't expect, japan": null,
+  "rio people": {
+    "lat": 34.1298606,
+    "lng": -118.4071277,
+    "display_name": "Tree People Offices, Studio City Neighborhood Council District, Los Angeles, Los Angeles County, California, United States",
+    "address": {
+      "commercial": "Tree People Offices",
+      "suburb": "Studio City Neighborhood Council District",
+      "city": "Los Angeles",
+      "county": "Los Angeles County",
+      "state": "California",
+      "ISO3166-2-lvl4": "US-CA",
+      "country": "United States",
+      "country_code": "us"
+    },
+    "category": "landuse",
+    "type": "commercial"
+  },
+  "rio people, japan": null,
+  "people": {
+    "lat": 34.5412252,
+    "lng": 108.9237067,
+    "display_name": "中国",
+    "address": {
       "country": "中国",
       "country_code": "cn"
     },
     "category": "boundary",
     "type": "administrative"
   },
-  "sandra callejón presenta: ¨ callejón con salida¨ - lunes 26 10 2026": null,
-  "the ultimate late night perreo intenso mix 2026 (style: arcangel, daddy yankee)": null,
-  "style: arcangel, daddy yankee": null,
-  "style: arcangel, daddy yankee, spain": null,
-  "maximum-intensity training, oregon, united states": null,
-  "lyrics, oregon, united states": null,
-  "music only, with no rain or ambient sounds": null,
-  "music only, with no rain or ambient sounds, japan": null,
-  "bookshop & coffee lights down a snowy lamplit lane": null,
-  "bookshop": {
-    "lat": 6.9566309,
-    "lng": 79.8885968,
-    "display_name": "Bookshop, Peliyagoda Watta, Pattiya, Gampaha District, Western Province, Sri Lanka",
+  "people, japan": {
+    "lat": 35.5233198,
+    "lng": 138.7228873,
+    "display_name": "People, 富士河口湖芦川線, 富士河口湖町, 南都留郡, 山梨県, 401-0392, 日本",
     "address": {
-      "commercial": "Bookshop",
-      "hamlet": "Peliyagoda Watta",
-      "village": "Pattiya",
-      "state_district": "Gampaha District",
-      "ISO3166-2-lvl5": "LK-12",
-      "state": "Western Province",
-      "ISO3166-2-lvl4": "LK-1",
-      "country": "Sri Lanka",
-      "country_code": "lk"
-    },
-    "category": "landuse",
-    "type": "commercial"
-  },
-  "traveler, oregon, united states": {
-    "lat": 45.3168138,
-    "lng": -122.5801471,
-    "display_name": "Traveler Road, Gaffney Lane, Oregon City, Clackamas County, Oregon, 97045, United States",
-    "address": {
-      "road": "Traveler Road",
-      "quarter": "Gaffney Lane",
-      "town": "Oregon City",
-      "county": "Clackamas County",
-      "state": "Oregon",
-      "ISO3166-2-lvl4": "US-OR",
-      "postcode": "97045",
-      "country": "United States",
-      "country_code": "us"
-    },
-    "category": "highway",
-    "type": "residential"
-  },
-  "earthquake tracking, aurora forecasts and an iss tracker on one globe, 24": null,
-  "earthquake 24": {
-    "lat": 34.0802222,
-    "lng": -109.907484,
-    "display_name": "24, Earthquake Drive, Indian Pine, Navajo County, Arizona, 85935, United States",
-    "address": {
-      "house_number": "24",
-      "road": "Earthquake Drive",
-      "village": "Indian Pine",
-      "county": "Navajo County",
-      "state": "Arizona",
-      "ISO3166-2-lvl4": "US-AZ",
-      "postcode": "85935",
-      "country": "United States",
-      "country_code": "us"
-    },
-    "category": "place",
-    "type": "house"
-  },
-  "education complex construction (ncec)": null,
-  "ncec": {
-    "lat": 51.1732438,
-    "lng": 0.0078293,
-    "display_name": "NCEC, St. Piers Lane, Dormansland, Tandridge, Surrey, England, RH7 6PW, United Kingdom",
-    "address": {
-      "building": "NCEC",
-      "road": "St. Piers Lane",
-      "suburb": "Dormansland",
-      "village": "Dormansland",
-      "county": "Surrey",
-      "ISO3166-2-lvl6": "GB-SRY",
-      "state": "England",
-      "ISO3166-2-lvl4": "GB-ENG",
-      "postcode": "RH7 6PW",
-      "country": "United Kingdom",
-      "country_code": "gb"
-    },
-    "category": "building",
-    "type": "yes"
-  },
-  "bcc construction stream": null,
-  "bcc construction stream, united states": null,
-  "bcc construction": null,
-  "bcc construction, united states": null,
-  "blount community church": null,
-  "blount community church, united states": null,
-  "church": {
-    "lat": 37.7672666,
-    "lng": -122.4292613,
-    "display_name": "Church, Market Street, Duboce Triangle, Castro District, Mission, San Francisco, California, 94143, United States",
-    "address": {
-      "railway": "Church",
-      "road": "Market Street",
-      "neighbourhood": "Duboce Triangle",
-      "quarter": "Castro District",
-      "suburb": "Mission",
-      "city": "San Francisco",
-      "state": "California",
-      "ISO3166-2-lvl4": "US-CA",
-      "postcode": "94143",
-      "country": "United States",
-      "country_code": "us"
-    },
-    "category": "railway",
-    "type": "station"
-  },
-  "este canal comparto, michigan, united states": null,
-  ": minicasa 4x5m completa - 9 videos en 1": null,
-  "minicasa": {
-    "lat": 28.5079922,
-    "lng": 34.5156299,
-    "display_name": "Dahab: Minicasa, طريق السلام, عصلة, دهب, جنوب سيناء, 45214, مصر",
-    "address": {
-      "tourism": "Dahab: Minicasa",
-      "road": "طريق السلام",
-      "suburb": "عصلة",
-      "city": "دهب",
-      "state": "جنوب سيناء",
-      "ISO3166-2-lvl4": "EG-JS",
-      "postcode": "45214",
-      "country": "مصر",
-      "country_code": "eg"
+      "tourism": "People",
+      "road": "富士河口湖芦川線",
+      "town": "富士河口湖町",
+      "county": "南都留郡",
+      "province": "山梨県",
+      "ISO3166-2-lvl4": "JP-19",
+      "postcode": "401-0392",
+      "country": "日本",
+      "country_code": "jp"
     },
     "category": "tourism",
     "type": "guest_house"
   },
-  "7 days tik tok: @ brave survival life best regards, brave survival life": null,
-  "he built the secret four style of underground rooms and swimming pools": null,
-  "he built the secret four style of underground": null,
-  "he built the secret four style of underground, united states": null,
-  "rooms": {
-    "lat": 55.7504564,
-    "lng": 37.7197244,
-    "display_name": "Rooms, 2-я Кабельная улица, Дангауэровка, район Лефортово, Москва, Центральный федеральный округ, 111024, Россия",
+  "everyone kept telling, maine, united states": null,
+  "everyone kept telling me about this street in japan": null,
+  "simple, tocantins, brazil": null,
+  "everyone kept telling": null,
+  "everyone kept telling, japan": null,
+  "about": {
+    "lat": 2.9058378,
+    "lng": 11.2156685,
+    "display_name": "About, Ebolowa II, Communauté urbaine d'Ebolowa, Mvila, Sud, Cameroun",
     "address": {
-      "tourism": "Rooms",
-      "road": "2-я Кабельная улица",
-      "neighbourhood": "Дангауэровка",
-      "suburb": "район Лефортово",
-      "city": "Москва",
-      "state": "Москва",
-      "ISO3166-2-lvl4": "RU-MOW",
-      "region": "Центральный федеральный округ",
-      "postcode": "111024",
-      "country": "Россия",
-      "country_code": "ru"
+      "village": "About",
+      "city": "Ebolowa II",
+      "municipality": "Communauté urbaine d'Ebolowa",
+      "county": "Mvila",
+      "state": "Sud",
+      "ISO3166-2-lvl4": "CM-SU",
+      "country": "Cameroun",
+      "country_code": "cm"
+    },
+    "category": "place",
+    "type": "village"
+  },
+  "street": {
+    "lat": 51.1267494,
+    "lng": -2.7397217,
+    "display_name": "Street, Somerset, England, United Kingdom",
+    "address": {
+      "village": "Street",
+      "county": "Somerset",
+      "ISO3166-2-lvl6": "GB-SOM",
+      "state": "England",
+      "ISO3166-2-lvl4": "GB-ENG",
+      "country": "United Kingdom",
+      "country_code": "gb"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  ": on : iran fighters flee! houthis run back to bunkers as us allies pound them": null,
+  "iran fighters flee": null,
+  "iran fighters flee, united states": null,
+  "houthis run back": null,
+  "houthis run back, united states": null,
+  "bunkers": {
+    "lat": 60.1336902,
+    "lng": 12.0486213,
+    "display_name": "Bunkers, Kongsvinger, Innlandet, Norge",
+    "address": {
+      "sand": "Bunkers",
+      "municipality": "Kongsvinger",
+      "county": "Innlandet",
+      "ISO3166-2-lvl4": "NO-34",
+      "country": "Norge",
+      "country_code": "no"
+    },
+    "category": "natural",
+    "type": "sand"
+  },
+  "student protest, france": null,
+  "education protests, france": null,
+  "france unrest": null,
+  "france student protests": null,
+  "student protest france": null,
+  "france protests today": null,
+  "photography, oregon, united states": null,
+  "operate, oregon, united states": null,
+  "no spam, no links, no self-promotion, no politics or hate — mods remove on sight": null,
+  "our rotation also visits, united states": null,
+  "s national parks, finland": null,
+  "earth window — the whole planet, . two great windows on earth, open 24": null,
+  "cuenta gofundme clic, alabama, united states": null,
+  "usted quiere donar mediante remesa comuníquese, alabama, united states": null,
+  "suscribance, alabama, united states": null,
+  "la construcción día": {
+    "lat": 38.9653103,
+    "lng": -0.1727121,
+    "display_name": "Centro de dia para personas con diversidad funcional intelectual, Gandia, la Safor, València / Valencia, Comunitat Valenciana, España",
+    "address": {
+      "construction": "Centro de dia para personas con diversidad funcional intelectual",
+      "town": "Gandia",
+      "region": "la Safor",
+      "state_district": "València / Valencia",
+      "ISO3166-2-lvl6": "ES-V",
+      "state": "Comunitat Valenciana",
+      "ISO3166-2-lvl4": "ES-VC",
+      "country": "España",
+      "country_code": "es"
+    },
+    "category": "landuse",
+    "type": "construction"
+  },
+  "tienen fuego o peligro de muerte, maine, united states": null,
+  "laboratorio gluon": null,
+  "laboratorio gluon, spain": null,
+  "gluon": {
+    "lat": 47.8038103,
+    "lng": -2.3869991,
+    "display_name": "Le Gluon, Malestroit, Vannes, Morbihan, Bretagne, France métropolitaine, 56140, France",
+    "address": {
+      "hamlet": "Le Gluon",
+      "village": "Malestroit",
+      "municipality": "Vannes",
+      "county": "Morbihan",
+      "ISO3166-2-lvl6": "FR-56",
+      "state": "Bretagne",
+      "ISO3166-2-lvl4": "FR-BRE",
+      "region": "France métropolitaine",
+      "postcode": "56140",
+      "country": "France",
+      "country_code": "fr"
+    },
+    "category": "place",
+    "type": "hamlet"
+  },
+  "construcción granja de oro": null,
+  "mrxpato": null,
+  "subo cualquier juego": null,
+  "cadereyta de montes, querétaro pueblo mágico": null,
+  "cadereyta de montes, querétaro pueblo mágico vista panorámica plaza de la república": null,
+  "la república": {
+    "lat": -35.170995,
+    "lng": -58.2239148,
+    "display_name": "La República, Brandsen, Partido de Brandsen, Buenos Aires, 1980, Argentina",
+    "address": {
+      "quarter": "La República",
+      "town": "Brandsen",
+      "state_district": "Partido de Brandsen",
+      "state": "Buenos Aires",
+      "ISO3166-2-lvl4": "AR-B",
+      "postcode": "1980",
+      "country": "Argentina",
+      "country_code": "ar"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "mindful meditation, oregon, united states": null,
+  "lover of wildlife photography, oregon, united states": null,
+  "amazon rainforest birds": null,
+  "amazon rainforest birds, united states": null,
+  "untamed nature": null,
+  "untamed nature, united states": null,
+  "beautiful birds": null,
+  "beautiful birds, united states": null,
+  "jungle birds in hdr": null,
+  "jungle birds in hdr, united states": null,
+  "jungle birds": {
+    "lat": 10.1575702,
+    "lng": 118.8743867,
+    "display_name": "Million Birds Resort, Jungle Trail, Sabang, Puerto Princesa, Mimaropa, 5300, Philippines",
+    "address": {
+      "leisure": "Million Birds Resort",
+      "road": "Jungle Trail",
+      "village": "Sabang",
+      "city": "Puerto Princesa",
+      "region": "Mimaropa",
+      "ISO3166-2-lvl3": "PH-41",
+      "postcode": "5300",
+      "country": "Philippines",
+      "country_code": "ph"
+    },
+    "category": "leisure",
+    "type": "resort"
+  },
+  "#4 centro de roca sales, próximo à jbs, área da futura ponte": null,
+  "roca sales": {
+    "lat": -29.2872555,
+    "lng": -51.8724318,
+    "display_name": "Roca Sales, Rio Grande do Sul, Região Sul, 95735-000, Brasil",
+    "address": {
+      "town": "Roca Sales",
+      "state": "Rio Grande do Sul",
+      "ISO3166-2-lvl4": "BR-RS",
+      "region": "Região Sul",
+      "postcode": "95735-000",
+      "country": "Brasil",
+      "country_code": "br"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "bora bora 🇫 overwater bungalows, mount otemanu & turquoise lagoon paradise": null,
+  "京都タワー kyoto, japan": {
+    "lat": 34.9875524,
+    "lng": 135.7593295,
+    "display_name": "京都タワー, 木津屋橋通, 東塩小路町, 下京区, 京都市, 京都府, 600-8218, 日本",
+    "address": {
+      "tourism": "京都タワー",
+      "road": "木津屋橋通",
+      "neighbourhood": "東塩小路町",
+      "suburb": "下京区",
+      "city": "京都市",
+      "province": "京都府",
+      "ISO3166-2-lvl4": "JP-26",
+      "postcode": "600-8218",
+      "country": "日本",
+      "country_code": "jp"
     },
     "category": "tourism",
-    "type": "hostel"
+    "type": "viewpoint"
   },
-  "오션힐스영천": null,
-  "오션힐스영천cc": null,
-  "기상상황": null,
-  "안내드립니다": null,
-  "오션힐스영천cc 실시간 기상상황 안내드립니다": null,
-  "掛尾交差点ライブカメラ": null,
-  "ケーブルテレビ富山ライブカメラ": null,
-  "久保交差点": {
-    "lat": 33.1137073,
-    "lng": 131.789879,
-    "display_name": "土橋交差点, 国道217号, 千代田, 戸室, 臼杵市, 大分県, 875-0052, 日本",
+  "現在の東京タワーライブカメラ": null,
+  "東京タワー公式チャンネル": null,
+  "東京タワーのオフィシャルチャンネルです！ 東京タワーの現在の様子を配信するライブカメラをはじめ、 東京タワーのイベント動画などを公開しています。": null,
+  "東京タワーのオフィシャルチャンネルです": null,
+  "東京タワーの現在の様子を配信するライブカメラをはじめ": null,
+  "東京タワーのイベント動画などを公開しています": null,
+  "渋谷愛ビジョン・宮益坂交差点ライブカメラ／『shibuya ai vision』miyamasuzaka-shibuya": null,
+  "渋谷愛ビジョン": null,
+  "宮益坂交差点ライブカメラ": null,
+  "渋谷愛ビジョンで…、大切なひとに愛あるメッセージを贈ろう。 詳しくは…、『渋谷愛ビジョン公式web』 https:": null,
+  "渋谷愛ビジョンで": null,
+  "大切なひとに愛あるメッセージを贈ろう": null,
+  "詳しくは": null,
+  "渋谷愛ビジョン公式web": null,
+  "渋谷愛ビジョンの放映時間": null,
+  "渋谷愛メッセージ誕生祭": null,
+  "渋谷愛ビジョンの眼（ai）／shibuya ai vision（宮益坂交差点ライブカメラ）": null,
+  "渋谷愛ビジョンの眼": null,
+  "宮益坂交差点ライブカメラ・渋谷愛ビジョンの眼（ai）／shibuya ai vision": null,
+  "渋谷愛ビジョン・公式web": null,
+  "渋谷愛ビジョン・公式youtuneチャンネル": null,
+  "公式youtuneチャンネル": null,
+  "渋谷愛ビジョン・公式youtuneライブ": null,
+  "公式youtuneライブ": null,
+  "卵を盗む": null,
+  "激レア卵のスポーン予想！レアな卵が出たら通知音なります！24時間配信中！雑談ok": null,
+  "激レア卵のスポーン予想": null,
+  "レアな卵が出たら通知音なります": null,
+  "ロブロックス": null,
+  "卵を盗む 激レア卵のスポーン予想！レアな卵が出たら通知音なります！24時間配信中！雑談ok 卵を盗む ロブロックス roblox": null,
+  "ドミニクチャンネル・roblox サブチャンネル": null,
+  "サブチャンネル": null,
+  "ドミニクチャンネル・roblox": null,
+  "ドミニクチャンネル": null,
+  "hongdae, seoul, south korea": {
+    "lat": 37.5544418,
+    "lng": 126.9225125,
+    "display_name": "홍대거리, 서교동, 마포구, 서울특별시, 04055, 대한민국",
     "address": {
-      "highway": "土橋交差点",
-      "road": "国道217号",
-      "neighbourhood": "千代田",
-      "quarter": "戸室",
-      "city": "臼杵市",
-      "province": "大分県",
-      "ISO3166-2-lvl4": "JP-44",
-      "postcode": "875-0052",
+      "neighbourhood": "홍대거리",
+      "quarter": "서교동",
+      "suburb": "서교동",
+      "borough": "마포구",
+      "city": "서울특별시",
+      "ISO3166-2-lvl4": "KR-11",
+      "postcode": "04055",
+      "country": "대한민국",
+      "country_code": "kr"
+    },
+    "category": "place",
+    "type": "neighbourhood"
+  },
+  "hong kong": {
+    "lat": 22.2818333,
+    "lng": 114.1582831,
+    "display_name": "香港 Hong Kong, 中国",
+    "address": {
+      "city": "香港 Hong Kong",
+      "region": "香港 Hong Kong",
+      "ISO3166-2-lvl3": "CN-HK",
+      "country": "中国",
+      "country_code": "cn"
+    },
+    "category": "boundary",
+    "type": "administrative"
+  },
+  "tokyo tower, tokyo, japan": {
+    "lat": 35.6584491,
+    "lng": 139.745536,
+    "display_name": "東京タワー, 東京タワー通り, 芝公園四丁目, 芝公園, 港区, 東京都, 106-0041, 日本",
+    "address": {
+      "man_made": "東京タワー",
+      "road": "東京タワー通り",
+      "neighbourhood": "芝公園四丁目",
+      "quarter": "芝公園",
+      "city": "港区",
+      "ISO3166-2-lvl4": "JP-13",
+      "postcode": "106-0041",
       "country": "日本",
       "country_code": "jp"
     },
-    "category": "highway",
-    "type": "traffic_signals"
+    "category": "man_made",
+    "type": "tower"
   },
-  "柏崎地下道": {
-    "lat": 36.0226782,
-    "lng": 139.4201078,
-    "display_name": "柏崎, 国道254号旧道, 若松町二丁目, 柏崎, 東松山市, 埼玉県, 355-0073, 日本",
+  "miyamasuzaka, shibuya, tokyo, japan": {
+    "lat": 35.6601584,
+    "lng": 139.7059156,
+    "display_name": "宮益坂上, 宮益坂, 渋谷二丁目, 渋谷, 渋谷区, 東京都, 150-0002, 日本",
     "address": {
-      "highway": "柏崎",
-      "road": "国道254号旧道",
-      "neighbourhood": "若松町二丁目",
-      "quarter": "柏崎",
-      "city": "東松山市",
-      "province": "埼玉県",
-      "ISO3166-2-lvl4": "JP-11",
-      "postcode": "355-0073",
+      "junction": "宮益坂上",
+      "road": "宮益坂",
+      "neighbourhood": "渋谷二丁目",
+      "quarter": "渋谷",
+      "city": "渋谷区",
+      "ISO3166-2-lvl4": "JP-13",
+      "postcode": "150-0002",
       "country": "日本",
       "country_code": "jp"
     },
-    "category": "highway",
-    "type": "bus_stop"
-  },
-  "オジュウカメラ配信 2026年10月26日": null,
-  "オジュウカメラ配信 2026年10月26日 ヴェルサイユリゾートファーム": null,
-  "アライマウンテンリゾートのライブ配信": null,
-  "アライマウンテンリゾート": null,
-  "ocean hills yeongcheon cc, yeongcheon, south korea": null,
-  "kakeo intersection, toyama, japan": null,
-  "versailles resort farm, hidaka, hokkaido, japan": null,
-  "lotte arai resort, myoko, niigata, japan": {
-    "lat": 36.9908665,
-    "lng": 138.1816022,
-    "display_name": "ロッテ新井リゾート, 両善寺西野谷新田線, 妙高市, 新潟県, 944-0056, 日本",
-    "address": {
-      "tourism": "ロッテ新井リゾート",
-      "road": "両善寺西野谷新田線",
-      "city": "妙高市",
-      "province": "新潟県",
-      "ISO3166-2-lvl4": "JP-15",
-      "postcode": "944-0056",
-      "country": "日本",
-      "country_code": "jp"
-    },
-    "category": "tourism",
-    "type": "attraction"
+    "category": "junction",
+    "type": "yes"
   }
 }
